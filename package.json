@@ -7,7 +7,11 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "lint-fix": "vue-cli-service lint --fix",
+        "serve": "vue-cli-service serve --open"
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",
@@ -24,6 +28,27 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "vue-router": "^3.5.3"
+        "@fortawesome/fontawesome-free": "^5.15.4",
+        "@fortawesome/fontawesome-svg-core": "^1.2.36",
+        "@fortawesome/free-solid-svg-icons": "^5.15.4",
+        "@fortawesome/vue-fontawesome": "^2.0.6",
+        "@vue/cli-plugin-babel": "^4.5.15",
+        "@vue/cli-plugin-eslint": "^4.5.15",
+        "@vue/cli-service": "^4.5.15",
+        "bootstrap-vue": "^2.21.2",
+        "chart.js": "^3.7.0",
+        "chartist": "^0.11.4",
+        "deepmerge": "^4.2.2",
+        "es6-promise": "^4.2.8",
+        "node-sass": "^6.0.1",
+        "survey-vue": "^1.9.8",
+        "vue-chartjs": "^3.5.1",
+        "vue-clickaway": "^2.2.2",
+        "vue-notifyjs": "^0.4.3",
+        "vue-perfect-scrollbar": "^0.2.1",
+        "vue-router": "^3.5.3",
+        "vue-sidebar-menu": "^4.8.1",
+        "vuetify": "^2.6.3",
+        "vuetify-loader": "^1.7.3"
     }
 }

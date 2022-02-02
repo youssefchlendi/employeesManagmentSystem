@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Entreprise;
 class EntrepriseController extends Controller
 {
-    public function show($id=null){
+    public function show(Request $request,$id=null){
         if(!isset($id)){
-            $entreprises = Entreprise::with('employes')->get();
+            $search = $request->input('search');
+            $entreprises = Entreprise::with('employes')
+            ->where('titre','like','%'.$search.'%')
+            ->paginate('5');
             if (!empty($entreprises))
-                return response()->json(['entreprises'=>
+                return response()->json(
                     $entreprises
-                ], 200);
+                , 200);
             else
                 return response()->json([
                     "No Entreprise found"

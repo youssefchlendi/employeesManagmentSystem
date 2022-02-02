@@ -19,9 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('/entreprise')->namespace('App\Http\Controllers')->group(function(){
-    Route::post('/','EntrepriseController@store');
+    Route::post('/add','EntrepriseController@store');
 
-    Route::get('/{entreprise_id?}','EntrepriseController@show');
+    Route::post('/{entreprise_id?}','EntrepriseController@show');
 
     Route::put('/{entreprise_id}','EntrepriseController@update');
 

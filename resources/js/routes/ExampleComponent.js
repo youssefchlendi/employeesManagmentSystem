@@ -4,8 +4,8 @@ const exampleComponent = () =>import('../components/ExampleComponent.vue');
 
 export default [
     {
-        path: '/ExampleComponent',
+        path: '/exampleComponent',
         component: exampleComponent,
-        name: 'ExampleComponent',
+        name: 'exampleComponent',
     }
 ]

@@ -18,6 +18,7 @@
 <div id="app">
     <main class="py-3 container">
         <router-view></router-view>
+        <navbar/>
     </main>
 </div>
 </body>
