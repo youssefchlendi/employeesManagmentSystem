@@ -1,9 +1,15 @@
 <template>
-<div class="contain">khra</div>
+<div class="contain">
+<showEntreprises :entreprises="entreprises" @deleteEntreprise="deleteEntreprise"/>
+</div>
 </template>
 
 <script>
+    import showEntreprises from './show.vue';
 export default {
+    components:{
+        showEntreprises
+    },
     data(){
         return {
             entreprises : [],
@@ -24,7 +30,6 @@ export default {
         }
     },
     created(){
-        console.log("khra")
         this.fetchEntreprises();
     },
     methods : {
@@ -42,9 +47,9 @@ export default {
             })
                 .then(res => res.json())
                 .then(res => {
-                    this.entreprise = res.data;
-                    console.log(this.entreprise);
-                    this.entreprise.forEach(entreprise => console.log(entreprise.titre))
+                    this.entreprises = res.data;
+                    console.log(this.entreprises);
+                    this.entreprises.forEach(entreprises => console.log(entreprises.titre))
                     vm.makePagination(res);
                 })
                 .catch(err => console.log(err))
@@ -58,10 +63,23 @@ export default {
                 prev_page_url: meta.prev_page_url
             };
         },
+        deleteEntreprise(id) {
+            if (confirm('Delete Entreprise ' + id)) {
+                fetch('api/entreprise/' + id, {method: 'delete'})
+                    .then(res => {
+                        this.fetchEntreprises();
+                    })
+                    .then(data => {
+                    })
+                    .catch(err => console.log(err));
+            }
+        },
     }
 }
 </script>
 
 <style>
-
+.contain{
+    margin-left: 275px;
+}
 </style>
