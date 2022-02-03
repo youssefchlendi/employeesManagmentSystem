@@ -20,6 +20,18 @@
       <b-button variant="danger" v-on:click="Update(entreprise)" data-bs-toggle="modal" data-bs-target="#exampleModal" >Update</b-button>
     </b-card-body>
   </b-card>
+        <nav  class="row ">
+          <ul class="pagination w-auto mx-auto">
+              <li :class="[{disabled:!pagination.prev_page_url}]" class="page-item ">
+                  <a  @click="fetchEntreprises(pagination.prev_page_url)" class="btn page-link">Previous</a>
+              </li>
+              <li class="page-item"><a class="page-link text-dark" href="#">{{pagination.current_page+"/"+pagination.last_page}}</a></li>
+              <li :class="[{disabled:!pagination.next_page_url}]" class="page-item">
+                  <a  @click="fetchEntreprises(pagination.next_page_url)" class="btn page-link" >Next</a>
+              </li>
+          </ul>
+      </nav>
+
 </div>
 </template>
 
@@ -29,7 +41,7 @@ export default {
         entreprises : Array,
         pagination : Object,
     },
-    emits:['deleteEntreprise','updateEntreprise']
+    emits:['deleteEntreprise','updateEntreprise','fetchEntreprises']
     ,
     methods:{
         Delete(id){
@@ -37,6 +49,9 @@ export default {
         },
         Update(entreprise){
             this.$emit('updateEntreprise',entreprise);
+        },
+        fetchEntreprises(url){
+            this.$emit('fetchEntreprises',url)
         }
     }
 }

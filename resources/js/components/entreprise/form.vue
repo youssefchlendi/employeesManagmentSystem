@@ -39,12 +39,8 @@ export default {
         oldEntreprise : Object,
         edit : Boolean,
     },
-    emits:['addEntreprise'],
-    data(){
-        return{
-            entreprise_id:"",
-        }
-    },
+    emits:['addEntreprise']
+    ,
     mounted(){
     }
     ,
