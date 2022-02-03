@@ -3,17 +3,17 @@
           <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h5 class="modal-title" id="employeModalLabel">Ajouter un Employe</h5>
+                      <h5 class="modal-title" id="employeModalLabel">Ajouter un fiche</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <form class="mb-3" @submit.prevent="addFiche">
                   <div class="modal-body">
                           <div class="form-group mb-2">
-                              <label for="">Date:</label>
+                              <label >Date:</label>
                               <input type="date" class="form-control" placeholder="date" v-model="oldFiche.date">
-                              <label for="">Employe:</label>
+                              <label >Employe:</label>
                               <input type="text" class="form-control" placeholder="Employe" v-model="oldFiche.employe_id">
-                              <!-- <label for="">Enretprise:</label>
+                              <!-- <label >Enretprise:</label>
                               <select class="form-select" v-model="oldFiche.entreprise_id" aria-label="Default select example">
                                 <option v-for="entreprise in entreprises" :selected="oldFiche.entreprise_id==entreprise.id" :key="entreprise.id" :value="entreprise.id">{{entreprise.titre}}</option>
                             </select> -->

@@ -10,4 +10,8 @@ class Employe extends Model
     protected $table="employes";
     protected $primaryKey="id";
     protected $fillable=['nom','prenom','cin','mat_cnss','fonction','entreprise_id'];
+    public function fiches(){
+        return $this->hasMany(Fiche::class,'employe_id');
+    }
+
 }

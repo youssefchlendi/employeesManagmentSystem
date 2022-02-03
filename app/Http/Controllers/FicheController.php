@@ -9,7 +9,7 @@ class FicheController extends Controller
 {
     public function show(Request $request,$id=null){
         if(!isset($id)){
-            $fiches = Fiche::paginate('5');
+            $fiches = Fiche::with('employes')->paginate('5');
             if (!empty($fiches))
                 return response()->json(
                     $fiches

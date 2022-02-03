@@ -10,4 +10,8 @@ class Fiche extends Model
     protected $table="fiches";
     protected $primaryKey="id";
     protected $fillable=['date','total','employe_id'];
+    public function employes(){
+        return $this->belongsTo(Employe::class,'employe_id');
+    }
+
 }

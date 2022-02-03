@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
     makePagination: function makePagination(meta) {
       this.pagination = {
         current_page: meta.current_page,
-        current_page_url: 'http://localhost:8000/api/employe?page=' + meta.current_page,
+        current_page_url: 'http://localhost:8000/api/fiche?page=' + meta.current_page,
         last_page: meta.last_page,
         next_page_url: meta.next_page_url,
         prev_page_url: meta.prev_page_url
@@ -609,7 +609,7 @@ var render = function () {
             [
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "form-group mb-2" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Date:")]),
+                  _c("label", [_vm._v("Date:")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -633,7 +633,7 @@ var render = function () {
                     },
                   }),
                   _vm._v(" "),
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Employe:")]),
+                  _c("label", [_vm._v("Employe:")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -700,7 +700,7 @@ var staticRenderFns = [
       _c(
         "h5",
         { staticClass: "modal-title", attrs: { id: "employeModalLabel" } },
-        [_vm._v("Ajouter un Employe")]
+        [_vm._v("Ajouter un fiche")]
       ),
       _vm._v(" "),
       _c("button", {

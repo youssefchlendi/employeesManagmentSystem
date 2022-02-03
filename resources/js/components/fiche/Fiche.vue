@@ -61,7 +61,7 @@ export default {
         makePagination(meta) {
             this.pagination = {
                 current_page: meta.current_page,
-                current_page_url: 'http://localhost:8000/api/employe?page='+meta.current_page,
+                current_page_url: 'http://localhost:8000/api/fiche?page='+meta.current_page,
                 last_page: meta.last_page,
                 next_page_url: meta.next_page_url,
                 prev_page_url: meta.prev_page_url
