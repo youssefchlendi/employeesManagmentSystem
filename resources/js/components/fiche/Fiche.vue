@@ -88,7 +88,6 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.employes = res.data;
-                    vm.makePagination(res);
                 })
                 .catch(err => console.log(err))
         },

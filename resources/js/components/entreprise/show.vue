@@ -25,8 +25,8 @@
                     <b-row><b-col>Nom : {{ employe.nom }} Prenom :  {{employe.prenom }}</b-col></b-row>
                     <b-row><b-col>Cin : {{ employe.cin}} Matricule CNSS : {{ employe.mat_cnss }} </b-col></b-row>
                     <b-row><b-col>Fonction : {{ employe.fonction }}</b-col></b-row>
-                </b-row>
                 <hr/>
+                </b-row>
                 </b-container>
             </b-card-body>
       </b-tab>

@@ -26,7 +26,7 @@
     </b-row>
 </b-container>
     <formEmploye  @addEmploye="addEmploye" :entreprises="entreprises" :oldEmploye="employe" />
-    <showEmploye :employes="employes" @deleteEmploye="deleteEmploye" @updateEmploye="updateEmploye"  :pagination="pagination"/>
+    <showEmploye :employes="employes" @deleteEmploye="deleteEmploye" @fetchEmployes="fetchEmployes" @updateEmploye="updateEmploye"  :pagination="pagination"/>
 </div>
 </template>
 

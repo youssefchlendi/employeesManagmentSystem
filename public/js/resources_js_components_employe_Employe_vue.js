@@ -634,6 +634,7 @@ var render = function () {
         attrs: { employes: _vm.employes, pagination: _vm.pagination },
         on: {
           deleteEmploye: _vm.deleteEmploye,
+          fetchEmployes: _vm.fetchEmployes,
           updateEmploye: _vm.updateEmploye,
         },
       }),
