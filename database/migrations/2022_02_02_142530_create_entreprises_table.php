@@ -16,8 +16,8 @@ class CreateEntreprisesTable extends Migration
         Schema::create('entreprises', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
-            $table->string('matricule-fiscale')->unique();
-            $table->string('registre-commerce')->unique();
+            $table->string('matricule_fiscale')->unique();
+            $table->string('registre_commerce')->unique();
             $table->string('adresse');
             $table->string('ville');
             $table->string('activités');

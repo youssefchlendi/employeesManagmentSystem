@@ -16,8 +16,9 @@ class CreateFichesTable extends Migration
         Schema::create('fiches', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->float('total',10,2);
-            $table->foreignId('employe_id')->nullable();;
+            $table->float('total',10,2)->nullable();
+            $table->foreignId('employe_id');
+            $table->foreign('employe_id')->references('id')->on("employes")->onDelete('cascade');;
             $table->timestamps();
         });
     }

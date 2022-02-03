@@ -17,10 +17,11 @@ class CreateEmployesTable extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-            $table->integer('cin')->unique();;
-            $table->string('mat_cnss')->unique();;
+            $table->integer('cin')->unique();
+            $table->string('mat_cnss')->unique();
             $table->string('fonction');
-            $table->foreignId('entreprise_id')->nullable();;
+            $table->foreignId('entreprise_id');
+            $table->foreign('entreprise_id')->references('id')->on('entreprises')->onDelete('cascade');;
             $table->timestamps();
         });
     }
