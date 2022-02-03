@@ -12,11 +12,9 @@
                               <label >Date:</label>
                               <input type="date" class="form-control" placeholder="date" v-model="oldFiche.date">
                               <label >Employe:</label>
-                              <input type="text" class="form-control" placeholder="Employe" v-model="oldFiche.employe_id">
-                              <!-- <label >Enretprise:</label>
-                              <select class="form-select" v-model="oldFiche.entreprise_id" aria-label="Default select example">
-                                <option v-for="entreprise in entreprises" :selected="oldFiche.entreprise_id==entreprise.id" :key="entreprise.id" :value="entreprise.id">{{entreprise.titre}}</option>
-                            </select> -->
+                              <select class="form-select" v-model="oldFiche.employe_id" aria-label="Default select example">
+                                <option v-for="employe in employes" :selected="oldFiche.employe_id==employe.id" :key="employe.id" :value="employe.id">{{employe.nom}} {{employe.prenom }}</option>
+                            </select>
                           </div>
                   </div>
                   <div class="modal-footer">
@@ -33,7 +31,8 @@
 export default {
     props:{
         oldFiche : Object,
-        edit : Boolean
+        edit : Boolean,
+        employes : Array,
     },
     emits:['addFiche']
     ,
