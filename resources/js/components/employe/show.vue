@@ -16,17 +16,13 @@
             <b-button variant="warning" v-on:click="Update(employe)" data-bs-toggle="modal" data-bs-target="#employeModal" >Update</b-button>
             </b-container>
         </b-tab>
-      </b-tabs>
-            <b-tabs card>
-        <b-tab title="Employe fiches" active>
+        <b-tab title="Employe fiches" >
             <b-container v-for="fiche in employe.fiches" :key="fiche.id" class="bv-example-row text-center">
             <b-row  class="mb-2">
-            <b-row><b-col>Nom : {{ employe.nom }} Prenom :  {{employe.prenom }}</b-col></b-row>
-            <b-row><b-col>Cin : {{ employe.cin}} Matricule CNSS : {{ employe.mat_cnss }} </b-col></b-row>
-            <b-row><b-col>Fonction : {{ employe.fonction }}</b-col></b-row>
+            <b-row><b-col>date : {{ fiche.date }} employe :  {{fiche.employe_id }}</b-col></b-row>
+            <b-row><b-col>total : {{ fiche.total}}</b-col></b-row>
+            <hr/>
             </b-row>
-            <b-button variant="danger" v-on:click="Delete(employe.id)" >Delete</b-button>
-            <b-button variant="warning" v-on:click="Update(employe)" data-bs-toggle="modal" data-bs-target="#employeModal" >Update</b-button>
             </b-container>
         </b-tab>
       </b-tabs>
