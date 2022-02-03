@@ -31,6 +31,11 @@ export default {
             href: '/Employe',
             title: 'Employe',
             icon: 'fas fa-user',
+          },
+          {
+            href: '/Fiche',
+            title: 'Fiche',
+            icon: 'fas fa-file',
           }
 
         ]
