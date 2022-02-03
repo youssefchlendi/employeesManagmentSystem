@@ -12,15 +12,17 @@
       </b-nav>
     </b-card-header>
 
-    <b-card-body class="text-center">
-      <b-card-title>{{ employe.nom }} {{ employe.prenom }}</b-card-title>
 
-      <b-card-text>
-        {{ employe.cin }} {{ employe.mat_cnss }}<br>{{ employe.fonction }}<br>{{ employe.entreprise_id }}
-      </b-card-text>
-
+        <b-card-body>
+        <b-container class="bv-example-row text-center">
+        <b-row  class="mb-2">
+        <b-row><b-col>Nom : {{ employe.nom }} Prenom :  {{employe.prenom }}</b-col></b-row>
+        <b-row><b-col>Cin : {{ employe.cin}} Matricule CNSS : {{ employe.mat_cnss }} </b-col></b-row>
+        <b-row><b-col>Fonction : {{ employe.fonction }}</b-col></b-row>
+        </b-row>
       <b-button variant="danger" v-on:click="Delete(employe.id)" >Delete</b-button>
-      <b-button variant="danger" v-on:click="Update(employe)" data-bs-toggle="modal" data-bs-target="#employeModal" >Update</b-button>
+      <b-button variant="warning" v-on:click="Update(employe)" data-bs-toggle="modal" data-bs-target="#employeModal" >Update</b-button>
+    </b-container>
     </b-card-body>
   </b-card>
         <nav  class="row ">
