@@ -15,6 +15,7 @@
                               <select class="form-select" v-model="oldFiche.employe_id" aria-label="Default select example">
                                 <option v-for="employe in employes" :selected="oldFiche.employe_id==employe.id" :key="employe.id" :value="employe.id">{{employe.nom}} {{employe.prenom }}</option>
                             </select>
+                            <rebrique/>
                           </div>
                   </div>
                   <div class="modal-footer">
@@ -28,7 +29,11 @@
 </template>
 
 <script>
+import rebrique from './Rebrique.vue'
 export default {
+    components :{
+        rebrique
+    },
     props:{
         oldFiche : Object,
         edit : Boolean,
