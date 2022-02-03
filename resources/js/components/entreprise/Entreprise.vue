@@ -6,11 +6,11 @@
               type="search"
               name="search"
               pattern=".*\S.*"
-              @keyup="fetchEntreprises(pagination.current_page_url)"
+              @keyup="fetchEntreprises()"
               required
               v-model="search"
           />
-          <button class="search-btn" @click="fetchEntreprises(pagination.current_page_url)" type="submit">
+          <button class="search-btn" @click="fetchEntreprises()" type="submit">
               <span>Search</span>
           </button>
       </form>

@@ -1,5 +1,9 @@
 <template>
 <div>
+        <div class="card card-body my-2" v-if="entreprises.length==0">
+          <h3>il y'a aucun entreprise</h3>
+      </div>
+
  <b-card v-for="entreprise in entreprises" :key="entreprise.id">
     <b-card-header header-tag="nav">
       <b-nav card-header tabs>
