@@ -146,7 +146,7 @@ export default {
 <style>
 
 .contain{
-    margin-left: 275px!important;
+    margin-left: 100px!important;
 }
 
 #search {

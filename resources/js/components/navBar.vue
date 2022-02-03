@@ -1,5 +1,5 @@
 <template>
-  <sidebar-menu  :menu="menu"/>
+  <sidebar-menu  :width="'200px'" :menu="menu"/>
 </template>
 
 <script>
