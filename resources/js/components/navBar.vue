@@ -26,6 +26,11 @@ export default {
             href: '/Entreprise',
             title: 'Entreprise',
             icon: 'fas fa-building',
+          },
+          {
+            href: '/Employe',
+            title: 'Employe',
+            icon: 'fas fa-user',
           }
 
         ]
