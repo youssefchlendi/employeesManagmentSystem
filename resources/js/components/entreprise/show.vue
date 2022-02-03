@@ -5,15 +5,9 @@
       </div>
 
  <b-card v-for="entreprise in entreprises" :key="entreprise.id">
-    <b-card-header header-tag="nav">
-      <b-nav card-header tabs>
-        <b-nav-item active>Active</b-nav-item>
-        <b-nav-item>Inactive</b-nav-item>
-        <b-nav-item disabled>Disabled</b-nav-item>
-      </b-nav>
-    </b-card-header>
-
-    <b-card-body class="text-center">
+     <b-tabs card>
+      <b-tab title="Entreprise" active>
+<b-card-body class="text-center">
       <b-card-title>{{ entreprise.titre }}</b-card-title>
 
       <b-card-text>
@@ -21,8 +15,25 @@
       </b-card-text>
 
       <b-button variant="danger" v-on:click="Delete(entreprise.id)" >Delete</b-button>
-      <b-button variant="danger" v-on:click="Update(entreprise)" data-bs-toggle="modal" data-bs-target="#exampleModal" >Update</b-button>
-    </b-card-body>
+      <b-button variant="warning" v-on:click="Update(entreprise)" data-bs-toggle="modal" data-bs-target="#exampleModal" >Update</b-button>
+    </b-card-body>      </b-tab>
+      <b-tab title="Employes">
+            <b-card-body>
+                <h6 v-if="entreprise.employes.length==0">Aucun employe </h6>
+                <b-container class="bv-example-row text-center">
+                <b-row v-for="employe in entreprise.employes" :key="employe.id">
+                    <b-row><b-col>Nom : {{ employe.nom }} Prenom :  {{employe.prenom }}</b-col></b-row>
+                    <b-row><b-col>Cin : {{ employe.cin}} Matricule CNSS : {{ employe.mat_cnss }} </b-col></b-row>
+                    <b-row><b-col>Fonction : {{ employe.fonction }}</b-col></b-row>
+                </b-row>
+                <hr/>
+                </b-container>
+            </b-card-body>
+      </b-tab>
+    </b-tabs>
+
+
+
   </b-card>
         <nav  class="row ">
           <ul class="pagination w-auto mx-auto">
