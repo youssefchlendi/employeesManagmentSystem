@@ -1,14 +1,28 @@
 <template>
 <div class="contain">
+<b-container class="bv-example-row">
+    <b-row class="text-center mb-2">
+        <b-col cols="8">
+            <button type="button" class="btn btn-primary mx-1 float-start"  @click="resetModal1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                New Activity
+            </button>
+        </b-col>
+        <b-col>
+        </b-col>
+    </b-row>
+</b-container>
+<formEntreprise :oldEntreprise="entreprise"/>
 <showEntreprises :entreprises="entreprises" @deleteEntreprise="deleteEntreprise"/>
 </div>
 </template>
 
 <script>
     import showEntreprises from './show.vue';
+    import formEntreprise from './form.vue';
 export default {
     components:{
-        showEntreprises
+        showEntreprises,
+        formEntreprise
     },
     data(){
         return {
@@ -74,6 +88,9 @@ export default {
                     .catch(err => console.log(err));
             }
         },
+        resetModal1(){
+
+        }
     }
 }
 </script>
