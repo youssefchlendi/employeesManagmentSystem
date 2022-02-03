@@ -30,9 +30,9 @@ Route::prefix('/entreprise')->namespace('App\Http\Controllers')->group(function(
 });
 
 Route::prefix('/employe')->namespace('App\Http\Controllers')->group(function(){
-    Route::post('/','EmployeController@store');
+    Route::post('/add','EmployeController@store');
 
-    Route::get('/{employe_id?}','EmployeController@show');
+    Route::post ('/{employe_id?}','EmployeController@show');
 
     Route::put('/{employe_id}','EmployeController@update');
 
