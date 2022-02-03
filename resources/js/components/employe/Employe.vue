@@ -132,6 +132,7 @@ data(){
                     .then(res => res.json())
                     .then(data => {
                             this.fetchEmployes();
+                            this.edit=false;
                         }
                     )
                     .catch(err => console.log(err))

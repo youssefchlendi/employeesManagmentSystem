@@ -1,11 +1,123 @@
 <template>
   <div>
-      qsdkqmsldk
+    <b-container class="bv-example-row">
+    <b-row class="text-center mb-2">
+        <b-col cols="8">
+            <button type="button" class="btn btn-primary mx-1 float-start"  @click="resetModal1" data-bs-toggle="modal" data-bs-target="#ficheModal">
+                New Fiche
+            </button>
+        </b-col>
+        <b-col>
+        </b-col>
+    </b-row>
+</b-container>
+
+    <formFiche  @addFiche="addFiche"  :oldFiche="fiche" />
+    <showFiche :fiches="fiches" @deleteFiche="deleteFiche" @updateFiche="updateFiche"  :pagination="pagination"/>
   </div>
 </template>
 
 <script>
+import showFiche from './show.vue';
+import formFiche from './form.vue';
+
 export default {
+    components : {
+        showFiche,
+        formFiche
+    },
+    data(){
+        return {
+            fiches : [],
+            fiche : {},
+            pagination:{},
+            edit:false,
+            search:""
+        }
+    },
+    created(){
+        this.fetchFiches();
+    },
+    methods : {
+        fetchFiches(page_url="/api/fiche"){
+            let vm = this;
+            // page_url = this.search!=''?'/api/employe':page_url;
+            let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('Authorization','auth');
+            fetch(page_url, {
+                method: 'POST',
+                body: JSON.stringify({'search' : this.search}),
+                headers: headersi
+
+            })
+                .then(res => res.json())
+                .then(res => {
+                    this.fiches = res.data;
+                    vm.makePagination(res);
+                })
+                .catch(err => console.log(err))
+        },
+        makePagination(meta) {
+            this.pagination = {
+                current_page: meta.current_page,
+                current_page_url: 'http://localhost:8000/api/employe?page='+meta.current_page,
+                last_page: meta.last_page,
+                next_page_url: meta.next_page_url,
+                prev_page_url: meta.prev_page_url
+            };
+        },
+        deleteFiche(id) {
+            if (confirm('Delete fiche ' + id)) {
+                fetch('api/fiche/' + id, {method: 'delete'})
+                    .then(res => {
+                        this.fetchFiches();
+                    })
+                    .then(data => {
+                    })
+                    .catch(err => console.log(err));
+            }
+        },
+        resetModal1(){
+            this.fiche={};
+        },
+        addFiche(fiche) {
+            if (!this.edit) {
+                fetch('api/fiche/add', {
+                    method: 'post',
+                    body: JSON.stringify(fiche),
+                    headers: {
+                        "Content-Type": 'application/json'
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                            this.fetchFiches();
+                        }
+                    )
+                    .catch(err => console.log(err))
+            } else {
+                fetch('api/fiche/' + this.fiche.id, {
+                    method: 'put',
+                    body: JSON.stringify(fiche),
+                    headers: {
+                        "Content-Type": 'application/json'
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                            this.fetchFiches();
+                            this.edit=false;
+                        }
+                    )
+                    .catch(err => console.log(err))
+            }
+        },
+        updateFiche(fiche){
+            this.edit=true;
+            this.fiche = fiche;
+        },
+    }
 
 }
 </script>

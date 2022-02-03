@@ -157,6 +157,8 @@ __webpack_require__.r(__webpack_exports__);
           return res.json();
         }).then(function (data) {
           _this4.fetchEmployes();
+
+          _this4.edit = false;
         })["catch"](function (err) {
           return console.log(err);
         });

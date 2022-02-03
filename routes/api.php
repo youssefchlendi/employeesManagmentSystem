@@ -39,3 +39,13 @@ Route::prefix('/employe')->namespace('App\Http\Controllers')->group(function(){
     Route::delete('/{employe_id}','EmployeController@Destroy');
 
 });
+Route::prefix('/fiche')->namespace('App\Http\Controllers')->group(function(){
+    Route::post('/add','FicheController@store');
+    Route::get('/','FicheController@showAll');
+    Route::post('/{Fiche_id?}','FicheController@show');
+
+    Route::put('/{Fiche_id}','FicheController@update');
+
+    Route::delete('/{Fiche_id}','FicheController@Destroy');
+
+});
