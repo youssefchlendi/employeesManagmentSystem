@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rebrique extends Model
 {
-    use HasFactory;
+    protected $table="rebriques";
+    protected $primaryKey="id";
+    protected $fillable=['titre'];
+
+    public function fiches()
+    {
+        return $this->belongsToMany(Fiche::class,
+        'fiche_rebrique',
+        'rebrique_id',
+        'fiche_id');
+    }
 }
