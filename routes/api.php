@@ -49,3 +49,13 @@ Route::prefix('/fiche')->namespace('App\Http\Controllers')->group(function(){
     Route::delete('/{Fiche_id}','FicheController@Destroy');
 
 });
+
+Route::prefix('/rebrique')->namespace('App\Http\Controllers')->group(function(){
+    Route::post('/add','RebriqueController@store');
+    Route::get('/','RebriqueController@show');
+
+    Route::put('/{Rebrique_id}','RebriqueController@update');
+
+    Route::delete('/{Rebrique_id}','RebriqueController@Destroy');
+
+});
