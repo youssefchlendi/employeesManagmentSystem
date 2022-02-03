@@ -17,6 +17,7 @@
       </b-card-text>
 
       <b-button variant="danger" v-on:click="Delete(entreprise.id)" >Delete</b-button>
+      <b-button variant="danger" v-on:click="Update(entreprise)" data-bs-toggle="modal" data-bs-target="#exampleModal" >Update</b-button>
     </b-card-body>
   </b-card>
 </div>
@@ -28,11 +29,14 @@ export default {
         entreprises : Array,
         pagination : Object,
     },
-    emits:['deleteEntreprise']
+    emits:['deleteEntreprise','updateEntreprise']
     ,
     methods:{
         Delete(id){
             this.$emit('deleteEntreprise',id);
+        },
+        Update(entreprise){
+            this.$emit('updateEntreprise',entreprise);
         }
     }
 }

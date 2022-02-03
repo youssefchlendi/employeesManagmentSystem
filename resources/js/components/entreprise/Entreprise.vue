@@ -11,8 +11,9 @@
         </b-col>
     </b-row>
 </b-container>
-<formEntreprise :oldEntreprise="entreprise"/>
-<showEntreprises :entreprises="entreprises" @deleteEntreprise="deleteEntreprise"/>
+
+<formEntreprise  @addEntreprise="addEntreprise" :oldEntreprise="entreprise" />
+<showEntreprises :entreprises="entreprises" @deleteEntreprise="deleteEntreprise" @updateEntreprise="updateEntreprise"/>
 </div>
 </template>
 
@@ -89,7 +90,42 @@ export default {
             }
         },
         resetModal1(){
-
+            this.entreprise={};
+        },
+        addEntreprise(entreprise) {
+            if (!this.edit) {
+                fetch('api/entreprise/add', {
+                    method: 'post',
+                    body: JSON.stringify(entreprise),
+                    headers: {
+                        "Content-Type": 'application/json'
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                            this.fetchEntreprises();
+                        }
+                    )
+                    .catch(err => console.log(err))
+            } else {
+                fetch('api/entreprise/' + this.entreprise.id, {
+                    method: 'put',
+                    body: JSON.stringify(entreprise),
+                    headers: {
+                        "Content-Type": 'application/json'
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                            this.fetchEntreprises();
+                        }
+                    )
+                    .catch(err => console.log(err))
+            }
+        },
+        updateEntreprise(entreprise){
+            this.edit=true;
+            this.entreprise = entreprise;
         }
     }
 }
