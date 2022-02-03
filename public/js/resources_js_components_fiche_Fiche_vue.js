@@ -32,6 +32,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -537,6 +550,56 @@ var render = function () {
   return _c(
     "div",
     [
+      _c(
+        "form",
+        { staticClass: "search-bar", attrs: { action: "javascript:" } },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.search,
+                expression: "search",
+              },
+            ],
+            attrs: {
+              id: "search",
+              type: "search",
+              name: "search",
+              pattern: ".*\\S.*",
+              required: "",
+            },
+            domProps: { value: _vm.search },
+            on: {
+              keyup: function ($event) {
+                return _vm.fetchEmployes()
+              },
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.search = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "search-btn",
+              attrs: { type: "submit" },
+              on: {
+                click: function ($event) {
+                  return _vm.fetchEmployes()
+                },
+              },
+            },
+            [_c("span", [_vm._v("Search")])]
+          ),
+        ]
+      ),
+      _vm._v(" "),
       _c(
         "b-container",
         { staticClass: "bv-example-row" },

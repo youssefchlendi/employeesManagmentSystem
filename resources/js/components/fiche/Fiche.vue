@@ -1,6 +1,19 @@
 <template>
   <div>
-    <b-container class="bv-example-row">
+    <form action="javascript:" class="search-bar">
+          <input
+              id="search"
+              type="search"
+              name="search"
+              pattern=".*\S.*"
+              @keyup="fetchEmployes()"
+              required
+              v-model="search"
+          />
+          <button class="search-btn" @click="fetchEmployes()" type="submit">
+              <span>Search</span>
+          </button>
+      </form>    <b-container class="bv-example-row">
     <b-row class="text-center mb-2">
         <b-col cols="8">
             <button type="button" class="btn btn-primary mx-1 float-start"  @click="resetModal1" data-bs-toggle="modal" data-bs-target="#ficheModal">
