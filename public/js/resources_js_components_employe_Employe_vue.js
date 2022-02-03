@@ -297,10 +297,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     employes: Array,
@@ -697,7 +693,7 @@ var render = function () {
             [
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "form-group mb-2" }, [
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Nom:")]),
+                  _c("label", [_vm._v("Nom:")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -721,7 +717,7 @@ var render = function () {
                     },
                   }),
                   _vm._v(" "),
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Prenom:")]),
+                  _c("label", [_vm._v("Prenom:")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -745,7 +741,7 @@ var render = function () {
                     },
                   }),
                   _vm._v(" "),
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Cin:")]),
+                  _c("label", [_vm._v("Cin:")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -769,9 +765,7 @@ var render = function () {
                     },
                   }),
                   _vm._v(" "),
-                  _c("label", { attrs: { for: "" } }, [
-                    _vm._v("Matricule cnss:"),
-                  ]),
+                  _c("label", [_vm._v("Matricule cnss:")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -799,7 +793,7 @@ var render = function () {
                     },
                   }),
                   _vm._v(" "),
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Fonction:")]),
+                  _c("label", [_vm._v("Fonction:")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -827,7 +821,7 @@ var render = function () {
                     },
                   }),
                   _vm._v(" "),
-                  _c("label", { attrs: { for: "" } }, [_vm._v("Enretprise:")]),
+                  _c("label", [_vm._v("Enretprise:")]),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -1064,17 +1058,10 @@ var render = function () {
                   ],
                   1
                 ),
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "b-tabs",
-              { attrs: { card: "" } },
-              [
+                _vm._v(" "),
                 _c(
                   "b-tab",
-                  { attrs: { title: "Employe fiches", active: "" } },
+                  { attrs: { title: "Employe fiches" } },
                   _vm._l(employe.fiches, function (fiche) {
                     return _c(
                       "b-container",
@@ -1092,10 +1079,10 @@ var render = function () {
                               [
                                 _c("b-col", [
                                   _vm._v(
-                                    "Nom : " +
-                                      _vm._s(employe.nom) +
-                                      " Prenom :  " +
-                                      _vm._s(employe.prenom)
+                                    "date : " +
+                                      _vm._s(fiche.date) +
+                                      " employe :  " +
+                                      _vm._s(fiche.employe_id)
                                   ),
                                 ]),
                               ],
@@ -1106,61 +1093,15 @@ var render = function () {
                               "b-row",
                               [
                                 _c("b-col", [
-                                  _vm._v(
-                                    "Cin : " +
-                                      _vm._s(employe.cin) +
-                                      " Matricule CNSS : " +
-                                      _vm._s(employe.mat_cnss) +
-                                      " "
-                                  ),
+                                  _vm._v("total : " + _vm._s(fiche.total)),
                                 ]),
                               ],
                               1
                             ),
                             _vm._v(" "),
-                            _c(
-                              "b-row",
-                              [
-                                _c("b-col", [
-                                  _vm._v(
-                                    "Fonction : " + _vm._s(employe.fonction)
-                                  ),
-                                ]),
-                              ],
-                              1
-                            ),
+                            _c("hr"),
                           ],
                           1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-button",
-                          {
-                            attrs: { variant: "danger" },
-                            on: {
-                              click: function ($event) {
-                                return _vm.Delete(employe.id)
-                              },
-                            },
-                          },
-                          [_vm._v("Delete")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-button",
-                          {
-                            attrs: {
-                              variant: "warning",
-                              "data-bs-toggle": "modal",
-                              "data-bs-target": "#employeModal",
-                            },
-                            on: {
-                              click: function ($event) {
-                                return _vm.Update(employe)
-                              },
-                            },
-                          },
-                          [_vm._v("Update")]
                         ),
                       ],
                       1

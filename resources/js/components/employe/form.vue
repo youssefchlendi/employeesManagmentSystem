@@ -9,17 +9,17 @@
                   <form class="mb-3" @submit.prevent="addEmploye">
                   <div class="modal-body">
                           <div class="form-group mb-2">
-                              <label for="">Nom:</label>
+                              <label  >Nom:</label>
                               <input type="text" class="form-control" placeholder="Nom" v-model="oldEmploye.nom">
-                              <label for="">Prenom:</label>
+                              <label  >Prenom:</label>
                               <input type="text" class="form-control" placeholder="Prenom" v-model="oldEmploye.prenom">
-                              <label for="">Cin:</label>
+                              <label  >Cin:</label>
                               <input type="number" class="form-control" placeholder="cin" v-model="oldEmploye.cin">
-                              <label for="">Matricule cnss:</label>
+                              <label  >Matricule cnss:</label>
                               <input type="text" class="form-control" placeholder="Matricule cnss" v-model="oldEmploye.mat_cnss">
-                              <label for="">Fonction:</label>
+                              <label  >Fonction:</label>
                               <input type="text" class="form-control" placeholder="Fonction" v-model="oldEmploye.fonction">
-                              <label for="">Enretprise:</label>
+                              <label  >Enretprise:</label>
                               <select class="form-select" v-model="oldEmploye.entreprise_id" aria-label="Default select example">
                                 <option v-for="entreprise in entreprises" :selected="oldEmploye.entreprise_id==entreprise.id" :key="entreprise.id" :value="entreprise.id">{{entreprise.titre}}</option>
                             </select>

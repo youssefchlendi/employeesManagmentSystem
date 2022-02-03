@@ -12,7 +12,7 @@
     </b-row>
 </b-container>
 
-    <formFiche  @addFiche="addFiche"  :oldFiche="fiche" />
+    <formFiche  @addFiche="addFiche" :employes="employes"  :oldFiche="fiche" />
     <showFiche :fiches="fiches" @deleteFiche="deleteFiche" @updateFiche="updateFiche"  :pagination="pagination"/>
   </div>
 </template>
@@ -32,11 +32,13 @@ export default {
             fiche : {},
             pagination:{},
             edit:false,
-            search:""
+            search:"",
+            employes :[]
         }
     },
     created(){
         this.fetchFiches();
+        this.fetchEmployes();
     },
     methods : {
         fetchFiches(page_url="/api/fiche"){
@@ -54,6 +56,25 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.fiches = res.data;
+                    vm.makePagination(res);
+                })
+                .catch(err => console.log(err))
+        },
+        fetchEmployes(page_url="/api/employe"){
+            let vm = this;
+            // page_url = this.search!=''?'/api/employe':page_url;
+            let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('Authorization','auth');
+            fetch(page_url, {
+                method: 'POST',
+                body: JSON.stringify({'search' : this.search}),
+                headers: headersi
+
+            })
+                .then(res => res.json())
+                .then(res => {
+                    this.employes = res.data;
                     vm.makePagination(res);
                 })
                 .catch(err => console.log(err))

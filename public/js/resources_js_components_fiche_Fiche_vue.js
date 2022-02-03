@@ -45,11 +45,13 @@ __webpack_require__.r(__webpack_exports__);
       fiche: {},
       pagination: {},
       edit: false,
-      search: ""
+      search: "",
+      employes: []
     };
   },
   created: function created() {
     this.fetchFiches();
+    this.fetchEmployes();
   },
   methods: {
     fetchFiches: function fetchFiches() {
@@ -76,6 +78,30 @@ __webpack_require__.r(__webpack_exports__);
         return console.log(err);
       });
     },
+    fetchEmployes: function fetchEmployes() {
+      var _this2 = this;
+
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/employe";
+      var vm = this; // page_url = this.search!=''?'/api/employe':page_url;
+
+      var headersi = new Headers();
+      headersi.append('Content-Type', 'application/json');
+      headersi.append('Authorization', 'auth');
+      fetch(page_url, {
+        method: 'POST',
+        body: JSON.stringify({
+          'search': this.search
+        }),
+        headers: headersi
+      }).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this2.employes = res.data;
+        vm.makePagination(res);
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
     makePagination: function makePagination(meta) {
       this.pagination = {
         current_page: meta.current_page,
@@ -86,13 +112,13 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     deleteFiche: function deleteFiche(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (confirm('Delete fiche ' + id)) {
         fetch('api/fiche/' + id, {
           method: 'delete'
         }).then(function (res) {
-          _this2.fetchFiches();
+          _this3.fetchFiches();
         }).then(function (data) {})["catch"](function (err) {
           return console.log(err);
         });
@@ -102,7 +128,7 @@ __webpack_require__.r(__webpack_exports__);
       this.fiche = {};
     },
     addFiche: function addFiche(fiche) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (!this.edit) {
         fetch('api/fiche/add', {
@@ -114,7 +140,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
-          _this3.fetchFiches();
+          _this4.fetchFiches();
         })["catch"](function (err) {
           return console.log(err);
         });
@@ -128,9 +154,9 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
-          _this3.fetchFiches();
+          _this4.fetchFiches();
 
-          _this3.edit = false;
+          _this4.edit = false;
         })["catch"](function (err) {
           return console.log(err);
         });
@@ -184,12 +210,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     oldFiche: Object,
-    edit: Boolean
+    edit: Boolean,
+    employes: Array
   },
   emits: ['addFiche'],
   mounted: function mounted() {},
@@ -545,7 +570,7 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("formFiche", {
-        attrs: { oldFiche: _vm.fiche },
+        attrs: { employes: _vm.employes, oldFiche: _vm.fiche },
         on: { addFiche: _vm.addFiche },
       }),
       _vm._v(" "),
@@ -635,31 +660,58 @@ var render = function () {
                   _vm._v(" "),
                   _c("label", [_vm._v("Employe:")]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.oldFiche.employe_id,
-                        expression: "oldFiche.employe_id",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Employe" },
-                    domProps: { value: _vm.oldFiche.employe_id },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.oldFiche,
-                          "employe_id",
-                          $event.target.value
-                        )
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.oldFiche.employe_id,
+                          expression: "oldFiche.employe_id",
+                        },
+                      ],
+                      staticClass: "form-select",
+                      attrs: { "aria-label": "Default select example" },
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.oldFiche,
+                            "employe_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
                       },
                     },
-                  }),
+                    _vm._l(_vm.employes, function (employe) {
+                      return _c(
+                        "option",
+                        {
+                          key: employe.id,
+                          domProps: {
+                            selected: _vm.oldFiche.employe_id == employe.id,
+                            value: employe.id,
+                          },
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(employe.nom) + " " + _vm._s(employe.prenom)
+                          ),
+                        ]
+                      )
+                    }),
+                    0
+                  ),
                 ]),
               ]),
               _vm._v(" "),

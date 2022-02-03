@@ -9,17 +9,17 @@
                   <form class="mb-3" @submit.prevent="addEntreprise">
                   <div class="modal-body">
                           <div class="form-group mb-2">
-                              <label for="">Titre:</label>
+                              <label  >Titre:</label>
                               <input type="text" class="form-control" placeholder="Titre" v-model="oldEntreprise.titre">
-                              <label for="">Matricule Fiscale:</label>
+                              <label  >Matricule Fiscale:</label>
                               <input type="text" class="form-control" placeholder="Matricule Fiscale" v-model="oldEntreprise.matricule_fiscale">
-                              <label for="">Registre du commerce:</label>
+                              <label  >Registre du commerce:</label>
                               <input type="text" class="form-control" placeholder="Registre de commers" v-model="oldEntreprise.registre_commerce">
-                              <label for="">Adresse:</label>
+                              <label  >Adresse:</label>
                               <input type="text" class="form-control" placeholder="Adreese" v-model="oldEntreprise.adresse">
-                              <label for="">Ville:</label>
+                              <label  >Ville:</label>
                               <input type="text" class="form-control" placeholder="Ville" v-model="oldEntreprise.ville">
-                              <label for="">Activité:</label>
+                              <label  >Activité:</label>
                               <input type="text" class="form-control" placeholder="Activité" v-model="oldEntreprise.activités">
                           </div>
                   </div>
