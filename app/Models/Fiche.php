@@ -14,4 +14,14 @@ class Fiche extends Model
         return $this->belongsTo(Employe::class,'employe_id');
     }
 
+    public function rebriques()
+    {
+        return $this->belongsToMany(Rebrique::class,
+        'fiche_rebrique',
+        'fiche_id',
+        'rebrique_id')
+        ->withPivot(['montant']);
+    }
+
+
 }
