@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Employe;
 class EmployeController extends Controller
 {
-    public function show($id=null){
+    public function show(Request $request,$id=null){
         if(!isset($id)){
-            $employes = Employe::all();
+            $search = $request->input('search');
+            $employes = Employe::where('nom','like','%'.$search.'%')
+            ->orWhere('prenom','like','%'.$search.'%')
+            ->paginate('5');
             if (!empty($employes))
-                return response()->json(['employes'=>
+                return response()->json(
                     $employes
-                ], 200);
+                , 200);
             else
                 return response()->json([
                     "No employe found"
