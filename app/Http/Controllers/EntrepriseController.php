@@ -34,6 +34,16 @@ class EntrepriseController extends Controller
         }
 
     }
+
+    public function showAll(){
+        $entreprises = Entreprise::select("id","titre")->get();
+        if(!empty($entreprises)){
+            return response()->json(['data'=>$entreprises],200);
+        }else{
+            return response()->json(["No entreprise found"],404);
+        }
+    }
+
     public function store(Request $request){
         $titre = $request->input('titre');
         $matriculeFiscale = $request->input('matricule_fiscale');
