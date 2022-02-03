@@ -25,7 +25,7 @@
         </b-col>
     </b-row>
 </b-container>
-    <formEmploye  @addEmploye="addEmploye" :oldEmploye="employe" />
+    <formEmploye  @addEmploye="addEmploye" :entreprises="entreprises" :oldEmploye="employe" />
     <showEmploye :employes="employes" @deleteEmploye="deleteEmploye" @updateEmploye="updateEmploye"  :pagination="pagination"/>
 </div>
 </template>
@@ -41,6 +41,7 @@ export default {
     },
 data(){
         return {
+            entreprises:[],
             employes : [],
             employe : {},
             pagination:{},
@@ -49,6 +50,7 @@ data(){
         }
     },
     created(){
+        this.fetchEntreprises();
         this.fetchEmployes();
     },
     methods : {
@@ -68,6 +70,16 @@ data(){
                 .then(res => {
                     this.employes = res.data;
                     vm.makePagination(res);
+                })
+                .catch(err => console.log(err))
+        },
+        fetchEntreprises(){
+            fetch("/api/entreprise/", {
+                method: 'GET',
+            })
+                .then(res => res.json())
+                .then(res => {
+                    this.entreprises = res.data;
                 })
                 .catch(err => console.log(err))
         },
@@ -119,7 +131,7 @@ data(){
                 })
                     .then(res => res.json())
                     .then(data => {
-                            this.fetchemployes();
+                            this.fetchEmployes();
                         }
                     )
                     .catch(err => console.log(err))

@@ -54,6 +54,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      entreprises: [],
       employes: [],
       employe: {},
       pagination: {},
@@ -62,6 +63,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    this.fetchEntreprises();
     this.fetchEmployes();
   },
   methods: {
@@ -89,6 +91,19 @@ __webpack_require__.r(__webpack_exports__);
         return console.log(err);
       });
     },
+    fetchEntreprises: function fetchEntreprises() {
+      var _this2 = this;
+
+      fetch("/api/entreprise/", {
+        method: 'GET'
+      }).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this2.entreprises = res.data;
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
     makePagination: function makePagination(meta) {
       this.pagination = {
         current_page: meta.current_page,
@@ -99,13 +114,13 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     deleteEmploye: function deleteEmploye(id) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (confirm('Delete employe ' + id)) {
         fetch('api/employe/' + id, {
           method: 'delete'
         }).then(function (res) {
-          _this2.fetchEmployes();
+          _this3.fetchEmployes();
         }).then(function (data) {})["catch"](function (err) {
           return console.log(err);
         });
@@ -115,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
       this.employe = {};
     },
     addEmploye: function addEmploye(employe) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (!this.edit) {
         fetch('api/employe/add', {
@@ -127,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
-          _this3.fetchEmployes();
+          _this4.fetchEmployes();
         })["catch"](function (err) {
           return console.log(err);
         });
@@ -141,7 +156,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
-          _this3.fetchemployes();
+          _this4.fetchEmployes();
         })["catch"](function (err) {
           return console.log(err);
         });
@@ -201,10 +216,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     oldEmploye: Object,
-    edit: Boolean
+    edit: Boolean,
+    entreprises: Array
   },
   emits: ['addEmploye'],
   mounted: function mounted() {},
@@ -602,7 +620,7 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("formEmploye", {
-        attrs: { oldEmploye: _vm.employe },
+        attrs: { entreprises: _vm.entreprises, oldEmploye: _vm.employe },
         on: { addEmploye: _vm.addEmploye },
       }),
       _vm._v(" "),
@@ -801,31 +819,55 @@ var render = function () {
                   _vm._v(" "),
                   _c("label", { attrs: { for: "" } }, [_vm._v("Enretprise:")]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.oldEmploye.entreprise_id,
-                        expression: "oldEmploye.entreprise_id",
-                      },
-                    ],
-                    staticClass: "form-control",
-                    attrs: { type: "text", placeholder: "Enretprise" },
-                    domProps: { value: _vm.oldEmploye.entreprise_id },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.oldEmploye,
-                          "entreprise_id",
-                          $event.target.value
-                        )
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.oldEmploye.entreprise_id,
+                          expression: "oldEmploye.entreprise_id",
+                        },
+                      ],
+                      staticClass: "form-select",
+                      attrs: { "aria-label": "Default select example" },
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.oldEmploye,
+                            "entreprise_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
                       },
                     },
-                  }),
+                    _vm._l(_vm.entreprises, function (entreprise) {
+                      return _c(
+                        "option",
+                        {
+                          key: entreprise.id,
+                          domProps: {
+                            selected:
+                              _vm.oldEmploye.entreprise_id == entreprise.id,
+                            value: entreprise.id,
+                          },
+                        },
+                        [_vm._v(_vm._s(entreprise.titre))]
+                      )
+                    }),
+                    0
+                  ),
                 ]),
               ]),
               _vm._v(" "),

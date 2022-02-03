@@ -20,7 +20,9 @@
                               <label for="">Fonction:</label>
                               <input type="text" class="form-control" placeholder="Fonction" v-model="oldEmploye.fonction">
                               <label for="">Enretprise:</label>
-                              <input type="text" class="form-control" placeholder="Enretprise" v-model="oldEmploye.entreprise_id">
+                              <select class="form-select" v-model="oldEmploye.entreprise_id" aria-label="Default select example">
+                                <option v-for="entreprise in entreprises" :selected="oldEmploye.entreprise_id==entreprise.id" :key="entreprise.id" :value="entreprise.id">{{entreprise.titre}}</option>
+                            </select>
                           </div>
                   </div>
                   <div class="modal-footer">
@@ -38,6 +40,7 @@ export default {
     props:{
         oldEmploye : Object,
         edit : Boolean,
+        entreprises : Array,
     },
     emits:['addEmploye']
     ,
