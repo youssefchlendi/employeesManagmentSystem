@@ -1,5 +1,5 @@
 <template>
-  <sidebar-menu  :width="'200px'" :menu="menu"/>
+  <sidebar-menu @toggle-collapse="checkWidth" :width="'200px'" :menu="menu"/>
 </template>
 
 <script>
@@ -30,6 +30,19 @@ export default {
 
         ]
       }
+    },
+    methods :{
+            checkWidth(){
+        let docs = document.querySelectorAll('.vsm_expanded');
+        if (docs.length==0){
+            document.querySelector('#contain').classList.add('contain');
+            document.querySelector('#contain').classList.remove('contain-closed');
+        }else{
+            document.querySelector('#contain').classList.remove('contain');
+            document.querySelector('#contain').classList.add('contain-closed');
+        }
+    }
+
     }
 }
 </script>

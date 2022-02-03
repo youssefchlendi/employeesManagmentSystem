@@ -1,5 +1,5 @@
 <template>
-<div class="contain">
+<div  >
     <form action="javascript:" class="search-bar">
           <input
               id="search"
@@ -138,7 +138,7 @@ export default {
         updateEntreprise(entreprise){
             this.edit=true;
             this.entreprise = entreprise;
-        }
+        },
     }
 }
 </script>
@@ -147,8 +147,13 @@ export default {
 
 .contain{
     margin-left: 100px!important;
+    transition: all 0.3s ease-in-out;
 }
+.contain-closed{
+    margin-left: 0px!important;
+    transition: all 0.3s ease-in-out;
 
+}
 #search {
     font: 1em Hind, sans-serif;
     line-height: 1.5em;

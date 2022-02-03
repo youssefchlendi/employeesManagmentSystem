@@ -16,10 +16,10 @@
 </head>
 <body>
 <div id="app">
-    <main class="py-3 container">
-        <router-view></router-view>
-        <navbar/>
-    </main>
+        <navbar></navbar>
+        <div class="container">
+            <router-view class="contain" id="contain" ></router-view>
+        </div>
 </div>
 </body>
 </html>
