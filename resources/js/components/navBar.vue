@@ -1,5 +1,5 @@
 <template>
-  <sidebar-menu @toggle-collapse="checkWidth" :width="'200px'" :menu="menu"/>
+  <sidebar-menu     :show-one-child="true" @toggle-collapse="checkWidth" :width="'200px'" :menu="menu"/>
 </template>
 
 <script>
