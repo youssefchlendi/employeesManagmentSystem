@@ -19,8 +19,8 @@ class EntreprisesTableSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             Entreprise::create([
                 'titre' => $faker->company,
-                'matricule-fiscale' => $faker->numberBetween(25, 50),
-                'registre-commerce' => $faker->numberBetween(25, 50),
+                'matricule_fiscale' => $faker->numberBetween(25, 50),
+                'registre_commerce' => $faker->numberBetween(25, 50),
                 'adresse' => $faker->address,
                 'ville' => $faker->city,
                 'activités' => $faker->sentence,
