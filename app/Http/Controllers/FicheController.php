@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Fiche;
+use App\Models\RebriqueFiche;
 
 class FicheController extends Controller
 {
     public function show(Request $request,$id=null){
         if(!isset($id)){
-            $fiches = Fiche::with('employes')->paginate('5');
+            $fiches = Fiche::with('employes')->with('rebriques')->paginate('5');
             if (!empty($fiches))
                 return response()->json(
                     $fiches
@@ -92,5 +93,28 @@ class FicheController extends Controller
                 'message' => 'Not Found'
             ], 404);
         }
+    }
+    public function deleteRebsrel($fiche_id){
+        RebriqueFiche::where('fiche_id','=',$fiche_id)->delete();
+        return response()->json([
+            'type' => 'rebriquerel',
+            'message' => 'rebriquerel removed'
+        ], 204);
+
+    }
+    public function linkRebrique($fiche_id,$rebrique_id)
+    {
+
+        $Fiche = Fiche::find($fiche_id);
+        if ($Fiche->rebriques()->where('rebrique_id','=',$rebrique_id)->count()!=0){
+            $Fiche->rebriques()->detach($rebrique_id);
+        }else {
+
+            $Fiche->rebriques()->attach($rebrique_id);
+        }
+        return response()->json([
+            'type' => 'rebrique',
+            'message' => 'rebrique attached'
+        ], 204);
     }
 }
