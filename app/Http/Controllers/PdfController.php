@@ -13,6 +13,8 @@ class PdfController extends Controller
 
     {
         $fiches = Fiche::with('employes')->with('rebriques')->where('employe_id','=',$id)->where('id','=',$fid)->get();
+        if($fiches){
+        // print_r($fiches);
         $rebriques =array();
         $employe = array();
         $entreprise_id=0;
@@ -23,6 +25,7 @@ class PdfController extends Controller
         foreach($fiches as $fiche){$employe=["nom"=>$fiche->employes->nom,"prenom"=>$fiche->employes->prenom,"cin"=>$fiche->employes->cin,"mat_cnss"=>$fiche->employes->mat_cnss,"fonction"=>$fiche->employes->fonction];$entreprise_id=$fiche->employes->entreprise_id;};
         // print_r($employe);
         // echo '<br>'.$entreprise_id;
+        // echo($entreprise_id);
         $entreprise = Entreprise::find($entreprise_id);
         $entreprise = ["titre"=>$entreprise->titre, "matricule_fiscale"=>$entreprise->matricule_fiscale, "registre_commerce"=>$entreprise->registre_commerce, "adresse"=>$entreprise->adresse, "ville"=>$entreprise->ville];
         // print_r($entreprise);
@@ -52,6 +55,8 @@ class PdfController extends Controller
 
 
         return $pdf->download('itsolutionstuff.pdf');
+
+    }
 
     }
     public function numberTowords($num)
@@ -111,17 +116,19 @@ class PdfController extends Controller
 
     while(substr($i,0,1)=="0")
             $i=substr($i,1,5);
-    if($i < 20){
-    /* echo "getting:".$i; */
-    $rettxt .= $ones[$i];
-    }elseif($i < 100){
-    if(substr($i,0,1)!="0")  $rettxt .= $tens[substr($i,0,1)];
-    if(substr($i,1,1)!="0") $rettxt .= " ".$ones[substr($i,1,1)];
-    }else{
-    if(substr($i,0,1)!="0") $rettxt .= $ones[substr($i,0,1)]." ".$hundreds[0];
-    if(substr($i,1,1)!="0")$rettxt .= " ".$tens[substr($i,1,1)];
-    if(substr($i,2,1)!="0")$rettxt .= " ".$ones[substr($i,2,1)];
-    }
+            if($i!=''){
+                if($i < 20){
+                echo "getting:".($i);
+                $rettxt .= $ones[$i];
+                }elseif($i < 100){
+                if(substr($i,0,1)!="0")  $rettxt .= $tens[substr($i,0,1)];
+                if(substr($i,1,1)!="0") $rettxt .= " ".$ones[substr($i,1,1)];
+                }else{
+                if(substr($i,0,1)!="0") $rettxt .= $ones[substr($i,0,1)]." ".$hundreds[0];
+                if(substr($i,1,1)!="0")$rettxt .= " ".$tens[substr($i,1,1)];
+                if(substr($i,2,1)!="0")$rettxt .= " ".$ones[substr($i,2,1)];
+                }
+            }
     if($key > 0){
     $rettxt .= " ".$hundreds[$key]." ";
     }
