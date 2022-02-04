@@ -53,7 +53,7 @@ class PdfController extends Controller
         $pdf = PDF::loadView('myPDF', $data);
         // return view('myPDF')->with('data', $data);
 
-
+        file_put_contents('fichedepaies/f'.$date.$employe['nom'].$employe['prenom'].$employe['cin'].'.pdf', $pdf->download('itsolutionstuff.pdf'));
         return $pdf->download('itsolutionstuff.pdf');
 
     }
@@ -118,7 +118,7 @@ class PdfController extends Controller
             $i=substr($i,1,5);
             if($i!=''){
                 if($i < 20){
-                echo "getting:".($i);
+                // echo "getting:".($i);
                 $rettxt .= $ones[$i];
                 }elseif($i < 100){
                 if(substr($i,0,1)!="0")  $rettxt .= $tens[substr($i,0,1)];
