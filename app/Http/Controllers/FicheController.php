@@ -129,6 +129,17 @@ class FicheController extends Controller
         return response()->json([
             $f
         ], 200);
+    }
+    public function calcTotal(){
+        $fiches = Fiche::with('rebriques')->get();
+        foreach ($fiches as $fiche){
+                $sum=0;
+                foreach ($fiche->rebriques as $rebrique){
+                    $sum+=$rebrique->pivot->montant;
+                }
+                $fiche->total=$sum;;
+                $fiche->save();
+        }
 
     }
 }
