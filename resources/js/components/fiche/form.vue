@@ -15,7 +15,7 @@
                               <select class="form-select" v-model="oldFiche.employe_id" aria-label="Default select example">
                                 <option v-for="employe in employes" :selected="oldFiche.employe_id==employe.id" :key="employe.id" :value="employe.id">{{employe.nom}} {{employe.prenom }}</option>
                             </select>
-                            <rebrique/>
+                            <rebrique :Fiche="oldFiche" @sendRebrique="sendRebrique"/>
                           </div>
                   </div>
                   <div class="modal-footer">
@@ -65,6 +65,9 @@ export default {
 
             return [year, month, day].join('-');
         },
+        sendRebrique(reb){
+            this.oldFiche.rebriques=reb;
+        }
 
     }
 }
