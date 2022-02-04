@@ -13,5 +13,8 @@ class Employe extends Model
     public function fiches(){
         return $this->hasMany(Fiche::class,'employe_id');
     }
+    public function entreprise(){
+        return $this->belongsTo(Entreprise::class,'entreprise_id');
+    }
 
 }
