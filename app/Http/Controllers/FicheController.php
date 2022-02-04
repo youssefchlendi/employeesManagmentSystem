@@ -117,4 +117,18 @@ class FicheController extends Controller
             'message' => 'rebrique attached'
         ], 204);
     }
+    public function setMontant(Request $request,$fiche_id,$rebrique_id){
+        $fiche = Fiche::find($fiche_id);
+        $fiche->rebriques()->updateExistingPivot($rebrique_id,['montant'=>$request->input('montant')]);
+        $fiche->save();
+    }
+    public function getMontant($fiche_id,$rebrique_id){
+        $fiche = Fiche::find($fiche_id);
+        $f = $fiche->rebriques()->where('rebrique_id','=',$rebrique_id)->first();
+        if (!empty($f))
+        return response()->json([
+            $f
+        ], 200);
+
+    }
 }
