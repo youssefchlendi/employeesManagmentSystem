@@ -55,7 +55,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       fiches: [],
-      fiche: {},
+      fiche: {
+        rebriques: [],
+        titre: '',
+        id: ''
+      },
       pagination: {},
       edit: false,
       search: "",
@@ -137,7 +141,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     resetModal1: function resetModal1() {
-      this.fiche = {};
+      this.fiche = {
+        rebriques: [],
+        titre: '',
+        id: ''
+      };
+      this.edit = false;
     },
     addFiche: function addFiche(fiche) {
       var _this4 = this;
@@ -152,6 +161,12 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
+          _this4.fiche.id = data.data.id;
+
+          _this4.fiche.rebriques.forEach(function (r) {
+            return _this4.attachRebrique(r.id);
+          });
+
           _this4.fetchFiches();
         })["catch"](function (err) {
           return console.log(err);
@@ -166,6 +181,11 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
+          // this.deleteFicher(this.fiche.id);
+          _this4.fiche.rebriques.forEach(function (r) {
+            return _this4.attachRebrique(r.id);
+          });
+
           _this4.fetchFiches();
 
           _this4.edit = false;
@@ -177,6 +197,20 @@ __webpack_require__.r(__webpack_exports__);
     updateFiche: function updateFiche(fiche) {
       this.edit = true;
       this.fiche = fiche;
+    },
+    attachRebrique: function attachRebrique(RebriqueId) {
+      fetch('api/fiche/' + this.fiche.id + '/rebrique/' + RebriqueId, {
+        method: 'post'
+      }).then(function (data) {})["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    deleteFicher: function deleteFicher(id) {
+      fetch('api/fiche/rel/' + id, {
+        method: 'delete'
+      }).then(function (res) {}).then(function (data) {})["catch"](function (err) {
+        return console.log(err);
+      });
     }
   }
 });
@@ -212,11 +246,173 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    Fiche: Object
+  },
+  emits: ['sendRebrique'],
   data: function data() {
     return {
-      visible: true
+      visible: true,
+      Rebriques: [],
+      Rebrique: {
+        titre: ""
+      },
+      attachedRebriques: [],
+      check: [],
+      edit: false
     };
+  },
+  created: function created() {
+    this.fetchRebriques();
+  },
+  methods: {
+    fetchRebriques: function fetchRebriques() {
+      var _this = this;
+
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/rebrique";
+      var vm = this;
+      fetch(page_url, {
+        method: 'GET'
+      }).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this.Rebriques = res;
+
+        if (typeof _this.Fiche.rebriques !== 'undefined') {
+          _this.attachedRebriques = _this.Fiche.rebriques;
+        }
+
+        _this.Rebriques.forEach(function (r) {
+          Object.assign(r, {
+            edit: false
+          });
+        });
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    },
+    deleteRebrique: function deleteRebrique(id) {
+      var _this2 = this;
+
+      if (confirm('Delete Rebrique ' + id)) {
+        fetch('api/rebrique/' + id, {
+          method: 'delete'
+        }).then(function (res) {
+          _this2.fetchRebriques();
+        }).then(function (data) {})["catch"](function (err) {
+          return console.log(err);
+        });
+      }
+    },
+    resetModal1: function resetModal1() {
+      this.rebrique = {};
+    },
+    addRebrique: function addRebrique() {
+      var _this3 = this;
+
+      if (!this.edit) {
+        fetch('api/rebrique/', {
+          method: 'post',
+          body: JSON.stringify(this.Rebrique),
+          headers: {
+            "Content-Type": 'application/json'
+          }
+        }).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          _this3.Rebrique.titre = "";
+          document.querySelector('#rebname').value = '';
+
+          _this3.fetchRebriques();
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      } else {
+        fetch('api/rebrique/' + this.Rebrique.id, {
+          method: 'put',
+          body: JSON.stringify(Rebrique),
+          headers: {
+            "Content-Type": 'application/json'
+          }
+        }).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          _this3.fetchRebriques();
+
+          _this3.edit = false;
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      }
+    },
+    updateRebrique: function updateRebrique(Rebrique) {
+      this.edit = true;
+      this.Rebrique = Rebrique;
+    },
+    containsObject: function containsObject(obj) {
+      if (typeof this.Fiche.rebriques !== 'undefined') {
+        var i;
+        var list = this.Fiche.rebriques;
+
+        for (i = 0; i < list.length; i++) {
+          if (list[i].id == obj.id) {
+            return true;
+          }
+        }
+
+        return false;
+      }
+    },
+    pushTo: function pushTo(id) {
+      var b = this.attachedRebriques.reduce(function (a, e, i) {
+        if (e.id == id && typeof e.titre === 'undefined') a.push(i);
+        return a;
+      }, []);
+      console.log(b);
+
+      if (b.length != 0) {
+        this.attachedRebriques.splice(b[0], 1);
+      } else {
+        this.attachedRebriques.push({
+          id: id
+        });
+      }
+    },
+    sendRebrique: function sendRebrique() {
+      this.$emit('sendRebrique', this.attachedRebriques);
+    }
   }
 });
 
@@ -293,6 +489,9 @@ __webpack_require__.r(__webpack_exports__);
       if (month.length < 2) month = '0' + month;
       if (day.length < 2) day = '0' + day;
       return [year, month, day].join('-');
+    },
+    sendRebrique: function sendRebrique(reb) {
+      this.oldFiche.rebriques = reb;
     }
   }
 });
@@ -361,7 +560,7 @@ __webpack_require__.r(__webpack_exports__);
     Update: function Update(fiche) {
       this.$emit('updateFiche', fiche);
     },
-    fetchfiches: function fetchfiches(url) {
+    fetchFiches: function fetchFiches(url) {
       this.$emit('fetchFiches', url);
     }
   }
@@ -752,7 +951,11 @@ var render = function () {
       _vm._v(" "),
       _c("showFiche", {
         attrs: { fiches: _vm.fiches, pagination: _vm.pagination },
-        on: { deleteFiche: _vm.deleteFiche, updateFiche: _vm.updateFiche },
+        on: {
+          deleteFiche: _vm.deleteFiche,
+          fetchFiches: _vm.fetchFiches,
+          updateFiche: _vm.updateFiche,
+        },
       }),
     ],
     1
@@ -787,7 +990,58 @@ var render = function () {
       _c(
         "b-row",
         [
-          _c("b-col", { attrs: { cols: "9" } }),
+          _c("b-col", { attrs: { cols: "9" } }, [
+            _c("div", { staticClass: "input-group mb-2" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.Rebrique.titre,
+                    expression: "Rebrique.titre",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "rebname",
+                  placeholder: "Add new Rebrique",
+                },
+                domProps: { value: _vm.Rebrique.titre },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.Rebrique, "titre", $event.target.value)
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group-append" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: { type: "button" },
+                    on: { click: _vm.addRebrique },
+                  },
+                  [_vm._v("Add")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: { type: "button" },
+                    on: { click: _vm.sendRebrique },
+                  },
+                  [_vm._v("send rebriques")]
+                ),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
           _c(
             "b-col",
             { attrs: { cols: "3" } },
@@ -828,7 +1082,66 @@ var render = function () {
             expression: "visible",
           },
         },
-        [_c("b-card", [_vm._v("I should start open!")])],
+        [
+          _c(
+            "b-card",
+            _vm._l(_vm.Rebriques, function (rebrique) {
+              return _c(
+                "li",
+                { key: rebrique.id, staticClass: "container list-unstyled" },
+                [
+                  _c("div", { staticClass: "row shadow-sm" }, [
+                    _c("div", { staticClass: "col-10" }, [
+                      _c("input", {
+                        staticClass: "form-check-input checks ",
+                        attrs: {
+                          type: "checkbox",
+                          role: "switch",
+                          id: "flexSwitchCheckDefault",
+                        },
+                        domProps: { checked: _vm.containsObject(rebrique) },
+                        on: {
+                          change: function ($event) {
+                            return _vm.pushTo(rebrique.id)
+                          },
+                        },
+                      }),
+                      _vm._v(
+                        "\n          " + _vm._s(rebrique.titre) + "\n          "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-2" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "float-end btn",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteRebrique(rebrique.id)
+                            },
+                          },
+                        },
+                        [
+                          _c("b-icon", {
+                            attrs: {
+                              icon: "trash",
+                              scale: "1",
+                              variant: "danger",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                    ]),
+                  ]),
+                ]
+              )
+            }),
+            0
+          ),
+        ],
         1
       ),
     ],
@@ -969,7 +1282,10 @@ var render = function () {
                       0
                     ),
                     _vm._v(" "),
-                    _c("rebrique"),
+                    _c("rebrique", {
+                      attrs: { Fiche: _vm.oldFiche },
+                      on: { sendRebrique: _vm.sendRebrique },
+                    }),
                   ],
                   1
                 ),

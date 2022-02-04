@@ -26,7 +26,7 @@
 </b-container>
 
     <formFiche  @addFiche="addFiche" :employes="employes"  :oldFiche="fiche" />
-    <showFiche :fiches="fiches" @deleteFiche="deleteFiche" @updateFiche="updateFiche"  :pagination="pagination"/>
+    <showFiche :fiches="fiches" @deleteFiche="deleteFiche" @fetchFiches="fetchFiches" @updateFiche="updateFiche"  :pagination="pagination"/>
   </div>
 </template>
 
@@ -42,7 +42,11 @@ export default {
     data(){
         return {
             fiches : [],
-            fiche : {},
+            fiche : {
+                rebriques:[],
+                titre:'',
+                id:'',
+            },
             pagination:{},
             edit:false,
             search:"",
@@ -112,7 +116,11 @@ export default {
             }
         },
         resetModal1(){
-            this.fiche={};
+            this.fiche={rebriques:[],
+                titre:'',
+                id:'',
+};
+            this.edit=false;
         },
         addFiche(fiche) {
             if (!this.edit) {
@@ -125,6 +133,8 @@ export default {
                 })
                     .then(res => res.json())
                     .then(data => {
+                            this.fiche.id=data.data.id;
+                            this.fiche.rebriques.forEach(r=>this.attachRebrique(r.id));
                             this.fetchFiches();
                         }
                     )
@@ -139,6 +149,8 @@ export default {
                 })
                     .then(res => res.json())
                     .then(data => {
+                            // this.deleteFicher(this.fiche.id);
+                            this.fiche.rebriques.forEach(r=>this.attachRebrique(r.id));
                             this.fetchFiches();
                             this.edit=false;
                         }
@@ -149,6 +161,23 @@ export default {
         updateFiche(fiche){
             this.edit=true;
             this.fiche = fiche;
+        },
+        attachRebrique(RebriqueId){
+            fetch('api/fiche/'+ this.fiche.id+'/rebrique/'+RebriqueId, {
+                    method: 'post'
+                })
+                    .then(data => {
+                        }
+                    )
+                    .catch(err => console.log(err));
+        },
+        deleteFicher(id) {
+                fetch('api/fiche/rel/' + id, {method: 'delete'})
+                    .then(res => {
+                    })
+                    .then(data => {
+                    })
+                    .catch(err => console.log(err));
         },
     }
 
