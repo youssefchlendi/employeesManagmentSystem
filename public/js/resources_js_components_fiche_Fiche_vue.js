@@ -628,6 +628,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -648,6 +649,10 @@ __webpack_require__.r(__webpack_exports__);
     fetchFiches: function fetchFiches(url) {
       console.log('hi');
       this.$emit('fetchFiches', url);
+    },
+    getPdf: function getPdf(fiche) {
+      // console.log(fiche.employes.id);
+      window.location.href = "http://localhost:8000/generatePdf/" + fiche.employes.id + "/fiche/" + fiche.id;
     }
   }
 });
@@ -1689,6 +1694,19 @@ var render = function () {
                               },
                               [_vm._v("Update")]
                             ),
+                            _vm._v(" "),
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { variant: "success" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.getPdf(fiche)
+                                  },
+                                },
+                              },
+                              [_vm._v("Generer pdf")]
+                            ),
                           ],
                           1
                         ),
@@ -1701,7 +1719,7 @@ var render = function () {
                 _vm._v(" "),
                 _c(
                   "b-tab",
-                  { attrs: { title: "Fiches" } },
+                  { attrs: { title: "Rebriques" } },
                   [
                     _c(
                       "b-card-body",
