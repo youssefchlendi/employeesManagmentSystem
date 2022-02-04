@@ -19,7 +19,7 @@
         <b-card-body>
             <h6 v-if="fiche.rebriques.length==0">Aucunu rebrique affectée </h6>
             <b-container class="bv-example-row text-center">
-                <oneRebrique :rebrique="rebrique" v-for="rebrique in fiche.rebriques" :key="rebrique.id" />
+                <oneRebrique  @fetchFiches="fetchFiches('/api/fiche')" :rebrique="rebrique" v-for="rebrique in fiche.rebriques" :key="rebrique.id" />
             </b-container>
         </b-card-body>
         </b-tab>
@@ -60,6 +60,7 @@ export default {
             this.$emit('updateFiche',fiche);
         },
         fetchFiches(url){
+            console.log('hi');
             this.$emit('fetchFiches',url)
         }
     }

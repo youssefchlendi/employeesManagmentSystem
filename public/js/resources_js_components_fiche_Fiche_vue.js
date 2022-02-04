@@ -80,6 +80,9 @@ __webpack_require__.r(__webpack_exports__);
       var headersi = new Headers();
       headersi.append('Content-Type', 'application/json');
       headersi.append('Authorization', 'auth');
+      fetch('api/fiche/calcTotal/', {
+        method: 'get'
+      });
       fetch(page_url, {
         method: 'POST',
         body: JSON.stringify({
@@ -528,6 +531,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  emits: ['fetchFiches'],
   props: {
     rebrique: Object
   },
@@ -537,30 +541,34 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     containsObject: function containsObject() {},
     pushTo: function pushTo() {},
+    fetchFiches: function fetchFiches() {
+      this.$emit('fetchFiches');
+    },
     updateMontant: function updateMontant() {
       var _this = this;
 
-      fetch('api/fiche/' + this.rebrique.pivot.fiche_id + '/rebrique/' + this.rebrique.id, {
-        method: 'PUT',
-        body: JSON.stringify({
-          'montant': this.rebrique.pivot.montant
-        }),
-        headers: {
-          "Content-Type": 'application/json'
-        }
-      }).then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this.fiche.id = data.data.id;
+      if (typeof this.rebrique !== 'undefined') {
+        fetch('api/fiche/' + this.rebrique.pivot.fiche_id + '/rebrique/' + this.rebrique.id, {
+          method: 'PUT',
+          body: JSON.stringify({
+            'montant': this.rebrique.pivot.montant
+          }),
+          headers: {
+            "Content-Type": 'application/json'
+          }
+        }).then(function (res) {
+          return res.json();
+        }).then(function (data) {
+          console.log('hihi');
 
-        _this.fiche.rebriques.forEach(function (r) {
-          return _this.attachRebrique(r.id);
+          _this.fetchFiches();
+        })["catch"](function (err) {
+          return console.log(err);
         });
-
-        _this.fetchFiches();
-      })["catch"](function (err) {
-        return console.log(err);
-      });
+        fetch('api/fiche/calcTotal/' + this.rebrique.pivot.fiche_id, {
+          method: 'get'
+        });
+      }
     }
   }
 });
@@ -638,6 +646,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('updateFiche', fiche);
     },
     fetchFiches: function fetchFiches(url) {
+      console.log('hi');
       this.$emit('fetchFiches', url);
     }
   }
@@ -1708,6 +1717,11 @@ var render = function () {
                             return _c("oneRebrique", {
                               key: rebrique.id,
                               attrs: { rebrique: rebrique },
+                              on: {
+                                fetchFiches: function ($event) {
+                                  return _vm.fetchFiches("/api/fiche")
+                                },
+                              },
                             })
                           }),
                           1

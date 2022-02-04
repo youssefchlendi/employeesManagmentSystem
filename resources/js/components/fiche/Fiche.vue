@@ -64,6 +64,7 @@ export default {
             let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
             headersi.append('Authorization','auth');
+            fetch('api/fiche/calcTotal/',{method:'get'});
             fetch(page_url, {
                 method: 'POST',
                 body: JSON.stringify({'search' : this.search}),
@@ -75,7 +76,8 @@ export default {
                     this.fiches = res.data;
                     vm.makePagination(res);
                 })
-                .catch(err => console.log(err))
+                .catch(err => console.log(err));
+
         },
         fetchEmployes(page_url="/api/employe"){
             let vm = this;

@@ -19,6 +19,7 @@
 
 <script>
 export default {
+    emits : ['fetchFiches'],
     props : {
         rebrique : Object
     },
@@ -34,22 +35,28 @@ export default {
         pushTo(){
 
         },
+        fetchFiches(){
+            this.$emit('fetchFiches');
+        },
         updateMontant(){
-            fetch('api/fiche/'+this.rebrique.pivot.fiche_id+'/rebrique/'+this.rebrique.id, {
-                method: 'PUT',
-                body: JSON.stringify({'montant': this.rebrique.pivot.montant}),
-                headers: {
-                    "Content-Type": 'application/json'
-                }
-            })
-                .then(res => res.json())
-                .then(data => {
-                        this.fiche.id=data.data.id;
-                        this.fiche.rebriques.forEach(r=>this.attachRebrique(r.id));
-                        this.fetchFiches();
+            if(typeof this.rebrique !== 'undefined'){
+                fetch('api/fiche/'+this.rebrique.pivot.fiche_id+'/rebrique/'+this.rebrique.id, {
+                    method: 'PUT',
+                    body: JSON.stringify({'montant': this.rebrique.pivot.montant}),
+                    headers: {
+                        "Content-Type": 'application/json'
                     }
-                )
-                .catch(err => console.log(err))
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                            console.log('hihi');
+                            this.fetchFiches();
+                        }
+                    )
+                    .catch(err => console.log(err))
+
+                fetch('api/fiche/calcTotal/'+this.rebrique.pivot.fiche_id,{method:'get'});
+            }
         }
     }
 
