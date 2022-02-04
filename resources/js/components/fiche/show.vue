@@ -66,7 +66,7 @@ export default {
         },
         getPdf(fiche){
             // console.log(fiche.employes.id);
-        window.location.href = "http://localhost:8000/generatePdf/"+fiche.employes.id+"/fiche/"+fiche.id;
+        window.open("http://localhost:8000/generatePdf/"+fiche.employes.id+"/fiche/"+fiche.id);
         }
     }
 }
