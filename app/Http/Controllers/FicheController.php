@@ -121,6 +121,9 @@ class FicheController extends Controller
         $fiche = Fiche::find($fiche_id);
         $fiche->rebriques()->updateExistingPivot($rebrique_id,['montant'=>$request->input('montant')]);
         $fiche->save();
+        return response()->json([
+            "message"=> "montant set"
+        ], 200);
     }
     public function getMontant($fiche_id,$rebrique_id){
         $fiche = Fiche::find($fiche_id);
@@ -130,16 +133,27 @@ class FicheController extends Controller
             $f
         ], 200);
     }
-    public function calcTotal(){
-        $fiches = Fiche::with('rebriques')->get();
-        foreach ($fiches as $fiche){
-                $sum=0;
-                foreach ($fiche->rebriques as $rebrique){
-                    $sum+=$rebrique->pivot->montant;
-                }
-                $fiche->total=$sum;;
-                $fiche->save();
+    public function calcTotal($id=null){
+        if ($id!=null){
+            $fiches = Fiche::find($id)->with('rebriques')->get();
+            foreach ($fiches as $fiche){
+                    $sum=0;
+                    foreach ($fiche->rebriques as $rebrique){
+                        $sum+=$rebrique->pivot->montant;
+                    }
+                    $fiche->total=$sum;;
+                    $fiche->save();
+            }
+        }else{
+            $fiches = Fiche::with('rebriques')->get();
+            foreach ($fiches as $fiche){
+            $sum=0;
+            foreach ($fiche->rebriques as $rebrique){
+                $sum+=$rebrique->pivot->montant;
+            }
+            $fiche->total=$sum;;
+            $fiche->save();
+            }
         }
-
     }
 }

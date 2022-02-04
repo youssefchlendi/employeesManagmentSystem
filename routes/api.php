@@ -42,7 +42,7 @@ Route::prefix('/employe')->namespace('App\Http\Controllers')->group(function(){
 Route::prefix('/fiche')->namespace('App\Http\Controllers')->group(function(){
     Route::post('/add','FicheController@store');
     Route::get('/','FicheController@showAll');
-    Route::get('/calcTotal','FicheController@calcTotal');
+    Route::get('/calcTotal/{fiche_id?}','FicheController@calcTotal');
     Route::post('/{Fiche_id?}','FicheController@show');
     Route::put('/{fiche_id}/rebrique/{rebrique_id}','FicheController@setMontant');
     Route::post('/{fiche_id}/rebrique/{rebrique_id}','FicheController@linkRebrique');
