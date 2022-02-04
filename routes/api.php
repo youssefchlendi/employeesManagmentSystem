@@ -43,10 +43,11 @@ Route::prefix('/fiche')->namespace('App\Http\Controllers')->group(function(){
     Route::post('/add','FicheController@store');
     Route::get('/','FicheController@showAll');
     Route::post('/{Fiche_id?}','FicheController@show');
+    Route::put('/{fiche_id}/rebrique/{rebrique_id}','FicheController@setMontant');
     Route::post('/{fiche_id}/rebrique/{rebrique_id}','FicheController@linkRebrique');
+    Route::get('/{fiche_id}/rebrique/{rebrique_id}','FicheController@getMontant');
     Route::delete('/rel/{fiche_id}','FicheController@deleteRebsrel');
     Route::put('/{Fiche_id}','FicheController@update');
-
     Route::delete('/{Fiche_id}','FicheController@Destroy');
 
 });
