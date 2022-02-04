@@ -52,7 +52,7 @@ export default {
         Update(fiche){
             this.$emit('updateFiche',fiche);
         },
-        fetchfiches(url){
+        fetchFiches(url){
             this.$emit('fetchFiches',url)
         }
     }
