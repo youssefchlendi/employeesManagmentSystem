@@ -13,6 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _show_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./show.vue */ "./resources/js/components/employe/show.vue");
 /* harmony import */ var _form_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form.vue */ "./resources/js/components/employe/form.vue");
+/* harmony import */ var _search_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../search.vue */ "./resources/js/components/search.vue");
 //
 //
 //
@@ -46,14 +47,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     showEmploye: _show_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    formEmploye: _form_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    formEmploye: _form_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    search: _search_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -63,7 +64,12 @@ __webpack_require__.r(__webpack_exports__);
       pagination: {},
       edit: false,
       search: "",
-      show: true
+      show: true,
+      alert: {
+        dismissCountDown: 0,
+        variant: "",
+        msg: ""
+      }
     };
   },
   created: function created() {
@@ -127,6 +133,10 @@ __webpack_require__.r(__webpack_exports__);
           method: 'delete'
         }).then(function (res) {
           _this3.fetchEmployes();
+
+          _this3.alert.variant = "danger";
+          _this3.alert.msg = "Employé suprimée avec succée";
+          _this3.alert.dismissCountDown = 5;
         }).then(function (data) {})["catch"](function (err) {
           return console.log(err);
         });
@@ -151,6 +161,10 @@ __webpack_require__.r(__webpack_exports__);
           return res.json();
         }).then(function (data) {
           _this4.fetchEmployes();
+
+          _this4.alert.variant = "success";
+          _this4.alert.msg = "Employé ajouté avec succée";
+          _this4.alert.dismissCountDown = 5;
         })["catch"](function (err) {
           return console.log(err);
         });
@@ -167,6 +181,9 @@ __webpack_require__.r(__webpack_exports__);
           _this4.fetchEmployes();
 
           _this4.edit = false;
+          _this4.alert.variant = "warning";
+          _this4.alert.msg = "Employé modifié avec succée";
+          _this4.alert.dismissCountDown = 5;
         })["catch"](function (err) {
           return console.log(err);
         });
@@ -175,6 +192,10 @@ __webpack_require__.r(__webpack_exports__);
     updateEmploye: function updateEmploye(employe) {
       this.edit = true;
       this.employe = employe;
+    },
+    searchEmploye: function searchEmploye(search) {
+      this.search = search;
+      this.fetchEmployes();
     }
   }
 });
@@ -434,55 +455,10 @@ var render = function () {
         ? _c(
             "div",
             [
-              _c(
-                "form",
-                { staticClass: "search-bar", attrs: { action: "javascript:" } },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.search,
-                        expression: "search",
-                      },
-                    ],
-                    attrs: {
-                      id: "search",
-                      type: "search",
-                      name: "search",
-                      pattern: ".*\\S.*",
-                      required: "",
-                    },
-                    domProps: { value: _vm.search },
-                    on: {
-                      keyup: function ($event) {
-                        return _vm.fetchEmployes()
-                      },
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.search = $event.target.value
-                      },
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "search-btn",
-                      attrs: { type: "submit" },
-                      on: {
-                        click: function ($event) {
-                          return _vm.fetchEmployes()
-                        },
-                      },
-                    },
-                    [_c("span", [_vm._v("Search")])]
-                  ),
-                ]
-              ),
+              _c("search", {
+                attrs: { search: _vm.search },
+                on: { fetch: _vm.searchEmploye },
+              }),
               _vm._v(" "),
               _c(
                 "b-container",
@@ -506,7 +482,7 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "\n                New Employe\n            "
+                              "\n                Nouvel employé\n            "
                             ),
                           ]
                         ),
@@ -518,6 +494,23 @@ var render = function () {
                   ),
                 ],
                 1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-alert",
+                {
+                  attrs: {
+                    show: _vm.alert.dismissCountDown,
+                    dismissible: "",
+                    variant: _vm.alert.variant,
+                  },
+                  on: {
+                    dismissed: function ($event) {
+                      _vm.alert.dismissCountDown = 0
+                    },
+                  },
+                },
+                [_c("p", [_vm._v(_vm._s(_vm.alert.msg))])]
               ),
               _vm._v(" "),
               _c("formEmploye", {

@@ -20,7 +20,7 @@
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" @click='resetModal1' data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary " @click="addFiche" data-bs-dismiss="modal" >Add</button>
+                      <button type="button" class="btn btn-primary " @click="addFiche" data-bs-dismiss="modal"  >Sauvegarder</button>
                   </div>
                   </form>
               </div>

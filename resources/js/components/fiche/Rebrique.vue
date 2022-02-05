@@ -5,7 +5,7 @@
             <div class="input-group mb-2">
             <input type="text" class="form-control" id="rebname" placeholder="Add new Rebrique" v-model="Rebrique.titre" >
                 <div class="input-group-append">
-                    <button type="button" @click="addRebrique" class="btn btn-success">Add</button>
+                    <button type="button" @click="addRebrique" class="btn btn-success" >Sauvegarder</button>
                     <button type="button" @click="sendRebrique" class="btn btn-success">send rebriques</button>
                 </div>
             </div>
