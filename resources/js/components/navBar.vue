@@ -41,6 +41,11 @@ export default {
                     href: '/Fiche',
                     title: 'Fiche',
                     icon: 'fas fa-file',
+                },
+                {
+                    href: '/Rebrique',
+                    title: 'Rebrique',
+                    icon: 'fas fa-puzzle-piece',
                 }
 
             ]
