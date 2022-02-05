@@ -9,7 +9,7 @@ class EmployeController extends Controller
     public function show(Request $request,$id=null){
         if(!isset($id)){
             $search = $request->input('search');
-            $employes = Employe::with('fiches')->where('nom','like','%'.$search.'%')
+            $employes = Employe::with('fiches')->with('fiches.rebriques')->where('nom','like','%'.$search.'%')
             ->orWhere('prenom','like','%'.$search.'%')
             ->paginate('5');
             if (!empty($employes))
