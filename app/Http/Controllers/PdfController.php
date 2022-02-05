@@ -33,8 +33,13 @@ class PdfController extends Controller
         // $f = new \NumberFormatter("en", \NumberFormatter::SPELLOUT);
 
         $totalLit =$this->numberTowords($total);
+        setlocale(LC_TIME, "fr_FR.UTF8");
+        $date = \DateTime::createFromFormat("Y-m-d", $date);
+        $Year = $date->format("Y").'';
+        $month = $this->dateToFrench($date->format("F")).'';
+        // echo $month.','.$Year;
         $data = [
-            'date' => $date,
+            'date' => $month.', '.$Year,
 
             'entreprise' => $entreprise,
 
@@ -53,7 +58,7 @@ class PdfController extends Controller
         $pdf = PDF::loadView('myPDF', $data);
         // return view('myPDF')->with('data', $data);
 
-        file_put_contents('fichedepaies/f'.$date.$employe['nom'].$employe['prenom'].$employe['cin'].'.pdf', $pdf->download('itsolutionstuff.pdf'));
+        file_put_contents('fichedepaies/f'.$month.$Year.$employe['nom'].$employe['prenom'].$employe['cin'].'.pdf', $pdf->download('itsolutionstuff.pdf'));
         return $pdf->download('itsolutionstuff.pdf');
 
     }
@@ -144,5 +149,10 @@ class PdfController extends Controller
     }
     return $rettxt;
     }
-
+    public function dateToFrench($month)
+{
+    $english_months = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+    $french_months = array('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre');
+    return str_replace($english_months, $french_months, $month );
+}
 }
