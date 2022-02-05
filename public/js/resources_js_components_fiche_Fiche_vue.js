@@ -530,8 +530,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  emits: ['fetchFiches'],
+  emits: ["fetchFiches", "attachRebrique"],
   props: {
     rebrique: Object
   },
@@ -542,33 +549,40 @@ __webpack_require__.r(__webpack_exports__);
     containsObject: function containsObject() {},
     pushTo: function pushTo() {},
     fetchFiches: function fetchFiches() {
-      this.$emit('fetchFiches');
+      console.log('hihihi');
+      this.$emit("fetchFiches");
     },
     updateMontant: function updateMontant() {
       var _this = this;
 
-      if (typeof this.rebrique !== 'undefined') {
-        fetch('api/fiche/' + this.rebrique.pivot.fiche_id + '/rebrique/' + this.rebrique.id, {
-          method: 'PUT',
+      if (typeof this.rebrique !== "undefined") {
+        fetch("api/fiche/" + this.rebrique.pivot.fiche_id + "/rebrique/" + this.rebrique.id, {
+          method: "PUT",
           body: JSON.stringify({
-            'montant': this.rebrique.pivot.montant
+            montant: this.rebrique.pivot.montant
           }),
           headers: {
-            "Content-Type": 'application/json'
+            "Content-Type": "application/json"
           }
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
-          console.log('hihi');
-
           _this.fetchFiches();
         })["catch"](function (err) {
           return console.log(err);
         });
-        fetch('api/fiche/calcTotal/' + this.rebrique.pivot.fiche_id, {
-          method: 'get'
+        fetch("api/fiche/calcTotal/" + this.rebrique.pivot.fiche_id, {
+          method: "get"
         });
       }
+    },
+    attachRebrique: function attachRebrique(RebriqueId) {
+      fetch('api/fiche/' + this.rebrique.pivot.fiche_id + '/rebrique/' + RebriqueId, {
+        method: 'post'
+      }).then(function (data) {})["catch"](function (err) {
+        return console.log(err);
+      });
+      this.fetchFiches();
     }
   }
 });
@@ -629,6 +643,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -638,7 +653,7 @@ __webpack_require__.r(__webpack_exports__);
     fiches: Array,
     pagination: Object
   },
-  emits: ['deleteFiche', 'updateFiche', 'fetchFiches'],
+  emits: ['deleteFiche', 'updateFiche', 'fetchFiches', 'attachRebrique'],
   methods: {
     Delete: function Delete(id) {
       this.$emit('deleteFiche', id);
@@ -647,7 +662,6 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('updateFiche', fiche);
     },
     fetchFiches: function fetchFiches(url) {
-      console.log('hi');
       this.$emit('fetchFiches', url);
     },
     getPdf: function getPdf(fiche) {
@@ -1530,7 +1544,7 @@ var render = function () {
         {},
         [
           _c("p", { staticClass: "text-left" }, [
-            _vm._v(" " + _vm._s(_vm.rebrique.titre) + " "),
+            _vm._v(_vm._s(_vm.rebrique.titre)),
           ]),
           _vm._v(" "),
           _c(
@@ -1564,7 +1578,7 @@ var render = function () {
                   _c(
                     "b-button",
                     {
-                      attrs: { text: "Modifier", variant: "success" },
+                      attrs: { variant: "outline-success" },
                       on: {
                         click: function ($event) {
                           return _vm.updateMontant(_vm.rebrique.pivot.montant)
@@ -1572,6 +1586,19 @@ var render = function () {
                       },
                     },
                     [_vm._v("Modifier")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-button",
+                    {
+                      attrs: { variant: "danger" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.attachRebrique(_vm.rebrique.id)
+                        },
+                      },
+                    },
+                    [_vm._v("Effacer")]
                   ),
                 ],
                 1
@@ -1661,8 +1688,20 @@ var render = function () {
                                   ],
                                   1
                                 ),
+                                _vm._v(" "),
+                                _vm._l(fiche.rebriques, function (rebrique) {
+                                  return _c("oneRebrique", {
+                                    key: rebrique.id,
+                                    attrs: { rebrique: rebrique },
+                                    on: {
+                                      fetchFiches: function ($event) {
+                                        return _vm.fetchFiches("/api/fiche")
+                                      },
+                                    },
+                                  })
+                                }),
                               ],
-                              1
+                              2
                             ),
                             _vm._v(" "),
                             _c(
@@ -1705,7 +1744,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [_vm._v("Generer pdf")]
+                              [_vm._v("Afficher")]
                             ),
                           ],
                           1
@@ -1736,6 +1775,9 @@ var render = function () {
                               key: rebrique.id,
                               attrs: { rebrique: rebrique },
                               on: {
+                                attachRebrique: function ($event) {
+                                  return _vm.attachRebrique(_vm.id, fiche.id)
+                                },
                                 fetchFiches: function ($event) {
                                   return _vm.fetchFiches("/api/fiche")
                                 },
