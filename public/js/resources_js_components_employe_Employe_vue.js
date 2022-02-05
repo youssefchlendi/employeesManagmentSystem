@@ -227,6 +227,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     employes: Array,
@@ -242,6 +249,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     fetchEmployes: function fetchEmployes(url) {
       this.$emit('fetchEmployes', url);
+    },
+    getPdf: function getPdf(empId, fID) {
+      window.open("http://localhost:8000/generatePdf/" + empId + "/fiche/" + fID);
     }
   }
 });
@@ -645,42 +655,97 @@ var render = function () {
                       "b-container",
                       {
                         key: fiche.id,
-                        staticClass: "bv-example-row text-center",
+                        staticClass:
+                          "ml-4 bv-example-row text-center pl-4 row justify-content-center",
+                        staticStyle: { "text-align": "left!important" },
                       },
                       [
                         _c(
                           "b-row",
-                          { staticClass: "mb-2" },
+                          { staticClass: "justify-content-center mb-2" },
                           [
                             _c(
-                              "b-row",
+                              "b-col",
+                              { attrs: { cols: "10" } },
                               [
-                                _c("b-col", [
-                                  _vm._v(
-                                    "date : " +
-                                      _vm._s(fiche.date) +
-                                      " employe :  " +
-                                      _vm._s(fiche.employe_id)
-                                  ),
-                                ]),
+                                _c(
+                                  "b-row",
+                                  [
+                                    _c("b-col", [
+                                      _vm._v(
+                                        "date : " + _vm._s(fiche.date) + " "
+                                      ),
+                                    ]),
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "b-row",
+                                  [
+                                    _c("b-col", [
+                                      _c("h6", [
+                                        _c("b", [_vm._v("Rebriques:")]),
+                                      ]),
+                                    ]),
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _vm._l(fiche.rebriques, function (rebrique) {
+                                  return _c(
+                                    "b-row",
+                                    { key: rebrique.id },
+                                    [
+                                      _c("b-col", [
+                                        _c("b", [
+                                          _vm._v(_vm._s(rebrique.titre)),
+                                        ]),
+                                        _vm._v(
+                                          " : " + _vm._s(rebrique.pivot.montant)
+                                        ),
+                                      ]),
+                                    ],
+                                    1
+                                  )
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "b-row",
+                                  [
+                                    _c("b-col", [
+                                      _vm._v("total : " + _vm._s(fiche.total)),
+                                    ]),
+                                  ],
+                                  1
+                                ),
                               ],
-                              1
+                              2
                             ),
                             _vm._v(" "),
                             _c(
-                              "b-row",
+                              "b-col",
                               [
-                                _c("b-col", [
-                                  _vm._v("total : " + _vm._s(fiche.total)),
-                                ]),
+                                _c(
+                                  "b-button",
+                                  {
+                                    attrs: { variant: "success" },
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.getPdf(employe.id, fiche.id)
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("Afficher")]
+                                ),
                               ],
                               1
                             ),
-                            _vm._v(" "),
-                            _c("hr"),
                           ],
                           1
                         ),
+                        _vm._v(" "),
+                        _c("hr"),
                       ],
                       1
                     )

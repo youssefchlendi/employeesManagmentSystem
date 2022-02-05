@@ -17,12 +17,19 @@
             </b-container>
         </b-tab>
         <b-tab title="Employe fiches" >
-            <b-container v-for="fiche in employe.fiches" :key="fiche.id" class="bv-example-row text-center">
-            <b-row  class="mb-2">
-            <b-row><b-col>date : {{ fiche.date }} employe :  {{fiche.employe_id }}</b-col></b-row>
-            <b-row><b-col>total : {{ fiche.total}}</b-col></b-row>
-            <hr/>
+            <b-container class="ml-4 bv-example-row text-center pl-4 row justify-content-center" style="text-align:left!important" v-for="fiche in employe.fiches" :key="fiche.id" >
+            <b-row  class="justify-content-center mb-2">
+                <b-col cols=10>
+                    <b-row  ><b-col >date : {{ fiche.date }} </b-col></b-row>
+                    <b-row  ><b-col ><h6><b>Rebriques:</b></h6></b-col></b-row>
+                    <b-row   v-for="rebrique in fiche.rebriques" :key="rebrique.id">
+                        <b-col ><b>{{ rebrique.titre }}</b> : {{ rebrique.pivot.montant }}</b-col>
+                    </b-row>
+                    <b-row ><b-col >total : {{ fiche.total}}</b-col></b-row>
+                </b-col>
+                <b-col><b-button variant="success" v-on:click="getPdf(employe.id,fiche.id)"  >Afficher</b-button></b-col>
             </b-row>
+            <hr/>
             </b-container>
         </b-tab>
       </b-tabs>
@@ -59,6 +66,9 @@ export default {
         },
         fetchEmployes(url){
             this.$emit('fetchEmployes',url)
+        },
+        getPdf(empId,fID){
+            window.open("http://localhost:8000/generatePdf/"+empId+"/fiche/"+fID);
         }
     }
 }
