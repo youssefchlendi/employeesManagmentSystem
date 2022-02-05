@@ -160,7 +160,7 @@ __webpack_require__.r(__webpack_exports__);
           _this3.fetchFiches();
 
           _this3.alert.variant = "danger";
-          _this3.alert.msg = "Fiche suprimée avec succée";
+          _this3.alert.msg = "Fiche suprimée avec succès";
           _this3.alert.dismissCountDown = 5;
         }).then(function (data) {})["catch"](function (err) {
           return console.log(err);
@@ -199,7 +199,7 @@ __webpack_require__.r(__webpack_exports__);
           _this4.fetchFiches();
 
           _this4.alert.variant = "success";
-          _this4.alert.msg = "Fiche ajoutée avec succée";
+          _this4.alert.msg = "Fiche ajoutée avec succès";
           _this4.alert.dismissCountDown = 5;
         })["catch"](function (err) {
           return console.log(err);
@@ -222,7 +222,7 @@ __webpack_require__.r(__webpack_exports__);
           _this4.fetchFiches();
 
           _this4.alert.variant = "warning";
-          _this4.alert.msg = "Fiche modifiée avec succée";
+          _this4.alert.msg = "Fiche modifiée avec succès";
           _this4.alert.dismissCountDown = 5;
           _this4.edit = false;
         })["catch"](function (err) {

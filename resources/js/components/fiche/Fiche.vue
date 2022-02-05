@@ -131,7 +131,7 @@ export default {
                     .then(res => {
                         this.fetchFiches();
                         this.alert.variant = "danger";
-                        this.alert.msg = "Fiche suprimée avec succée"
+                        this.alert.msg = "Fiche suprimée avec succès"
                         this.alert.dismissCountDown = 5;
 
                     })
@@ -165,7 +165,7 @@ export default {
                         this.fiche.rebriques.forEach(r => this.attachRebrique(r.id));
                         this.fetchFiches();
                         this.alert.variant = "success";
-                        this.alert.msg = "Fiche ajoutée avec succée"
+                        this.alert.msg = "Fiche ajoutée avec succès"
                         this.alert.dismissCountDown = 5;
 
                     }
@@ -185,7 +185,7 @@ export default {
                         this.fiche.rebriques.forEach(r => this.attachRebrique(r.id));
                         this.fetchFiches();
                         this.alert.variant = "warning";
-                        this.alert.msg = "Fiche modifiée avec succée"
+                        this.alert.msg = "Fiche modifiée avec succès"
                         this.alert.dismissCountDown = 5;
 
                         this.edit = false;

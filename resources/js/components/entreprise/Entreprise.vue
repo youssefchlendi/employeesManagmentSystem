@@ -111,7 +111,7 @@ export default {
                     .then(res => {
                         this.fetchEntreprises();
                         this.alert.variant = "danger";
-                        this.alert.msg = "Entreprise suprimée avec succée"
+                        this.alert.msg = "Entreprise suprimée avec succès"
                         this.alert.dismissCountDown = 5;
 
                     })
@@ -138,7 +138,7 @@ export default {
                     .then(data => {
                         this.fetchEntreprises();
                         this.alert.variant = "success";
-                        this.alert.msg = "Entreprise crée avec succée"
+                        this.alert.msg = "Entreprise crée avec succès"
                         this.alert.dismissCountDown = 5;
                     }
                     )
@@ -155,7 +155,7 @@ export default {
                     .then(data => {
                         this.fetchEntreprises();
                         this.alert.variant = "warning";
-                        this.alert.msg = "Entreprise modifier avec succée"
+                        this.alert.msg = "Entreprise modifier avec succès"
                         this.alert.dismissCountDown = 5;
 
                         this.edit = false;

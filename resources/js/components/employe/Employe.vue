@@ -116,7 +116,7 @@ export default {
                     .then(res => {
                         this.fetchEmployes();
                         this.alert.variant = "danger";
-                        this.alert.msg = "Employé suprimée avec succée"
+                        this.alert.msg = "Employé suprimée avec succès"
                         this.alert.dismissCountDown = 5;
 
                     })
@@ -142,7 +142,7 @@ export default {
                     .then(data => {
                         this.fetchEmployes();
                         this.alert.variant = "success";
-                        this.alert.msg = "Employé ajouté avec succée"
+                        this.alert.msg = "Employé ajouté avec succès"
                         this.alert.dismissCountDown = 5;
 
                     }
@@ -161,7 +161,7 @@ export default {
                         this.fetchEmployes();
                         this.edit = false;
                         this.alert.variant = "warning";
-                        this.alert.msg = "Employé modifié avec succée"
+                        this.alert.msg = "Employé modifié avec succès"
                         this.alert.dismissCountDown = 5;
 
                     }

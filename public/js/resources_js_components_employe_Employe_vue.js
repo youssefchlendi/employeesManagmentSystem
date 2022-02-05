@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
           _this3.fetchEmployes();
 
           _this3.alert.variant = "danger";
-          _this3.alert.msg = "Employé suprimée avec succée";
+          _this3.alert.msg = "Employé suprimée avec succès";
           _this3.alert.dismissCountDown = 5;
         }).then(function (data) {})["catch"](function (err) {
           return console.log(err);
@@ -170,7 +170,7 @@ __webpack_require__.r(__webpack_exports__);
           _this4.fetchEmployes();
 
           _this4.alert.variant = "success";
-          _this4.alert.msg = "Employé ajouté avec succée";
+          _this4.alert.msg = "Employé ajouté avec succès";
           _this4.alert.dismissCountDown = 5;
         })["catch"](function (err) {
           return console.log(err);
@@ -189,7 +189,7 @@ __webpack_require__.r(__webpack_exports__);
 
           _this4.edit = false;
           _this4.alert.variant = "warning";
-          _this4.alert.msg = "Employé modifié avec succée";
+          _this4.alert.msg = "Employé modifié avec succès";
           _this4.alert.dismissCountDown = 5;
         })["catch"](function (err) {
           return console.log(err);
