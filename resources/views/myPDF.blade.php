@@ -183,7 +183,7 @@
         </td>
         <td align="right">
             <pre style="white-space: pre-line;">
-                {{ 'titre : '.$entreprise['titre'] }}
+                {{ 'entreprise : '.$entreprise['titre'] }}
                 {{  $entreprise['adresse'].' '.$entreprise['ville'] }}
                 {{  'Matricule fiscale : '.$entreprise['matricule_fiscale'] }}
                 {{  'Registre de commerce : '.$entreprise['registre_commerce'] }}
