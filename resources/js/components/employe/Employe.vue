@@ -1,32 +1,30 @@
+// TODO: add alert when edited/delited/add
+
 <template>
 <div>
     <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%" >    </b-overlay>
     <div v-if="!show">
-    <form action="javascript:" class="search-bar">
-          <input
-              id="search"
-              type="search"
-              name="search"
-              pattern=".*\S.*"
-              @keyup="fetchEmployes()"
-              required
-              v-model="search"
-          />
-          <button class="search-btn" @click="fetchEmployes()" type="submit">
-              <span>Search</span>
-          </button>
-      </form>
+    <search :search="search" @fetch="searchEmploye" />
     <b-container class="bv-example-row">
     <b-row class="text-center mb-2">
         <b-col cols="8">
             <button type="button" class="btn btn-primary mx-1 float-start"  @click="resetModal1" data-bs-toggle="modal" data-bs-target="#employeModal">
-                New Employe
+                Nouvel employé
             </button>
         </b-col>
         <b-col>
         </b-col>
     </b-row>
     </b-container>
+    <b-alert
+      :show="alert.dismissCountDown"
+      dismissible
+      :variant="alert.variant"
+      @dismissed="alert.dismissCountDown=0"
+    >
+      <p>{{ alert.msg }}</p>
+    </b-alert>
+
     <formEmploye  @addEmploye="addEmploye" :entreprises="entreprises" :oldEmploye="employe" />
     <showEmploye :employes="employes" @deleteEmploye="deleteEmploye" @fetchEmployes="fetchEmployes" @updateEmploye="updateEmploye"  :pagination="pagination"/>
 </div>
@@ -36,11 +34,13 @@
 <script>
 import showEmploye from './show.vue';
 import formEmploye from './form.vue';
+import search from '../search.vue';
 
 export default {
     components:{
         showEmploye,
-        formEmploye
+        formEmploye,
+        search
     },
 data(){
         return {
@@ -50,7 +50,12 @@ data(){
             pagination:{},
             edit:false,
             search:"",
-            show:true
+            show:true,
+            alert:{
+                dismissCountDown: 0,
+                variant:"",
+                msg:"",
+            }
         }
     },
     created(){
@@ -103,6 +108,10 @@ data(){
                 fetch('api/employe/' + id, {method: 'delete'})
                     .then(res => {
                         this.fetchEmployes();
+                            this.alert.variant="danger";
+                            this.alert.msg="Employé suprimée avec succée"
+                            this.alert.dismissCountDown =5;
+
                     })
                     .then(data => {
                     })
@@ -125,6 +134,10 @@ data(){
                     .then(res => res.json())
                     .then(data => {
                             this.fetchEmployes();
+                            this.alert.variant="success";
+                            this.alert.msg="Employé ajouté avec succée"
+                            this.alert.dismissCountDown =5;
+
                         }
                     )
                     .catch(err => console.log(err))
@@ -140,6 +153,10 @@ data(){
                     .then(data => {
                             this.fetchEmployes();
                             this.edit=false;
+                            this.alert.variant="warning";
+                            this.alert.msg="Employé modifié avec succée"
+                            this.alert.dismissCountDown =5;
+
                         }
                     )
                     .catch(err => console.log(err))
@@ -149,6 +166,10 @@ data(){
             this.edit=true;
             this.employe = employe;
         },
+        searchEmploye(search){
+            this.search = search;
+            this.fetchEmployes();
+        }
     }
 }
 </script>

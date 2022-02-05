@@ -1,32 +1,28 @@
+// TODO: add alert when edited/delited/add
 <template>
   <div>
     <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%" >    </b-overlay>
     <div v-if="!show">
-
-    <form action="javascript:" class="search-bar">
-          <input
-              id="search"
-              type="search"
-              name="search"
-              pattern=".*\S.*"
-              @keyup="fetchEmployes()"
-              required
-              v-model="search"
-          />
-          <button class="search-btn" @click="fetchEmployes()" type="submit">
-              <span>Search</span>
-          </button>
-      </form>    <b-container class="bv-example-row">
+    <search :search="search" @fetch="searchFiches" />
+    <b-container class="bv-example-row">
     <b-row class="text-center mb-2">
         <b-col cols="8">
             <button type="button" class="btn btn-primary mx-1 float-start"  @click="resetModal1" data-bs-toggle="modal" data-bs-target="#ficheModal">
-                New Fiche
+                Nouvelle fiche
             </button>
         </b-col>
         <b-col>
         </b-col>
     </b-row>
 </b-container>
+    <b-alert
+      :show="alert.dismissCountDown"
+      dismissible
+      :variant="alert.variant"
+      @dismissed="alert.dismissCountDown=0"
+    >
+      <p>{{ alert.msg }}</p>
+    </b-alert>
 
     <formFiche  @addFiche="addFiche" :employes="employes"  :oldFiche="fiche" />
     <showFiche :fiches="fiches" @deleteFiche="deleteFiche" @fetchFiches="fetchFiches" @updateFiche="updateFiche"  :pagination="pagination"/>
@@ -37,11 +33,12 @@
 <script>
 import showFiche from './show.vue';
 import formFiche from './form.vue';
-
+import search from '../search.vue';
 export default {
     components : {
         showFiche,
-        formFiche
+        formFiche,
+        search,
     },
     data(){
         return {
@@ -55,7 +52,13 @@ export default {
             edit:false,
             search:"",
             employes :[],
-            show:true
+            show:true,
+            alert:{
+                dismissCountDown: 0,
+                variant:"",
+                msg:"",
+            }
+
         }
     },
     created(){
@@ -119,6 +122,10 @@ export default {
                 fetch('api/fiche/' + id, {method: 'delete'})
                     .then(res => {
                         this.fetchFiches();
+                        this.alert.variant="danger";
+                        this.alert.msg="Fiche suprimée avec succée"
+                        this.alert.dismissCountDown =5;
+
                     })
                     .then(data => {
                     })
@@ -148,6 +155,10 @@ export default {
                             this.fiche.id=data.data.id;
                             this.fiche.rebriques.forEach(r=>this.attachRebrique(r.id));
                             this.fetchFiches();
+                            this.alert.variant="success";
+                            this.alert.msg="Fiche ajoutée avec succée"
+                            this.alert.dismissCountDown =5;
+
                         }
                     )
                     .catch(err => console.log(err))
@@ -164,6 +175,10 @@ export default {
                             // this.deleteFicher(this.fiche.id);
                             this.fiche.rebriques.forEach(r=>this.attachRebrique(r.id));
                             this.fetchFiches();
+                            this.alert.variant="warning";
+                            this.alert.msg="Fiche modifiée avec succée"
+                            this.alert.dismissCountDown =5;
+
                             this.edit=false;
                         }
                     )
@@ -191,6 +206,10 @@ export default {
                     })
                     .catch(err => console.log(err));
         },
+        searchFiches(search){
+            this.search = search;
+            this.fetchFiches();
+        }
     }
 
 }
