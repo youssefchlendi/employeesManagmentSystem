@@ -21,10 +21,22 @@
             <b-card-body>
                 <h6 v-if="entreprise.employes.length==0">Aucun employe </h6>
                 <b-container class="bv-example-row text-center">
-                <b-row v-for="employe in entreprise.employes" :key="employe.id">
-                    <b-row><b-col>Nom : {{ employe.nom }} Prenom :  {{employe.prenom }}</b-col></b-row>
-                    <b-row><b-col>Cin : {{ employe.cin}} Matricule CNSS : {{ employe.mat_cnss }} </b-col></b-row>
-                    <b-row><b-col>Fonction : {{ employe.fonction }}</b-col></b-row>
+                <b-row style="text-align:left!important" v-for="employe in entreprise.employes" :key="employe.id">
+                    <b-col cols="8" >
+                        <b-row><b-col>Nom : {{ employe.nom }} Prenom :  {{employe.prenom }}</b-col></b-row>
+                        <b-row><b-col>Cin : {{ employe.cin}} Matricule CNSS : {{ employe.mat_cnss }} </b-col></b-row>
+                        <b-row><b-col>Fonction : {{ employe.fonction }}</b-col></b-row>
+                    </b-col>
+                    <b-col>
+                        <b-row>
+                            <b-col cols="6">
+                            <b-button variant="danger" class="float-end" @click="deleteEmploye(employe.id)"  >Delete</b-button>
+                            </b-col>
+                            <b-col cols="6">
+                            <b-button variant="warning" @click="update(employe)" data-bs-toggle="modal" data-bs-target="#employeModal" >Update</b-button>
+                            </b-col>
+                        </b-row>
+                    </b-col>
                 <hr/>
                 </b-row>
                 </b-container>
@@ -32,8 +44,7 @@
       </b-tab>
     </b-tabs>
 
-
-
+<formEmploye  @addEmploye="updateEmploye" :entreprises="entreprises" :oldEmploye="employe" />
   </b-card>
         <nav  class="row ">
           <ul class="pagination w-auto mx-auto">
@@ -51,13 +62,21 @@
 </template>
 
 <script>
+import formEmploye from '../employe/form.vue';
+
 export default {
+    components:{formEmploye},
     props:{
         entreprises : Array,
         pagination : Object,
     },
     emits:['deleteEntreprise','updateEntreprise','fetchEntreprises']
     ,
+    data(){
+        return{
+            employe:{},
+        }
+    },
     methods:{
         Delete(id){
             this.$emit('deleteEntreprise',id);
@@ -67,6 +86,35 @@ export default {
         },
         fetchEntreprises(url){
             this.$emit('fetchEntreprises',url)
+        },
+        update(employe){
+            this.employe=employe;
+        },
+        updateEmploye(employe){
+         fetch('api/employe/' + this.employe.id, {
+                    method: 'put',
+                    body: JSON.stringify(employe),
+                    headers: {
+                        "Content-Type": 'application/json'
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                            this.fetchEntreprises();
+                        }
+                    )
+                    .catch(err => console.log(err))
+        },
+        deleteEmploye(id){
+            if (confirm('Delete employe ' + id)) {
+                fetch('api/employe/' + id, {method: 'delete'})
+                    .then(res => {
+                            this.fetchEntreprises();
+                    })
+                    .then(data => {
+                    })
+                    .catch(err => console.log(err));
+            }
         }
     }
 }
