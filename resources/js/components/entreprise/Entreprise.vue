@@ -1,5 +1,8 @@
 <template>
 <div  >
+        <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%" >    </b-overlay>
+    <div v-if="!show">
+
     <form action="javascript:" class="search-bar">
           <input
               id="search"
@@ -29,6 +32,7 @@
 <formEntreprise  @addEntreprise="addEntreprise" :oldEntreprise="entreprise" />
 <showEntreprises :entreprises="entreprises" :pagination="pagination" @fetchEntreprises="fetchEntreprises" @deleteEntreprise="deleteEntreprise" @updateEntreprise="updateEntreprise"/>
 </div>
+</div>
 </template>
 
 <script>
@@ -49,13 +53,12 @@ export default {
                 registre_commerce:"",
                 addresse:"",
                 ville:"",
-                activities:""
+                activities:"",
             },
             pagination:{},
             edit:false,
-            search:""
-
-
+            search:"",
+            show:true
         }
     },
     created(){
@@ -77,6 +80,7 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.entreprises = res.data;
+                    this.show=false;
                     vm.makePagination(res);
                 })
                 .catch(err => console.log(err))
@@ -91,6 +95,8 @@ export default {
             };
         },
         deleteEntreprise(id) {
+                        this.show = true;
+
             if (confirm('Delete Entreprise ' + id)) {
                 fetch('api/entreprise/' + id, {method: 'delete'})
                     .then(res => {
@@ -105,6 +111,8 @@ export default {
             this.entreprise={};
         },
         addEntreprise(entreprise) {
+                        this.show = true;
+
             if (!this.edit) {
                 fetch('api/entreprise/add', {
                     method: 'post',
@@ -130,6 +138,7 @@ export default {
                     .then(res => res.json())
                     .then(data => {
                             this.fetchEntreprises();
+                            this.edit=false;
                         }
                     )
                     .catch(err => console.log(err))

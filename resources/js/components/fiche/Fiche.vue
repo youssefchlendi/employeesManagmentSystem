@@ -1,5 +1,8 @@
 <template>
   <div>
+    <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%" >    </b-overlay>
+    <div v-if="!show">
+
     <form action="javascript:" class="search-bar">
           <input
               id="search"
@@ -28,6 +31,7 @@
     <formFiche  @addFiche="addFiche" :employes="employes"  :oldFiche="fiche" />
     <showFiche :fiches="fiches" @deleteFiche="deleteFiche" @fetchFiches="fetchFiches" @updateFiche="updateFiche"  :pagination="pagination"/>
   </div>
+  </div>
 </template>
 
 <script>
@@ -50,7 +54,8 @@ export default {
             pagination:{},
             edit:false,
             search:"",
-            employes :[]
+            employes :[],
+            show:true
         }
     },
     created(){
@@ -74,6 +79,7 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.fiches = res.data;
+                    this.show = false;
                     vm.makePagination(res);
                 })
                 .catch(err => console.log(err));
@@ -107,6 +113,8 @@ export default {
             };
         },
         deleteFiche(id) {
+                        this.show = true;
+
             if (confirm('Delete fiche ' + id)) {
                 fetch('api/fiche/' + id, {method: 'delete'})
                     .then(res => {
@@ -125,6 +133,8 @@ export default {
             this.edit=false;
         },
         addFiche(fiche) {
+                        this.show = true;
+
             if (!this.edit) {
                 fetch('api/fiche/add', {
                     method: 'post',

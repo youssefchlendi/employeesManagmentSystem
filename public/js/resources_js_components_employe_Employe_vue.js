@@ -45,6 +45,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -59,7 +62,8 @@ __webpack_require__.r(__webpack_exports__);
       employe: {},
       pagination: {},
       edit: false,
-      search: ""
+      search: "",
+      show: true
     };
   },
   created: function created() {
@@ -86,6 +90,7 @@ __webpack_require__.r(__webpack_exports__);
         return res.json();
       }).then(function (res) {
         _this.employes = res.data;
+        _this.show = false;
         vm.makePagination(res);
       })["catch"](function (err) {
         return console.log(err);
@@ -117,6 +122,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (confirm('Delete employe ' + id)) {
+        this.show = true;
         fetch('api/employe/' + id, {
           method: 'delete'
         }).then(function (res) {
@@ -131,6 +137,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     addEmploye: function addEmploye(employe) {
       var _this4 = this;
+
+      this.show = true;
 
       if (!this.edit) {
         fetch('api/employe/add', {
@@ -414,101 +422,124 @@ var render = function () {
   return _c(
     "div",
     [
-      _c(
-        "form",
-        { staticClass: "search-bar", attrs: { action: "javascript:" } },
-        [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.search,
-                expression: "search",
-              },
-            ],
-            attrs: {
-              id: "search",
-              type: "search",
-              name: "search",
-              pattern: ".*\\S.*",
-              required: "",
-            },
-            domProps: { value: _vm.search },
-            on: {
-              keyup: function ($event) {
-                return _vm.fetchEmployes()
-              },
-              input: function ($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.search = $event.target.value
-              },
-            },
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "search-btn",
-              attrs: { type: "submit" },
-              on: {
-                click: function ($event) {
-                  return _vm.fetchEmployes()
-                },
-              },
-            },
-            [_c("span", [_vm._v("Search")])]
-          ),
-        ]
-      ),
+      _vm.show
+        ? _c("b-overlay", {
+            staticClass: "d-inline-block",
+            staticStyle: { height: "500px", width: "100%" },
+            attrs: { show: _vm.show },
+          })
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "b-container",
-        { staticClass: "bv-example-row" },
-        [
-          _c(
-            "b-row",
-            { staticClass: "text-center mb-2" },
+      !_vm.show
+        ? _c(
+            "div",
             [
-              _c("b-col", { attrs: { cols: "8" } }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary mx-1 float-start",
+              _c(
+                "form",
+                { staticClass: "search-bar", attrs: { action: "javascript:" } },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.search,
+                        expression: "search",
+                      },
+                    ],
                     attrs: {
-                      type: "button",
-                      "data-bs-toggle": "modal",
-                      "data-bs-target": "#employeModal",
+                      id: "search",
+                      type: "search",
+                      name: "search",
+                      pattern: ".*\\S.*",
+                      required: "",
                     },
-                    on: { click: _vm.resetModal1 },
-                  },
-                  [_vm._v("\n                New Employe\n            ")]
-                ),
-              ]),
+                    domProps: { value: _vm.search },
+                    on: {
+                      keyup: function ($event) {
+                        return _vm.fetchEmployes()
+                      },
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.search = $event.target.value
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "search-btn",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.fetchEmployes()
+                        },
+                      },
+                    },
+                    [_c("span", [_vm._v("Search")])]
+                  ),
+                ]
+              ),
               _vm._v(" "),
-              _c("b-col"),
+              _c(
+                "b-container",
+                { staticClass: "bv-example-row" },
+                [
+                  _c(
+                    "b-row",
+                    { staticClass: "text-center mb-2" },
+                    [
+                      _c("b-col", { attrs: { cols: "8" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary mx-1 float-start",
+                            attrs: {
+                              type: "button",
+                              "data-bs-toggle": "modal",
+                              "data-bs-target": "#employeModal",
+                            },
+                            on: { click: _vm.resetModal1 },
+                          },
+                          [
+                            _vm._v(
+                              "\n                New Employe\n            "
+                            ),
+                          ]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("b-col"),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("formEmploye", {
+                attrs: {
+                  entreprises: _vm.entreprises,
+                  oldEmploye: _vm.employe,
+                },
+                on: { addEmploye: _vm.addEmploye },
+              }),
+              _vm._v(" "),
+              _c("showEmploye", {
+                attrs: { employes: _vm.employes, pagination: _vm.pagination },
+                on: {
+                  deleteEmploye: _vm.deleteEmploye,
+                  fetchEmployes: _vm.fetchEmployes,
+                  updateEmploye: _vm.updateEmploye,
+                },
+              }),
             ],
             1
-          ),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("formEmploye", {
-        attrs: { entreprises: _vm.entreprises, oldEmploye: _vm.employe },
-        on: { addEmploye: _vm.addEmploye },
-      }),
-      _vm._v(" "),
-      _c("showEmploye", {
-        attrs: { employes: _vm.employes, pagination: _vm.pagination },
-        on: {
-          deleteEmploye: _vm.deleteEmploye,
-          fetchEmployes: _vm.fetchEmployes,
-          updateEmploye: _vm.updateEmploye,
-        },
-      }),
+          )
+        : _vm._e(),
     ],
     1
   )

@@ -1,5 +1,7 @@
 <template>
 <div>
+    <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%" >    </b-overlay>
+    <div v-if="!show">
     <form action="javascript:" class="search-bar">
           <input
               id="search"
@@ -24,9 +26,10 @@
         <b-col>
         </b-col>
     </b-row>
-</b-container>
+    </b-container>
     <formEmploye  @addEmploye="addEmploye" :entreprises="entreprises" :oldEmploye="employe" />
     <showEmploye :employes="employes" @deleteEmploye="deleteEmploye" @fetchEmployes="fetchEmployes" @updateEmploye="updateEmploye"  :pagination="pagination"/>
+</div>
 </div>
 </template>
 
@@ -46,7 +49,8 @@ data(){
             employe : {},
             pagination:{},
             edit:false,
-            search:""
+            search:"",
+            show:true
         }
     },
     created(){
@@ -69,6 +73,7 @@ data(){
                 .then(res => res.json())
                 .then(res => {
                     this.employes = res.data;
+                    this.show=false;
                     vm.makePagination(res);
                 })
                 .catch(err => console.log(err))
@@ -94,6 +99,7 @@ data(){
         },
         deleteEmploye(id) {
             if (confirm('Delete employe ' + id)) {
+                this.show = true;
                 fetch('api/employe/' + id, {method: 'delete'})
                     .then(res => {
                         this.fetchEmployes();
@@ -107,6 +113,7 @@ data(){
             this.employe={};
         },
         addEmploye(employe) {
+            this.show = true;
             if (!this.edit) {
                 fetch('api/employe/add', {
                     method: 'post',
