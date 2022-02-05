@@ -9,18 +9,11 @@
             <b-row  class="mb-2">
             <b-row><b-col>date : {{ fiche.date }} employe :  {{fiche.employe_id }}</b-col></b-row>
             <b-row><b-col>total : {{ fiche.total}}</b-col></b-row>
+                            <oneRebrique @fetchFiches="fetchFiches('/api/fiche')" :rebrique="rebrique" v-for="rebrique in fiche.rebriques" :key="rebrique.id" />
             </b-row>
             <b-button variant="danger" v-on:click="Delete(fiche.id)" >Delete</b-button>
             <b-button variant="warning" v-on:click="Update(fiche)" data-bs-toggle="modal" data-bs-target="#ficheModal" >Update</b-button>
-            <b-button variant="success" v-on:click="getPdf(fiche)"  >Generer pdf</b-button>
-            </b-container>
-        </b-card-body>
-        </b-tab>
-        <b-tab title="Rebriques">
-        <b-card-body>
-            <h6 v-if="fiche.rebriques.length==0">Aucunu rebrique affectée </h6>
-            <b-container class="bv-example-row text-center">
-                <oneRebrique  @fetchFiches="fetchFiches('/api/fiche')" :rebrique="rebrique" v-for="rebrique in fiche.rebriques" :key="rebrique.id" />
+            <b-button variant="success" v-on:click="getPdf(fiche)"  >Afficher</b-button>
             </b-container>
         </b-card-body>
         </b-tab>
@@ -61,7 +54,6 @@ export default {
             this.$emit('updateFiche',fiche);
         },
         fetchFiches(url){
-            console.log('hi');
             this.$emit('fetchFiches',url)
         },
         getPdf(fiche){
