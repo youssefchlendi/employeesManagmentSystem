@@ -1,33 +1,41 @@
-// TODO: add alert when edited/delited/add
 <template>
-  <div>
-    <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%" >    </b-overlay>
-    <div v-if="!show">
-    <search :search="search" @fetch="searchFiches" />
-    <b-container class="bv-example-row">
-    <b-row class="text-center mb-2">
-        <b-col cols="8">
-            <button type="button" class="btn btn-primary mx-1 float-start"  @click="resetModal1" data-bs-toggle="modal" data-bs-target="#ficheModal">
-                Nouvelle fiche
-            </button>
-        </b-col>
-        <b-col>
-        </b-col>
-    </b-row>
-</b-container>
-    <b-alert
-      :show="alert.dismissCountDown"
-      dismissible
-      :variant="alert.variant"
-      @dismissed="alert.dismissCountDown=0"
-    >
-      <p>{{ alert.msg }}</p>
-    </b-alert>
+    <div>
+        <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
+        <div v-if="!show">
+            <search :search="search" @fetch="searchFiches" />
+            <b-container class="bv-example-row">
+                <b-row class="text-center mb-2">
+                    <b-col cols="8">
+                        <button
+                            type="button"
+                            class="btn btn-primary mx-1 float-start"
+                            @click="resetModal1"
+                            data-bs-toggle="modal"
+                            data-bs-target="#ficheModal"
+                        >Nouvelle fiche</button>
+                    </b-col>
+                    <b-col></b-col>
+                </b-row>
+            </b-container>
+            <b-alert
+                :show="alert.dismissCountDown"
+                dismissible
+                :variant="alert.variant"
+                @dismissed="alert.dismissCountDown = 0"
+            >
+                <p>{{ alert.msg }}</p>
+            </b-alert>
 
-    <formFiche  @addFiche="addFiche" :employes="employes"  :oldFiche="fiche" />
-    <showFiche :fiches="fiches" @deleteFiche="deleteFiche" @fetchFiches="fetchFiches" @updateFiche="updateFiche"  :pagination="pagination"/>
-  </div>
-  </div>
+            <formFiche @addFiche="addFiche" :employes="employes" :oldFiche="fiche" />
+            <showFiche
+                :fiches="fiches"
+                @deleteFiche="deleteFiche"
+                @fetchFiches="fetchFiches"
+                @updateFiche="updateFiche"
+                :pagination="pagination"
+            />
+        </div>
+    </div>
 </template>
 
 <script>
@@ -35,47 +43,47 @@ import showFiche from './show.vue';
 import formFiche from './form.vue';
 import search from '../search.vue';
 export default {
-    components : {
+    components: {
         showFiche,
         formFiche,
         search,
     },
-    data(){
+    data() {
         return {
-            fiches : [],
-            fiche : {
-                rebriques:[],
-                titre:'',
-                id:'',
+            fiches: [],
+            fiche: {
+                rebriques: [],
+                titre: '',
+                id: '',
             },
-            pagination:{},
-            edit:false,
-            search:"",
-            employes :[],
-            show:true,
-            alert:{
+            pagination: {},
+            edit: false,
+            search: "",
+            employes: [],
+            show: true,
+            alert: {
                 dismissCountDown: 0,
-                variant:"",
-                msg:"",
+                variant: "",
+                msg: "",
             }
 
         }
     },
-    created(){
+    created() {
         this.fetchFiches();
         this.fetchEmployes();
     },
-    methods : {
-        fetchFiches(page_url="/api/fiche"){
+    methods: {
+        fetchFiches(page_url = "/api/fiche") {
             let vm = this;
             // page_url = this.search!=''?'/api/employe':page_url;
             let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
-            headersi.append('Authorization','auth');
-            fetch('api/fiche/calcTotal/',{method:'get'});
+            headersi.append('Authorization', 'auth');
+            fetch('api/fiche/calcTotal/', { method: 'get' });
             fetch(page_url, {
                 method: 'POST',
-                body: JSON.stringify({'search' : this.search}),
+                body: JSON.stringify({ 'search': this.search }),
                 headers: headersi
 
             })
@@ -88,15 +96,15 @@ export default {
                 .catch(err => console.log(err));
 
         },
-        fetchEmployes(page_url="/api/employe"){
+        fetchEmployes(page_url = "/api/employe") {
             let vm = this;
             // page_url = this.search!=''?'/api/employe':page_url;
             let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
-            headersi.append('Authorization','auth');
+            headersi.append('Authorization', 'auth');
             fetch(page_url, {
                 method: 'POST',
-                body: JSON.stringify({'search' : this.search}),
+                body: JSON.stringify({ 'search': this.search }),
                 headers: headersi
 
             })
@@ -109,22 +117,22 @@ export default {
         makePagination(meta) {
             this.pagination = {
                 current_page: meta.current_page,
-                current_page_url: 'http://localhost:8000/api/fiche?page='+meta.current_page,
+                current_page_url: 'http://localhost:8000/api/fiche?page=' + meta.current_page,
                 last_page: meta.last_page,
                 next_page_url: meta.next_page_url,
                 prev_page_url: meta.prev_page_url
             };
         },
         deleteFiche(id) {
-                        this.show = true;
+            this.show = true;
 
             if (confirm('Delete fiche ' + id)) {
-                fetch('api/fiche/' + id, {method: 'delete'})
+                fetch('api/fiche/' + id, { method: 'delete' })
                     .then(res => {
                         this.fetchFiches();
-                        this.alert.variant="danger";
-                        this.alert.msg="Fiche suprimée avec succée"
-                        this.alert.dismissCountDown =5;
+                        this.alert.variant = "danger";
+                        this.alert.msg = "Fiche suprimée avec succée"
+                        this.alert.dismissCountDown = 5;
 
                     })
                     .then(data => {
@@ -132,15 +140,16 @@ export default {
                     .catch(err => console.log(err));
             }
         },
-        resetModal1(){
-            this.fiche={rebriques:[],
-                titre:'',
-                id:'',
-};
-            this.edit=false;
+        resetModal1() {
+            this.fiche = {
+                rebriques: [],
+                titre: '',
+                id: '',
+            };
+            this.edit = false;
         },
         addFiche(fiche) {
-                        this.show = true;
+            this.show = true;
 
             if (!this.edit) {
                 fetch('api/fiche/add', {
@@ -152,14 +161,14 @@ export default {
                 })
                     .then(res => res.json())
                     .then(data => {
-                            this.fiche.id=data.data.id;
-                            this.fiche.rebriques.forEach(r=>this.attachRebrique(r.id));
-                            this.fetchFiches();
-                            this.alert.variant="success";
-                            this.alert.msg="Fiche ajoutée avec succée"
-                            this.alert.dismissCountDown =5;
+                        this.fiche.id = data.data.id;
+                        this.fiche.rebriques.forEach(r => this.attachRebrique(r.id));
+                        this.fetchFiches();
+                        this.alert.variant = "success";
+                        this.alert.msg = "Fiche ajoutée avec succée"
+                        this.alert.dismissCountDown = 5;
 
-                        }
+                    }
                     )
                     .catch(err => console.log(err))
             } else {
@@ -172,41 +181,41 @@ export default {
                 })
                     .then(res => res.json())
                     .then(data => {
-                            // this.deleteFicher(this.fiche.id);
-                            this.fiche.rebriques.forEach(r=>this.attachRebrique(r.id));
-                            this.fetchFiches();
-                            this.alert.variant="warning";
-                            this.alert.msg="Fiche modifiée avec succée"
-                            this.alert.dismissCountDown =5;
+                        // this.deleteFicher(this.fiche.id);
+                        this.fiche.rebriques.forEach(r => this.attachRebrique(r.id));
+                        this.fetchFiches();
+                        this.alert.variant = "warning";
+                        this.alert.msg = "Fiche modifiée avec succée"
+                        this.alert.dismissCountDown = 5;
 
-                            this.edit=false;
-                        }
+                        this.edit = false;
+                    }
                     )
                     .catch(err => console.log(err))
             }
         },
-        updateFiche(fiche){
-            this.edit=true;
+        updateFiche(fiche) {
+            this.edit = true;
             this.fiche = fiche;
         },
-        attachRebrique(RebriqueId){
-            fetch('api/fiche/'+ this.fiche.id+'/rebrique/'+RebriqueId, {
-                    method: 'post'
-                })
-                    .then(data => {
-                        }
-                    )
-                    .catch(err => console.log(err));
+        attachRebrique(RebriqueId) {
+            fetch('api/fiche/' + this.fiche.id + '/rebrique/' + RebriqueId, {
+                method: 'post'
+            })
+                .then(data => {
+                }
+                )
+                .catch(err => console.log(err));
         },
         deleteFicher(id) {
-                fetch('api/fiche/rel/' + id, {method: 'delete'})
-                    .then(res => {
-                    })
-                    .then(data => {
-                    })
-                    .catch(err => console.log(err));
+            fetch('api/fiche/rel/' + id, { method: 'delete' })
+                .then(res => {
+                })
+                .then(data => {
+                })
+                .catch(err => console.log(err));
         },
-        searchFiches(search){
+        searchFiches(search) {
             this.search = search;
             this.fetchFiches();
         }
@@ -216,5 +225,4 @@ export default {
 </script>
 
 <style>
-
 </style>

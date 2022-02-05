@@ -1,56 +1,91 @@
 <template>
-  <div class="modal fade" id="ficheModal" tabindex="-1" aria-labelledby="employeModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="employeModalLabel">Ajouter un fiche</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form class="mb-3" @submit.prevent="addFiche">
-                  <div class="modal-body">
-                          <div class="form-group mb-2">
-                              <label >Date:</label>
-                              <input type="date" class="form-control" placeholder="date" v-model="oldFiche.date">
-                              <label >Employe:</label>
-                              <select class="form-select" v-model="oldFiche.employe_id" aria-label="Default select example">
-                                <option v-for="employe in employes" :selected="oldFiche.employe_id==employe.id" :key="employe.id" :value="employe.id">{{employe.nom}} {{employe.prenom }}</option>
+    <div
+        class="modal fade"
+        id="ficheModal"
+        tabindex="-1"
+        aria-labelledby="employeModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="employeModalLabel">Ajouter un fiche</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <form class="mb-3" @submit.prevent="addFiche">
+                    <div class="modal-body">
+                        <div class="form-group mb-2">
+                            <label>Date:</label>
+                            <input
+                                type="date"
+                                class="form-control"
+                                placeholder="date"
+                                v-model="oldFiche.date"
+                            />
+                            <label>Employe:</label>
+                            <select
+                                class="form-select"
+                                v-model="oldFiche.employe_id"
+                                aria-label="Default select example"
+                            >
+                                <option
+                                    v-for="employe in employes"
+                                    :selected="oldFiche.employe_id == employe.id"
+                                    :key="employe.id"
+                                    :value="employe.id"
+                                >{{ employe.nom }} {{ employe.prenom }}</option>
                             </select>
-                            <rebrique :Fiche="oldFiche" @sendRebrique="sendRebrique"/>
-                          </div>
-                  </div>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" @click='resetModal1' data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary " @click="addFiche" data-bs-dismiss="modal"  >Sauvegarder</button>
-                  </div>
-                  </form>
-              </div>
-          </div>
-      </div>
+                            <rebrique :Fiche="oldFiche" @sendRebrique="sendRebrique" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            @click="resetModal1"
+                            data-bs-dismiss="modal"
+                        >Close</button>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            @click="addFiche"
+                            data-bs-dismiss="modal"
+                        >Sauvegarder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
 import rebrique from './Rebrique.vue'
 export default {
-    components :{
+    components: {
         rebrique
     },
-    props:{
-        oldFiche : Object,
-        edit : Boolean,
-        employes : Array,
+    props: {
+        oldFiche: Object,
+        edit: Boolean,
+        employes: Array,
     },
-    emits:['addFiche']
+    emits: ['addFiche']
     ,
-    mounted(){
+    mounted() {
     }
     ,
-    methods:{
-        addFiche(){
-            this.$emit('addFiche',this.oldFiche);
+    methods: {
+        addFiche() {
+            this.$emit('addFiche', this.oldFiche);
             this.resetModal1();
         },
-        resetModal1(){
-              document.querySelectorAll('input').forEach(e=>e.value = "");
+        resetModal1() {
+            document.querySelectorAll('input').forEach(e => e.value = "");
         },
         formatDate(date) {
             var d = new Date(date),
@@ -65,8 +100,8 @@ export default {
 
             return [year, month, day].join('-');
         },
-        sendRebrique(reb){
-            this.oldFiche.rebriques=reb;
+        sendRebrique(reb) {
+            this.oldFiche.rebriques = reb;
         }
 
     }
@@ -74,5 +109,4 @@ export default {
 </script>
 
 <style>
-
 </style>

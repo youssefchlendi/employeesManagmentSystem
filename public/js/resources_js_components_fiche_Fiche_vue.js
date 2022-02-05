@@ -46,6 +46,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -309,6 +317,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     Fiche: Object
@@ -491,6 +525,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -540,9 +609,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
 //
 //
 //
@@ -629,6 +695,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _oneRebrique_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oneRebrique.vue */ "./resources/js/components/fiche/oneRebrique.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1094,11 +1178,7 @@ var render = function () {
                             },
                             on: { click: _vm.resetModal1 },
                           },
-                          [
-                            _vm._v(
-                              "\n                Nouvelle fiche\n            "
-                            ),
-                          ]
+                          [_vm._v("Nouvelle fiche")]
                         ),
                       ]),
                       _vm._v(" "),
@@ -1247,7 +1327,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("\n  Rebriques\n  ")]
+                [_vm._v("Rebriques")]
               ),
             ],
             1
@@ -1280,7 +1360,7 @@ var render = function () {
                   _c("div", { staticClass: "row shadow-sm" }, [
                     _c("div", { staticClass: "col-10" }, [
                       _c("input", {
-                        staticClass: "form-check-input checks ",
+                        staticClass: "form-check-input checks",
                         attrs: {
                           type: "checkbox",
                           role: "switch",
@@ -1294,7 +1374,9 @@ var render = function () {
                         },
                       }),
                       _vm._v(
-                        "\n          " + _vm._s(rebrique.titre) + "\n          "
+                        "\n                        " +
+                          _vm._s(rebrique.titre) +
+                          "\n                        "
                       ),
                     ]),
                     _vm._v(" "),
@@ -1492,7 +1574,7 @@ var render = function () {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-primary ",
+                    staticClass: "btn btn-primary",
                     attrs: { type: "button", "data-bs-dismiss": "modal" },
                     on: { click: _vm.addFiche },
                   },
@@ -1666,7 +1748,7 @@ var render = function () {
                       "b-card-body",
                       [
                         _vm.fiches.length == 0
-                          ? _c("h6", [_vm._v("Aucun employe ")])
+                          ? _c("h6", [_vm._v("Aucun employe")])
                           : _vm._e(),
                         _vm._v(" "),
                         _c(
@@ -1684,7 +1766,7 @@ var render = function () {
                                       _vm._v(
                                         "date : " +
                                           _vm._s(fiche.date) +
-                                          " employe :  " +
+                                          " employe : " +
                                           _vm._s(fiche.employe_id)
                                       ),
                                     ]),
@@ -1776,12 +1858,12 @@ var render = function () {
         )
       }),
       _vm._v(" "),
-      _c("nav", { staticClass: "row " }, [
+      _c("nav", { staticClass: "row" }, [
         _c("ul", { staticClass: "pagination w-auto mx-auto" }, [
           _c(
             "li",
             {
-              staticClass: "page-item ",
+              staticClass: "page-item",
               class: [{ disabled: !_vm.pagination.prev_page_url }],
             },
             [

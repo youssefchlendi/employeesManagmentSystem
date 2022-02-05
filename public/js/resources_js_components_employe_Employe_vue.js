@@ -47,6 +47,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -263,21 +270,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     employes: Array,
     pagination: Object
   },
-  emits: ['deleteEmploye', 'updateEmploye', 'fetchEmployes'],
+  emits: ["deleteEmploye", "updateEmploye", "fetchEmployes"],
   methods: {
     Delete: function Delete(id) {
-      this.$emit('deleteEmploye', id);
+      this.$emit("deleteEmploye", id);
     },
     Update: function Update(employe) {
-      this.$emit('updateEmploye', employe);
+      this.$emit("updateEmploye", employe);
     },
     fetchEmployes: function fetchEmployes(url) {
-      this.$emit('fetchEmployes', url);
+      this.$emit("fetchEmployes", url);
     },
     getPdf: function getPdf(empId, fID) {
       window.open("http://localhost:8000/generatePdf/" + empId + "/fiche/" + fID);
@@ -480,11 +531,7 @@ var render = function () {
                             },
                             on: { click: _vm.resetModal1 },
                           },
-                          [
-                            _vm._v(
-                              "\n                Nouvel employé\n            "
-                            ),
-                          ]
+                          [_vm._v("Nouvel employé")]
                         ),
                       ]),
                       _vm._v(" "),
@@ -596,7 +643,7 @@ var render = function () {
                                   _vm._v(
                                     "Nom : " +
                                       _vm._s(employe.nom) +
-                                      " Prenom :  " +
+                                      " Prenom : " +
                                       _vm._s(employe.prenom)
                                   ),
                                 ]),
@@ -609,11 +656,11 @@ var render = function () {
                               [
                                 _c("b-col", [
                                   _vm._v(
-                                    "Cin : " +
+                                    "\n                                Cin : " +
                                       _vm._s(employe.cin) +
-                                      " Matricule CNSS : " +
+                                      " Matricule CNSS :\n                                " +
                                       _vm._s(employe.mat_cnss) +
-                                      " "
+                                      "\n                            "
                                   ),
                                 ]),
                               ],
@@ -681,7 +728,7 @@ var render = function () {
                         key: fiche.id,
                         staticClass:
                           "ml-4 bv-example-row text-center pl-4 row justify-content-center",
-                        staticStyle: { "text-align": "left!important" },
+                        staticStyle: { "text-align": "left !important" },
                       },
                       [
                         _c(
@@ -696,9 +743,7 @@ var render = function () {
                                   "b-row",
                                   [
                                     _c("b-col", [
-                                      _vm._v(
-                                        "date : " + _vm._s(fiche.date) + " "
-                                      ),
+                                      _vm._v("date : " + _vm._s(fiche.date)),
                                     ]),
                                   ],
                                   1
@@ -726,7 +771,9 @@ var render = function () {
                                           _vm._v(_vm._s(rebrique.titre)),
                                         ]),
                                         _vm._v(
-                                          " : " + _vm._s(rebrique.pivot.montant)
+                                          "\n                                    : " +
+                                            _vm._s(rebrique.pivot.montant) +
+                                            "\n                                "
                                         ),
                                       ]),
                                     ],
@@ -784,12 +831,12 @@ var render = function () {
         )
       }),
       _vm._v(" "),
-      _c("nav", { staticClass: "row " }, [
+      _c("nav", { staticClass: "row" }, [
         _c("ul", { staticClass: "pagination w-auto mx-auto" }, [
           _c(
             "li",
             {
-              staticClass: "page-item ",
+              staticClass: "page-item",
               class: [{ disabled: !_vm.pagination.prev_page_url }],
             },
             [
