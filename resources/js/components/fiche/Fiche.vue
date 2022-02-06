@@ -1,3 +1,4 @@
+// TODO:FIX REBRIQUES AFFECTATION
 <template>
     <div>
         <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
@@ -32,6 +33,8 @@
                 @deleteFiche="deleteFiche"
                 @fetchFiches="fetchFiches"
                 @updateFiche="updateFiche"
+                @attachRebrique="attachRebrique"
+                :alert="alert"
                 :pagination="pagination"
             />
         </div>
@@ -199,10 +202,20 @@ export default {
             this.fiche = fiche;
         },
         attachRebrique(RebriqueId) {
-            fetch('api/fiche/' + this.fiche.id + '/rebrique/' + RebriqueId, {
+            fetch('api/fiche/' + RebriqueId.fid + '/rebrique/' + RebriqueId.rid, {
                 method: 'post'
-            })
+            }).then(res=>res.json())
                 .then(data => {
+                    if (data.attached==true){
+                        this.alert.variant = "success";
+                        this.alert.msg = "Rebrique attachée avec succès"
+                        this.alert.dismissCountDown = 5;
+                    }else{
+                        this.alert.variant = "danger";
+                        this.alert.msg = "Rebrique détachée avec succès"
+                        this.alert.dismissCountDown = 5;
+                    }
+                    this.fetchFiches();
                 }
                 )
                 .catch(err => console.log(err));

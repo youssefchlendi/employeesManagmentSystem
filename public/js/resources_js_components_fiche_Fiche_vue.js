@@ -54,6 +54,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -235,9 +238,25 @@ __webpack_require__.r(__webpack_exports__);
       this.fiche = fiche;
     },
     attachRebrique: function attachRebrique(RebriqueId) {
-      fetch('api/fiche/' + this.fiche.id + '/rebrique/' + RebriqueId, {
+      var _this5 = this;
+
+      fetch('api/fiche/' + RebriqueId.fid + '/rebrique/' + RebriqueId.rid, {
         method: 'post'
-      }).then(function (data) {})["catch"](function (err) {
+      }).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        if (data.attached == true) {
+          _this5.alert.variant = "success";
+          _this5.alert.msg = "Rebrique attachée avec succès";
+          _this5.alert.dismissCountDown = 5;
+        } else {
+          _this5.alert.variant = "danger";
+          _this5.alert.msg = "Rebrique détachée avec succès";
+          _this5.alert.dismissCountDown = 5;
+        }
+
+        _this5.fetchFiches();
+      })["catch"](function (err) {
         return console.log(err);
       });
     },
@@ -635,7 +654,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   emits: ["fetchFiches", "attachRebrique"],
   props: {
-    rebrique: Object
+    rebrique: Object,
+    alert: Object
   },
   data: function data() {
     return {};
@@ -663,6 +683,10 @@ __webpack_require__.r(__webpack_exports__);
           return res.json();
         }).then(function (data) {
           _this.fetchFiches();
+
+          _this.alert.variant = "warning";
+          _this.alert.msg = "Montant modifié avec succès";
+          _this.alert.dismissCountDown = 5;
         })["catch"](function (err) {
           return console.log(err);
         });
@@ -672,12 +696,26 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     attachRebrique: function attachRebrique(RebriqueId) {
-      fetch('api/fiche/' + this.rebrique.pivot.fiche_id + '/rebrique/' + RebriqueId, {
-        method: 'post'
-      }).then(function (data) {})["catch"](function (err) {
-        return console.log(err);
-      });
-      this.fetchFiches();
+      this.$emit('attachRebrique', {
+        rid: RebriqueId,
+        fid: this.rebrique.pivot.fiche_id
+      }); // fetch('api/fiche/' + this.rebrique.pivot.fiche_id + '/rebrique/' + RebriqueId, {
+      //     method: 'post'
+      // })
+      //     .then(data => {
+      // if (data.attached){
+      //     this.alert.variant = "success";
+      //     this.alert.msg = "Rebrique attachée avec succès"
+      //     this.alert.dismissCountDown = 5;
+      // }else{
+      //     this.alert.variant = "danger";
+      //     this.alert.msg = "Rebrique détachée avec succès"
+      //     this.alert.dismissCountDown = 5;
+      // }
+      //     }
+      //     )
+      //     .catch(err => console.log(err));
+      // this.fetchFiches();
     }
   }
 });
@@ -749,6 +787,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -756,9 +796,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     fiches: Array,
-    pagination: Object
+    pagination: Object,
+    alert: Object
   },
-  emits: ['deleteFiche', 'updateFiche', 'fetchFiches'],
+  emits: ['deleteFiche', 'updateFiche', 'fetchFiches', 'attachRebrique'],
   methods: {
     Delete: function Delete(id) {
       this.$emit('deleteFiche', id);
@@ -772,6 +813,9 @@ __webpack_require__.r(__webpack_exports__);
     getPdf: function getPdf(fiche) {
       // console.log(fiche.employes.id);
       window.open("http://localhost:8000/generatePdf/" + fiche.employes.id + "/fiche/" + fiche.id);
+    },
+    attachRebrique: function attachRebrique(RebriqueId) {
+      this.$emit('attachRebrique', RebriqueId);
     }
   }
 });
@@ -1213,11 +1257,16 @@ var render = function () {
               }),
               _vm._v(" "),
               _c("showFiche", {
-                attrs: { fiches: _vm.fiches, pagination: _vm.pagination },
+                attrs: {
+                  fiches: _vm.fiches,
+                  alert: _vm.alert,
+                  pagination: _vm.pagination,
+                },
                 on: {
                   deleteFiche: _vm.deleteFiche,
                   fetchFiches: _vm.fetchFiches,
                   updateFiche: _vm.updateFiche,
+                  attachRebrique: _vm.attachRebrique,
                 },
               }),
             ],
@@ -1787,11 +1836,15 @@ var render = function () {
                                 _vm._l(fiche.rebriques, function (rebrique) {
                                   return _c("oneRebrique", {
                                     key: rebrique.id,
-                                    attrs: { rebrique: rebrique },
+                                    attrs: {
+                                      rebrique: rebrique,
+                                      alert: _vm.alert,
+                                    },
                                     on: {
                                       fetchFiches: function ($event) {
                                         return _vm.fetchFiches("/api/fiche")
                                       },
+                                      attachRebrique: _vm.attachRebrique,
                                     },
                                   })
                                 }),

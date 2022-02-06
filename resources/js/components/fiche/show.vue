@@ -15,7 +15,9 @@
                                 </b-row>
                                 <oneRebrique
                                     @fetchFiches="fetchFiches('/api/fiche')"
+                                    @attachRebrique="attachRebrique"
                                     :rebrique="rebrique"
+                                    :alert="alert"
                                     v-for="rebrique in fiche.rebriques"
                                     :key="rebrique.id"
                                 />
@@ -61,8 +63,9 @@ export default {
     props: {
         fiches: Array,
         pagination: Object,
+        alert :Object
     },
-    emits: ['deleteFiche', 'updateFiche', 'fetchFiches']
+    emits: ['deleteFiche', 'updateFiche', 'fetchFiches','attachRebrique']
     ,
     methods: {
         Delete(id) {
@@ -77,6 +80,9 @@ export default {
         getPdf(fiche) {
             // console.log(fiche.employes.id);
             window.open("http://localhost:8000/generatePdf/" + fiche.employes.id + "/fiche/" + fiche.id);
+        },
+        attachRebrique(RebriqueId) {
+            this.$emit('attachRebrique', RebriqueId);
         }
     }
 }
