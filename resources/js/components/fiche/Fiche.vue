@@ -26,11 +26,12 @@
             >
                 <p>{{ alert.msg }}</p>
             </b-alert>
-
+            <formRebrique @attachRebrique="attachRebrique" :rebriques="Rebriques" :oldFiche="fiche" ></formRebrique>
             <formFiche @addFiche="addFiche" :employes="employes" :oldFiche="fiche" />
             <showFiche
                 :fiches="fiches"
                 @deleteFiche="deleteFiche"
+                @selectFiche="selectFiche"
                 @fetchFiches="fetchFiches"
                 @updateFiche="updateFiche"
                 @attachRebrique="attachRebrique"
@@ -44,16 +45,19 @@
 <script>
 import showFiche from './show.vue';
 import formFiche from './form.vue';
+import formRebrique from './rebriqueForm.vue';
 import search from '../search.vue';
 export default {
     components: {
         showFiche,
         formFiche,
         search,
+        formRebrique
     },
     data() {
         return {
             fiches: [],
+            Rebriques :[],
             fiche: {
                 rebriques: [],
                 titre: '',
@@ -74,6 +78,7 @@ export default {
     },
     created() {
         this.fetchFiches();
+        this.fetchRebriques();
         this.fetchEmployes();
     },
     methods: {
@@ -114,6 +119,17 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.employes = res.data;
+                })
+                .catch(err => console.log(err))
+        },
+        fetchRebriques(page_url = "/api/rebrique") {
+            let vm = this;
+            fetch(page_url, {
+                method: 'GET',
+            })
+                .then(res => res.json())
+                .then(res => {
+                    this.Rebriques = res;
                 })
                 .catch(err => console.log(err))
         },
@@ -165,7 +181,6 @@ export default {
                     .then(res => res.json())
                     .then(data => {
                         this.fiche.id = data.data.id;
-                        this.fiche.rebriques.forEach(r => this.attachRebrique(r.id));
                         this.fetchFiches();
                         this.alert.variant = "success";
                         this.alert.msg = "Fiche ajoutée avec succès"
@@ -185,7 +200,6 @@ export default {
                     .then(res => res.json())
                     .then(data => {
                         // this.deleteFicher(this.fiche.id);
-                        this.fiche.rebriques.forEach(r => this.attachRebrique(r.id));
                         this.fetchFiches();
                         this.alert.variant = "warning";
                         this.alert.msg = "Fiche modifiée avec succès"
@@ -201,7 +215,11 @@ export default {
             this.edit = true;
             this.fiche = fiche;
         },
+        selectFiche(fiche){
+            this.fiche = fiche;
+        },
         attachRebrique(RebriqueId) {
+            if (typeof RebriqueId.fid !=="undefined"){
             fetch('api/fiche/' + RebriqueId.fid + '/rebrique/' + RebriqueId.rid, {
                 method: 'post'
             }).then(res=>res.json())
@@ -219,6 +237,27 @@ export default {
                 }
                 )
                 .catch(err => console.log(err));
+            }else{
+                            fetch('api/fiche/' + this.fiche.id + '/rebrique/' + RebriqueId, {
+                method: 'post'
+            }).then(res=>res.json())
+                .then(data => {
+                    if (data.attached==true){
+                        this.alert.variant = "success";
+                        this.alert.msg = "Rebrique attachée avec succès"
+                        this.alert.dismissCountDown = 5;
+                    }else{
+                        this.alert.variant = "danger";
+                        this.alert.msg = "Rebrique détachée avec succès"
+                        this.alert.dismissCountDown = 5;
+                    }
+                    this.fetchFiches();
+                }
+                )
+                .catch(err => console.log(err));
+
+            }
+
         },
         deleteFicher(id) {
             fetch('api/fiche/rel/' + id, { method: 'delete' })
