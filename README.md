@@ -1,3 +1,6 @@
+<p align="center">
+<img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -110,7 +113,7 @@ LinkedIn: [Mohamed youssef chlendi](https://www.linkedin.com/in/mohamed-youssef-
 ## License
 MIT License
 
-Copyright (c) [year] [fullname]
+Copyright (c) 2022 Mohamed Youssef CHLENDI
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
