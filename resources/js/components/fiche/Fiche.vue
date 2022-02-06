@@ -1,4 +1,3 @@
-// TODO:FIX REBRIQUES AFFECTATION
 <template>
     <div>
         <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
@@ -37,6 +36,7 @@
                 @attachRebrique="attachRebrique"
                 :alert="alert"
                 :pagination="pagination"
+                :employes="employes"
             />
         </div>
     </div>
