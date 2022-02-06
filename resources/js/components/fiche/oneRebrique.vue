@@ -26,6 +26,7 @@ export default {
     emits: ["fetchFiches", "attachRebrique"],
     props: {
         rebrique: Object,
+        alert : Object
     },
     data() {
         return {};
@@ -55,6 +56,10 @@ export default {
                     .then((res) => res.json())
                     .then((data) => {
                         this.fetchFiches();
+                        this.alert.variant = "warning";
+                        this.alert.msg = "Montant modifié avec succès"
+                        this.alert.dismissCountDown = 5;
+
                     })
                     .catch((err) => console.log(err));
 
@@ -64,14 +69,24 @@ export default {
             }
         },
         attachRebrique(RebriqueId) {
-            fetch('api/fiche/' + this.rebrique.pivot.fiche_id + '/rebrique/' + RebriqueId, {
-                method: 'post'
-            })
-                .then(data => {
-                }
-                )
-                .catch(err => console.log(err));
-            this.fetchFiches();
+            this.$emit('attachRebrique', {rid : RebriqueId, fid : this.rebrique.pivot.fiche_id});
+            // fetch('api/fiche/' + this.rebrique.pivot.fiche_id + '/rebrique/' + RebriqueId, {
+            //     method: 'post'
+            // })
+            //     .then(data => {
+                    // if (data.attached){
+                    //     this.alert.variant = "success";
+                    //     this.alert.msg = "Rebrique attachée avec succès"
+                    //     this.alert.dismissCountDown = 5;
+                    // }else{
+                    //     this.alert.variant = "danger";
+                    //     this.alert.msg = "Rebrique détachée avec succès"
+                    //     this.alert.dismissCountDown = 5;
+                    // }
+            //     }
+            //     )
+            //     .catch(err => console.log(err));
+            // this.fetchFiches();
         },
     },
 };
