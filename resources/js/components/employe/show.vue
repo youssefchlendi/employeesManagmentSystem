@@ -101,7 +101,7 @@ export default {
     props: {
         employes: Array,
         pagination: Object,
-        entreprises : Array,
+        entreprises: Array,
     },
     emits: ["deleteEmploye", "updateEmploye", "fetchEmployes"],
     methods: {
@@ -119,12 +119,12 @@ export default {
                 "http://localhost:8000/generatePdf/" + empId + "/fiche/" + fID
             );
         },
-        entrepriseById(id){
-            let ent='';
+        entrepriseById(id) {
+            let ent = '';
             let found = false;
-            for (let i=0; i<this.entreprises.length&&!found; i++){
-                if(this.entreprises[i].id==id){
-                    ent=this.entreprises[i].titre;
+            for (let i = 0; i < this.entreprises.length && !found; i++) {
+                if (this.entreprises[i].id == id) {
+                    ent = this.entreprises[i].titre;
                 }
             }
             return ent;

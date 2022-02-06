@@ -28,13 +28,13 @@
                             <b-button variant="danger" v-on:click="Delete(fiche.id)">Delete</b-button>
                             <b-button
                                 variant="warning"
-                                v-on:click="Update(fiche)"
+                                v-on:click="Update(    fiche)"
                                 data-bs-toggle="modal"
                                 data-bs-target="#ficheModal"
                             >Update</b-button>
                             <b-button
                                 variant="warning"
-                                v-on:click="select(fiche)"
+                                v-on:click="    select(fiche)"
                                 data-bs-toggle="modal"
                                 data-bs-target="#rebriqueModal"
                             >Ajouter rubrique</b-button>
@@ -47,7 +47,7 @@
         </b-card>
         <nav class="row">
             <ul class="pagination w-auto mx-auto">
-                <li :class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
+                <li :class="[{ disabled    : !pagination.prev_page_url }]" class="page-item">
                     <a @click="fetchFiches(pagination.prev_page_url)" class="btn page-link">Previous</a>
                 </li>
                 <li class="page-item">
@@ -73,10 +73,10 @@ export default {
     props: {
         fiches: Array,
         pagination: Object,
-        alert :Object,
-        employes : Array
+        alert: Object,
+        employes: Array
     },
-    emits: ['deleteFiche', 'updateFiche', 'fetchFiches','attachRebrique','selectFiche']
+    emits: ['deleteFiche', 'updateFiche', 'fetchFiches', 'attachRebrique', 'selectFiche']
     ,
     methods: {
         Delete(id) {
@@ -98,13 +98,12 @@ export default {
         attachRebrique(RebriqueId) {
             this.$emit('attachRebrique', RebriqueId);
         },
-        employeById(id){
-            let emp='';
+        employeById(id) {
+            let emp = '';
             let find = 0;
-            for (let i=0;i<this.employes.length && !find;i++) {
-                if(this.employes[i].id==id)
-                {
-                    emp=this.employes[i].nom+' '+this.employes[i].prenom;
+            for (let i = 0; i < this.employes.length && !find; i++) {
+                if (this.employes[i].id == id) {
+                    emp = this.employes[i].nom + ' ' + this.employes[i].prenom;
                 }
             }
             return emp;

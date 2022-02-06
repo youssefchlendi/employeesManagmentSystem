@@ -25,7 +25,7 @@
             >
                 <p>{{ alert.msg }}</p>
             </b-alert>
-            <formRebrique @attachRebrique="attachRebrique" :rebriques="Rebriques" :oldFiche="fiche" ></formRebrique>
+            <formRebrique @attachRebrique="attachRebrique" :rebriques="Rebriques" :oldFiche="fiche"></formRebrique>
             <formFiche @addFiche="addFiche" :employes="employes" :oldFiche="fiche" />
             <showFiche
                 :fiches="fiches"
@@ -57,7 +57,7 @@ export default {
     data() {
         return {
             fiches: [],
-            Rebriques :[],
+            Rebriques: [],
             fiche: {
                 rebriques: [],
                 titre: '',
@@ -215,46 +215,46 @@ export default {
             this.edit = true;
             this.fiche = fiche;
         },
-        selectFiche(fiche){
+        selectFiche(fiche) {
             this.fiche = fiche;
         },
         attachRebrique(RebriqueId) {
-            if (typeof RebriqueId.fid !=="undefined"){
-            fetch('api/fiche/' + RebriqueId.fid + '/rebrique/' + RebriqueId.rid, {
-                method: 'post'
-            }).then(res=>res.json())
-                .then(data => {
-                    if (data.attached==true){
-                        this.alert.variant = "success";
-                        this.alert.msg = "Rebrique attachée avec succès"
-                        this.alert.dismissCountDown = 5;
-                    }else{
-                        this.alert.variant = "danger";
-                        this.alert.msg = "Rebrique détachée avec succès"
-                        this.alert.dismissCountDown = 5;
+            if (typeof RebriqueId.fid !== "undefined") {
+                fetch('api/fiche/' + RebriqueId.fid + '/rebrique/' + RebriqueId.rid, {
+                    method: 'post'
+                }).then(res => res.json())
+                    .then(data => {
+                        if (data.attached == true) {
+                            this.alert.variant = "success";
+                            this.alert.msg = "Rebrique attachée avec succès"
+                            this.alert.dismissCountDown = 5;
+                        } else {
+                            this.alert.variant = "danger";
+                            this.alert.msg = "Rebrique détachée avec succès"
+                            this.alert.dismissCountDown = 5;
+                        }
+                        this.fetchFiches();
                     }
-                    this.fetchFiches();
-                }
-                )
-                .catch(err => console.log(err));
-            }else{
-                            fetch('api/fiche/' + this.fiche.id + '/rebrique/' + RebriqueId, {
-                method: 'post'
-            }).then(res=>res.json())
-                .then(data => {
-                    if (data.attached==true){
-                        this.alert.variant = "success";
-                        this.alert.msg = "Rebrique attachée avec succès"
-                        this.alert.dismissCountDown = 5;
-                    }else{
-                        this.alert.variant = "danger";
-                        this.alert.msg = "Rebrique détachée avec succès"
-                        this.alert.dismissCountDown = 5;
+                    )
+                    .catch(err => console.log(err));
+            } else {
+                fetch('api/fiche/' + this.fiche.id + '/rebrique/' + RebriqueId, {
+                    method: 'post'
+                }).then(res => res.json())
+                    .then(data => {
+                        if (data.attached == true) {
+                            this.alert.variant = "success";
+                            this.alert.msg = "Rebrique attachée avec succès"
+                            this.alert.dismissCountDown = 5;
+                        } else {
+                            this.alert.variant = "danger";
+                            this.alert.msg = "Rebrique détachée avec succès"
+                            this.alert.dismissCountDown = 5;
+                        }
+                        this.fetchFiches();
                     }
-                    this.fetchFiches();
-                }
-                )
-                .catch(err => console.log(err));
+                    )
+                    .catch(err => console.log(err));
 
             }
 

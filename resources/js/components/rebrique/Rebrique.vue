@@ -2,57 +2,57 @@
     <div class="mt-4">
         <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
         <div v-if="!show">
-                <div class="input-group mb-4" style="width: 50%; left:25%">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="rebname"
-                        placeholder="titre"
-                        v-model="Rebrique.titre"
-                    />
-                    <div class="input-group-append">
-                        <button
-                            type="button"
-                            @click="addRebrique"
-                            class="btn btn-success"
-                        >Sauvegarder</button>
-                    </div>
+            <div class="input-group mb-4" style="width: 50%; left:25%">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="rebname"
+                    placeholder="titre"
+                    v-model="Rebrique.titre"
+                />
+                <div class="input-group-append">
+                    <button type="button" @click="addRebrique" class="btn btn-success">Sauvegarder</button>
                 </div>
-        <b-alert
-            :show="alert.dismissCountDown"
-            dismissible
-            :variant="alert.variant"
-            @dismissed="alert.dismissCountDown = 0"
-        >
-            <p>{{ alert.msg }}</p>
-        </b-alert>
-        <b-card>
-            <li v-for="(rebrique) in Rebriques" :key="rebrique.id" class="container list-unstyled">
-                <div class="row shadow-sm">
-                    <div class="col-10">
-                        <div>
-                            <label @dblclick="rebrique.edit = true">{{ rebrique.titre }}</label>
+            </div>
+            <b-alert
+                :show="alert.dismissCountDown"
+                dismissible
+                :variant="alert.variant"
+                @dismissed="alert.dismissCountDown = 0"
+            >
+                <p>{{ alert.msg }}</p>
+            </b-alert>
+            <b-card>
+                <li
+                    v-for="(rebrique) in Rebriques"
+                    :key="rebrique.id"
+                    class="container list-unstyled"
+                >
+                    <div class="row shadow-sm">
+                        <div class="col-10">
+                            <div>
+                                <label @dblclick="rebrique.edit = true">{{ rebrique.titre }}</label>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <button
+                                type="button"
+                                class="float-end btn"
+                                @click="deleteRebrique(rebrique.id)"
+                            >
+                                <b-icon icon="trash" scale="1" variant="danger"></b-icon>
+                            </button>
+                            <button
+                                type="button"
+                                class="float-end btn"
+                                @click="updateRebrique(rebrique)"
+                            >
+                                <b-icon icon="pen" scale="1" variant="warning"></b-icon>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-2">
-                        <button
-                            type="button"
-                            class="float-end btn"
-                            @click="deleteRebrique(rebrique.id)"
-                        >
-                            <b-icon icon="trash" scale="1" variant="danger"></b-icon>
-                        </button>
-                        <button
-                            type="button"
-                            class="float-end btn"
-                            @click="updateRebrique(rebrique)"
-                        >
-                            <b-icon icon="pen" scale="1" variant="warning"></b-icon>
-                        </button>
-                    </div>
-                </div>
-            </li>
-        </b-card>
+                </li>
+            </b-card>
         </div>
     </div>
 </template>

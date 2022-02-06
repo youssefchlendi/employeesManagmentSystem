@@ -6,7 +6,7 @@
         aria-labelledby="employeModalLabel"
         aria-hidden="true"
     >
-  <div class="modal-dialog">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="employeModalLabel">Ajouter une rebrique</h5>
@@ -26,7 +26,8 @@
                                 v-model="rebrique"
                                 aria-label="Default select example"
                             >
-                                <option v-show="!containsObject(rebrique)"
+                                <option
+                                    v-show="!containsObject(rebrique)"
                                     v-for="rebrique in rebriques"
                                     :key="rebrique.id"
                                     :value="rebrique.id"
@@ -59,21 +60,21 @@ export default {
     },
     props: {
         oldFiche: Object,
-        rebriques:Array
+        rebriques: Array
     },
     emits: ['attachRebrique']
     ,
-    data(){
+    data() {
         return {
-            rebrique :'',
+            rebrique: '',
         }
     },
     mounted() {
     }
     ,
     methods: {
-        attachRebrique(){
-            this.$emit('attachRebrique',this.rebrique);
+        attachRebrique() {
+            this.$emit('attachRebrique', this.rebrique);
         },
         containsObject(obj) {
             if (typeof this.oldFiche.rebriques !== 'undefined') {
@@ -85,12 +86,11 @@ export default {
                     }
                 }
                 return false;
+            }
         }
     }
-}
 }
 </script>
 
 <style>
-
 </style>

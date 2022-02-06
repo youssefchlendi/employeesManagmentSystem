@@ -1,12 +1,12 @@
 <template>
     <div>
         <b-alert
-                :show="alert.dismissCountDown"
-                dismissible
-                :variant="alert.variant"
-                @dismissed="alert.dismissCountDown = 0"
-            >
-                <p>{{ alert.msg }}</p>
+            :show="alert.dismissCountDown"
+            dismissible
+            :variant="alert.variant"
+            @dismissed="alert.dismissCountDown = 0"
+        >
+            <p>{{ alert.msg }}</p>
         </b-alert>
         <div class="card card-body my-2" v-if="entreprises.length == 0">
             <h3>il y'a aucun entreprise</h3>
@@ -35,12 +35,10 @@
                 </b-tab>
                 <b-tab title="Employes">
                     <b-card-body>
-                        <h6 v-if="entreprise.employes.length == 0">Aucun employe</h6>
-                        <b-container class="bv-example-row text-center">
+                         <b-container class="bv-example-row text-center">
                             <b-row
                                 style="text-align:left!important"
-                                v-for="employe in entreprise.employes"
-                                :key="employe.id"
+                                 :key="employe.id"
                             >
                                 <b-col cols="8">
                                     <b-row>
@@ -87,7 +85,7 @@
         </b-card>
         <nav class="row">
             <ul class="pagination w-auto mx-auto">
-                <li :class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
+                <li :class="[{     disabled: !pagination.prev_page_url }]" class="page-item">
                     <a
                         @click="fetchEntreprises(pagination.prev_page_url)"
                         class="btn page-link"
