@@ -20,6 +20,9 @@
                             <b-row>
                                 <b-col>Fonction : {{ employe.fonction }}</b-col>
                             </b-row>
+                            <b-row>
+                                <b-col>Entreprise : {{ entrepriseById(employe.entreprise_id) }}</b-col>
+                            </b-row>
                         </b-row>
                         <b-button variant="danger" v-on:click="Delete(employe.id)">Delete</b-button>
                         <b-button
@@ -98,6 +101,7 @@ export default {
     props: {
         employes: Array,
         pagination: Object,
+        entreprises : Array,
     },
     emits: ["deleteEmploye", "updateEmploye", "fetchEmployes"],
     methods: {
@@ -115,6 +119,16 @@ export default {
                 "http://localhost:8000/generatePdf/" + empId + "/fiche/" + fID
             );
         },
+        entrepriseById(id){
+            let ent='';
+            let found = false;
+            for (let i=0; i<this.entreprises.length&&!found; i++){
+                if(this.entreprises[i].id==id){
+                    ent=this.entreprises[i].titre;
+                }
+            }
+            return ent;
+        }
     },
 };
 </script>
