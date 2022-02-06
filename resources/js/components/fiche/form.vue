@@ -40,7 +40,6 @@
                                     :value="employe.id"
                                 >{{ employe.nom }} {{ employe.prenom }}</option>
                             </select>
-                            <rebrique :Fiche="oldFiche" @sendRebrique="sendRebrique" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -64,10 +63,8 @@
 </template>
 
 <script>
-import rebrique from './Rebrique.vue'
 export default {
     components: {
-        rebrique
     },
     props: {
         oldFiche: Object,
