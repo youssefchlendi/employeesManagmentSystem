@@ -22,6 +22,7 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
+
 ## About The Project
 
 This my advanced training internship project, this webApp is used to manage employees payslip,
@@ -48,7 +49,9 @@ I used in this project :
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
+
 ### Prerequisites
 
 * npm
