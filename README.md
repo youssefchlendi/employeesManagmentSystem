@@ -32,6 +32,7 @@ It contains 4 cruds :
 * Employés
 * Fiches
 * Rubriques
+
 The main goal for this project is to help the accountant manage Companies/employees payslips and generating pdf payslip file,
 <p align="right">(<a href="#top">back to top</a>)</p>
 
