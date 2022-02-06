@@ -1,8 +1,8 @@
 <template>
-    <div class="container col">
-        <div class="row shadow-sm ">
+    <li class="container list-unstyled">
+        <div class="row shadow-sm text-left">
             <div class>
-                <p class="">{{ rebrique.titre }}</p>
+                <p class="text-left">{{ rebrique.titre }}</p>
                 <b-input-group class="mb-3" prepend="Montant">
                     <b-form-input
                         v-on:keyup.enter="updateMontant(rebrique.pivot.montant)"
@@ -18,7 +18,7 @@
                 </b-input-group>
             </div>
         </div>
-    </div>
+    </li>
 </template>
 
 <script>

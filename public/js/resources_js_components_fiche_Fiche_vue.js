@@ -1422,13 +1422,15 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container col" }, [
-    _c("div", { staticClass: "row shadow-sm " }, [
+  return _c("li", { staticClass: "container list-unstyled" }, [
+    _c("div", { staticClass: "row shadow-sm text-left" }, [
       _c(
         "div",
         {},
         [
-          _c("p", {}, [_vm._v(_vm._s(_vm.rebrique.titre))]),
+          _c("p", { staticClass: "text-left" }, [
+            _vm._v(_vm._s(_vm.rebrique.titre)),
+          ]),
           _vm._v(" "),
           _c(
             "b-input-group",
