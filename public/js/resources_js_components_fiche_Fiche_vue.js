@@ -703,6 +703,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -711,7 +714,8 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     fiches: Array,
     pagination: Object,
-    alert: Object
+    alert: Object,
+    employes: Array
   },
   emits: ['deleteFiche', 'updateFiche', 'fetchFiches', 'attachRebrique', 'selectFiche'],
   methods: {
@@ -733,6 +737,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     attachRebrique: function attachRebrique(RebriqueId) {
       this.$emit('attachRebrique', RebriqueId);
+    },
+    employeById: function employeById(id) {
+      var emp = '';
+      var find = 0;
+
+      for (var i = 0; i < this.employes.length && !find; i++) {
+        if (this.employes[i].id == id) {
+          emp = this.employes[i].nom + ' ' + this.employes[i].prenom;
+        }
+      }
+
+      return emp;
     }
   }
 });
@@ -1183,6 +1199,7 @@ var render = function () {
                   fiches: _vm.fiches,
                   alert: _vm.alert,
                   pagination: _vm.pagination,
+                  employes: _vm.employes,
                 },
                 on: {
                   deleteFiche: _vm.deleteFiche,
@@ -1405,15 +1422,13 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "container list-unstyled" }, [
-    _c("div", { staticClass: "row shadow-sm text-left" }, [
+  return _c("div", { staticClass: "container col" }, [
+    _c("div", { staticClass: "row shadow-sm " }, [
       _c(
         "div",
         {},
         [
-          _c("p", { staticClass: "text-left" }, [
-            _vm._v(_vm._s(_vm.rebrique.titre)),
-          ]),
+          _c("p", {}, [_vm._v(_vm._s(_vm.rebrique.titre))]),
           _vm._v(" "),
           _c(
             "b-input-group",
@@ -1692,11 +1707,21 @@ var render = function () {
                                   [
                                     _c("b-col", [
                                       _vm._v(
-                                        "date : " +
-                                          _vm._s(fiche.date) +
-                                          " employe : " +
-                                          _vm._s(fiche.employe_id)
+                                        "employe : " +
+                                          _vm._s(
+                                            _vm.employeById(fiche.employe_id)
+                                          )
                                       ),
+                                    ]),
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "b-row",
+                                  [
+                                    _c("b-col", [
+                                      _vm._v("date : " + _vm._s(fiche.date)),
                                     ]),
                                   ],
                                   1

@@ -33,6 +33,7 @@
                 @fetchEmployes="fetchEmployes"
                 @updateEmploye="updateEmploye"
                 :pagination="pagination"
+                :entreprises="entreprises"
             />
         </div>
     </div>

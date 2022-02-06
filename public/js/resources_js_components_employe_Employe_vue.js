@@ -54,6 +54,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -314,10 +315,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     employes: Array,
-    pagination: Object
+    pagination: Object,
+    entreprises: Array
   },
   emits: ["deleteEmploye", "updateEmploye", "fetchEmployes"],
   methods: {
@@ -332,6 +337,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     getPdf: function getPdf(empId, fID) {
       window.open("http://localhost:8000/generatePdf/" + empId + "/fiche/" + fID);
+    },
+    entrepriseById: function entrepriseById(id) {
+      var ent = '';
+      var found = false;
+
+      for (var i = 0; i < this.entreprises.length && !found; i++) {
+        if (this.entreprises[i].id == id) {
+          ent = this.entreprises[i].titre;
+        }
+      }
+
+      return ent;
     }
   }
 });
@@ -569,7 +586,11 @@ var render = function () {
               }),
               _vm._v(" "),
               _c("showEmploye", {
-                attrs: { employes: _vm.employes, pagination: _vm.pagination },
+                attrs: {
+                  employes: _vm.employes,
+                  pagination: _vm.pagination,
+                  entreprises: _vm.entreprises,
+                },
                 on: {
                   deleteEmploye: _vm.deleteEmploye,
                   fetchEmployes: _vm.fetchEmployes,
@@ -673,6 +694,23 @@ var render = function () {
                                 _c("b-col", [
                                   _vm._v(
                                     "Fonction : " + _vm._s(employe.fonction)
+                                  ),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-row",
+                              [
+                                _c("b-col", [
+                                  _vm._v(
+                                    "Entreprise : " +
+                                      _vm._s(
+                                        _vm.entrepriseById(
+                                          employe.entreprise_id
+                                        )
+                                      )
                                   ),
                                 ]),
                               ],
