@@ -1,5 +1,13 @@
 <template>
     <div>
+        <b-alert
+                :show="alert.dismissCountDown"
+                dismissible
+                :variant="alert.variant"
+                @dismissed="alert.dismissCountDown = 0"
+            >
+                <p>{{ alert.msg }}</p>
+        </b-alert>
         <div class="card card-body my-2" v-if="entreprises.length == 0">
             <h3>il y'a aucun entreprise</h3>
         </div>
@@ -116,6 +124,11 @@ export default {
     data() {
         return {
             employe: {},
+            alert: {
+                dismissCountDown: 0,
+                variant: "",
+                msg: "",
+            }
         }
     },
     methods: {
@@ -142,6 +155,10 @@ export default {
                 .then(res => res.json())
                 .then(data => {
                     this.fetchEntreprises();
+                    this.alert.variant = "warning";
+                    this.alert.msg = "Employe modifié avec succès"
+                    this.alert.dismissCountDown = 5;
+
                 }
                 )
                 .catch(err => console.log(err))
@@ -151,6 +168,10 @@ export default {
                 fetch('api/employe/' + id, { method: 'delete' })
                     .then(res => {
                         this.fetchEntreprises();
+                        this.alert.variant = "danger";
+                        this.alert.msg = "Employe supprimé avec succès"
+                        this.alert.dismissCountDown = 5;
+
                     })
                     .then(data => {
                     })
