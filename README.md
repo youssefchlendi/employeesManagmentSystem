@@ -28,10 +28,10 @@
 
 This my advanced training internship project, this webApp is used to manage employees payslip,
 It contains 4 cruds : 
-	-Entreprises
-    -Employés
-    -Fiches
-    -Rubriques
+	*Entreprises
+    *Employés
+    *Fiches
+    *Rubriques
 The main goal for this project is to help the accountant manage Companies/employees payslips and generating pdf payslip file,
 <p align="right">(<a href="#top">back to top</a>)</p>
 
