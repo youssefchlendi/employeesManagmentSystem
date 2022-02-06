@@ -8,7 +8,10 @@
                         <b-container class="bv-example-row text-center">
                             <b-row class="mb-2">
                                 <b-row>
-                                    <b-col>date : {{ fiche.date }} employe : {{ fiche.employe_id }}</b-col>
+                                    <b-col>employe : {{ employeById(fiche.employe_id) }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col>date : {{ fiche.date }}</b-col>
                                 </b-row>
                                 <b-row>
                                     <b-col>total : {{ fiche.total }}</b-col>
@@ -70,7 +73,8 @@ export default {
     props: {
         fiches: Array,
         pagination: Object,
-        alert :Object
+        alert :Object,
+        employes : Array
     },
     emits: ['deleteFiche', 'updateFiche', 'fetchFiches','attachRebrique','selectFiche']
     ,
@@ -93,6 +97,17 @@ export default {
         },
         attachRebrique(RebriqueId) {
             this.$emit('attachRebrique', RebriqueId);
+        },
+        employeById(id){
+            let emp='';
+            let find = 0;
+            for (let i=0;i<this.employes.length && !find;i++) {
+                if(this.employes[i].id==id)
+                {
+                    emp=this.employes[i].nom+' '+this.employes[i].prenom;
+                }
+            }
+            return emp;
         }
     }
 }
