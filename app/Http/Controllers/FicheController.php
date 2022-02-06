@@ -108,14 +108,21 @@ class FicheController extends Controller
         $Fiche = Fiche::find($fiche_id);
         if ($Fiche->rebriques()->where('rebrique_id','=',$rebrique_id)->count()!=0){
             $Fiche->rebriques()->detach($rebrique_id);
+            return response()->json([
+                'type' => 'rebrique',
+                'message' => 'rebrique attached',
+                'attached' => false
+            ], 201);
+
         }else {
 
             $Fiche->rebriques()->attach($rebrique_id);
+            return response()->json([
+                'type' => 'rebrique',
+                'message' => 'rebrique attached',
+                'attached' => true
+            ], 201  );
         }
-        return response()->json([
-            'type' => 'rebrique',
-            'message' => 'rebrique attached'
-        ], 204);
     }
     public function setMontant(Request $request,$fiche_id,$rebrique_id){
         $fiche = Fiche::find($fiche_id);
