@@ -29,6 +29,13 @@
                                 data-bs-toggle="modal"
                                 data-bs-target="#ficheModal"
                             >Update</b-button>
+                            <b-button
+                                variant="warning"
+                                v-on:click="select(fiche)"
+                                data-bs-toggle="modal"
+                                data-bs-target="#rebriqueModal"
+                            >Ajouter rubrique</b-button>
+
                             <b-button variant="success" v-on:click="getPdf(fiche)">Afficher</b-button>
                         </b-container>
                     </b-card-body>
@@ -65,7 +72,7 @@ export default {
         pagination: Object,
         alert :Object
     },
-    emits: ['deleteFiche', 'updateFiche', 'fetchFiches','attachRebrique']
+    emits: ['deleteFiche', 'updateFiche', 'fetchFiches','attachRebrique','selectFiche']
     ,
     methods: {
         Delete(id) {
@@ -73,6 +80,9 @@ export default {
         },
         Update(fiche) {
             this.$emit('updateFiche', fiche);
+        },
+        select(fiche) {
+            this.$emit('selectFiche', fiche);
         },
         fetchFiches(url) {
             this.$emit('fetchFiches', url)
