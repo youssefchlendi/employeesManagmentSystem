@@ -11,6 +11,7 @@ class EntrepriseController extends Controller
             $search = $request->input('search');
             $entreprises = Entreprise::with('employes')
             ->where('titre','like','%'.$search.'%')
+            ->orderBy('updated_at','DESC')
             ->paginate('5');
             if (!empty($entreprises))
                 return response()->json(

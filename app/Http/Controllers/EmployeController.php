@@ -11,6 +11,7 @@ class EmployeController extends Controller
             $search = $request->input('search');
             if ($search!=''){
                 $employes = Employe::with('fiches')->with('fiches.rebriques')
+                ->orderBy('updated_at','DESC')
                 ->paginate('5');
                 if (!empty($employes))
                     return response()->json(
@@ -24,6 +25,7 @@ class EmployeController extends Controller
                 $employes = Employe::with('fiches')->with('fiches.rebriques')
                 ->where('nom','like','%'.$search.'%')
                 ->orWhere('prenom','like','%'.$search.'%')
+                ->orderBy('updated_at','DESC')
                 ->paginate('5');
                 if (!empty($employes))
                     return response()->json(

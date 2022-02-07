@@ -8,7 +8,8 @@ class RebriqueController extends Controller
 {
     public function show($id=null){
         if(!isset($id)){
-            $Rebriques = Rebrique::all();
+            $Rebriques = Rebrique::orderBy('updated_at','DESC')
+            ->get();
             if (!empty($Rebriques))
                 return response()->json(
                     $Rebriques

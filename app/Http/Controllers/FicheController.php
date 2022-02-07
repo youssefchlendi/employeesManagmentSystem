@@ -10,7 +10,9 @@ class FicheController extends Controller
 {
     public function show(Request $request,$id=null){
         if(!isset($id)){
-            $fiches = Fiche::with('employes')->with('rebriques')->paginate('5');
+            $fiches = Fiche::with('employes')->with('rebriques')
+            ->orderBy('updated_at','DESC')
+            ->paginate('5');
             if (!empty($fiches))
                 return response()->json(
                     $fiches
