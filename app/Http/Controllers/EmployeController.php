@@ -9,18 +9,31 @@ class EmployeController extends Controller
     public function show(Request $request,$id=null){
         if(!isset($id)){
             $search = $request->input('search');
-            $employes = Employe::with('fiches')->with('fiches.rebriques')->where('nom','like','%'.$search.'%')
-            ->orWhere('prenom','like','%'.$search.'%')
-            ->paginate('5');
-            if (!empty($employes))
-                return response()->json(
-                    $employes
-                , 200);
-            else
-                return response()->json([
-                    "No employe found"
-                ], 404);
-        }else{
+            if ($search!=''){
+                $employes = Employe::with('fiches')->with('fiches.rebriques')
+                ->paginate('5');
+                if (!empty($employes))
+                    return response()->json(
+                        $employes
+                    , 200);
+                else
+                    return response()->json([
+                        "No employe found"
+                    ], 404);
+            }else{
+                $employes = Employe::with('fiches')->with('fiches.rebriques')
+                ->where('nom','like','%'.$search.'%')
+                ->orWhere('prenom','like','%'.$search.'%')
+                ->paginate('5');
+                if (!empty($employes))
+                    return response()->json(
+                        $employes
+                    , 200);
+                else
+                    return response()->json([
+                        "No employe found"
+                    ], 404);
+            }
             $employe = Employe::find($id);
 
             if (!empty($employe))
@@ -63,6 +76,17 @@ class EmployeController extends Controller
                 'message' => 'Fail'
             ], 400);
         }
+    }
+    public function getAll(){
+        $employe = Employe::all();
+        if (!empty($employe))
+                return response()->json([
+                    "data"=>$employe
+                ], 200);
+            else
+                return response()->json([
+                    "No employe found"
+        ], 404);
     }
     public function update(Request $request, $id){
         $employe = Employe::find($id);
