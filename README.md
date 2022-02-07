@@ -18,6 +18,7 @@
       </ul>
     </li>
     <li><a href="#contributing">Contributing</a></li>
+    <li><a href="https://github.com/youssefchlendi/employeesManagmentSystem/blob/main/API.md#api-reference">API references</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
