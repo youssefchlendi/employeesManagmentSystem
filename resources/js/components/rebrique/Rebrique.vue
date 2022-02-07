@@ -22,7 +22,18 @@
             >
                 <p>{{ alert.msg }}</p>
             </b-alert>
-            <b-card>
+            <div id="app">
+                <link
+                    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+                    rel="stylesheet"
+                    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+                    crossorigin="anonymous"
+                />
+                <main>
+                    <data-table v-bind="parameters" @actionTriggered="handleAction" />
+                </main>
+            </div>
+            <!-- <b-card>
                 <li
                     v-for="(rebrique) in Rebriques"
                     :key="rebrique.id"
@@ -52,7 +63,7 @@
                         </div>
                     </div>
                 </li>
-            </b-card>
+            </b-card> -->
         </div>
     </div>
 </template>
@@ -72,7 +83,7 @@ export default {
                 dismissCountDown: 0,
                 variant: "",
                 msg: "",
-            }
+            },
         }
     },
     created() {
@@ -153,11 +164,41 @@ export default {
             this.edit = true;
             this.Rebrique = Rebrique;
         },
+        handleAction(action, payload) {
+            if (action == 'delete') {
+                this.deleteRebrique(payload.id);
+            } else if (action == 'edit') {
+                this.updateRebrique(payload);
+            }
+            console.log(action, payload)
+        }
 
     },
     computed: {
-
-    }
+        parameters() {
+            return {
+                data: this.Rebriques,
+                text: {
+                    perPageText: 'Afficher :entries lignes',
+                    infoText: 'Affichage de :first a :last de :total lignes',
+                    infoTextFiltered: 'Affichage de :first a :last de :total lignes(filtrée de :total)',
+                    nextButtonText: 'Suiva',
+                    previousButtonText: 'Prec',
+                    paginationSearchText: 'Aller vers page',
+                    searchText: 'recherche',
+                    downloadButtonText: 'TELECHARGER',
+                    emptyTableText: 'Aucun rubrique trouvée'
+                },
+                actionMode: "single",
+                columns: [
+                    {
+                        key: "titre",
+                        title: "Titre"
+                    }
+                ]
+            };
+        }
+    },
 }
 </script>
 

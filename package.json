@@ -28,6 +28,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@andresouzaabreu/vue-data-table": "^2.0.0",
         "@fortawesome/fontawesome-free": "^5.15.4",
         "@fortawesome/fontawesome-svg-core": "^1.2.36",
         "@fortawesome/free-solid-svg-icons": "^5.15.4",
@@ -48,6 +49,7 @@
         "vue-perfect-scrollbar": "^0.2.1",
         "vue-router": "^3.5.3",
         "vue-sidebar-menu": "^4.8.1",
+        "vuetable-2": "^2.0.0-beta.4",
         "vuetify": "^2.6.3",
         "vuetify-loader": "^1.7.3"
     }

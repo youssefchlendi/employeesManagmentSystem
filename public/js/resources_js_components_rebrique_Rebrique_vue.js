@@ -70,6 +70,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -179,9 +190,40 @@ __webpack_require__.r(__webpack_exports__);
     updateRebrique: function updateRebrique(Rebrique) {
       this.edit = true;
       this.Rebrique = Rebrique;
+    },
+    handleAction: function handleAction(action, payload) {
+      if (action == 'delete') {
+        this.deleteRebrique(payload.id);
+      } else if (action == 'edit') {
+        this.updateRebrique(payload);
+      }
+
+      console.log(action, payload);
     }
   },
-  computed: {}
+  computed: {
+    parameters: function parameters() {
+      return {
+        data: this.Rebriques,
+        text: {
+          perPageText: 'Afficher :entries lignes',
+          infoText: 'Affichage de :first a :last de :total lignes',
+          infoTextFiltered: 'Affichage de :first a :last de :total lignes(filtrée de :total)',
+          nextButtonText: 'Suiva',
+          previousButtonText: 'Prec',
+          paginationSearchText: 'Aller vers page',
+          searchText: 'recherche',
+          downloadButtonText: 'TELECHARGER',
+          emptyTableText: 'Aucun rubrique trouvée'
+        },
+        actionMode: "single",
+        columns: [{
+          key: "titre",
+          title: "Titre"
+        }]
+      };
+    }
+  }
 });
 
 /***/ }),
@@ -350,86 +392,33 @@ var render = function () {
                 [_c("p", [_vm._v(_vm._s(_vm.alert.msg))])]
               ),
               _vm._v(" "),
-              _c(
-                "b-card",
-                _vm._l(_vm.Rebriques, function (rebrique) {
-                  return _c(
-                    "li",
-                    {
-                      key: rebrique.id,
-                      staticClass: "container list-unstyled",
-                    },
-                    [
-                      _c("div", { staticClass: "row shadow-sm" }, [
-                        _c("div", { staticClass: "col-10" }, [
-                          _c("div", [
-                            _c(
-                              "label",
-                              {
-                                on: {
-                                  dblclick: function ($event) {
-                                    rebrique.edit = true
-                                  },
-                                },
-                              },
-                              [_vm._v(_vm._s(rebrique.titre))]
-                            ),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-2" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "float-end btn",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.deleteRebrique(rebrique.id)
-                                },
-                              },
-                            },
-                            [
-                              _c("b-icon", {
-                                attrs: {
-                                  icon: "trash",
-                                  scale: "1",
-                                  variant: "danger",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "float-end btn",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.updateRebrique(rebrique)
-                                },
-                              },
-                            },
-                            [
-                              _c("b-icon", {
-                                attrs: {
-                                  icon: "pen",
-                                  scale: "1",
-                                  variant: "warning",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
-                        ]),
-                      ]),
-                    ]
-                  )
+              _c("div", { attrs: { id: "app" } }, [
+                _c("link", {
+                  attrs: {
+                    href: "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+                    rel: "stylesheet",
+                    integrity:
+                      "sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN",
+                    crossorigin: "anonymous",
+                  },
                 }),
-                0
-              ),
+                _vm._v(" "),
+                _c(
+                  "main",
+                  [
+                    _c(
+                      "data-table",
+                      _vm._b(
+                        { on: { actionTriggered: _vm.handleAction } },
+                        "data-table",
+                        _vm.parameters,
+                        false
+                      )
+                    ),
+                  ],
+                  1
+                ),
+              ]),
             ],
             1
           )
