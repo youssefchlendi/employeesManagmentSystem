@@ -25,13 +25,13 @@
                                     :key="rebrique.id"
                                 />
                             </b-row>
-                            <b-button variant="danger" v-on:click="Delete(fiche.id)">Delete</b-button>
+                            <b-button variant="danger" v-on:click="Delete(fiche.id)">Supprimer</b-button>
                             <b-button
                                 variant="warning"
                                 v-on:click="Update(    fiche)"
                                 data-bs-toggle="modal"
                                 data-bs-target="#ficheModal"
-                            >Update</b-button>
+                            >Modifier</b-button>
                             <b-button
                                 variant="warning"
                                 v-on:click="    select(fiche)"
@@ -48,7 +48,7 @@
         <nav class="row">
             <ul class="pagination w-auto mx-auto">
                 <li :class="[{ disabled    : !pagination.prev_page_url }]" class="page-item">
-                    <a @click="fetchFiches(pagination.prev_page_url)" class="btn page-link">Previous</a>
+                    <a @click="fetchFiches(pagination.prev_page_url)" class="btn page-link">Precedent</a>
                 </li>
                 <li class="page-item">
                     <a
@@ -57,7 +57,7 @@
                     >{{ pagination.current_page + "/" + pagination.last_page }}</a>
                 </li>
                 <li :class="[{ disabled: !pagination.next_page_url }]" class="page-item">
-                    <a @click="fetchFiches(pagination.next_page_url)" class="btn page-link">Next</a>
+                    <a @click="fetchFiches(pagination.next_page_url)" class="btn page-link">Suivant</a>
                 </li>
             </ul>
         </nav>

@@ -730,7 +730,7 @@ var render = function () {
                               },
                             },
                           },
-                          [_vm._v("Delete")]
+                          [_vm._v("Supprimer")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -747,7 +747,7 @@ var render = function () {
                               },
                             },
                           },
-                          [_vm._v("Update")]
+                          [_vm._v("Modifier")]
                         ),
                       ],
                       1
@@ -888,7 +888,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("Previous")]
+                [_vm._v("Precedent")]
               ),
             ]
           ),
@@ -924,7 +924,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("Next")]
+                [_vm._v("Suivant")]
               ),
             ]
           ),

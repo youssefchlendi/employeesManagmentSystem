@@ -130,20 +130,18 @@ __webpack_require__.r(__webpack_exports__);
 
       var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/employe";
       var vm = this; // page_url = this.search!=''?'/api/employe':page_url;
+      // let headersi = new Headers();
+      // headersi.append('Content-Type', 'application/json');
+      // headersi.append('Authorization', 'auth');
 
-      var headersi = new Headers();
-      headersi.append('Content-Type', 'application/json');
-      headersi.append('Authorization', 'auth');
       fetch(page_url, {
-        method: 'POST',
-        body: JSON.stringify({
-          'search': this.search
-        }),
-        headers: headersi
+        method: 'GET' // headers: headersi
+
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
-        _this2.employes = res.data;
+        _this2.employes = res.data; // console.log(res);
+        // res.data.forEach((e)=>console.log(e.nom));
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -1343,7 +1341,7 @@ var render = function () {
                     attrs: { type: "button", "data-bs-dismiss": "modal" },
                     on: { click: _vm.resetModal1 },
                   },
-                  [_vm._v("Close")]
+                  [_vm._v("Fermer")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -1595,7 +1593,7 @@ var render = function () {
                     staticClass: "btn btn-secondary",
                     attrs: { type: "button", "data-bs-dismiss": "modal" },
                   },
-                  [_vm._v("Close")]
+                  [_vm._v("Fermer")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -1753,7 +1751,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [_vm._v("Delete")]
+                              [_vm._v("Supprimer")]
                             ),
                             _vm._v(" "),
                             _c(
@@ -1770,7 +1768,7 @@ var render = function () {
                                   },
                                 },
                               },
-                              [_vm._v("Update")]
+                              [_vm._v("Modifier")]
                             ),
                             _vm._v(" "),
                             _c(
@@ -1838,7 +1836,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("Previous")]
+                [_vm._v("Precedent")]
               ),
             ]
           ),
@@ -1874,7 +1872,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("Next")]
+                [_vm._v("Suivant")]
               ),
             ]
           ),

@@ -24,13 +24,13 @@
                             {{ entreprise.activité }}
                         </b-card-text>
 
-                        <b-button variant="danger" v-on:click="Delete(entreprise.id)">Delete</b-button>
+                        <b-button variant="danger" v-on:click="Delete(entreprise.id)">Supprimer</b-button>
                         <b-button
                             variant="warning"
                             v-on:click="Update(entreprise)"
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal"
-                        >Update</b-button>
+                        >Modifier</b-button>
                     </b-card-body>
                 </b-tab>
                 <b-tab title="Employes">
@@ -38,6 +38,7 @@
                          <b-container class="bv-example-row text-center">
                             <b-row
                                 style="text-align:left!important"
+                                v-for="employe in entreprise.employes"
                                  :key="employe.id"
                             >
                                 <b-col cols="8">
@@ -58,7 +59,7 @@
                                                 variant="danger"
                                                 class="float-end"
                                                 @click="deleteEmploye(employe.id)"
-                                            >Delete</b-button>
+                                            >Supprimer</b-button>
                                         </b-col>
                                         <b-col cols="6">
                                             <b-button
@@ -66,7 +67,7 @@
                                                 @click="update(employe)"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#employeModal"
-                                            >Update</b-button>
+                                            >Modifier</b-button>
                                         </b-col>
                                     </b-row>
                                 </b-col>
@@ -89,7 +90,7 @@
                     <a
                         @click="fetchEntreprises(pagination.prev_page_url)"
                         class="btn page-link"
-                    >Previous</a>
+                    >Precedent</a>
                 </li>
                 <li class="page-item">
                     <a
@@ -101,7 +102,7 @@
                     <a
                         @click="fetchEntreprises(pagination.next_page_url)"
                         class="btn page-link"
-                    >Next</a>
+                    >Suivant</a>
                 </li>
             </ul>
         </nav>

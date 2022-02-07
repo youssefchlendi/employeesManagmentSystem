@@ -24,13 +24,13 @@
                                 <b-col>Entreprise : {{ entrepriseById(employe.entreprise_id) }}</b-col>
                             </b-row>
                         </b-row>
-                        <b-button variant="danger" v-on:click="Delete(employe.id)">Delete</b-button>
+                        <b-button variant="danger" v-on:click="Delete(employe.id)">Supprimer</b-button>
                         <b-button
                             variant="warning"
                             v-on:click="Update(employe)"
                             data-bs-toggle="modal"
                             data-bs-target="#employeModal"
-                        >Update</b-button>
+                        >Modifier</b-button>
                     </b-container>
                 </b-tab>
                 <b-tab title="Employe fiches">
@@ -80,7 +80,7 @@
                     <a
                         @click="fetchEmployes(pagination.prev_page_url)"
                         class="btn page-link"
-                    >Previous</a>
+                    >Precedent</a>
                 </li>
                 <li class="page-item">
                     <a
@@ -89,7 +89,7 @@
                     >{{ pagination.current_page + "/" + pagination.last_page }}</a>
                 </li>
                 <li :class="[{ disabled: !pagination.next_page_url }]" class="page-item">
-                    <a @click="fetchEmployes(pagination.next_page_url)" class="btn page-link">Next</a>
+                    <a @click="fetchEmployes(pagination.next_page_url)" class="btn page-link">Suivant</a>
                 </li>
             </ul>
         </nav>

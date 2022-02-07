@@ -107,18 +107,19 @@ export default {
         fetchEmployes(page_url = "/api/employe") {
             let vm = this;
             // page_url = this.search!=''?'/api/employe':page_url;
-            let headersi = new Headers();
-            headersi.append('Content-Type', 'application/json');
-            headersi.append('Authorization', 'auth');
+            // let headersi = new Headers();
+            // headersi.append('Content-Type', 'application/json');
+            // headersi.append('Authorization', 'auth');
             fetch(page_url, {
-                method: 'POST',
-                body: JSON.stringify({ 'search': this.search }),
-                headers: headersi
+                method: 'GET',
+                // headers: headersi
 
             })
                 .then(res => res.json())
                 .then(res => {
                     this.employes = res.data;
+                    // console.log(res);
+                    // res.data.forEach((e)=>console.log(e.nom));
                 })
                 .catch(err => console.log(err))
         },

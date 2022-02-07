@@ -76,7 +76,7 @@
                             class="btn btn-secondary"
                             @click="resetModal1"
                             data-bs-dismiss="modal"
-                        >Close</button>
+                        >Fermer</button>
                         <button
                             type="button"
                             class="btn btn-primary"
