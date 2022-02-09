@@ -73,14 +73,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -392,33 +384,21 @@ var render = function () {
                 [_c("p", [_vm._v(_vm._s(_vm.alert.msg))])]
               ),
               _vm._v(" "),
-              _c("div", { attrs: { id: "app" } }, [
-                _c("link", {
-                  attrs: {
-                    href: "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
-                    rel: "stylesheet",
-                    integrity:
-                      "sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN",
-                    crossorigin: "anonymous",
-                  },
-                }),
-                _vm._v(" "),
-                _c(
-                  "main",
-                  [
-                    _c(
+              _c(
+                "main",
+                [
+                  _c(
+                    "data-table",
+                    _vm._b(
+                      { on: { actionTriggered: _vm.handleAction } },
                       "data-table",
-                      _vm._b(
-                        { on: { actionTriggered: _vm.handleAction } },
-                        "data-table",
-                        _vm.parameters,
-                        false
-                      )
-                    ),
-                  ],
-                  1
-                ),
-              ]),
+                      _vm.parameters,
+                      false
+                    )
+                  ),
+                ],
+                1
+              ),
             ],
             1
           )

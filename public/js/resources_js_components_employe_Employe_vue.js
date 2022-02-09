@@ -88,22 +88,25 @@ __webpack_require__.r(__webpack_exports__);
     fetchEmployes: function fetchEmployes() {
       var _this = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/employe";
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/employe/a";
       var vm = this; // page_url = this.search!=''?'/api/employe':page_url;
 
       var headersi = new Headers();
       headersi.append('Content-Type', 'application/json');
       headersi.append('Authorization', 'auth');
       fetch(page_url, {
-        method: 'POST',
-        body: JSON.stringify({
-          'search': this.search
-        }),
+        method: 'GET',
+        // body: JSON.stringify({ 'search': this.search }),
         headers: headersi
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
         _this.employes = res.data;
+
+        _this.employes.forEach(function (e) {
+          return e.entreprise = _this.entrepriseById(e.entreprise_id);
+        });
+
         _this.show = false;
         vm.makePagination(res);
       })["catch"](function (err) {
@@ -204,6 +207,18 @@ __webpack_require__.r(__webpack_exports__);
     searchEmploye: function searchEmploye(search) {
       this.search = search;
       this.fetchEmployes();
+    },
+    entrepriseById: function entrepriseById(id) {
+      var ent = '';
+      var found = false;
+
+      for (var i = 0; i < this.entreprises.length && !found; i++) {
+        if (this.entreprises[i].id == id) {
+          ent = this.entreprises[i].titre;
+        }
+      }
+
+      return ent;
     }
   }
 });
@@ -318,11 +333,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     employes: Array,
     pagination: Object,
     entreprises: Array
+  },
+  data: function data() {
+    return {
+      fiches: {},
+      id: ''
+    };
   },
   emits: ["deleteEmploye", "updateEmploye", "fetchEmployes"],
   methods: {
@@ -349,6 +434,58 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return ent;
+    },
+    handleAction: function handleAction(action, payload) {
+      if (action == 'delete') {
+        this.Delete(payload.id);
+      } else if (action == 'edit') {
+        $("#employeModal").modal('show');
+        this.Update(payload);
+      } else if (action == "view") {
+        this.fiches = payload.fiches;
+        this.id = payload.id;
+        $("#ficheModal").modal('show');
+      }
+
+      console.log(action, payload);
+    }
+  },
+  computed: {
+    parameters: function parameters() {
+      return {
+        data: this.employes,
+        text: {
+          perPageText: 'Afficher :entries lignes',
+          infoText: 'Affichage de :first a :last de :total lignes',
+          infoTextFiltered: 'Affichage de :first a :last de :total lignes(filtrée de :total)',
+          nextButtonText: 'Suiva',
+          previousButtonText: 'Prec',
+          paginationSearchText: 'Aller vers page',
+          searchText: 'recherche',
+          downloadButtonText: 'TELECHARGER',
+          emptyTableText: 'Aucun rubrique trouvée'
+        },
+        actionMode: "single",
+        columns: [{
+          key: "nom",
+          title: "Nom"
+        }, {
+          key: "prenom",
+          title: "Prenom"
+        }, {
+          key: "cin",
+          title: "Cin"
+        }, {
+          key: "mat_cnss",
+          title: "Matricule cnss"
+        }, {
+          key: "fonction",
+          title: "Fonction"
+        }, {
+          key: "entreprise",
+          title: "Entreprise"
+        }]
+      };
     }
   }
 });
@@ -627,225 +764,130 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.employes.length == 0
-        ? _c("div", { staticClass: "card card-body my-2" }, [
-            _c("h3", [_vm._v("il y'a aucun employe")]),
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm._l(_vm.employes, function (employe) {
-        return _c(
-          "b-card",
-          { key: employe.id },
-          [
-            _c(
-              "b-tabs",
-              { attrs: { card: "" } },
-              [
-                _c(
-                  "b-tab",
-                  { attrs: { title: "Employe", active: "" } },
-                  [
-                    _c(
-                      "b-container",
-                      { staticClass: "bv-example-row text-center" },
-                      [
-                        _c(
-                          "b-row",
-                          { staticClass: "mb-2" },
-                          [
-                            _c(
-                              "b-row",
-                              [
-                                _c("b-col", [
-                                  _vm._v(
-                                    "Nom : " +
-                                      _vm._s(employe.nom) +
-                                      " Prenom : " +
-                                      _vm._s(employe.prenom)
-                                  ),
-                                ]),
-                              ],
-                              1
+  return _c("div", [
+    _vm.employes.length == 0
+      ? _c("div", { staticClass: "card card-body my-2" }, [
+          _c("h3", [_vm._v("il y'a aucun employe")]),
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "main",
+      [
+        _c(
+          "data-table",
+          _vm._b(
+            { on: { actionTriggered: _vm.handleAction } },
+            "data-table",
+            _vm.parameters,
+            false
+          )
+        ),
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "ficheModal",
+          tabindex: "-1",
+          "aria-labelledby": "employeModalLabel",
+          "aria-hidden": "true",
+        },
+      },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c(
+                "div",
+                { staticClass: "form-group mb-2" },
+                [
+                  _c(
+                    "b-row",
+                    { staticClass: "jutify-content-center mb-2" },
+                    [
+                      _vm.fiches.length == 0
+                        ? _c("b-col", { attrs: { cols: "10" } }, [
+                            _vm._v(
+                              "\n                            Aucune fiche de paie\n                        "
                             ),
-                            _vm._v(" "),
-                            _c(
-                              "b-row",
-                              [
-                                _c("b-col", [
-                                  _vm._v(
-                                    "\n                                Cin : " +
-                                      _vm._s(employe.cin) +
-                                      " Matricule CNSS :\n                                " +
-                                      _vm._s(employe.mat_cnss) +
-                                      "\n                            "
-                                  ),
-                                ]),
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-row",
-                              [
-                                _c("b-col", [
-                                  _vm._v(
-                                    "Fonction : " + _vm._s(employe.fonction)
-                                  ),
-                                ]),
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-row",
-                              [
-                                _c("b-col", [
-                                  _vm._v(
-                                    "Entreprise : " +
-                                      _vm._s(
-                                        _vm.entrepriseById(
-                                          employe.entreprise_id
-                                        )
-                                      )
-                                  ),
-                                ]),
-                              ],
-                              1
-                            ),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-button",
-                          {
-                            attrs: { variant: "danger" },
-                            on: {
-                              click: function ($event) {
-                                return _vm.Delete(employe.id)
-                              },
-                            },
-                          },
-                          [_vm._v("Supprimer")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-button",
-                          {
-                            attrs: {
-                              variant: "warning",
-                              "data-bs-toggle": "modal",
-                              "data-bs-target": "#employeModal",
-                            },
-                            on: {
-                              click: function ($event) {
-                                return _vm.Update(employe)
-                              },
-                            },
-                          },
-                          [_vm._v("Modifier")]
-                        ),
-                      ],
-                      1
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-tab",
-                  { attrs: { title: "Employe fiches" } },
-                  _vm._l(employe.fiches, function (fiche) {
+                          ])
+                        : _vm._e(),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.fiches, function (fiche) {
                     return _c(
-                      "b-container",
+                      "b-row",
                       {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.fiches.length != 0,
+                            expression: "fiches.length!=0",
+                          },
+                        ],
                         key: fiche.id,
-                        staticClass:
-                          "ml-4 bv-example-row text-center pl-4 row justify-content-center",
-                        staticStyle: { "text-align": "left !important" },
+                        staticClass: "justify-content-center mb-2",
                       },
                       [
                         _c(
-                          "b-row",
-                          { staticClass: "justify-content-center mb-2" },
+                          "b-col",
+                          { attrs: { cols: "10" } },
                           [
                             _c(
-                              "b-col",
-                              { attrs: { cols: "10" } },
+                              "b-row",
                               [
-                                _c(
-                                  "b-row",
-                                  [
-                                    _c("b-col", [
-                                      _vm._v("date : " + _vm._s(fiche.date)),
-                                    ]),
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "b-row",
-                                  [
-                                    _c("b-col", [
-                                      _c("h6", [
-                                        _c("b", [_vm._v("Rebriques:")]),
-                                      ]),
-                                    ]),
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _vm._l(fiche.rebriques, function (rebrique) {
-                                  return _c(
-                                    "b-row",
-                                    { key: rebrique.id },
-                                    [
-                                      _c("b-col", [
-                                        _c("b", [
-                                          _vm._v(_vm._s(rebrique.titre)),
-                                        ]),
-                                        _vm._v(
-                                          "\n                                    : " +
-                                            _vm._s(rebrique.pivot.montant) +
-                                            "\n                                "
-                                        ),
-                                      ]),
-                                    ],
-                                    1
-                                  )
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "b-row",
-                                  [
-                                    _c("b-col", [
-                                      _vm._v("total : " + _vm._s(fiche.total)),
-                                    ]),
-                                  ],
-                                  1
-                                ),
+                                _c("b-col", [
+                                  _vm._v("date : " + _vm._s(fiche.date)),
+                                ]),
                               ],
-                              2
+                              1
                             ),
                             _vm._v(" "),
                             _c(
-                              "b-col",
+                              "b-row",
                               [
+                                _c("b-col", [
+                                  _c("h6", [_c("b", [_vm._v("Rebriques:")])]),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-row",
+                              [
+                                _c("b-col", { attrs: { cols: "9" } }, [
+                                  _vm._v("total : " + _vm._s(fiche.total)),
+                                ]),
+                                _vm._v(" "),
                                 _c(
-                                  "b-button",
-                                  {
-                                    attrs: { variant: "success" },
-                                    on: {
-                                      click: function ($event) {
-                                        return _vm.getPdf(employe.id, fiche.id)
+                                  "b-col",
+                                  { attrs: { cols: "3" } },
+                                  [
+                                    _c(
+                                      "b-button",
+                                      {
+                                        attrs: { variant: "success" },
+                                        on: {
+                                          click: function ($event) {
+                                            return _vm.getPdf(_vm.id, fiche.id)
+                                          },
+                                        },
                                       },
-                                    },
-                                  },
-                                  [_vm._v("Afficher")]
+                                      [_vm._v("Afficher")]
+                                    ),
+                                  ],
+                                  1
                                 ),
                               ],
                               1
@@ -859,82 +901,56 @@ var render = function () {
                       1
                     )
                   }),
-                  1
-                ),
-              ],
-              1
-            ),
-          ],
-          1
-        )
-      }),
-      _vm._v(" "),
-      _c("nav", { staticClass: "row" }, [
-        _c("ul", { staticClass: "pagination w-auto mx-auto" }, [
-          _c(
-            "li",
-            {
-              staticClass: "page-item",
-              class: [{ disabled: !_vm.pagination.prev_page_url }],
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "btn page-link",
-                  on: {
-                    click: function ($event) {
-                      return _vm.fetchEmployes(_vm.pagination.prev_page_url)
-                    },
-                  },
-                },
-                [_vm._v("Precedent")]
+                ],
+                2
               ),
-            ]
-          ),
-          _vm._v(" "),
-          _c("li", { staticClass: "page-item" }, [
-            _c(
-              "a",
-              { staticClass: "page-link text-dark", attrs: { href: "#" } },
-              [
-                _vm._v(
-                  _vm._s(
-                    _vm.pagination.current_page + "/" + _vm.pagination.last_page
-                  )
-                ),
-              ]
-            ),
+            ]),
+            _vm._v(" "),
+            _vm._m(1),
           ]),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "page-item",
-              class: [{ disabled: !_vm.pagination.next_page_url }],
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "btn page-link",
-                  on: {
-                    click: function ($event) {
-                      return _vm.fetchEmployes(_vm.pagination.next_page_url)
-                    },
-                  },
-                },
-                [_vm._v("Suivant")]
-              ),
-            ]
-          ),
         ]),
-      ]),
-    ],
-    2
-  )
+      ]
+    ),
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "employeModalLabel" } },
+        [_vm._v("Les fiches")]
+      ),
+      _vm._v(" "),
+      _c("button", {
+        staticClass: "btn-close",
+        attrs: {
+          type: "button",
+          "data-bs-dismiss": "modal",
+          "aria-label": "Close",
+        },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-bs-dismiss": "modal" },
+        },
+        [_vm._v("Fermer")]
+      ),
+    ])
+  },
+]
 render._withStripped = true
 
 

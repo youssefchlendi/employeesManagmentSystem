@@ -71,21 +71,22 @@ export default {
         this.fetchEmployes();
     },
     methods: {
-        fetchEmployes(page_url = "/api/employe") {
+        fetchEmployes(page_url = "/api/employe/a") {
             let vm = this;
             // page_url = this.search!=''?'/api/employe':page_url;
             let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
             headersi.append('Authorization', 'auth');
             fetch(page_url, {
-                method: 'POST',
-                body: JSON.stringify({ 'search': this.search }),
+                method: 'GET',
+                // body: JSON.stringify({ 'search': this.search }),
                 headers: headersi
 
             })
                 .then(res => res.json())
                 .then(res => {
                     this.employes = res.data;
+                    this.employes.forEach(e=>e.entreprise=this.entrepriseById(e.entreprise_id));
                     this.show = false;
                     vm.makePagination(res);
                 })
@@ -177,7 +178,18 @@ export default {
         searchEmploye(search) {
             this.search = search;
             this.fetchEmployes();
-        }
+        },
+        entrepriseById(id) {
+            let ent = '';
+            let found = false;
+            for (let i = 0; i < this.entreprises.length && !found; i++) {
+                if (this.entreprises[i].id == id) {
+                    ent = this.entreprises[i].titre;
+                }
+            }
+            return ent;
+        },
+
     }
 }
 </script>

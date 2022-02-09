@@ -16,7 +16,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import DataTable from "@andresouzaabreu/vue-data-table";
 import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
-
 Vue.config.productionTip = false;
 Vue.use(VueSidebarMenu)
 Vue.use(BootstrapVue)
