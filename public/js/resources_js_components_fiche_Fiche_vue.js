@@ -1100,6 +1100,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticStyle: { "margin-right": "25px!important" } },
     [
       _vm.show
         ? _c("b-overlay", {

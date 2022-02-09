@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-4">
+    <div class="mt-4" style="margin-right:25px!important">
         <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
         <div v-if="!show">
             <div class="input-group mb-4" style="width: 50%; left:25%">

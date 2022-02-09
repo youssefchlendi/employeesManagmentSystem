@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin-right:25px!important">
         <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
         <div v-if="!show">
             <search :search="search" @fetch="searchEntreprise" />
@@ -178,7 +178,7 @@ export default {
 
 <style>
 .contain {
-    margin-left: 100px !important;
+    margin-left: 225px !important;
     transition: all 0.3s ease-in-out;
 }
 </style>

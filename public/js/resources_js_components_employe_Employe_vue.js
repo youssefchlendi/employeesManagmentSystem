@@ -53,8 +53,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -647,6 +645,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticStyle: { "margin-right": "25px!important" } },
     [
       _vm.show
         ? _c("b-overlay", {
@@ -666,33 +665,26 @@ var render = function () {
               }),
               _vm._v(" "),
               _c(
-                "b-container",
-                { staticClass: "bv-example-row" },
+                "b-row",
+                { staticClass: "text-center mb-2" },
                 [
-                  _c(
-                    "b-row",
-                    { staticClass: "text-center mb-2" },
-                    [
-                      _c("b-col", { attrs: { cols: "8" } }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary mx-1 float-start",
-                            attrs: {
-                              type: "button",
-                              "data-bs-toggle": "modal",
-                              "data-bs-target": "#employeModal",
-                            },
-                            on: { click: _vm.resetModal1 },
-                          },
-                          [_vm._v("Nouvel employé")]
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("b-col"),
-                    ],
-                    1
-                  ),
+                  _c("b-col", { attrs: { cols: "8" } }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary mx-1 float-start",
+                        attrs: {
+                          type: "button",
+                          "data-bs-toggle": "modal",
+                          "data-bs-target": "#employeModal",
+                        },
+                        on: { click: _vm.resetModal1 },
+                      },
+                      [_vm._v("Nouvel employé")]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("b-col"),
                 ],
                 1
               ),
