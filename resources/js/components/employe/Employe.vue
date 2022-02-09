@@ -67,6 +67,16 @@ export default {
     created() {
         this.fetchEntreprises();
         this.fetchEmployes();
+        if (this.$route.params.add == 1){
+            this.alert.variant = "success";
+            this.alert.msg = "Employé ajouté avec succès"
+            this.alert.dismissCountDown = 5;
+        }else if (this.$route.params.edit==1){
+            this.alert.variant = "warning";
+            this.alert.msg = "Employé modifié avec succès"
+            this.alert.dismissCountDown = 5;
+
+        }
     },
     methods: {
         fetchEmployes(page_url = "/api/employe/a") {
