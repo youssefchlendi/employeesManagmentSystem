@@ -26,6 +26,7 @@
                                 class="form-control"
                                 placeholder="Nom"
                                 v-model="oldEmploye.nom"
+                                required="required"
                             />
                             <label>Prenom:</label>
                             <input
@@ -33,13 +34,17 @@
                                 class="form-control"
                                 placeholder="Prenom"
                                 v-model="oldEmploye.prenom"
+                                required="required"
                             />
                             <label>Cin:</label>
                             <input
                                 type="number"
+                                min="1000000"
+                                max="99999999"
                                 class="form-control"
                                 placeholder="cin"
                                 v-model="oldEmploye.cin"
+                                required="required"
                             />
                             <label>Matricule cnss:</label>
                             <input
@@ -47,6 +52,7 @@
                                 class="form-control"
                                 placeholder="Matricule cnss"
                                 v-model="oldEmploye.mat_cnss"
+                                required="required"
                             />
                             <label>Fonction:</label>
                             <input
@@ -54,12 +60,14 @@
                                 class="form-control"
                                 placeholder="Fonction"
                                 v-model="oldEmploye.fonction"
+                                required="required"
                             />
                             <label>Enretprise:</label>
                             <select
                                 class="form-select"
                                 v-model="oldEmploye.entreprise_id"
                                 aria-label="Default select example"
+                                required="required"
                             >
                                 <option
                                     v-for="entreprise in entreprises"
@@ -77,12 +85,7 @@
                             @click="resetModal1"
                             data-bs-dismiss="modal"
                         >Fermer</button>
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            @click="addEmploye"
-                            data-bs-dismiss="modal"
-                        >Sauvegarder</button>
+                        <button type="submit" class="btn btn-primary">Sauvegarder</button>
                     </div>
                 </form>
             </div>
@@ -104,6 +107,11 @@ export default {
     ,
     methods: {
         addEmploye() {
+
+            $('#employeModal').hide();
+            $('body').removeClass('modal-open');
+            $('body').removeAttr('style');
+            $('.modal-backdrop').remove();
             this.$emit('addEmploye', this.oldEmploye);
             this.resetModal1();
         },

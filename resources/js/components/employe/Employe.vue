@@ -3,18 +3,18 @@
         <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
         <div v-if="!show">
             <search :search="search" @fetch="searchEmploye" />
-                <b-row class="text-center mb-2">
-                    <b-col cols="8">
-                        <button
-                            type="button"
-                            class="btn btn-primary mx-1 float-start"
-                            @click="resetModal1"
-                            data-bs-toggle="modal"
-                            data-bs-target="#employeModal"
-                        >Nouvel employé</button>
-                    </b-col>
-                    <b-col></b-col>
-                </b-row>
+            <b-row class="text-center mb-2">
+                <b-col cols="8">
+                    <button
+                        type="button"
+                        class="btn btn-primary mx-1 float-start"
+                        @click="resetModal1"
+                        data-bs-toggle="modal"
+                        data-bs-target="#employeModal"
+                    >Nouvel employé</button>
+                </b-col>
+                <b-col></b-col>
+            </b-row>
             <b-alert
                 :show="alert.dismissCountDown"
                 dismissible
@@ -67,11 +67,11 @@ export default {
     created() {
         this.fetchEntreprises();
         this.fetchEmployes();
-        if (this.$route.params.add == 1){
+        if (this.$route.params.add == 1) {
             this.alert.variant = "success";
             this.alert.msg = "Employé ajouté avec succès"
             this.alert.dismissCountDown = 5;
-        }else if (this.$route.params.edit==1){
+        } else if (this.$route.params.edit == 1) {
             this.alert.variant = "warning";
             this.alert.msg = "Employé modifié avec succès"
             this.alert.dismissCountDown = 5;
@@ -94,7 +94,7 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.employes = res.data;
-                    this.employes.forEach(e=>e.entreprise=this.entrepriseById(e.entreprise_id));
+                    this.employes.forEach(e => e.entreprise = this.entrepriseById(e.entreprise_id));
                     this.show = false;
                     vm.makePagination(res);
                 })

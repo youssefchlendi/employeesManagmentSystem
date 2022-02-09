@@ -28,13 +28,13 @@
                             <b-button variant="danger" v-on:click="Delete(fiche.id)">Supprimer</b-button>
                             <b-button
                                 variant="warning"
-                                v-on:click="Update(    fiche)"
+                                v-on:click="Update(fiche)"
                                 data-bs-toggle="modal"
                                 data-bs-target="#ficheModal"
                             >Modifier</b-button>
                             <b-button
                                 variant="warning"
-                                v-on:click="    select(fiche)"
+                                v-on:click="select(fiche)"
                                 data-bs-toggle="modal"
                                 data-bs-target="#rebriqueModal"
                             >Ajouter rubrique</b-button>
@@ -47,8 +47,11 @@
         </b-card>
         <nav class="row">
             <ul class="pagination w-auto mx-auto">
-                <li :class="[{ disabled    : !pagination.prev_page_url }]" class="page-item">
-                    <a @click="fetchFiches(pagination.prev_page_url)" class="btn page-link">Precedent</a>
+                <li :class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
+                    <a
+                        @click="fetchFiches(pagination.prev_page_url)"
+                        class="btn page-link"
+                    >Precedent</a>
                 </li>
                 <li class="page-item">
                     <a

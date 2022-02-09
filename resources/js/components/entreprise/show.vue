@@ -35,11 +35,11 @@
                 </b-tab>
                 <b-tab title="Employes">
                     <b-card-body>
-                         <b-container class="bv-example-row text-center">
+                        <b-container class="bv-example-row text-center">
                             <b-row
                                 style="text-align:left!important"
                                 v-for="employe in entreprise.employes"
-                                 :key="employe.id"
+                                :key="employe.id"
                             >
                                 <b-col cols="8">
                                     <b-row>
@@ -86,7 +86,7 @@
         </b-card>
         <nav class="row">
             <ul class="pagination w-auto mx-auto">
-                <li :class="[{     disabled: !pagination.prev_page_url }]" class="page-item">
+                <li :class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
                     <a
                         @click="fetchEntreprises(pagination.prev_page_url)"
                         class="btn page-link"

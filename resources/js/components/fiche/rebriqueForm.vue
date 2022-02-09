@@ -25,6 +25,7 @@
                                 class="form-select"
                                 v-model="rebrique"
                                 aria-label="Default select example"
+                                required="required"
                             >
                                 <option
                                     v-show="!containsObject(rebrique)"
@@ -41,12 +42,7 @@
                             class="btn btn-secondary"
                             data-bs-dismiss="modal"
                         >Fermer</button>
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            @click="attachRebrique"
-                            data-bs-dismiss="modal"
-                        >Ajouter</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
                     </div>
                 </form>
             </div>
@@ -74,6 +70,10 @@ export default {
     ,
     methods: {
         attachRebrique() {
+            $('#rebriqueModal').hide();
+            $('body').removeClass('modal-open');
+            $('body').removeAttr('style');
+            $('.modal-backdrop').remove();
             this.$emit('attachRebrique', this.rebrique);
         },
         containsObject(obj) {

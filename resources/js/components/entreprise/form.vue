@@ -26,6 +26,7 @@
                                 class="form-control"
                                 placeholder="Titre"
                                 v-model="oldEntreprise.titre"
+                                required="required"
                             />
                             <label>Matricule Fiscale:</label>
                             <input
@@ -33,6 +34,7 @@
                                 class="form-control"
                                 placeholder="Matricule Fiscale"
                                 v-model="oldEntreprise.matricule_fiscale"
+                                required="required"
                             />
                             <label>Registre du commerce:</label>
                             <input
@@ -40,6 +42,7 @@
                                 class="form-control"
                                 placeholder="Registre de commers"
                                 v-model="oldEntreprise.registre_commerce"
+                                required="required"
                             />
                             <label>Adresse:</label>
                             <input
@@ -47,6 +50,7 @@
                                 class="form-control"
                                 placeholder="Adreese"
                                 v-model="oldEntreprise.adresse"
+                                required="required"
                             />
                             <label>Ville:</label>
                             <input
@@ -54,6 +58,7 @@
                                 class="form-control"
                                 placeholder="Ville"
                                 v-model="oldEntreprise.ville"
+                                required="required"
                             />
                             <label>Activité:</label>
                             <input
@@ -61,6 +66,7 @@
                                 class="form-control"
                                 placeholder="Activité"
                                 v-model="oldEntreprise.activités"
+                                required="required"
                             />
                         </div>
                     </div>
@@ -71,12 +77,7 @@
                             @click="resetModal1"
                             data-bs-dismiss="modal"
                         >Fermer</button>
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            @click="addEntreprise"
-                            data-bs-dismiss="modal"
-                        >Sauvegarder</button>
+                        <button type="submit" class="btn btn-primary">Sauvegarder</button>
                     </div>
                 </form>
             </div>
@@ -97,6 +98,10 @@ export default {
     ,
     methods: {
         addEntreprise() {
+            $('#exampleModal').hide();
+            $('body').removeClass('modal-open');
+            $('body').removeAttr('style');
+            $('.modal-backdrop').remove();
             this.$emit('addEntreprise', this.oldEntreprise);
             this.resetModal1();
         },

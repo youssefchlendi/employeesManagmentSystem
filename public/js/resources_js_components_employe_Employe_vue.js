@@ -405,6 +405,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     employes: Array,
@@ -823,9 +826,7 @@ var render = function () {
                     [
                       _vm.fiches.length == 0
                         ? _c("b-col", { attrs: { cols: "10" } }, [
-                            _vm._v(
-                              "\n                            Aucune fiche de paie\n                        "
-                            ),
+                            _vm._v("Aucune fiche de paie"),
                           ])
                         : _vm._e(),
                     ],
@@ -841,7 +842,7 @@ var render = function () {
                             name: "show",
                             rawName: "v-show",
                             value: _vm.fiches.length != 0,
-                            expression: "fiches.length!=0",
+                            expression: "fiches.length != 0",
                           },
                         ],
                         key: fiche.id,

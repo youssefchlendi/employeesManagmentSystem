@@ -383,9 +383,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
@@ -397,6 +394,10 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     addFiche: function addFiche() {
+      $('#ficheModal').hide();
+      $('body').removeClass('modal-open');
+      $('body').removeAttr('style');
+      $('.modal-backdrop').remove();
       this.$emit('addFiche', this.oldFiche);
       this.resetModal1();
     },
@@ -432,6 +433,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -572,10 +574,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   props: {
@@ -591,6 +589,10 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     attachRebrique: function attachRebrique() {
+      $('#rebriqueModal').hide();
+      $('body').removeClass('modal-open');
+      $('body').removeAttr('style');
+      $('.modal-backdrop').remove();
       this.$emit('attachRebrique', this.rebrique);
     },
     containsObject: function containsObject(obj) {
@@ -623,6 +625,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _oneRebrique_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oneRebrique.vue */ "./resources/js/components/fiche/oneRebrique.vue");
+//
+//
+//
 //
 //
 //
@@ -1265,7 +1270,11 @@ var render = function () {
                       },
                     ],
                     staticClass: "form-control",
-                    attrs: { type: "date", placeholder: "date" },
+                    attrs: {
+                      type: "date",
+                      placeholder: "date",
+                      required: "required",
+                    },
                     domProps: { value: _vm.oldFiche.date },
                     on: {
                       input: function ($event) {
@@ -1291,7 +1300,10 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-select",
-                      attrs: { "aria-label": "Default select example" },
+                      attrs: {
+                        "aria-label": "Default select example",
+                        required: "required",
+                      },
                       on: {
                         change: function ($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -1347,11 +1359,7 @@ var render = function () {
                 _vm._v(" "),
                 _c(
                   "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button", "data-bs-dismiss": "modal" },
-                    on: { click: _vm.addFiche },
-                  },
+                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
                   [_vm._v("Sauvegarder")]
                 ),
               ]),
@@ -1418,7 +1426,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "b-input-group",
-            { staticClass: "mb-3", attrs: { prepend: "Montant" } },
+            { attrs: { prepend: "Montant" } },
             [
               _c("b-form-input", {
                 on: {
@@ -1447,7 +1455,8 @@ var render = function () {
                   _c(
                     "b-button",
                     {
-                      attrs: { variant: "outline-success" },
+                      staticClass: "small",
+                      attrs: { variant: "success" },
                       on: {
                         click: function ($event) {
                           return _vm.updateMontant(_vm.rebrique.pivot.montant)
@@ -1547,7 +1556,10 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-select",
-                      attrs: { "aria-label": "Default select example" },
+                      attrs: {
+                        "aria-label": "Default select example",
+                        required: "required",
+                      },
                       on: {
                         change: function ($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -1587,26 +1599,7 @@ var render = function () {
                 ]),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data-bs-dismiss": "modal" },
-                  },
-                  [_vm._v("Fermer")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { type: "button", "data-bs-dismiss": "modal" },
-                    on: { click: _vm.attachRebrique },
-                  },
-                  [_vm._v("Ajouter")]
-                ),
-              ]),
+              _vm._m(1),
             ]
           ),
         ]),
@@ -1634,6 +1627,27 @@ var staticRenderFns = [
           "aria-label": "Close",
         },
       }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-bs-dismiss": "modal" },
+        },
+        [_vm._v("Fermer")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Ajouter")]
+      ),
     ])
   },
 ]

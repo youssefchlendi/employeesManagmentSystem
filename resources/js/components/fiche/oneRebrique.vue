@@ -3,14 +3,15 @@
         <div class="row shadow-sm text-left">
             <div class>
                 <p class="text-left">{{ rebrique.titre }}</p>
-                <b-input-group class="mb-3" prepend="Montant">
+                <b-input-group class prepend="Montant">
                     <b-form-input
                         v-on:keyup.enter="updateMontant(rebrique.pivot.montant)"
                         v-model="rebrique.pivot.montant"
                     ></b-form-input>
                     <b-input-group-append>
                         <b-button
-                            variant="outline-success"
+                            variant="success"
+                            class="small"
                             @click="updateMontant(rebrique.pivot.montant)"
                         >Modifier</b-button>
                         <b-button variant="danger" @click="attachRebrique(rebrique.id)">Effacer</b-button>

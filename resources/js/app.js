@@ -13,9 +13,11 @@ import VueSidebarMenu from 'vue-sidebar-menu'
 import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import '../css/style.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import DataTable from "@andresouzaabreu/vue-data-table";
 import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
+import "../css/index.scss"
 Vue.config.productionTip = false;
 Vue.use(VueSidebarMenu)
 Vue.use(BootstrapVue)

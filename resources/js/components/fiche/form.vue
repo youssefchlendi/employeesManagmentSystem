@@ -26,12 +26,14 @@
                                 class="form-control"
                                 placeholder="date"
                                 v-model="oldFiche.date"
+                                required="required"
                             />
                             <label>Employe:</label>
                             <select
                                 class="form-select"
                                 v-model="oldFiche.employe_id"
                                 aria-label="Default select example"
+                                required="required"
                             >
                                 <option
                                     v-for="employe in employes"
@@ -49,12 +51,7 @@
                             @click="resetModal1"
                             data-bs-dismiss="modal"
                         >Fermer</button>
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            @click="addFiche"
-                            data-bs-dismiss="modal"
-                        >Sauvegarder</button>
+                        <button type="submit" class="btn btn-primary">Sauvegarder</button>
                     </div>
                 </form>
             </div>
@@ -78,6 +75,10 @@ export default {
     ,
     methods: {
         addFiche() {
+            $('#ficheModal').hide();
+            $('body').removeClass('modal-open');
+            $('body').removeAttr('style');
+            $('.modal-backdrop').remove();
             this.$emit('addFiche', this.oldFiche);
             this.resetModal1();
         },

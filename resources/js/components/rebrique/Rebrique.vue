@@ -2,18 +2,28 @@
     <div class="mt-4" style="margin-right:25px!important">
         <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
         <div v-if="!show">
-            <div class="input-group mb-4" style="width: 50%; left:25%">
-                <input
-                    type="text"
-                    class="form-control"
-                    id="rebname"
-                    placeholder="titre"
-                    v-model="Rebrique.titre"
-                />
-                <div class="input-group-append">
-                    <button type="button" @click="addRebrique" class="btn btn-success">Sauvegarder</button>
+            <div class="row mt-5 mb-3">
+                <div class="col-3"></div>
+                <div class="col-6 mx-auto">
+                    <div class="input-group">
+                        <input
+                            v-model="Rebrique.titre"
+                            class="bg-light form-control small"
+                            type="text"
+                            placeholder="titre"
+                        />
+                        <button
+                            @click="addRebrique"
+                            class="btn btn-success py-0"
+                            type="button"
+                        >
+                            Sauvegarder
+                        </button>
+                    </div>
                 </div>
+                <div class="col-3"></div>
             </div>
+
             <b-alert
                 :show="alert.dismissCountDown"
                 dismissible
@@ -22,9 +32,9 @@
             >
                 <p>{{ alert.msg }}</p>
             </b-alert>
-                <main>
-                    <data-table v-bind="parameters" @actionTriggered="handleAction" />
-                </main>
+            <main>
+                <data-table v-bind="parameters" @actionTriggered="handleAction" />
+            </main>
             <!-- <b-card>
                 <li
                     v-for="(rebrique) in Rebriques"
@@ -55,7 +65,7 @@
                         </div>
                     </div>
                 </li>
-            </b-card> -->
+            </b-card>-->
         </div>
     </div>
 </template>
