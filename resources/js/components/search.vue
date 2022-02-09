@@ -1,6 +1,6 @@
 <template>
     <div>
-    <!-- <b-input-group class="mt-5 mb-3" style="width: 33%; left:33%">
+        <!-- <b-input-group class="mt-5 mb-3" style="width: 33%; left:33%">
         <b-form-input v-model="search" @keyup="$emit('fetch', search)"></b-form-input>
         <b-input-group-append>
             <b-button text="Search" @click="$emit('fetch', search)" variant="secondary">Recherche</b-button>
@@ -14,20 +14,30 @@
             </i>
         </button>
         </div>
-</form> -->
-<div class="row mt-5 mb-3">
-    <div class="col-3"></div>
-    <div class="col-6 mx-auto">
-<div class="input-group"  >
-        <input v-model="search" @keyup="$emit('fetch', search)" class="bg-light form-control  small" type="text" placeholder="Search for ..." />
-        <button @click="$emit('fetch', search)" class="btn btn-primary py-0" type="button">
-            <i class="fas fa-search">
-            </i>
-        </button>
-        </div>    </div>
-        <div class="col-3"></div>
-</div>
-</div>
+        </form>-->
+        <div class="row mt-5 mb-3">
+            <div class="col-3"></div>
+            <div class="col-6 mx-auto">
+                <div class="input-group">
+                    <input
+                        v-model="search"
+                        @keyup="$emit('fetch', search)"
+                        class="bg-light form-control small"
+                        type="text"
+                        placeholder="Search for ..."
+                    />
+                    <button
+                        @click="$emit('fetch', search)"
+                        class="btn btn-primary py-0"
+                        type="button"
+                    >
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
 </template>
 
 <script>
