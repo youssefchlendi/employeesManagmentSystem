@@ -36,6 +36,12 @@ export default {
                     href: '/Employe',
                     title: 'Employe',
                     icon: 'fas fa-user',
+                    child: [
+                        {
+                            href: '/Employe/addEmploye',
+                            title: 'Ajouter employé'
+                        }
+                    ]
                 },
                 {
                     href: '/Fiche',
