@@ -33,6 +33,7 @@ Route::prefix('/employe')->namespace('App\Http\Controllers')->group(function(){
     Route::post('/add','EmployeController@store');
 
     Route::get('/','EmployeController@getAll');
+    Route::get('/a','EmployeController@get');
 
     Route::post ('/{employe_id?}','EmployeController@show');
 

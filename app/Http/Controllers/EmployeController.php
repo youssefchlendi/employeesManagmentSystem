@@ -9,7 +9,7 @@ class EmployeController extends Controller
     public function show(Request $request,$id=null){
         if(!isset($id)){
             $search = $request->input('search');
-            if ($search!=''){
+            if ($search==''){
                 $employes = Employe::with('fiches')->with('fiches.rebriques')
                 ->orderBy('updated_at','DESC')
                 ->paginate('5');
@@ -48,6 +48,19 @@ class EmployeController extends Controller
                 ], 404);
         }
 
+    }
+    public function get(){
+        $employes = Employe::with('fiches')->with('fiches.rebriques')
+        ->orderBy('updated_at','DESC')
+        ->get();
+        if (!empty($employes))
+            return response()->json(
+['data'=>$employes]
+            , 200);
+        else
+            return response()->json([
+                "No employe found"
+            ], 404);
     }
     public function store(Request $request){
         $nom = $request->input('nom');
