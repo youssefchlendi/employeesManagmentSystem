@@ -5,13 +5,14 @@ import Entreprise from "./routes/Entreprise";
 import Employe from "./routes/Employe";
 import Fiche from "./routes/Fiche";
 import Rebrique from "./routes/Rebrique";
+import addEmploye from "./routes/addEmploye";
 Vue.use(VueRouter);
 export default new VueRouter(
     {
         mode:'history',
         scrollBehavior: (to, from, savedPosition) => ({ y: 0 }),
         routes: [
-            ...example,...Entreprise,...Employe,...Fiche,...Rebrique
+            ...example,...Entreprise,...Employe,...Fiche,...Rebrique,...addEmploye
             ],
     }
 )

@@ -73,6 +73,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -320,52 +330,51 @@ var render = function () {
         ? _c(
             "div",
             [
-              _c(
-                "div",
-                {
-                  staticClass: "input-group mb-4",
-                  staticStyle: { width: "50%", left: "25%" },
-                },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.Rebrique.titre,
-                        expression: "Rebrique.titre",
+              _c("div", { staticClass: "row mt-5 mb-3" }, [
+                _c("div", { staticClass: "col-3" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-6 mx-auto" }, [
+                  _c("div", { staticClass: "input-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.Rebrique.titre,
+                          expression: "Rebrique.titre",
+                        },
+                      ],
+                      staticClass: "bg-light form-control small",
+                      attrs: { type: "text", placeholder: "titre" },
+                      domProps: { value: _vm.Rebrique.titre },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.Rebrique, "titre", $event.target.value)
+                        },
                       },
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      id: "rebname",
-                      placeholder: "titre",
-                    },
-                    domProps: { value: _vm.Rebrique.titre },
-                    on: {
-                      input: function ($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.Rebrique, "titre", $event.target.value)
-                      },
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "input-group-append" }, [
+                    }),
+                    _vm._v(" "),
                     _c(
                       "button",
                       {
-                        staticClass: "btn btn-success",
+                        staticClass: "btn btn-success py-0",
                         attrs: { type: "button" },
                         on: { click: _vm.addRebrique },
                       },
-                      [_vm._v("Sauvegarder")]
+                      [
+                        _vm._v(
+                          "\n                        Sauvegarder\n                    "
+                        ),
+                      ]
                     ),
                   ]),
-                ]
-              ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-3" }),
+              ]),
               _vm._v(" "),
               _c(
                 "b-alert",

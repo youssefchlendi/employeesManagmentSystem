@@ -81,6 +81,16 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.fetchEntreprises();
     this.fetchEmployes();
+
+    if (this.$route.params.add == 1) {
+      this.alert.variant = "success";
+      this.alert.msg = "Employé ajouté avec succès";
+      this.alert.dismissCountDown = 5;
+    } else if (this.$route.params.edit == 1) {
+      this.alert.variant = "warning";
+      this.alert.msg = "Employé modifié avec succès";
+      this.alert.dismissCountDown = 5;
+    }
   },
   methods: {
     fetchEmployes: function fetchEmployes() {
@@ -437,7 +447,14 @@ __webpack_require__.r(__webpack_exports__);
       if (action == 'delete') {
         this.Delete(payload.id);
       } else if (action == 'edit') {
-        $("#employeModal").modal('show');
+        //  $("#employeModal").modal('show');
+        router.push({
+          name: "addEmploye",
+          params: {
+            employe: payload,
+            edit: true
+          }
+        });
         this.Update(payload);
       } else if (action == "view") {
         this.fiches = payload.fiches;
