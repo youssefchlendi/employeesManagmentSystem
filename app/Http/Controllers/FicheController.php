@@ -9,18 +9,34 @@ use App\Models\RebriqueFiche;
 class FicheController extends Controller
 {
     public function show(Request $request,$id=null){
+        $search = $request->input('search');
         if(!isset($id)){
-            $fiches = Fiche::with('employes')->with('rebriques')
-            ->orderBy('updated_at','DESC')
-            ->paginate('5');
-            if (!empty($fiches))
-                return response()->json(
-                    $fiches
-                , 200);
-            else
-                return response()->json([
-                    "No fiche found"
-                ], 404);
+            if ($search==''){
+                $fiches = Fiche::with('employes')->with('rebriques')
+                ->orderBy('updated_at','DESC')
+                ->paginate('5');
+                if (!empty($fiches))
+                    return response()->json(
+                        $fiches
+                    , 200);
+                else
+                    return response()->json([
+                        "No fiche found"
+                    ], 404);
+            }else{
+                $fiches = Fiche::with('employes')->with('rebriques')
+                ->where('total','=',$search)
+                ->orderBy('updated_at','DESC')
+                ->paginate('5');
+                if (!empty($fiches))
+                    return response()->json(
+                        $fiches
+                    , 200);
+                else
+                    return response()->json([
+                        "No fiche found"
+                    ], 404);
+            }
         }else{
             $fiche = Fiche::find($id);
 
