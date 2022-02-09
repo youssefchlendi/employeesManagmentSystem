@@ -204,7 +204,8 @@ export default {
             if (action == 'delete') {
                 this.Delete(payload.id);
             } else if (action == 'edit') {
-                 $("#employeModal").modal('show');
+                //  $("#employeModal").modal('show');
+                router.push({ name: "addEmploye" ,params: { employe: payload , edit : true }});
                 this.Update(payload);
             } else if(action=="view"){
                 this.fiches=payload.fiches;
