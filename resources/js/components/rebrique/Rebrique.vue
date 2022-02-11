@@ -106,7 +106,7 @@ export default {
         },
         deleteRebrique(id) {
             if (confirm('Delete Rebrique ' + id)) {
-                fetch('api/rebrique/add/' + id, { method: 'delete' })
+                fetch('api/rebrique/' + id, { method: 'delete' })
                     .then(res => {
                         this.fetchRebriques();
                         this.alert.variant = "danger";
@@ -124,7 +124,7 @@ export default {
         },
         addRebrique() {
             if (!this.edit) {
-                fetch('api/rebrique/', {
+                fetch('api/rebrique/add', {
                     method: 'post',
                     body: JSON.stringify(this.Rebrique),
                     headers: {
