@@ -106,7 +106,7 @@ export default {
         },
         deleteRebrique(id) {
             if (confirm('Delete Rebrique ' + id)) {
-                fetch('api/rebrique/' + id, { method: 'delete' })
+                fetch('api/rebrique/add/' + id, { method: 'delete' })
                     .then(res => {
                         this.fetchRebriques();
                         this.alert.variant = "danger";

@@ -57,7 +57,7 @@ Route::prefix('/fiche')->namespace('App\Http\Controllers')->group(function(){
 });
 
 Route::prefix('/rebrique')->namespace('App\Http\Controllers')->group(function(){
-    Route::post('/','RebriqueController@store');
+    Route::post('/add','RebriqueController@store');
 
 
     Route::get('/','RebriqueController@show');
