@@ -15,14 +15,14 @@
         </button>
         </div>
         </form>-->
-        <div class="row mt-5 mb-3">
+        <div class="row  mb-3">
             <div class="col-3"></div>
             <div class="col-6 mx-auto">
                 <div class="input-group">
                     <input
                         v-model="search"
                         @keyup="$emit('fetch', search)"
-                        class="bg-light form-control small"
+                        class="bg-white form-control small"
                         type="text"
                         placeholder="Search for ..."
                     />

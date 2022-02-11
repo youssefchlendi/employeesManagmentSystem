@@ -316,7 +316,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "mt-4", staticStyle: { "margin-right": "25px!important" } },
+    { staticStyle: { "margin-right": "25px!important" } },
     [
       _vm.show
         ? _c("b-overlay", {
@@ -330,7 +330,7 @@ var render = function () {
         ? _c(
             "div",
             [
-              _c("div", { staticClass: "row mt-5 mb-3" }, [
+              _c("div", { staticClass: "row mt-3 mb-3" }, [
                 _c("div", { staticClass: "col-3" }),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-6 mx-auto" }, [

@@ -1,8 +1,8 @@
 <template>
-    <div class="mt-4" style="margin-right:25px!important">
+    <div class="" style="margin-right:25px!important">
         <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
         <div v-if="!show">
-            <div class="row mt-5 mb-3">
+            <div class="row mt-3 mb-3">
                 <div class="col-3"></div>
                 <div class="col-6 mx-auto">
                     <div class="input-group">

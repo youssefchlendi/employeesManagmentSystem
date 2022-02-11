@@ -15,13 +15,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app" class="" style="margin-right:0!important;">
+<div id="app" class="bg-light pt-4" style="margin-right:0!important;">
         <navbar></navbar>
         <div class="mr-4">
-            <router-view class="contain" id="contain" style="margin-left:100px" ></router-view>
+            <router-view class="contain " id="contain" style="margin-left:100px" ></router-view>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>
 </html>
 
