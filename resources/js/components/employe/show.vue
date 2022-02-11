@@ -189,9 +189,8 @@ export default {
             this.$emit("fetchEmployes", url);
         },
         getPdf(empId, fID) {
-            window.open(
-                "http://localhost:8000/generatePdf/" + empId + "/fiche/" + fID
-            );
+window.open(window.location.protocol+"//"+window.location.host+"/generatePdf/"+ empId + "/fiche/" + fID);
+
         },
         entrepriseById(id) {
             let ent = '';

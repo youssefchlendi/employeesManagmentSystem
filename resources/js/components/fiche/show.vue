@@ -96,8 +96,8 @@ export default {
         },
         getPdf(fiche) {
             // console.log(fiche.employes.id);
-            window.open(window.location.protocol+"//"+window.location.host+"/"+ fiche.employes.id + "/fiche/" + fiche.id);
-        },
+
+window.open(window.location.protocol+"//"+window.location.host+"/generatePdf/"+ fiche.employes.id + "/fiche/" + fiche.id);        },
         attachRebrique(RebriqueId) {
             this.$emit('attachRebrique', RebriqueId);
         },
