@@ -146,7 +146,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       if (!this.edit) {
-        fetch('api/rebrique/', {
+        fetch('api/rebrique/add', {
           method: 'post',
           body: JSON.stringify(this.Rebrique),
           headers: {

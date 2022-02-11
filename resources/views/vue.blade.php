@@ -21,6 +21,7 @@
             <router-view class="contain " id="contain" style="margin-left:100px" ></router-view>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>
 

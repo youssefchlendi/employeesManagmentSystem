@@ -432,7 +432,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit("fetchEmployes", url);
     },
     getPdf: function getPdf(empId, fID) {
-      window.open("http://localhost:8000/generatePdf/" + empId + "/fiche/" + fID);
+      window.open(window.location.protocol + "//" + window.location.host + "/generatePdf/" + empId + "/fiche/" + fID);
     },
     entrepriseById: function entrepriseById(id) {
       var ent = '';

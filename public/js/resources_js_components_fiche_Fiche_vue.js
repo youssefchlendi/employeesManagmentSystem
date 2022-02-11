@@ -721,7 +721,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     getPdf: function getPdf(fiche) {
       // console.log(fiche.employes.id);
-      window.open("http://localhost:8000/generatePdf/" + fiche.employes.id + "/fiche/" + fiche.id);
+      window.open(window.location.protocol + "//" + window.location.host + "/generatePdf/" + fiche.employes.id + "/fiche/" + fiche.id);
     },
     attachRebrique: function attachRebrique(RebriqueId) {
       this.$emit('attachRebrique', RebriqueId);
