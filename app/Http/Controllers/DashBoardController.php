@@ -7,6 +7,7 @@ use App\Models\Entreprise;
 use App\Models\Employe;
 use App\Models\Fiche;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 class DashBoardController extends Controller
 {
     public function all(){
@@ -61,6 +62,14 @@ class DashBoardController extends Controller
 
         }
         $employes=['labels'=> $entrepriseName,'data'=>$entrepriseAvg];
+        $lastAddedFiche = DB::table('fiches')->select('updated_at')->orderBy('updated_at', 'DESC')->first();
+        $datetime1 = new \DateTime();
+        $datetime2 = new DateTime($lastAddedFiche->updated_at);//end time
+        $lastAddedFiche = $datetime1->diff($datetime2)->format('%d jours %H heurs %i minutes %s secondes');
+        $lastAddedEmploye = DB::table('employes')->select('updated_at')->orderBy('updated_at', 'DESC')->first();
+        $datetime1 = new \DateTime();
+        $datetime2 = new DateTime($lastAddedEmploye->updated_at);//end time
+        $lastAddedEmploye = $datetime1->diff($datetime2)->format('%d jours %H heurs %i minutes %s secondes');;
 
         // print_r($employes);
         return response()->json(
@@ -69,7 +78,9 @@ class DashBoardController extends Controller
             'totalFiche'=>$totalFiche,
             'employeParEntreprise'=>$finalCount,
             'frequenceFiches'=>$fichesDateCount,
-            'entrepriseMoySalaire'=>$employes
+            'entrepriseMoySalaire'=>$employes,
+            'lastAddedEmploye' => $lastAddedEmploye,
+            'lastAddedFiche' => $lastAddedFiche
             ]
             , 200);
     }
