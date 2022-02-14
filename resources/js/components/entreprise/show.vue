@@ -13,8 +13,8 @@
         </div>
 
         <b-card v-for="entreprise in entreprises" :key="entreprise.id">
-            <b-tabs card>
-                <b-tab title="Entreprise" active>
+        <md-tabs>
+                <md-tab id="tab-home" md-label="Entreprise">
                     <b-card-body class="text-center">
                         <b-card-title>{{ entreprise.titre }}</b-card-title>
 
@@ -32,10 +32,11 @@
                             data-bs-target="#exampleModal"
                         >Modifier</b-button>
                     </b-card-body>
-                </b-tab>
-                <b-tab title="Employes">
+                </md-tab>
+                <md-tab id="tab-pages" md-label="Employes">
                     <b-card-body>
                         <b-container class="bv-example-row text-center">
+                            <h3 v-if="entreprise.employes.length==0">il y'a aucun entreprise</h3>
                             <b-row
                                 style="text-align:left!important"
                                 v-for="employe in entreprise.employes"
@@ -75,8 +76,8 @@
                             </b-row>
                         </b-container>
                     </b-card-body>
-                </b-tab>
-            </b-tabs>
+                </md-tab>
+            </md-tabs>
 
             <formEmploye
                 @addEmploye="updateEmploye"
