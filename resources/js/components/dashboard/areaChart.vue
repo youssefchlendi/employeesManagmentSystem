@@ -21,7 +21,8 @@ export default {
             data: this.data,
             backgroundColor: "#FDE7E7",
             borderColor: "white",
-            pointBackgroundColor: "white"
+            pointBackgroundColor: "white",
+            width: 20
           }
         ]
       },
