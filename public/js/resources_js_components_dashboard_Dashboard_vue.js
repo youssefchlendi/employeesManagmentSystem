@@ -27,6 +27,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lineChart_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lineChart.vue */ "./resources/js/components/dashboard/lineChart.vue");
 /* harmony import */ var _barChart_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./barChart.vue */ "./resources/js/components/dashboard/barChart.vue");
 /* harmony import */ var _areaChart_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./areaChart.vue */ "./resources/js/components/dashboard/areaChart.vue");
+/* harmony import */ var _topnav_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../topnav.vue */ "./resources/js/components/topnav.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -476,6 +477,147 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -483,7 +625,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   components: {
     LineChart: _lineChart_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     BarChart: _barChart_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    AreaChart: _areaChart_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    AreaChart: _areaChart_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    topnav: _topnav_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
@@ -495,7 +638,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       labels: '',
       data: '',
       chartdata: null,
-      loaded: false
+      loaded: false,
+      labelsA: '',
+      dataA: '',
+      lastAddedEmploye: '',
+      lastAddedFiche: '',
+      labelsE: '',
+      dataE: ''
     };
   },
   mounted: function mounted() {
@@ -532,6 +681,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.frequenceFiches = res.frequenceFiches;
         _this2.labelsA = res.entrepriseMoySalaire.labels;
         _this2.dataA = res.entrepriseMoySalaire.data;
+        _this2.lastAddedEmploye = res.lastAddedEmploye;
+        _this2.lastAddedFiche = res.lastAddedFiche;
         _this2.labelsE = _this2.employeParEntreprise.labels;
         _this2.dataE = _this2.employeParEntreprise.data;
         _this2.labels = _this2.frequenceFiches.labels;
@@ -573,7 +724,8 @@ __webpack_require__.r(__webpack_exports__);
         data: this.data,
         backgroundColor: "#FDE7E7",
         borderColor: "white",
-        pointBackgroundColor: "white"
+        pointBackgroundColor: "white",
+        width: 20
       }]
     }, {
       responsive: true,
@@ -15304,204 +15456,240 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", {}, [
-      _c("div", { staticClass: "content" }, [
-        _c("div", { staticClass: "container-fluid" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-4 col-md-6 col-sm-6" }, [
-              _c("div", { staticClass: "card card-stats" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "card-header card-header-warning card-header-icon",
-                  },
-                  [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-category" }, [
-                      _vm._v("total entreprises"),
-                    ]),
-                    _vm._v(" "),
-                    _c("h3", { staticClass: "card-title" }, [
-                      _vm._v(
-                        _vm._s(_vm.totalEntreprise) +
-                          "\n                                    "
+  return _c(
+    "div",
+    [
+      _c("topnav", { attrs: { show: "false" } }),
+      _vm._v(" "),
+      _c("div", [
+        _c("div", { staticClass: "content" }, [
+          _c("div", { staticClass: "container-fluid" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-lg-4 col-md-6 col-sm-6" }, [
+                _c("div", { staticClass: "card card-stats" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "card-header card-header-warning card-header-icon",
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-category" }, [
+                        _vm._v("total entreprises"),
+                      ]),
+                      _vm._v(" "),
+                      _c("h3", { staticClass: "card-title" }, [
+                        _vm._v(_vm._s(_vm.totalEntreprise)),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-footer" }, [
+                    _c("div", { staticClass: "stats" }, [
+                      _c(
+                        "a",
+                        {
+                          on: {
+                            click: function ($event) {
+                              return _vm.$router.push({ name: "Entreprise" })
+                            },
+                          },
+                        },
+                        [_vm._v("Voir entreprise")]
                       ),
                     ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-footer" }, [
-                  _c("div", { staticClass: "stats" }, [
-                    _c(
-                      "a",
-                      {
-                        on: {
-                          click: function ($event) {
-                            return _vm.$router.push({ name: "Entreprise" })
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-4 col-md-6 col-sm-6" }, [
+                _c("div", { staticClass: "card card-stats" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "card-header card-header-success card-header-icon",
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-category" }, [
+                        _vm._v("total employés"),
+                      ]),
+                      _vm._v(" "),
+                      _c("h3", { staticClass: "card-title" }, [
+                        _vm._v(_vm._s(_vm.totalEmploye)),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-footer" }, [
+                    _c("div", { staticClass: "stats" }, [
+                      _c(
+                        "a",
+                        {
+                          on: {
+                            click: function ($event) {
+                              return _vm.$router.push({ name: "Employe" })
+                            },
                           },
                         },
-                      },
-                      [_vm._v("Voir entreprise")]
-                    ),
+                        [_vm._v("Voir employés")]
+                      ),
+                    ]),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-4 col-md-6 col-sm-6" }, [
+                _c("div", { staticClass: "card card-stats" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "card-header card-header-danger card-header-icon",
+                    },
+                    [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "card-category" }, [
+                        _vm._v("total fiches"),
+                      ]),
+                      _vm._v(" "),
+                      _c("h3", { staticClass: "card-title" }, [
+                        _vm._v(_vm._s(_vm.totalFiche)),
+                      ]),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-footer" }, [
+                    _c("div", { staticClass: "stats" }, [
+                      _c(
+                        "a",
+                        {
+                          on: {
+                            click: function ($event) {
+                              return _vm.$router.push({ name: "Fiche" })
+                            },
+                          },
+                        },
+                        [_vm._v("Voir fiches")]
+                      ),
+                    ]),
                   ]),
                 ]),
               ]),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-lg-4 col-md-6 col-sm-6" }, [
-              _c("div", { staticClass: "card card-stats" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "card-header card-header-success card-header-icon",
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-category" }, [
-                      _vm._v("total employés"),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("div", { staticClass: "card card-chart" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-header card-header-success" },
+                    [
+                      _vm.loaded
+                        ? _c("LineChart", {
+                            attrs: { labels: _vm.labels, data: _vm.data },
+                          })
+                        : _vm._e(),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-footer" }, [
+                    _c("div", { staticClass: "stats" }, [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("access_time"),
+                      ]),
+                      _vm._v(
+                        "\n                                    Derniere modification " +
+                          _vm._s(_vm.lastAddedFiche) +
+                          "\n                                "
+                      ),
                     ]),
-                    _vm._v(" "),
-                    _c("h3", { staticClass: "card-title" }, [
-                      _vm._v(_vm._s(_vm.totalEmploye)),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("div", { staticClass: "card card-chart" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-header card-header-warning" },
+                    [
+                      _vm.loaded
+                        ? _c("BarChart", {
+                            attrs: { labels: _vm.labelsE, data: _vm.dataE },
+                          })
+                        : _vm._e(),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-footer" }, [
+                    _c("div", { staticClass: "stats" }, [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("access_time"),
+                      ]),
+                      _vm._v(
+                        "\n                                    Derniere modification " +
+                          _vm._s(_vm.lastAddedEmploye) +
+                          "\n                                "
+                      ),
                     ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-footer" }, [
-                  _c("div", { staticClass: "stats" }, [
-                    _c(
-                      "a",
-                      {
-                        on: {
-                          click: function ($event) {
-                            return _vm.$router.push({ name: "Employe" })
-                          },
-                        },
-                      },
-                      [_vm._v("Voir employés")]
-                    ),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c("div", { staticClass: "card card-chart" }, [
+                  _c(
+                    "div",
+                    { staticClass: "card-header card-header-danger" },
+                    [
+                      _vm.loaded
+                        ? _c("AreaChart", {
+                            attrs: { labels: _vm.labelsA, data: _vm.dataA },
+                          })
+                        : _vm._e(),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-footer" }, [
+                    _c("div", { staticClass: "stats" }, [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("access_time"),
+                      ]),
+                      _vm._v(
+                        "\n                                    Derniere modification " +
+                          _vm._s(_vm.lastAddedFiche) +
+                          "\n                                "
+                      ),
+                    ]),
                   ]),
                 ]),
               ]),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-lg-4 col-md-6 col-sm-6" }, [
-              _c("div", { staticClass: "card card-stats" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "card-header card-header-danger card-header-icon",
-                  },
-                  [
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "card-category" }, [
-                      _vm._v("total fiches"),
-                    ]),
-                    _vm._v(" "),
-                    _c("h3", { staticClass: "card-title" }, [
-                      _vm._v(_vm._s(_vm.totalFiche)),
-                    ]),
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-footer" }, [
-                  _c("div", { staticClass: "stats" }, [
-                    _c(
-                      "a",
-                      {
-                        on: {
-                          click: function ($event) {
-                            return _vm.$router.push({ name: "Fiche" })
-                          },
-                        },
-                      },
-                      [_vm._v("Voir fiches")]
-                    ),
-                  ]),
-                ]),
-              ]),
-            ]),
+            _vm._m(6),
           ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-4" }, [
-              _c("div", { staticClass: "card card-chart" }, [
-                _c(
-                  "div",
-                  { staticClass: "card-header card-header-success" },
-                  [
-                    _vm.loaded
-                      ? _c("LineChart", {
-                          attrs: { labels: _vm.labels, data: _vm.data },
-                        })
-                      : _vm._e(),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _vm._m(3),
-                _vm._v(" "),
-                _vm._m(4),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
-              _c("div", { staticClass: "card card-chart" }, [
-                _c(
-                  "div",
-                  { staticClass: "card-header card-header-warning" },
-                  [
-                    _vm.loaded
-                      ? _c("BarChart", {
-                          attrs: { labels: _vm.labelsE, data: _vm.dataE },
-                        })
-                      : _vm._e(),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _vm._m(5),
-                _vm._v(" "),
-                _vm._m(6),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
-              _c("div", { staticClass: "card card-chart" }, [
-                _c(
-                  "div",
-                  { staticClass: "card-header card-header-danger" },
-                  [
-                    _vm.loaded
-                      ? _c("AreaChart", {
-                          attrs: { labels: _vm.labelsA, data: _vm.dataA },
-                        })
-                      : _vm._e(),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _vm._m(7),
-                _vm._v(" "),
-                _vm._m(8),
-              ]),
-            ]),
-          ]),
-          _vm._v(" "),
-          _vm._m(9),
         ]),
+        _vm._v(" "),
+        _vm._m(7),
       ]),
-      _vm._v(" "),
-      _vm._m(10),
-    ]),
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function () {
@@ -15542,17 +15730,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c("div", { staticClass: "stats" }, [
-        _c("i", { staticClass: "material-icons" }, [_vm._v("access_time")]),
-        _vm._v(" updated 4 minutes ago\n                                    "),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-body" }, [
       _c("h4", { staticClass: "card-title" }, [
         _vm._v("Nombre d'employés par entreprise"),
@@ -15563,35 +15740,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c("div", { staticClass: "stats" }, [
-        _c("i", { staticClass: "material-icons" }, [_vm._v("access_time")]),
-        _vm._v(
-          " campaign sent 2 days ago\n                                    "
-        ),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-body" }, [
       _c("h4", { staticClass: "card-title" }, [
         _vm._v("Salaire moyen par entreprise"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c("div", { staticClass: "stats" }, [
-        _c("i", { staticClass: "material-icons" }, [_vm._v("access_time")]),
-        _vm._v(
-          " campaign sent 2 days ago\n                                    "
-        ),
       ]),
     ])
   },
@@ -15631,7 +15782,7 @@ var staticRenderFns = [
                               _vm._v("bug_report"),
                             ]),
                             _vm._v(
-                              " Bugs\n                                                        "
+                              " Bugs\n                                                    "
                             ),
                             _c("div", { staticClass: "ripple-container" }),
                           ]
@@ -15650,7 +15801,7 @@ var staticRenderFns = [
                               _vm._v("code"),
                             ]),
                             _vm._v(
-                              " Website\n                                                        "
+                              " Website\n                                                    "
                             ),
                             _c("div", { staticClass: "ripple-container" }),
                           ]
@@ -15669,7 +15820,7 @@ var staticRenderFns = [
                               _vm._v("cloud"),
                             ]),
                             _vm._v(
-                              " Server\n                                                        "
+                              " Server\n                                                    "
                             ),
                             _c("div", { staticClass: "ripple-container" }),
                           ]
@@ -15830,7 +15981,7 @@ var staticRenderFns = [
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit\n                                                        "
+                            "Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit"
                           ),
                         ]),
                         _vm._v(" "),
@@ -15966,7 +16117,7 @@ var staticRenderFns = [
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit\n                                                        "
+                            "Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit"
                           ),
                         ]),
                         _vm._v(" "),
@@ -16157,7 +16308,7 @@ var staticRenderFns = [
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit\n                                                        "
+                            "Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit"
                           ),
                         ]),
                         _vm._v(" "),
@@ -16346,15 +16497,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("footer", { staticClass: "footer " }, [
+    return _c("footer", { staticClass: "footer" }, [
       _c("div", { staticClass: "container-fluid" }, [
         _c("nav", { staticClass: "pull-left" }, [
           _c("ul", [
             _c("li", [
               _c("a", { attrs: { href: "https://www.creative-tim.com" } }, [
-                _vm._v(
-                  "\n                                    Creative Tim\n                                "
-                ),
+                _vm._v("Creative Tim"),
               ]),
             ]),
             _vm._v(" "),
@@ -16362,19 +16511,13 @@ var staticRenderFns = [
               _c(
                 "a",
                 { attrs: { href: "http://presentation.creative-tim.com" } },
-                [
-                  _vm._v(
-                    "\n                                    About Us\n                                "
-                  ),
-                ]
+                [_vm._v("About Us")]
               ),
             ]),
             _vm._v(" "),
             _c("li", [
               _c("a", { attrs: { href: "http://blog.creative-tim.com" } }, [
-                _vm._v(
-                  "\n                                    Blog\n                                "
-                ),
+                _vm._v("Blog"),
               ]),
             ]),
             _vm._v(" "),
@@ -16382,11 +16525,7 @@ var staticRenderFns = [
               _c(
                 "a",
                 { attrs: { href: "https://www.creative-tim.com/license" } },
-                [
-                  _vm._v(
-                    "\n                                    Licenses\n                                "
-                  ),
-                ]
+                [_vm._v("Licenses")]
               ),
             ]),
           ]),
@@ -16394,7 +16533,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "copyright pull-right" }, [
           _vm._v(
-            "\n                        ©\n                        2018, made with love by\n                        "
+            "\n                    ©\n                    2018, made with love by\n                    "
           ),
           _c(
             "a",
@@ -16403,7 +16542,7 @@ var staticRenderFns = [
             },
             [_vm._v("Creative Tim")]
           ),
-          _vm._v(" for a better web.\n                    "),
+          _vm._v(" for a better web.\n                "),
         ]),
       ]),
     ])

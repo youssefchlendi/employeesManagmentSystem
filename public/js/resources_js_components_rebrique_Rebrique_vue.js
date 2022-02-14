@@ -83,6 +83,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -318,6 +319,8 @@ var render = function () {
     "div",
     { staticStyle: { "margin-right": "25px!important" } },
     [
+      _c("topnav", { attrs: { show: "false" } }),
+      _vm._v(" "),
       _vm.show
         ? _c("b-overlay", {
             staticClass: "d-inline-block",

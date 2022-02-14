@@ -59,6 +59,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -1107,6 +1109,11 @@ var render = function () {
     "div",
     { staticStyle: { "margin-right": "25px!important" } },
     [
+      _c("topnav", {
+        attrs: { show: "true", search: _vm.search },
+        on: { fetch: _vm.searchFiches },
+      }),
+      _vm._v(" "),
       _vm.show
         ? _c("b-overlay", {
             staticClass: "d-inline-block",
@@ -1119,11 +1126,6 @@ var render = function () {
         ? _c(
             "div",
             [
-              _c("search", {
-                attrs: { search: _vm.search },
-                on: { fetch: _vm.searchFiches },
-              }),
-              _vm._v(" "),
               _c(
                 "b-container",
                 { staticClass: "bv-example-row" },

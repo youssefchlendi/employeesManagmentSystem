@@ -21,7 +21,7 @@ import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
 // import "../css/index.scss"
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
-
+import 'mdb-vue-ui-kit/css/mdb.min.css';
 Vue.use(VueMaterial)
 Vue.config.productionTip = false;
 const vuetify = new Vuetify();
@@ -47,6 +47,7 @@ window.Fire = new Vue();
 Vue.component("data-table", DataTable);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar', require('./components/navBar.vue').default);
+Vue.component('topnav', require('./components/topnav.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
