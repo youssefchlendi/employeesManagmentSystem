@@ -19,8 +19,13 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import DataTable from "@andresouzaabreu/vue-data-table";
 import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
 // import "../css/index.scss"
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.min.css'
+
+Vue.use(VueMaterial)
 Vue.config.productionTip = false;
-Vue.use(Vuetify);
+const vuetify = new Vuetify();
+Vue.use(vuetify);
 Vue.use(VueSidebarMenu)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
@@ -52,5 +57,6 @@ Vue.component('navbar', require('./components/navBar.vue').default);
     const app = new Vue({
         el: '#app',
         router,
+        vuetify,
     }).$mount('#app');
 }
