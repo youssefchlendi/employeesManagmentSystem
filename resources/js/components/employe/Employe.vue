@@ -1,8 +1,10 @@
 <template>
     <div style="margin-right:25px!important">
+                    <topnav show='false' :search="search" @fetch="searchEmploye" />
+
         <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
         <div v-if="!show">
-            <search :search="search" @fetch="searchEmploye" />
+            <!-- <search :search="search" @fetch="searchEmploye" /> -->
             <b-row class="text-center mb-2">
                 <b-col cols="8">
                     <button

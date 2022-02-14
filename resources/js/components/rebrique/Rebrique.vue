@@ -1,5 +1,6 @@
 <template>
     <div class="" style="margin-right:25px!important">
+                    <topnav show='false' />
         <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
         <div v-if="!show">
             <div class="row mt-3 mb-3">
