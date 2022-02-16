@@ -16,9 +16,16 @@
 </head>
 <body>
 <div id="app" class="bg-light pt-4" style="margin-right:0!important;">
-        <navbar></navbar>
-        <div class="mr-4">
-            <router-view class="contain " id="contain" style="margin-left:100px" ></router-view>
+    @if(!preg_match("/^\/entrepriseDetails\/?(?:[^\/]+\/?)*$/",parse_url(Request::url(),PHP_URL_PATH)) && !preg_match('/^\/employeDetails\/?(?:[^\/]+\/?)*$/',parse_url(Request::url(),PHP_URL_PATH)))
+    <navbar></navbar>
+    @endif
+    <div class="mr-4">
+        @if(!preg_match("/^\/entrepriseDetails\/?(?:[^\/]+\/?)*$/",parse_url(Request::url(),PHP_URL_PATH)) && !preg_match('/^\/employeDetails\/?(?:[^\/]+\/?)*$/',parse_url(Request::url(),PHP_URL_PATH)))
+        <router-view class="contain " id="contain" style="margin-left:100px" ></router-view>
+        @else
+        <router-view  ></router-view>
+        @endif
+
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
