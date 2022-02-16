@@ -34,8 +34,8 @@
                     <template #button-content>
                         <i class="fas fa-user"></i>
                     </template>
-                    <b-dropdown-item href="#">Logout</b-dropdown-item>
-                    <b-dropdown-item href="#">Logout</b-dropdown-item>
+                    <b-dropdown-item >{{name}}</b-dropdown-item>
+                    <b-dropdown-item href="logout">Logout</b-dropdown-item>
                 </b-dropdown>
             </div>
             <!-- Right elements -->
@@ -52,6 +52,10 @@ export default {
         show:{
             type:String,
             default:false,
+        },
+        name:{
+            type:String,
+            default:''
         }
     },
     components: {

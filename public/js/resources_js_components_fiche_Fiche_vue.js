@@ -692,10 +692,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -1683,145 +1679,127 @@ var render = function () {
           { key: fiche.id },
           [
             _c(
-              "b-tabs",
+              "b-card-body",
               [
+                _vm.fiches.length == 0
+                  ? _c("h6", [_vm._v("Aucun employe")])
+                  : _vm._e(),
+                _vm._v(" "),
                 _c(
-                  "b-tab",
-                  { attrs: { title: "Fiches" } },
+                  "b-container",
+                  { staticClass: "bv-example-row text-center" },
                   [
                     _c(
-                      "b-card-body",
+                      "b-row",
+                      { staticClass: "mb-2" },
                       [
-                        _vm.fiches.length == 0
-                          ? _c("h6", [_vm._v("Aucun employe")])
-                          : _vm._e(),
-                        _vm._v(" "),
                         _c(
-                          "b-container",
-                          { staticClass: "bv-example-row text-center" },
+                          "b-row",
                           [
-                            _c(
-                              "b-row",
-                              { staticClass: "mb-2" },
-                              [
-                                _c(
-                                  "b-row",
-                                  [
-                                    _c("b-col", [
-                                      _vm._v(
-                                        "employe : " +
-                                          _vm._s(
-                                            _vm.employeById(fiche.employe_id)
-                                          )
-                                      ),
-                                    ]),
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "b-row",
-                                  [
-                                    _c("b-col", [
-                                      _vm._v("date : " + _vm._s(fiche.date)),
-                                    ]),
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "b-row",
-                                  [
-                                    _c("b-col", [
-                                      _vm._v("total : " + _vm._s(fiche.total)),
-                                    ]),
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _vm._l(fiche.rebriques, function (rebrique) {
-                                  return _c("oneRebrique", {
-                                    key: rebrique.id,
-                                    attrs: {
-                                      rebrique: rebrique,
-                                      alert: _vm.alert,
-                                    },
-                                    on: {
-                                      fetchFiches: function ($event) {
-                                        return _vm.fetchFiches("/api/fiche")
-                                      },
-                                      attachRebrique: _vm.attachRebrique,
-                                    },
-                                  })
-                                }),
-                              ],
-                              2
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-button",
-                              {
-                                attrs: { variant: "danger" },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.Delete(fiche.id)
-                                  },
-                                },
-                              },
-                              [_vm._v("Supprimer")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-button",
-                              {
-                                attrs: {
-                                  variant: "warning",
-                                  "data-bs-toggle": "modal",
-                                  "data-bs-target": "#ficheModal",
-                                },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.Update(fiche)
-                                  },
-                                },
-                              },
-                              [_vm._v("Modifier")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-button",
-                              {
-                                attrs: {
-                                  variant: "warning",
-                                  "data-bs-toggle": "modal",
-                                  "data-bs-target": "#rebriqueModal",
-                                },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.select(fiche)
-                                  },
-                                },
-                              },
-                              [_vm._v("Ajouter rubrique")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-button",
-                              {
-                                attrs: { variant: "success" },
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.getPdf(fiche)
-                                  },
-                                },
-                              },
-                              [_vm._v("Afficher")]
-                            ),
+                            _c("b-col", [
+                              _vm._v(
+                                "employe : " +
+                                  _vm._s(_vm.employeById(fiche.employe_id))
+                              ),
+                            ]),
                           ],
                           1
                         ),
+                        _vm._v(" "),
+                        _c(
+                          "b-row",
+                          [
+                            _c("b-col", [
+                              _vm._v("date : " + _vm._s(fiche.date)),
+                            ]),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-row",
+                          [
+                            _c("b-col", [
+                              _vm._v("total : " + _vm._s(fiche.total)),
+                            ]),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _vm._l(fiche.rebriques, function (rebrique) {
+                          return _c("oneRebrique", {
+                            key: rebrique.id,
+                            attrs: { rebrique: rebrique, alert: _vm.alert },
+                            on: {
+                              fetchFiches: function ($event) {
+                                return _vm.fetchFiches("/api/fiche")
+                              },
+                              attachRebrique: _vm.attachRebrique,
+                            },
+                          })
+                        }),
                       ],
-                      1
+                      2
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-button",
+                      {
+                        attrs: { variant: "danger" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.Delete(fiche.id)
+                          },
+                        },
+                      },
+                      [_vm._v("Supprimer")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-button",
+                      {
+                        attrs: {
+                          variant: "warning",
+                          "data-bs-toggle": "modal",
+                          "data-bs-target": "#ficheModal",
+                        },
+                        on: {
+                          click: function ($event) {
+                            return _vm.Update(fiche)
+                          },
+                        },
+                      },
+                      [_vm._v("Modifier")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-button",
+                      {
+                        attrs: {
+                          variant: "warning",
+                          "data-bs-toggle": "modal",
+                          "data-bs-target": "#rebriqueModal",
+                        },
+                        on: {
+                          click: function ($event) {
+                            return _vm.select(fiche)
+                          },
+                        },
+                      },
+                      [_vm._v("Ajouter rubrique")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-button",
+                      {
+                        attrs: { variant: "success" },
+                        on: {
+                          click: function ($event) {
+                            return _vm.getPdf(fiche)
+                          },
+                        },
+                      },
+                      [_vm._v("Afficher")]
                     ),
                   ],
                   1
