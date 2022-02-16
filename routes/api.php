@@ -69,3 +69,9 @@ Route::prefix('/rebrique')->namespace('App\Http\Controllers')->group(function(){
     Route::delete('/{Rebrique_id}','RebriqueController@Destroy');
 
 });
+
+Route::prefix('/employeDetails')->namespace('App\Http\Controllers')->group(function(){
+    Route::get('/session','EmployeController@getSession');
+
+
+});
