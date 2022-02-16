@@ -38,12 +38,14 @@ class FicheController extends Controller
                     ], 404);
             }
         }else{
-            $fiche = Fiche::find($id);
+            $fiche = Fiche::where('employe_id','=',$id)->with('rebriques')->with('employes')
+            ->orderBy('updated_at','DESC')
+            ->paginate('5');
 
             if (!empty($fiche))
-                return response()->json([
+                return response()->json(
                     $fiche
-                ], 200);
+                , 200);
             else
                 return response()->json([
                     "No fiche found"
