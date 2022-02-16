@@ -13,30 +13,33 @@ use App\Http\Controllers\EmployeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/generatePdf/{id}/fiche/{fid}',[App\Http\Controllers\PdfController::class, 'generatePDF']);
 
-Route::get('/logout',[MainController::class,'logout'])->name('auth.logout');
-Route::post('/save',[MainController::class,'save'])->name('auth.save');
-Route::post('/check',[MainController::class,'check'])->name('auth.check');
+Route::get('/generatePdf/{id}/fiche/{fid}', [App\Http\Controllers\PdfController::class, 'generatePDF']);
+
+Route::get('/logout', [MainController::class, 'logout'])->name('auth.logout');
+Route::post('/save', [MainController::class, 'save'])->name('auth.save');
+Route::post('/check', [MainController::class, 'check'])->name('auth.check');
 
 Route::get('/entrepriseDetails', [
     function () {
         return view('vue');
-    }])->name('entrepriseDetails');
-    Route::get('/employeDetails', [
-        function () {
-            return view('vue');
-        }])->name('employeDetails');
+    }
+])->name('entrepriseDetails');
+Route::get('/employeDetails', [
+    function () {
+        return view('vue');
+    }
+])->name('employeDetails');
 
-    Route::get('/session',[EmployeController::class,'getSession']);
+Route::get('/session', [EmployeController::class, 'getSession']);
 
-    Route::group(['middleware'=>['AuthCheck']], function(){
-            Route::get('/{any?}', [
+Route::group(['middleware' => ['AuthCheck']], function () {
+    Route::get('/{any?}', [
         function () {
             return view('vue');
         }
-        ])->where('any', '^((?!login|register|save|check|logout|session|employeDetails|entrepriseDetails).)*$');
+    ])->where('any', '^((?!login|register|save|check|logout|session|employeDetails|entrepriseDetails).)*$');
 
-        Route::get('/login',[MainController::class,'login'])->name('auth.login');
-        Route::get('/register',[MainController::class,'register'])->name('auth.register');
+    Route::get('/login', [MainController::class, 'login'])->name('auth.login');
+    Route::get('/register', [MainController::class, 'register'])->name('auth.register');
 });
