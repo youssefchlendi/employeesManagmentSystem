@@ -42,6 +42,11 @@ class MainController extends Controller
             session()->pull('LoggedUser');
             return redirect('/login');
         }
+        if (session()->has('id')){
+            session()->pull('id');
+            return redirect('/login');
+        }
+
     }
 
     public function check(Request $request){
@@ -58,7 +63,7 @@ class MainController extends Controller
                 return back()->with('fail','Matricule fiscale non existant');
             }else{
                 $request->session()->put('id',$entrepriseInfo->id);
-                echo "mawjoud";
+                return redirect('entrepriseDetails');
             }
 
         }
@@ -73,7 +78,7 @@ class MainController extends Controller
                 return back()->with('fail','CIN non existant');
             }else{
                 $request->session()->put('id',$employeInfo->id);
-                echo "mawjoud";
+                return redirect('employeDetails');
             }
 
         }
