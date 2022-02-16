@@ -138,7 +138,7 @@ class EmployeController extends Controller
     }
     public function getSession(Request $request){
         // echo $request->session()->get('id');
-        $employe = Employe::find(session()->get('id'))->first();
+        $employe = Employe::where('id','=',session()->get('id'))->first();
         return response()->json($employe,200);
     }
 }
