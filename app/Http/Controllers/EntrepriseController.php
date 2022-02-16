@@ -22,12 +22,12 @@ class EntrepriseController extends Controller
                     "No Entreprise found"
                 ], 404);
         }else{
-            $entreprise = Entreprise::with('employes')->find($id);
+            $entreprise = Entreprise::with('employes')->with('employes.fiches')->find($id);
 
             if (!empty($entreprise))
-                return response()->json([
+                return response()->json(
                     $entreprise
-                ], 200);
+            , 200);
             else
                 return response()->json([
                     "No Entreprise found"
@@ -110,5 +110,10 @@ class EntrepriseController extends Controller
                 'message' => 'Not Found'
             ], 404);
         }
+    }
+    public function getSession(Request $request){
+        // echo $request->session()->get('id');
+        $entreprise = Entreprise::where('id','=',session()->get('id'))->first();
+        return response()->json($entreprise,200);
     }
 }

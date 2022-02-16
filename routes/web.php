@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\EntrepriseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,7 @@ Route::get('/employeDetails', [
 ])->name('employeDetails');
 
 Route::get('/session', [EmployeController::class, 'getSession']);
+Route::get('/sessionEntreprise', [EntrepriseController::class, 'getSession']);
 
 Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('/{any?}', [
