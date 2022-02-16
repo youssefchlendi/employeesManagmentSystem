@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Employe;
 class EmployeController extends Controller
@@ -136,6 +135,11 @@ class EmployeController extends Controller
                 'message' => 'Not Found'
             ], 404);
         }
+    }
+    public function getSession(Request $request){
+        // echo $request->session()->get('id');
+        $employe = Employe::find(session()->get('id'))->first();
+        return response()->json($employe,200);
     }
 }
 
