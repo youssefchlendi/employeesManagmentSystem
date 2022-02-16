@@ -1,8 +1,6 @@
 <template>
     <div>
         <b-card v-for="fiche in fiches" :key="fiche.id">
-            <b-tabs>
-                <b-tab title="Fiches">
                     <b-card-body>
                         <h6 v-if="fiches.length == 0">Aucun employe</h6>
                         <b-container class="bv-example-row text-center">
@@ -42,8 +40,6 @@
                             <b-button variant="success" v-on:click="getPdf(fiche)">Afficher</b-button>
                         </b-container>
                     </b-card-body>
-                </b-tab>
-            </b-tabs>
         </b-card>
         <nav class="row">
             <ul class="pagination w-auto mx-auto">
