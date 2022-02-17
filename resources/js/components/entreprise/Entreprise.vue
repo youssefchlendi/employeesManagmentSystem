@@ -1,6 +1,6 @@
 <template>
     <div style="margin-right:25px!important">
-                    <topnav show='true' :search="search" @fetch="searchEntreprise" />
+        <topnav show="true" :search="search" @fetch="searchEntreprise" />
 
         <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
         <div v-if="!show">
@@ -20,6 +20,7 @@
                 </b-row>
             </b-container>
             <b-alert
+                style="white-space: pre-line;"
                 :show="alert.dismissCountDown"
                 dismissible
                 :variant="alert.variant"
@@ -139,10 +140,24 @@ export default {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        this.fetchEntreprises();
-                        this.alert.variant = "success";
-                        this.alert.msg = "Entreprise crée avec succès"
-                        this.alert.dismissCountDown = 5;
+                        if (data.success == false) {
+                            this.alert.variant = "danger";
+                            let err = '';
+                            for (const property in data.data) {
+                                err+=`${data.data[property]}
+                                `;
+                            }
+                            // data.data.forEach(data => { err += " " + data });
+                            this.alert.msg = `Entreprise existant
+                            ${err}`;
+                            this.alert.dismissCountDown = 5;
+
+                        } else {
+                            this.alert.variant = "success";
+                            this.alert.msg = "Entreprise crée avec succès"
+                            this.alert.dismissCountDown = 5;
+                        }
+                            this.fetchEntreprises();
                     }
                     )
                     .catch(err => console.log(err))
