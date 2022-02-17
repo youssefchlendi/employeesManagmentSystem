@@ -25,12 +25,12 @@ Route::get('/entrepriseDetails', [
     function () {
         return view('vue');
     }
-])->name('entrepriseDetails');
+])->name('entrepriseDetails')->middleware('EntrepriseCheck');
 Route::get('/employeDetails', [
     function () {
         return view('vue');
     }
-])->name('employeDetails');
+])->name('employeDetails')->middleware('EmployeCheck');
 
 Route::get('/session', [EmployeController::class, 'getSession']);
 Route::get('/sessionEntreprise', [EntrepriseController::class, 'getSession']);

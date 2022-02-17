@@ -11,6 +11,19 @@ use Illuminate\Support\Facades\Hash;
 class MainController extends Controller
 {
     public function login(){
+        if (session()->has('LoggedUser')){
+            return redirect('/');
+        }
+        if (session()->has('id')){
+            if (session()->has('entreprise')){
+                return redirect('/entrepriseDetails');
+
+            }
+            if (session()->has('employe')){
+                return redirect('/employeDetails');
+            }
+            return redirect('/login');
+        }
         return view('auth.login');
     }
     public function register(){
@@ -44,9 +57,14 @@ class MainController extends Controller
         }
         if (session()->has('id')){
             session()->pull('id');
+            if (session()->has('entreprise')){
+                session()->pull('entreprise');
+            }
+            if (session()->has('employe')){
+                session()->pull('employe');
+            }
             return redirect('/login');
         }
-
     }
 
     public function check(Request $request){
@@ -63,6 +81,7 @@ class MainController extends Controller
                 return back()->with('fail','Matricule fiscale non existant');
             }else{
                 $request->session()->put('id',$entrepriseInfo->id);
+                $request->session()->put('entreprise',true);
                 return redirect('entrepriseDetails');
             }
 
@@ -78,6 +97,8 @@ class MainController extends Controller
                 return back()->with('fail','CIN non existant');
             }else{
                 $request->session()->put('id',$employeInfo->id);
+                $request->session()->put('employe',true);
+
                 return redirect('employeDetails');
             }
 
@@ -94,6 +115,12 @@ class MainController extends Controller
                 if(Hash::check($request->password,$userInfo->password)){
                     if (session()->has('id')){
                         session()->pull('id');
+                        if (session()->has('entreprise')){
+                            session()->pull('entreprise');
+                        }
+                        if (session()->has('employe')){
+                            session()->pull('employe');
+                        }
                     }
                     $request->session()->put('LoggedUser',$userInfo->id);
                     return redirect('/');
