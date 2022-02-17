@@ -7,7 +7,7 @@
                         <b-container class="bv-example-row text-center">
                             <b-row class="mb-2">
                                 <b-row>
-                                    <b-col>employe :{{fiche.employes.nom}}</b-col>
+                                    <b-col>employe :{{fiche.employes.nom +" " +fiche.employes.prenom }}</b-col>
                                 </b-row>
                                 <b-row>
                                     <b-col>date : {{ fiche.date }}</b-col>
