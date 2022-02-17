@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Http\Requests\EmployeRequest;
+
 use App\Models\Employe;
 class EmployeController extends Controller
 {
@@ -61,7 +63,7 @@ class EmployeController extends Controller
                 "No employe found"
             ], 404);
     }
-    public function store(Request $request){
+    public function store(EmployeRequest $request){
         $nom = $request->input('nom');
         $prenom = $request->input('prenom');
         $cin = $request->input('cin');
@@ -85,11 +87,9 @@ class EmployeController extends Controller
                     'attributes' => $employe
                 ]
             ], 201);
-        } else {
-            return response()->json([
-                'message' => 'Fail'
-            ], 400);
         }
+        return "Success";
+
     }
     public function getAll(){
         $employe = Employe::all();
