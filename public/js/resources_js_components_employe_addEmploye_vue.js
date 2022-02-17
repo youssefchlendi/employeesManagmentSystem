@@ -461,12 +461,34 @@ __webpack_require__.r(__webpack_exports__);
           return res.json();
         }).then(function (data) {
           _this2.employe = '';
-          router.push({
-            name: "Employe",
-            params: {
-              add: 1
-            }
-          });
+
+          if (data.success == false) {
+            var alert = {};
+            alert.variant = "danger";
+            var err = '';
+
+            for (var property in data.data) {
+              err += "".concat(data.data[property], "\n                                ");
+            } // data.data.forEach(data => { err += " " + data });
+
+
+            alert.msg = "Employ\xE9 existant :\n                            ".concat(err);
+            _this2.alert.dismissCountDown = 5;
+            router.push({
+              name: "Employe",
+              params: {
+                add: 2,
+                alert: alert
+              }
+            });
+          } else {
+            router.push({
+              name: "Employe",
+              params: {
+                add: 1
+              }
+            });
+          }
         });
       } else {
         fetch('../api/employe/' + this.employe.id, {

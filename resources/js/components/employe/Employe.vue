@@ -78,6 +78,10 @@ export default {
             this.alert.msg = "Employé modifié avec succès"
             this.alert.dismissCountDown = 5;
 
+        }else if (this.$route.params.add == 2) {
+            this.alert.variant = this.$route.params.alert.variant;
+            this.alert.msg = this.$route.params.alert.msg;
+            this.alert.dismissCountDown = 5;
         }
     },
     methods: {
@@ -152,10 +156,24 @@ export default {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        this.fetchEmployes();
-                        this.alert.variant = "success";
+                        if (data.success == false) {
+                            this.alert.variant = "danger";
+                            let err = '';
+                            for (const property in data.data) {
+                                err+=`${data.data[property]}
+                                `;
+                            }
+                            // data.data.forEach(data => { err += " " + data });
+                            this.alert.msg = `Employé existant :
+                            ${err}`;
+                            this.alert.dismissCountDown = 5;
+
+                        } else {
+                            this.alert.variant = "success";
                         this.alert.msg = "Employé ajouté avec succès"
                         this.alert.dismissCountDown = 5;
+                        }
+                        this.fetchEmployes();
 
                     }
                     )

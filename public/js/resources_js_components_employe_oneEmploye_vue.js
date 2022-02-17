@@ -247,7 +247,14 @@ var render = function () {
                           "b-row",
                           [
                             _c("b-col", [
-                              _vm._v("employe :" + _vm._s(fiche.employes.nom)),
+                              _vm._v(
+                                "employe :" +
+                                  _vm._s(
+                                    fiche.employes.nom +
+                                      " " +
+                                      fiche.employes.prenom
+                                  )
+                              ),
                             ]),
                           ],
                           1

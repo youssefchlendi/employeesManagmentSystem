@@ -92,6 +92,10 @@ __webpack_require__.r(__webpack_exports__);
       this.alert.variant = "warning";
       this.alert.msg = "Employé modifié avec succès";
       this.alert.dismissCountDown = 5;
+    } else if (this.$route.params.add == 2) {
+      this.alert.variant = this.$route.params.alert.variant;
+      this.alert.msg = this.$route.params.alert.msg;
+      this.alert.dismissCountDown = 5;
     }
   },
   methods: {
@@ -181,11 +185,24 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
-          _this4.fetchEmployes();
+          if (data.success == false) {
+            _this4.alert.variant = "danger";
+            var err = '';
 
-          _this4.alert.variant = "success";
-          _this4.alert.msg = "Employé ajouté avec succès";
-          _this4.alert.dismissCountDown = 5;
+            for (var property in data.data) {
+              err += "".concat(data.data[property], "\n                                ");
+            } // data.data.forEach(data => { err += " " + data });
+
+
+            _this4.alert.msg = "Employ\xE9 existant :\n                            ".concat(err);
+            _this4.alert.dismissCountDown = 5;
+          } else {
+            _this4.alert.variant = "success";
+            _this4.alert.msg = "Employé ajouté avec succès";
+            _this4.alert.dismissCountDown = 5;
+          }
+
+          _this4.fetchEmployes();
         })["catch"](function (err) {
           return console.log(err);
         });

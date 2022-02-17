@@ -443,7 +443,24 @@ export default {
                     .then(res => res.json())
                     .then(data => {
                         this.employe = '';
-                        router.push({ name: "Employe", params: { add: 1 } })
+                        if (data.success == false) {
+                            let alert={};
+                            alert.variant = "danger";
+                            let err = '';
+                            for (const property in data.data) {
+                                err+=`${data.data[property]}
+                                `;
+                            }
+                            // data.data.forEach(data => { err += " " + data });
+                            alert.msg = `Employé existant :
+                            ${err}`;
+                            this.alert.dismissCountDown = 5;
+                            router.push({ name: "Employe", params: { add: 2 ,alert:alert} })
+
+                        }else{
+                            router.push({ name: "Employe", params: { add: 1 } })
+                        }
+
                     })
             } else {
                 fetch('../api/employe/' + this.employe.id, {
