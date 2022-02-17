@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EntrepriseRequest;
 use App\Models\Entreprise;
 class EntrepriseController extends Controller
 {
@@ -45,7 +46,10 @@ class EntrepriseController extends Controller
         }
     }
 
-    public function store(Request $request){
+    public function store(EntrepriseRequest $request){
+        // 'email' => required|email|exists:users,email|max:50',
+        // 'password' => 'required|min:6'
+
         $titre = $request->input('titre');
         $matriculeFiscale = $request->input('matricule_fiscale');
         $registreCommerce = $request->input('registre_commerce');
@@ -75,6 +79,7 @@ class EntrepriseController extends Controller
                 'message' => 'Fail'
             ], 400);
         }
+        return "Success";
     }
 
     public function update(Request $request, $id){
