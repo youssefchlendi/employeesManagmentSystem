@@ -1,40 +1,54 @@
 <template>
-    <div style="margin-right:25px!important">
-                    <topnav show='false' :search="search" @fetch="searchEmploye" />
+    <div style>
+        <div class="content">
+            <div class="pt-3 pb-3 container-fluid">
+                <topnav show="false" :search="search" @fetch="searchEmploye" />
 
-        <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
-        <div v-if="!show">
-            <!-- <search :search="search" @fetch="searchEmploye" /> -->
-            <b-row class="text-center mb-2">
-                <b-col cols="8">
-                    <button
-                        type="button"
-                        class="btn btn-primary mx-1 float-start"
-                        @click="resetModal1"
-                        data-bs-toggle="modal"
-                        data-bs-target="#employeModal"
-                    >Nouvel employé</button>
-                </b-col>
-                <b-col></b-col>
-            </b-row>
-            <b-alert
-                :show="alert.dismissCountDown"
-                dismissible
-                :variant="alert.variant"
-                @dismissed="alert.dismissCountDown = 0"
-            >
-                <p>{{ alert.msg }}</p>
-            </b-alert>
+                <b-overlay
+                    v-if="show"
+                    :show="show"
+                    class="d-inline-block"
+                    style="height:500px;width:100%"
+                ></b-overlay>
+                <div v-if="!show">
+                    <b-row class="text-center mb-2">
+                        <b-col cols="8">
+                            <button
+                                type="button"
+                                class="btn btn-primary mx-1 float-start"
+                                @click="resetModal1"
+                                data-bs-toggle="modal"
+                                data-bs-target="#employeModal"
+                            >Nouvel employé</button>
+                        </b-col>
+                        <b-col></b-col>
+                    </b-row>
+                    <b-alert
+                        :show="alert.dismissCountDown"
+                        dismissible
+                        :variant="alert.variant"
+                        @dismissed="alert.dismissCountDown = 0"
+                    >
+                        <p>{{ alert.msg }}</p>
+                    </b-alert>
 
-            <formEmploye @addEmploye="addEmploye" :entreprises="entreprises" :oldEmploye="employe" />
-            <showEmploye
-                :employes="employes"
-                @deleteEmploye="deleteEmploye"
-                @fetchEmployes="fetchEmployes"
-                @updateEmploye="updateEmploye"
-                :pagination="pagination"
-                :entreprises="entreprises"
-            />
+                    <formEmploye
+                        @addEmploye="addEmploye"
+                        :entreprises="entreprises"
+                        :oldEmploye="employe"
+                    />
+                    <b-card>
+                        <showEmploye
+                            :employes="employes"
+                            @deleteEmploye="deleteEmploye"
+                            @fetchEmployes="fetchEmployes"
+                            @updateEmploye="updateEmploye"
+                            :pagination="pagination"
+                            :entreprises="entreprises"
+                        />
+                    </b-card>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -78,7 +92,7 @@ export default {
             this.alert.msg = "Employé modifié avec succès"
             this.alert.dismissCountDown = 5;
 
-        }else if (this.$route.params.add == 2) {
+        } else if (this.$route.params.add == 2) {
             this.alert.variant = this.$route.params.alert.variant;
             this.alert.msg = this.$route.params.alert.msg;
             this.alert.dismissCountDown = 5;
@@ -87,13 +101,11 @@ export default {
     methods: {
         fetchEmployes(page_url = "/api/employe/a") {
             let vm = this;
-            // page_url = this.search!=''?'/api/employe':page_url;
             let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
             headersi.append('Authorization', 'auth');
             fetch(page_url, {
                 method: 'GET',
-                // body: JSON.stringify({ 'search': this.search }),
                 headers: headersi
 
             })
@@ -160,18 +172,17 @@ export default {
                             this.alert.variant = "danger";
                             let err = '';
                             for (const property in data.data) {
-                                err+=`${data.data[property]}
+                                err += `${data.data[property]}
                                 `;
                             }
-                            // data.data.forEach(data => { err += " " + data });
                             this.alert.msg = `Employé existant :
                             ${err}`;
                             this.alert.dismissCountDown = 5;
 
                         } else {
                             this.alert.variant = "success";
-                        this.alert.msg = "Employé ajouté avec succès"
-                        this.alert.dismissCountDown = 5;
+                            this.alert.msg = "Employé ajouté avec succès"
+                            this.alert.dismissCountDown = 5;
                         }
                         this.fetchEmployes();
 

@@ -96,8 +96,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/fiche/" + this.id;
       var vm = this;
-      page_url = "/api/fiche/" + this.id; // page_url = this.search!=''?'/api/employe':page_url;
-
+      page_url = "/api/fiche/" + this.id;
       var headersi = new Headers();
       headersi.append('Content-Type', 'application/json');
       fetch(page_url, {
@@ -142,7 +141,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getPdf: function getPdf(fiche) {
-      // console.log(fiche.employes.id);
       window.open(window.location.protocol + "//" + window.location.host + "/generatePdf/" + fiche.employes.id + "/fiche/" + fiche.id);
     }
   }

@@ -1,72 +1,50 @@
 <template>
-    <div class="" style="margin-right:25px!important">
-                    <topnav show='false' />
-        <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
-        <div v-if="!show">
-            <div class="row mt-3 mb-3">
-                <div class="col-3"></div>
-                <div class="col-6 mx-auto">
-                    <div class="input-group">
-                        <input
-                            v-model="Rebrique.titre"
-                            class="bg-light form-control small"
-                            type="text"
-                            placeholder="titre"
-                        />
-                        <button
-                            @click="addRebrique"
-                            class="btn btn-success py-0"
-                            type="button"
-                        >
-                            Sauvegarder
-                        </button>
-                    </div>
-                </div>
-                <div class="col-3"></div>
-            </div>
-
-            <b-alert
-                :show="alert.dismissCountDown"
-                dismissible
-                :variant="alert.variant"
-                @dismissed="alert.dismissCountDown = 0"
-            >
-                <p>{{ alert.msg }}</p>
-            </b-alert>
-            <main>
-                <data-table v-bind="parameters" @actionTriggered="handleAction" />
-            </main>
-            <!-- <b-card>
-                <li
-                    v-for="(rebrique) in Rebriques"
-                    :key="rebrique.id"
-                    class="container list-unstyled"
-                >
-                    <div class="row shadow-sm">
-                        <div class="col-10">
-                            <div>
-                                <label @dblclick="rebrique.edit = true">{{ rebrique.titre }}</label>
+    <div class style>
+        <div class="content">
+            <div class="pt-3 pb-3 container-fluid">
+                <topnav show="false" />
+                <b-overlay
+                    v-if="show"
+                    :show="show"
+                    class="d-inline-block"
+                    style="height:500px;width:100%"
+                ></b-overlay>
+                <div v-if="!show">
+                    <div class="row mt-3 mb-3">
+                        <div class="col-3"></div>
+                        <div class="col-6 mx-auto">
+                            <div class="input-group">
+                                <input
+                                    v-model="Rebrique.titre"
+                                    class="bg-light form-control small"
+                                    type="text"
+                                    placeholder="titre"
+                                />
+                                <button
+                                    @click="addRebrique"
+                                    class="btn btn-success py-0"
+                                    type="button"
+                                >Sauvegarder</button>
                             </div>
                         </div>
-                        <div class="col-2">
-                            <button
-                                type="button"
-                                class="float-end btn"
-                                @click="deleteRebrique(rebrique.id)"
-                            >
-                                <b-icon icon="trash" scale="1" variant="danger"></b-icon>
-                            </button>
-                            <button
-                                type="button"
-                                class="float-end btn"
-                                @click="updateRebrique(rebrique)"
-                            >
-                                <b-icon icon="pen" scale="1" variant="warning"></b-icon>
-                            </button>
-                        </div>
+                        <div class="col-3"></div>
                     </div>
-                </li>
-            </b-card>-->
+
+                    <b-alert
+                        :show="alert.dismissCountDown"
+                        dismissible
+                        :variant="alert.variant"
+                        @dismissed="alert.dismissCountDown = 0"
+                    >
+                        <p>{{ alert.msg }}</p>
+                    </b-alert>
+                    <b-card>
+                        <main>
+                            <data-table v-bind="parameters" @actionTriggered="handleAction" />
+                        </main>
+                    </b-card>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -106,12 +84,12 @@ export default {
                 .catch(err => console.log(err))
         },
         deleteRebrique(id) {
-            if (confirm('Delete Rebrique ' + id)) {
+            if (confirm('Delete Rubrique ' + id)) {
                 fetch('api/rebrique/' + id, { method: 'delete' })
                     .then(res => {
                         this.fetchRebriques();
                         this.alert.variant = "danger";
-                        this.alert.msg = "Rebrique suprimée avec succès"
+                        this.alert.msg = "Rubrique suprimée avec succès"
                         this.alert.dismissCountDown = 5;
 
                     })
@@ -136,7 +114,7 @@ export default {
                     .then(data => {
                         this.Rebrique.titre = "";
                         this.alert.variant = "success";
-                        this.alert.msg = "rebriqe ajoutée avec succès"
+                        this.alert.msg = "Rubrique ajoutée avec succès"
                         this.alert.dismissCountDown = 5;
                         this.fetchRebriques();
                     }
@@ -154,7 +132,7 @@ export default {
                     .then(data => {
                         this.fetchRebriques();
                         this.alert.variant = "warning";
-                        this.alert.msg = "rebriqe modifiée avec succès"
+                        this.alert.msg = "Rubrique modifiée avec succès"
                         this.alert.dismissCountDown = 5;
                         this.Rebrique = { titre: "", id: 'false' };
                         this.edit = false;

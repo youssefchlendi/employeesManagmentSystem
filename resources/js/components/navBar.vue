@@ -20,12 +20,12 @@ export default {
                     href: '/',
                     title: 'Dashboard',
                     icon: 'fas fa-user',
-                    child: [
-                        {
-                            href: '/charts/sublink',
-                            title: 'Sub Link'
-                        }
-                    ]
+                    // child: [
+                    //     {
+                    //         href: '/charts/sublink',
+                    //         title: 'Sub Link'
+                    //     }
+                    // ]
                 },
                 {
                     href: '/Entreprise',
@@ -50,7 +50,7 @@ export default {
                 },
                 {
                     href: '/Rebrique',
-                    title: 'Rebrique',
+                    title: 'Rubrique',
                     icon: 'fas fa-puzzle-piece',
                 }
 

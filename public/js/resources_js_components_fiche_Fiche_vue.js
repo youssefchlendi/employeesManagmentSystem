@@ -61,6 +61,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -459,6 +472,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   emits: ["fetchFiches", "attachRebrique"],
   props: {
@@ -627,6 +641,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _oneRebrique_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oneRebrique.vue */ "./resources/js/components/fiche/oneRebrique.vue");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1101,108 +1120,112 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticStyle: { "margin-right": "25px!important" } },
-    [
-      _c("topnav", {
-        attrs: { show: "true", search: _vm.search },
-        on: { fetch: _vm.searchFiches },
-      }),
-      _vm._v(" "),
-      _vm.show
-        ? _c("b-overlay", {
-            staticClass: "d-inline-block",
-            staticStyle: { height: "500px", width: "100%" },
-            attrs: { show: _vm.show },
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      !_vm.show
-        ? _c(
-            "div",
-            [
-              _c(
-                "b-container",
-                { staticClass: "bv-example-row" },
+  return _c("div", {}, [
+    _c("div", { staticClass: "content" }, [
+      _c(
+        "div",
+        { staticClass: "pt-3 pb-3 container-fluid" },
+        [
+          _c("topnav", {
+            attrs: { show: "true", search: _vm.search },
+            on: { fetch: _vm.searchFiches },
+          }),
+          _vm._v(" "),
+          _vm.show
+            ? _c("b-overlay", {
+                staticClass: "d-inline-block",
+                staticStyle: { height: "500px", width: "100%" },
+                attrs: { show: _vm.show },
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.show
+            ? _c(
+                "div",
                 [
                   _c(
-                    "b-row",
-                    { staticClass: "text-center mb-2" },
+                    "b-container",
+                    { staticClass: "bv-example-row" },
                     [
-                      _c("b-col", { attrs: { cols: "8" } }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary mx-1 float-start",
-                            attrs: {
-                              type: "button",
-                              "data-bs-toggle": "modal",
-                              "data-bs-target": "#ficheModal",
-                            },
-                            on: { click: _vm.resetModal1 },
-                          },
-                          [_vm._v("Nouvelle fiche")]
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("b-col"),
+                      _c(
+                        "b-row",
+                        { staticClass: "text-center mb-2" },
+                        [
+                          _c("b-col", { attrs: { cols: "8" } }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary mx-1 float-start",
+                                attrs: {
+                                  type: "button",
+                                  "data-bs-toggle": "modal",
+                                  "data-bs-target": "#ficheModal",
+                                },
+                                on: { click: _vm.resetModal1 },
+                              },
+                              [_vm._v("Nouvelle fiche")]
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("b-col"),
+                        ],
+                        1
+                      ),
                     ],
                     1
                   ),
+                  _vm._v(" "),
+                  _c(
+                    "b-alert",
+                    {
+                      attrs: {
+                        show: _vm.alert.dismissCountDown,
+                        dismissible: "",
+                        variant: _vm.alert.variant,
+                      },
+                      on: {
+                        dismissed: function ($event) {
+                          _vm.alert.dismissCountDown = 0
+                        },
+                      },
+                    },
+                    [_c("p", [_vm._v(_vm._s(_vm.alert.msg))])]
+                  ),
+                  _vm._v(" "),
+                  _c("formRebrique", {
+                    attrs: { rebriques: _vm.Rebriques, oldFiche: _vm.fiche },
+                    on: { attachRebrique: _vm.attachRebrique },
+                  }),
+                  _vm._v(" "),
+                  _c("formFiche", {
+                    attrs: { employes: _vm.employes, oldFiche: _vm.fiche },
+                    on: { addFiche: _vm.addFiche },
+                  }),
+                  _vm._v(" "),
+                  _c("showFiche", {
+                    attrs: {
+                      fiches: _vm.fiches,
+                      alert: _vm.alert,
+                      pagination: _vm.pagination,
+                      employes: _vm.employes,
+                    },
+                    on: {
+                      deleteFiche: _vm.deleteFiche,
+                      selectFiche: _vm.selectFiche,
+                      fetchFiches: _vm.fetchFiches,
+                      updateFiche: _vm.updateFiche,
+                      attachRebrique: _vm.attachRebrique,
+                    },
+                  }),
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-alert",
-                {
-                  attrs: {
-                    show: _vm.alert.dismissCountDown,
-                    dismissible: "",
-                    variant: _vm.alert.variant,
-                  },
-                  on: {
-                    dismissed: function ($event) {
-                      _vm.alert.dismissCountDown = 0
-                    },
-                  },
-                },
-                [_c("p", [_vm._v(_vm._s(_vm.alert.msg))])]
-              ),
-              _vm._v(" "),
-              _c("formRebrique", {
-                attrs: { rebriques: _vm.Rebriques, oldFiche: _vm.fiche },
-                on: { attachRebrique: _vm.attachRebrique },
-              }),
-              _vm._v(" "),
-              _c("formFiche", {
-                attrs: { employes: _vm.employes, oldFiche: _vm.fiche },
-                on: { addFiche: _vm.addFiche },
-              }),
-              _vm._v(" "),
-              _c("showFiche", {
-                attrs: {
-                  fiches: _vm.fiches,
-                  alert: _vm.alert,
-                  pagination: _vm.pagination,
-                  employes: _vm.employes,
-                },
-                on: {
-                  deleteFiche: _vm.deleteFiche,
-                  selectFiche: _vm.selectFiche,
-                  fetchFiches: _vm.fetchFiches,
-                  updateFiche: _vm.updateFiche,
-                  attachRebrique: _vm.attachRebrique,
-                },
-              }),
-            ],
-            1
-          )
-        : _vm._e(),
-    ],
-    1
-  )
+              )
+            : _vm._e(),
+        ],
+        1
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1427,6 +1450,7 @@ var render = function () {
             { attrs: { prepend: "Montant" } },
             [
               _c("b-form-input", {
+                staticStyle: { "background-color": "#eceff1" },
                 on: {
                   keyup: function ($event) {
                     if (
@@ -1825,6 +1849,11 @@ var render = function () {
                 "a",
                 {
                   staticClass: "btn page-link",
+                  class: [
+                    !_vm.pagination.prev_page_url
+                      ? "disabled"
+                      : "link-primary btun",
+                  ],
                   on: {
                     click: function ($event) {
                       return _vm.fetchFiches(_vm.pagination.prev_page_url)
@@ -1861,6 +1890,11 @@ var render = function () {
                 "a",
                 {
                   staticClass: "btn page-link",
+                  class: [
+                    !_vm.pagination.next_page_url
+                      ? "disabled"
+                      : "link-primary btun",
+                  ],
                   on: {
                     click: function ($event) {
                       return _vm.fetchFiches(_vm.pagination.next_page_url)

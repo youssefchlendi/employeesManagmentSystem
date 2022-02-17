@@ -13,7 +13,7 @@
         </div>
 
         <b-card v-for="entreprise in entreprises" :key="entreprise.id">
-        <md-tabs>
+            <md-tabs>
                 <md-tab id="tab-home" md-label="Entreprise">
                     <b-card-body class="text-center">
                         <b-card-title>{{ entreprise.titre }}</b-card-title>
@@ -36,7 +36,7 @@
                 <md-tab id="tab-pages" md-label="Employes">
                     <b-card-body>
                         <b-container class="bv-example-row text-center">
-                            <h3 v-if="entreprise.employes.length==0">il y'a aucun entreprise</h3>
+                            <h3 v-if="entreprise.employes.length == 0">il y'a aucun entreprise</h3>
                             <b-row
                                 style="text-align:left!important"
                                 v-for="employe in entreprise.employes"
@@ -90,6 +90,7 @@
                 <li :class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
                     <a
                         @click="fetchEntreprises(pagination.prev_page_url)"
+                        :class="[!pagination.prev_page_url ? 'disabled' : 'link-primary btun']"
                         class="btn page-link"
                     >Precedent</a>
                 </li>
@@ -102,6 +103,7 @@
                 <li :class="[{ disabled: !pagination.next_page_url }]" class="page-item">
                     <a
                         @click="fetchEntreprises(pagination.next_page_url)"
+                        :class="[!pagination.next_page_url ? 'disabled' : 'link-primary btun']"
                         class="btn page-link"
                     >Suivant</a>
                 </li>

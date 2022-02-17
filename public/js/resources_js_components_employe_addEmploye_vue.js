@@ -311,105 +311,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -469,8 +370,7 @@ __webpack_require__.r(__webpack_exports__);
 
             for (var property in data.data) {
               err += "".concat(data.data[property], "\n                                ");
-            } // data.data.forEach(data => { err += " " + data });
-
+            }
 
             alert.msg = "Employ\xE9 existant :\n                            ".concat(err);
             _this2.alert.dismissCountDown = 5;
@@ -666,378 +566,714 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "wrapper wrapper-content" },
-    [
-      _c("div", { staticStyle: { "background-color": "#ededed" } }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c(
-                "h1",
-                {
-                  staticClass: "text-center",
-                  staticStyle: {
-                    "font-weight": "bold",
-                    color: "rgba(34,110,147,1)",
-                  },
-                },
-                [_vm._v(_vm._s(_vm.title))]
-              ),
-            ]),
-          ]),
-        ]),
-      ]),
-      _vm._v(" "),
+  return _c("div", {}, [
+    _c("div", { staticClass: "content" }, [
       _c(
-        "b-alert",
-        {
-          attrs: {
-            show: _vm.alert.dismissCountDown,
-            dismissible: "",
-            variant: _vm.alert.variant,
-          },
-          on: {
-            dismissed: function ($event) {
-              _vm.alert.dismissCountDown = 0
+        "div",
+        { staticClass: "pt-3 pb-3 container-fluid" },
+        [
+          _c(
+            "nav",
+            {
+              staticClass:
+                "navbar navbar-expand-lg text-center navbar-light bg-light",
             },
-          },
-        },
-        [_c("p", [_vm._v(_vm._s(_vm.alert.msg))])]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
-        _c(
-          "form",
-          {
-            attrs: { id: "contact-form", role: "form" },
-            on: {
-              submit: function ($event) {
-                $event.preventDefault()
-                return _vm.addEmploye.apply(null, arguments)
+            [
+              _c("div", { staticClass: "container-fluid" }, [
+                _c("div", { staticClass: "col-lg-2" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "col" }, [
+                  _c(
+                    "h1",
+                    {
+                      staticClass: "text-center",
+                      staticStyle: {
+                        "text-align": "center!important",
+                        "font-weight": "bold",
+                        color: "rgba(34,110,147,1)",
+                      },
+                    },
+                    [_vm._v(_vm._s(_vm.title))]
+                  ),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-lg-2" }),
+              ]),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "b-alert",
+            {
+              attrs: {
+                show: _vm.alert.dismissCountDown,
+                dismissible: "",
+                variant: _vm.alert.variant,
+              },
+              on: {
+                dismissed: function ($event) {
+                  _vm.alert.dismissCountDown = 0
+                },
               },
             },
-          },
-          [
-            _c("div", { staticClass: "controls" }, [
-              _c("div", { staticClass: "row my-2" }, [
-                _c("div", { staticClass: "col" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "form_name" } }, [
-                      _vm._v("Nom *"),
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.employe.nom,
-                          expression: "employe.nom",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        id: "form_name",
-                        type: "text",
-                        name: "name",
-                        placeholder: "Merci d'entrer le nom de l'employé *",
-                        required: "required",
-                        "data-error": "Nom est obligatoire.",
-                      },
-                      domProps: { value: _vm.employe.nom },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.employe, "nom", $event.target.value)
-                        },
-                      },
-                    }),
+            [_c("p", [_vm._v(_vm._s(_vm.alert.msg))])]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "messages" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "controls" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "form_name" } }, [
+                    _vm._v("Nom *"),
                   ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "form_lastname" } }, [
-                      _vm._v("Prenom *"),
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.employe.prenom,
-                          expression: "employe.prenom",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        id: "form_lastname",
-                        type: "text",
-                        name: "surname",
-                        placeholder: "Merci d'entrer le prenom de l'employé *",
-                        required: "required",
-                        "data-error": "Prenom est obligatoire.",
-                      },
-                      domProps: { value: _vm.employe.prenom },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.employe, "prenom", $event.target.value)
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "help-block with-errors" }),
-                  ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row my-2" }, [
-                _c("div", { staticClass: "col" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "form_name" } }, [
-                      _vm._v("CIN *"),
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.employe.cin,
-                          expression: "employe.cin",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        id: "form_name",
-                        type: "number",
-                        min: "1000000",
-                        max: "99999999",
-                        name: "name",
-                        placeholder: "Merci d'entrer cin de l'employé *",
-                        required: "required",
-                        "data-error": "CIN est obligatoire.",
-                      },
-                      domProps: { value: _vm.employe.cin },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.employe, "cin", $event.target.value)
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "help-block with-errors" }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "form_lastname" } }, [
-                      _vm._v("Matricule cnss *"),
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.employe.mat_cnss,
-                          expression: "employe.mat_cnss",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        id: "form_lastname",
-                        type: "text",
-                        name: "surname",
-                        placeholder:
-                          "Merci d'entrer le Matricule cnss de l'employé *",
-                        required: "required",
-                        "data-error": "Matricule cnss est obligatoire.",
-                      },
-                      domProps: { value: _vm.employe.mat_cnss },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.employe, "mat_cnss", $event.target.value)
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "help-block with-errors" }),
-                  ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row my-2" }, [
-                _c("div", { staticClass: "col" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "form_name" } }, [
-                      _vm._v("Fonction *"),
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.employe.fonction,
-                          expression: "employe.fonction",
-                        },
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        id: "form_name",
-                        type: "text",
-                        name: "name",
-                        placeholder:
-                          "Merci d'entrer la Fonction de l'employé *",
-                        required: "required",
-                        "data-error": "Fonction est obligatoire.",
-                      },
-                      domProps: { value: _vm.employe.fonction },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.employe, "fonction", $event.target.value)
-                        },
-                      },
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "help-block with-errors" }),
-                  ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "form_lastname" } }, [
-                      _vm._v("Entreprise *"),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
                       {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.employe.entreprise_id,
-                            expression: "employe.entreprise_id",
-                          },
-                        ],
-                        staticClass: "form-select",
-                        attrs: {
-                          required: "required",
-                          "aria-label": "Default select example",
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.employe.nom,
+                        expression: "employe.nom",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "form_name",
+                      type: "text",
+                      name: "name",
+                      placeholder: "Merci d'entrer le nom de l'employé *",
+                      required: "required",
+                      "data-error": "Nom est obligatoire.",
+                    },
+                    domProps: { value: _vm.employe.nom },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.employe, "nom", $event.target.value)
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "help-block with-errors" }),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "form_lastname" } }, [
+                    _vm._v("Prenom *"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.employe.prenom,
+                        expression: "employe.prenom",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "form_lastname",
+                      type: "text",
+                      name: "surname",
+                      placeholder: "Merci d'entrer le prenom de l'employé *",
+                      required: "required",
+                      "data-error": "Prenom est obligatoire.",
+                    },
+                    domProps: { value: _vm.employe.prenom },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.employe, "prenom", $event.target.value)
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "help-block with-errors" }),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "form_name" } }, [
+                    _vm._v("CIN *"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.employe.cin,
+                        expression: "employe.cin",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "form_name",
+                      type: "number",
+                      min: "1000000",
+                      max: "99999999",
+                      name: "name",
+                      placeholder: "Merci d'entrer cin de l'employé *",
+                      required: "required",
+                      "data-error": "CIN est obligatoire.",
+                    },
+                    domProps: { value: _vm.employe.cin },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.employe, "cin", $event.target.value)
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "help-block with-errors" }),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "form_lastname" } }, [
+                    _vm._v("Matricule cnss *"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.employe.mat_cnss,
+                        expression: "employe.mat_cnss",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "form_lastname",
+                      type: "text",
+                      name: "surname",
+                      placeholder:
+                        "Merci d'entrer le Matricule cnss de l'employé *",
+                      required: "required",
+                      "data-error": "Matricule cnss est obligatoire.",
+                    },
+                    domProps: { value: _vm.employe.mat_cnss },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.employe, "mat_cnss", $event.target.value)
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "help-block with-errors" }),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "form_name" } }, [
+                    _vm._v("Fonction *"),
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.employe.fonction,
+                        expression: "employe.fonction",
+                      },
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "form_name",
+                      type: "text",
+                      name: "name",
+                      placeholder: "Merci d'entrer la Fonction de l'employé *",
+                      required: "required",
+                      "data-error": "Fonction est obligatoire.",
+                    },
+                    domProps: { value: _vm.employe.fonction },
+                    on: {
+                      input: function ($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.employe, "fonction", $event.target.value)
+                      },
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "help-block with-errors" }),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "form_lastname" } }, [
+                    _vm._v("Entreprise *"),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.employe.entreprise_id,
+                          expression: "employe.entreprise_id",
                         },
-                        on: {
-                          change: function ($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function (o) {
-                                return o.selected
-                              })
-                              .map(function (o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.employe,
-                              "entreprise_id",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          },
+                      ],
+                      staticClass: "form-select",
+                      attrs: {
+                        required: "required",
+                        "aria-label": "Default select example",
+                      },
+                      on: {
+                        change: function ($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function (o) {
+                              return o.selected
+                            })
+                            .map(function (o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.employe,
+                            "entreprise_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
                         },
                       },
-                      _vm._l(_vm.entreprises, function (entreprise) {
-                        return _c(
-                          "option",
-                          {
-                            key: entreprise.id,
-                            domProps: {
-                              selected:
-                                entreprise.entreprise_id == entreprise.id,
-                              value: entreprise.id,
+                    },
+                    _vm._l(_vm.entreprises, function (entreprise) {
+                      return _c(
+                        "option",
+                        {
+                          key: entreprise.id,
+                          domProps: {
+                            selected: entreprise.entreprise_id == entreprise.id,
+                            value: entreprise.id,
+                          },
+                        },
+                        [_vm._v(_vm._s(entreprise.titre))]
+                      )
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "help-block with-errors" }),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+          ]),
+          _vm._v(" "),
+          _c("div", {}, [
+            _c(
+              "form",
+              {
+                attrs: { id: "contact-form", role: "form" },
+                on: {
+                  submit: function ($event) {
+                    $event.preventDefault()
+                    return _vm.addEmploye.apply(null, arguments)
+                  },
+                },
+              },
+              [
+                _c("div", { staticClass: "controls" }, [
+                  _c("div", { staticClass: "row my-2" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "form_name" } }, [
+                          _vm._v("Nom *"),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.employe.nom,
+                              expression: "employe.nom",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            id: "form_name",
+                            type: "text",
+                            name: "name",
+                            placeholder: "Merci d'entrer le nom de l'employé *",
+                            required: "required",
+                            "data-error": "Nom est obligatoire.",
+                          },
+                          domProps: { value: _vm.employe.nom },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.employe, "nom", $event.target.value)
                             },
                           },
-                          [_vm._v(_vm._s(entreprise.titre))]
-                        )
-                      }),
-                      0
-                    ),
+                        }),
+                      ]),
+                    ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "help-block with-errors" }),
+                    _c("div", { staticClass: "col" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "form_lastname" } }, [
+                          _vm._v("Prenom *"),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.employe.prenom,
+                              expression: "employe.prenom",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            id: "form_lastname",
+                            type: "text",
+                            name: "surname",
+                            placeholder:
+                              "Merci d'entrer le prenom de l'employé *",
+                            required: "required",
+                            "data-error": "Prenom est obligatoire.",
+                          },
+                          domProps: { value: _vm.employe.prenom },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.employe,
+                                "prenom",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "help-block with-errors" }),
+                      ]),
+                    ]),
                   ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-lg-4" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "container d-flex bg-white justify-content-end",
-                    },
-                    [
-                      _c("div", { staticClass: "p-2 m-2" }, [
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row my-2" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "form_name" } }, [
+                          _vm._v("CIN *"),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.employe.cin,
+                              expression: "employe.cin",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            id: "form_name",
+                            type: "number",
+                            min: "1000000",
+                            max: "99999999",
+                            name: "name",
+                            placeholder: "Merci d'entrer cin de l'employé *",
+                            required: "required",
+                            "data-error": "CIN est obligatoire.",
+                          },
+                          domProps: { value: _vm.employe.cin },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.employe, "cin", $event.target.value)
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "help-block with-errors" }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "form_lastname" } }, [
+                          _vm._v("Matricule cnss *"),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.employe.mat_cnss,
+                              expression: "employe.mat_cnss",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            id: "form_lastname",
+                            type: "text",
+                            name: "surname",
+                            placeholder:
+                              "Merci d'entrer le Matricule cnss de l'employé *",
+                            required: "required",
+                            "data-error": "Matricule cnss est obligatoire.",
+                          },
+                          domProps: { value: _vm.employe.mat_cnss },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.employe,
+                                "mat_cnss",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "help-block with-errors" }),
+                      ]),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row my-2" }, [
+                    _c("div", { staticClass: "col" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "form_name" } }, [
+                          _vm._v("Fonction *"),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.employe.fonction,
+                              expression: "employe.fonction",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            id: "form_name",
+                            type: "text",
+                            name: "name",
+                            placeholder:
+                              "Merci d'entrer la Fonction de l'employé *",
+                            required: "required",
+                            "data-error": "Fonction est obligatoire.",
+                          },
+                          domProps: { value: _vm.employe.fonction },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.employe,
+                                "fonction",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "help-block with-errors" }),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { attrs: { for: "form_lastname" } }, [
+                          _vm._v("Entreprise *"),
+                        ]),
+                        _vm._v(" "),
                         _c(
-                          "button",
+                          "select",
                           {
-                            staticClass: "btn btn-primary ladda-button",
-                            attrs: { type: "button" },
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.employe.entreprise_id,
+                                expression: "employe.entreprise_id",
+                              },
+                            ],
+                            staticClass: "form-select",
+                            attrs: {
+                              required: "required",
+                              "aria-label": "Default select example",
+                            },
                             on: {
-                              click: function ($event) {
-                                return _vm.$router.push({ name: "Employe" })
+                              change: function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  _vm.employe,
+                                  "entreprise_id",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                )
                               },
                             },
                           },
-                          [_vm._m(1)]
+                          _vm._l(_vm.entreprises, function (entreprise) {
+                            return _c(
+                              "option",
+                              {
+                                key: entreprise.id,
+                                domProps: {
+                                  selected:
+                                    entreprise.entreprise_id == entreprise.id,
+                                  value: entreprise.id,
+                                },
+                              },
+                              [_vm._v(_vm._s(entreprise.titre))]
+                            )
+                          }),
+                          0
                         ),
                         _vm._v(" "),
-                        _vm._m(2),
+                        _c("div", { staticClass: "help-block with-errors" }),
                       ]),
-                    ]
-                  ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-lg-6" }, [
+                      _c(
+                        "div",
+                        { staticClass: "d-flex mb-4 justify-content-end" },
+                        [
+                          _c("div", {}, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary ladda-button",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.$router.push({ name: "Employe" })
+                                  },
+                                },
+                              },
+                              [_vm._m(2)]
+                            ),
+                            _vm._v(" "),
+                            _vm._m(3),
+                          ]),
+                        ]
+                      ),
+                    ]),
+                  ]),
                 ]),
-              ]),
-            ]),
-          ]
-        ),
-      ]),
-    ],
-    1
-  )
+              ]
+            ),
+          ]),
+        ],
+        1
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row my-2" }, [
-      _c("div", { staticClass: "col" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "col" }),
+    return _c("div", { staticClass: "row" }, [
+      _c(
+        "div",
+        { staticClass: "container d-flex bg-white justify-content-end" },
+        [
+          _c("div", { staticClass: "p-2 m-2" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary ladda-button",
+                attrs: { type: "button" },
+              },
+              [
+                _c("span", { staticClass: "ladda-label" }, [
+                  _c("span", [_vm._v("Annuler")]),
+                ]),
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-success ladda-button",
+                attrs: { type: "submit" },
+              },
+              [
+                _c("span", { staticClass: "ladda-label" }, [
+                  _c("span", [_vm._v("Sauvegarder")]),
+                ]),
+              ]
+            ),
+          ]),
+        ]
+      ),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("p", { staticClass: "text-muted" }),
+      ]),
     ])
   },
   function () {

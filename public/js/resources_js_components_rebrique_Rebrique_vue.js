@@ -62,28 +62,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -126,14 +104,14 @@ __webpack_require__.r(__webpack_exports__);
     deleteRebrique: function deleteRebrique(id) {
       var _this2 = this;
 
-      if (confirm('Delete Rebrique ' + id)) {
+      if (confirm('Delete Rubrique ' + id)) {
         fetch('api/rebrique/' + id, {
           method: 'delete'
         }).then(function (res) {
           _this2.fetchRebriques();
 
           _this2.alert.variant = "danger";
-          _this2.alert.msg = "Rebrique suprimée avec succès";
+          _this2.alert.msg = "Rubrique suprimée avec succès";
           _this2.alert.dismissCountDown = 5;
         }).then(function (data) {})["catch"](function (err) {
           return console.log(err);
@@ -158,7 +136,7 @@ __webpack_require__.r(__webpack_exports__);
         }).then(function (data) {
           _this3.Rebrique.titre = "";
           _this3.alert.variant = "success";
-          _this3.alert.msg = "rebriqe ajoutée avec succès";
+          _this3.alert.msg = "Rubrique ajoutée avec succès";
           _this3.alert.dismissCountDown = 5;
 
           _this3.fetchRebriques();
@@ -178,7 +156,7 @@ __webpack_require__.r(__webpack_exports__);
           _this3.fetchRebriques();
 
           _this3.alert.variant = "warning";
-          _this3.alert.msg = "rebriqe modifiée avec succès";
+          _this3.alert.msg = "Rubrique modifiée avec succès";
           _this3.alert.dismissCountDown = 5;
           _this3.Rebrique = {
             titre: "",
@@ -315,109 +293,115 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticStyle: { "margin-right": "25px!important" } },
-    [
-      _c("topnav", { attrs: { show: "false" } }),
-      _vm._v(" "),
-      _vm.show
-        ? _c("b-overlay", {
-            staticClass: "d-inline-block",
-            staticStyle: { height: "500px", width: "100%" },
-            attrs: { show: _vm.show },
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      !_vm.show
-        ? _c(
-            "div",
-            [
-              _c("div", { staticClass: "row mt-3 mb-3" }, [
-                _c("div", { staticClass: "col-3" }),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-6 mx-auto" }, [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.Rebrique.titre,
-                          expression: "Rebrique.titre",
-                        },
-                      ],
-                      staticClass: "bg-light form-control small",
-                      attrs: { type: "text", placeholder: "titre" },
-                      domProps: { value: _vm.Rebrique.titre },
-                      on: {
-                        input: function ($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.Rebrique, "titre", $event.target.value)
-                        },
-                      },
-                    }),
+  return _c("div", {}, [
+    _c("div", { staticClass: "content" }, [
+      _c(
+        "div",
+        { staticClass: "pt-3 pb-3 container-fluid" },
+        [
+          _c("topnav", { attrs: { show: "false" } }),
+          _vm._v(" "),
+          _vm.show
+            ? _c("b-overlay", {
+                staticClass: "d-inline-block",
+                staticStyle: { height: "500px", width: "100%" },
+                attrs: { show: _vm.show },
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.show
+            ? _c(
+                "div",
+                [
+                  _c("div", { staticClass: "row mt-3 mb-3" }, [
+                    _c("div", { staticClass: "col-3" }),
                     _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success py-0",
-                        attrs: { type: "button" },
-                        on: { click: _vm.addRebrique },
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Sauvegarder\n                    "
+                    _c("div", { staticClass: "col-6 mx-auto" }, [
+                      _c("div", { staticClass: "input-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.Rebrique.titre,
+                              expression: "Rebrique.titre",
+                            },
+                          ],
+                          staticClass: "bg-light form-control small",
+                          attrs: { type: "text", placeholder: "titre" },
+                          domProps: { value: _vm.Rebrique.titre },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.Rebrique,
+                                "titre",
+                                $event.target.value
+                              )
+                            },
+                          },
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success py-0",
+                            attrs: { type: "button" },
+                            on: { click: _vm.addRebrique },
+                          },
+                          [_vm._v("Sauvegarder")]
                         ),
-                      ]
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-3" }),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "b-alert",
+                    {
+                      attrs: {
+                        show: _vm.alert.dismissCountDown,
+                        dismissible: "",
+                        variant: _vm.alert.variant,
+                      },
+                      on: {
+                        dismissed: function ($event) {
+                          _vm.alert.dismissCountDown = 0
+                        },
+                      },
+                    },
+                    [_c("p", [_vm._v(_vm._s(_vm.alert.msg))])]
+                  ),
+                  _vm._v(" "),
+                  _c("b-card", [
+                    _c(
+                      "main",
+                      [
+                        _c(
+                          "data-table",
+                          _vm._b(
+                            { on: { actionTriggered: _vm.handleAction } },
+                            "data-table",
+                            _vm.parameters,
+                            false
+                          )
+                        ),
+                      ],
+                      1
                     ),
                   ]),
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-3" }),
-              ]),
-              _vm._v(" "),
-              _c(
-                "b-alert",
-                {
-                  attrs: {
-                    show: _vm.alert.dismissCountDown,
-                    dismissible: "",
-                    variant: _vm.alert.variant,
-                  },
-                  on: {
-                    dismissed: function ($event) {
-                      _vm.alert.dismissCountDown = 0
-                    },
-                  },
-                },
-                [_c("p", [_vm._v(_vm._s(_vm.alert.msg))])]
-              ),
-              _vm._v(" "),
-              _c(
-                "main",
-                [
-                  _c(
-                    "data-table",
-                    _vm._b(
-                      { on: { actionTriggered: _vm.handleAction } },
-                      "data-table",
-                      _vm.parameters,
-                      false
-                    )
-                  ),
                 ],
                 1
-              ),
-            ],
-            1
-          )
-        : _vm._e(),
-    ],
-    1
-  )
+              )
+            : _vm._e(),
+        ],
+        1
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

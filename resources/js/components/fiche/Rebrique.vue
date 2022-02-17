@@ -51,12 +51,6 @@
                                 id="flexSwitchCheckDefault"
                             />
                             {{ rebrique.titre }}
-                            <!-- <div v-show = "rebrique.edit == false">
-            <label @dblclick = "rebrique.edit = true"> {{rebrique.titre}} </label>
-            </div>
-            <input v-show = "rebrique.edit == true" v-model = "rebrique.titre"
-            v-on:blur= "rebrique.edit=false; "
-                            @keyup.enter = "rebrique.edit=false; ">-->
                         </div>
                         <div class="col-2">
                             <button

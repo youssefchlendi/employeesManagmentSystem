@@ -1,45 +1,58 @@
 <template>
-    <div style="margin-right:25px!important">
-                    <topnav show='true' :search="search" @fetch="searchFiches" />
+    <div style>
+        <div class="content">
+            <div class="pt-3 pb-3 container-fluid">
+                <topnav show="true" :search="search" @fetch="searchFiches" />
 
-        <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
-        <div v-if="!show">
-            <!-- <search :search="search" @fetch="searchFiches" /> -->
-            <b-container class="bv-example-row">
-                <b-row class="text-center mb-2">
-                    <b-col cols="8">
-                        <button
-                            type="button"
-                            class="btn btn-primary mx-1 float-start"
-                            @click="resetModal1"
-                            data-bs-toggle="modal"
-                            data-bs-target="#ficheModal"
-                        >Nouvelle fiche</button>
-                    </b-col>
-                    <b-col></b-col>
-                </b-row>
-            </b-container>
-            <b-alert
-                :show="alert.dismissCountDown"
-                dismissible
-                :variant="alert.variant"
-                @dismissed="alert.dismissCountDown = 0"
-            >
-                <p>{{ alert.msg }}</p>
-            </b-alert>
-            <formRebrique @attachRebrique="attachRebrique" :rebriques="Rebriques" :oldFiche="fiche"></formRebrique>
-            <formFiche @addFiche="addFiche" :employes="employes" :oldFiche="fiche" />
-            <showFiche
-                :fiches="fiches"
-                @deleteFiche="deleteFiche"
-                @selectFiche="selectFiche"
-                @fetchFiches="fetchFiches"
-                @updateFiche="updateFiche"
-                @attachRebrique="attachRebrique"
-                :alert="alert"
-                :pagination="pagination"
-                :employes="employes"
-            />
+                <b-overlay
+                    v-if="show"
+                    :show="show"
+                    class="d-inline-block"
+                    style="height:500px;width:100%"
+                ></b-overlay>
+                <div v-if="!show">
+                    <b-container class="bv-example-row">
+                        <b-row class="text-center mb-2">
+                            <b-col cols="8">
+                                <button
+                                    type="button"
+                                    class="btn btn-primary mx-1 float-start"
+                                    @click="resetModal1"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#ficheModal"
+                                >Nouvelle fiche</button>
+                            </b-col>
+                            <b-col></b-col>
+                        </b-row>
+                    </b-container>
+                    <b-alert
+                        :show="alert.dismissCountDown"
+                        dismissible
+                        :variant="alert.variant"
+                        @dismissed="alert.dismissCountDown = 0"
+                    >
+                        <p>{{ alert.msg }}</p>
+                    </b-alert>
+                    <formRebrique
+                        @attachRebrique="attachRebrique"
+                        :rebriques="Rebriques"
+                        :oldFiche="fiche"
+                    ></formRebrique>
+                    <formFiche @addFiche="addFiche" :employes="employes" :oldFiche="fiche" />
+
+                    <showFiche
+                        :fiches="fiches"
+                        @deleteFiche="deleteFiche"
+                        @selectFiche="selectFiche"
+                        @fetchFiches="fetchFiches"
+                        @updateFiche="updateFiche"
+                        @attachRebrique="attachRebrique"
+                        :alert="alert"
+                        :pagination="pagination"
+                        :employes="employes"
+                    />
+                </div>
+            </div>
         </div>
     </div>
 </template>

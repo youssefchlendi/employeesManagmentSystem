@@ -1,41 +1,49 @@
 <template>
-    <div style="margin-right:25px!important">
-        <topnav show="true" :search="search" @fetch="searchEntreprise" />
+    <div style>
+        <div class="content">
+            <div class="pt-3 container-fluid">
+                <topnav show="true" :search="search" @fetch="searchEntreprise" />
 
-        <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
-        <div v-if="!show">
-            <!-- <search :search="search" @fetch="searchEntreprise" /> -->
-            <b-container class="bv-example-row">
-                <b-row class="text-center mb-2">
-                    <b-col cols="8">
-                        <button
-                            type="button"
-                            class="btn btn-primary mx-1 float-start"
-                            @click="resetModal1"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                        >Nouveau entreprise</button>
-                    </b-col>
-                    <b-col></b-col>
-                </b-row>
-            </b-container>
-            <b-alert
-                style="white-space: pre-line;"
-                :show="alert.dismissCountDown"
-                dismissible
-                :variant="alert.variant"
-                @dismissed="alert.dismissCountDown = 0"
-            >
-                <p>{{ alert.msg }}</p>
-            </b-alert>
-            <formEntreprise @addEntreprise="addEntreprise" :oldEntreprise="entreprise" />
-            <showEntreprises
-                :entreprises="entreprises"
-                :pagination="pagination"
-                @fetchEntreprises="fetchEntreprises"
-                @deleteEntreprise="deleteEntreprise"
-                @updateEntreprise="updateEntreprise"
-            />
+                <b-overlay
+                    v-if="show"
+                    :show="show"
+                    class="d-inline-block"
+                    style="height:500px;width:100%"
+                ></b-overlay>
+                <div v-if="!show">
+                    <b-container class="bv-example-row">
+                        <b-row class="text-center mb-2">
+                            <b-col cols="8">
+                                <button
+                                    type="button"
+                                    class="btn btn-primary mx-1 float-start"
+                                    @click="resetModal1"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal"
+                                >Nouveau entreprise</button>
+                            </b-col>
+                            <b-col></b-col>
+                        </b-row>
+                    </b-container>
+                    <b-alert
+                        style="white-space: pre-line;"
+                        :show="alert.dismissCountDown"
+                        dismissible
+                        :variant="alert.variant"
+                        @dismissed="alert.dismissCountDown = 0"
+                    >
+                        <p>{{ alert.msg }}</p>
+                    </b-alert>
+                    <formEntreprise @addEntreprise="addEntreprise" :oldEntreprise="entreprise" />
+                    <showEntreprises
+                        :entreprises="entreprises"
+                        :pagination="pagination"
+                        @fetchEntreprises="fetchEntreprises"
+                        @deleteEntreprise="deleteEntreprise"
+                        @updateEntreprise="updateEntreprise"
+                    />
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -79,7 +87,6 @@ export default {
     methods: {
         fetchEntreprises(page_url = "/api/entreprise") {
             let vm = this;
-            // page_url = this.search!=''?'/api/entreprise':page_url;
             let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
             headersi.append('Authorization', 'auth');
@@ -144,10 +151,9 @@ export default {
                             this.alert.variant = "danger";
                             let err = '';
                             for (const property in data.data) {
-                                err+=`${data.data[property]}
+                                err += `${data.data[property]}
                                 `;
                             }
-                            // data.data.forEach(data => { err += " " + data });
                             this.alert.msg = `Entreprise existant
                             ${err}`;
                             this.alert.dismissCountDown = 5;
@@ -157,7 +163,7 @@ export default {
                             this.alert.msg = "Entreprise crée avec succès"
                             this.alert.dismissCountDown = 5;
                         }
-                            this.fetchEntreprises();
+                        this.fetchEntreprises();
                     }
                     )
                     .catch(err => console.log(err))

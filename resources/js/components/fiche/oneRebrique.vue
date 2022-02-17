@@ -5,6 +5,7 @@
                 <p class="text-left">{{ rebrique.titre }}</p>
                 <b-input-group class prepend="Montant">
                     <b-form-input
+                        style="background-color:#eceff1"
                         v-on:keyup.enter="updateMontant(rebrique.pivot.montant)"
                         v-model="rebrique.pivot.montant"
                     ></b-form-input>

@@ -55,6 +55,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -103,14 +117,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/employe/a";
-      var vm = this; // page_url = this.search!=''?'/api/employe':page_url;
-
+      var vm = this;
       var headersi = new Headers();
       headersi.append('Content-Type', 'application/json');
       headersi.append('Authorization', 'auth');
       fetch(page_url, {
         method: 'GET',
-        // body: JSON.stringify({ 'search': this.search }),
         headers: headersi
       }).then(function (res) {
         return res.json();
@@ -191,8 +203,7 @@ __webpack_require__.r(__webpack_exports__);
 
             for (var property in data.data) {
               err += "".concat(data.data[property], "\n                                ");
-            } // data.data.forEach(data => { err += " " + data });
-
+            }
 
             _this4.alert.msg = "Employ\xE9 existant :\n                            ".concat(err);
             _this4.alert.dismissCountDown = 5;
@@ -262,96 +273,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -682,96 +603,106 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticStyle: { "margin-right": "25px!important" } },
-    [
-      _c("topnav", {
-        attrs: { show: "false", search: _vm.search },
-        on: { fetch: _vm.searchEmploye },
-      }),
-      _vm._v(" "),
-      _vm.show
-        ? _c("b-overlay", {
-            staticClass: "d-inline-block",
-            staticStyle: { height: "500px", width: "100%" },
-            attrs: { show: _vm.show },
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      !_vm.show
-        ? _c(
-            "div",
-            [
-              _c(
-                "b-row",
-                { staticClass: "text-center mb-2" },
+  return _c("div", {}, [
+    _c("div", { staticClass: "content" }, [
+      _c(
+        "div",
+        { staticClass: "pt-3 pb-3 container-fluid" },
+        [
+          _c("topnav", {
+            attrs: { show: "false", search: _vm.search },
+            on: { fetch: _vm.searchEmploye },
+          }),
+          _vm._v(" "),
+          _vm.show
+            ? _c("b-overlay", {
+                staticClass: "d-inline-block",
+                staticStyle: { height: "500px", width: "100%" },
+                attrs: { show: _vm.show },
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          !_vm.show
+            ? _c(
+                "div",
                 [
-                  _c("b-col", { attrs: { cols: "8" } }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary mx-1 float-start",
-                        attrs: {
-                          type: "button",
-                          "data-bs-toggle": "modal",
-                          "data-bs-target": "#employeModal",
-                        },
-                        on: { click: _vm.resetModal1 },
-                      },
-                      [_vm._v("Nouvel employé")]
-                    ),
-                  ]),
+                  _c(
+                    "b-row",
+                    { staticClass: "text-center mb-2" },
+                    [
+                      _c("b-col", { attrs: { cols: "8" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary mx-1 float-start",
+                            attrs: {
+                              type: "button",
+                              "data-bs-toggle": "modal",
+                              "data-bs-target": "#employeModal",
+                            },
+                            on: { click: _vm.resetModal1 },
+                          },
+                          [_vm._v("Nouvel employé")]
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("b-col"),
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
-                  _c("b-col"),
+                  _c(
+                    "b-alert",
+                    {
+                      attrs: {
+                        show: _vm.alert.dismissCountDown,
+                        dismissible: "",
+                        variant: _vm.alert.variant,
+                      },
+                      on: {
+                        dismissed: function ($event) {
+                          _vm.alert.dismissCountDown = 0
+                        },
+                      },
+                    },
+                    [_c("p", [_vm._v(_vm._s(_vm.alert.msg))])]
+                  ),
+                  _vm._v(" "),
+                  _c("formEmploye", {
+                    attrs: {
+                      entreprises: _vm.entreprises,
+                      oldEmploye: _vm.employe,
+                    },
+                    on: { addEmploye: _vm.addEmploye },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "b-card",
+                    [
+                      _c("showEmploye", {
+                        attrs: {
+                          employes: _vm.employes,
+                          pagination: _vm.pagination,
+                          entreprises: _vm.entreprises,
+                        },
+                        on: {
+                          deleteEmploye: _vm.deleteEmploye,
+                          fetchEmployes: _vm.fetchEmployes,
+                          updateEmploye: _vm.updateEmploye,
+                        },
+                      }),
+                    ],
+                    1
+                  ),
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "b-alert",
-                {
-                  attrs: {
-                    show: _vm.alert.dismissCountDown,
-                    dismissible: "",
-                    variant: _vm.alert.variant,
-                  },
-                  on: {
-                    dismissed: function ($event) {
-                      _vm.alert.dismissCountDown = 0
-                    },
-                  },
-                },
-                [_c("p", [_vm._v(_vm._s(_vm.alert.msg))])]
-              ),
-              _vm._v(" "),
-              _c("formEmploye", {
-                attrs: {
-                  entreprises: _vm.entreprises,
-                  oldEmploye: _vm.employe,
-                },
-                on: { addEmploye: _vm.addEmploye },
-              }),
-              _vm._v(" "),
-              _c("showEmploye", {
-                attrs: {
-                  employes: _vm.employes,
-                  pagination: _vm.pagination,
-                  entreprises: _vm.entreprises,
-                },
-                on: {
-                  deleteEmploye: _vm.deleteEmploye,
-                  fetchEmployes: _vm.fetchEmployes,
-                  updateEmploye: _vm.updateEmploye,
-                },
-              }),
-            ],
-            1
-          )
-        : _vm._e(),
-    ],
-    1
-  )
+              )
+            : _vm._e(),
+        ],
+        1
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

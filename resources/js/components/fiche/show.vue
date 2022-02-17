@@ -1,50 +1,51 @@
 <template>
     <div>
         <b-card v-for="fiche in fiches" :key="fiche.id">
-                    <b-card-body>
-                        <h6 v-if="fiches.length == 0">Aucun employe</h6>
-                        <b-container class="bv-example-row text-center">
-                            <b-row class="mb-2">
-                                <b-row>
-                                    <b-col>employe : {{ employeById(fiche.employe_id) }}</b-col>
-                                </b-row>
-                                <b-row>
-                                    <b-col>date : {{ fiche.date }}</b-col>
-                                </b-row>
-                                <b-row>
-                                    <b-col>total : {{ fiche.total }}</b-col>
-                                </b-row>
-                                <oneRebrique
-                                    @fetchFiches="fetchFiches('/api/fiche')"
-                                    @attachRebrique="attachRebrique"
-                                    :rebrique="rebrique"
-                                    :alert="alert"
-                                    v-for="rebrique in fiche.rebriques"
-                                    :key="rebrique.id"
-                                />
-                            </b-row>
-                            <b-button variant="danger" v-on:click="Delete(fiche.id)">Supprimer</b-button>
-                            <b-button
-                                variant="warning"
-                                v-on:click="Update(fiche)"
-                                data-bs-toggle="modal"
-                                data-bs-target="#ficheModal"
-                            >Modifier</b-button>
-                            <b-button
-                                variant="warning"
-                                v-on:click="select(fiche)"
-                                data-bs-toggle="modal"
-                                data-bs-target="#rebriqueModal"
-                            >Ajouter rubrique</b-button>
+            <b-card-body>
+                <h6 v-if="fiches.length == 0">Aucun employe</h6>
+                <b-container class="bv-example-row text-center">
+                    <b-row class="mb-2">
+                        <b-row>
+                            <b-col>employe : {{ employeById(fiche.employe_id) }}</b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col>date : {{ fiche.date }}</b-col>
+                        </b-row>
+                        <b-row>
+                            <b-col>total : {{ fiche.total }}</b-col>
+                        </b-row>
+                        <oneRebrique
+                            @fetchFiches="fetchFiches('/api/fiche')"
+                            @attachRebrique="attachRebrique"
+                            :rebrique="rebrique"
+                            :alert="alert"
+                            v-for="rebrique in fiche.rebriques"
+                            :key="rebrique.id"
+                        />
+                    </b-row>
+                    <b-button variant="danger" v-on:click="Delete(fiche.id)">Supprimer</b-button>
+                    <b-button
+                        variant="warning"
+                        v-on:click="Update(fiche)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#ficheModal"
+                    >Modifier</b-button>
+                    <b-button
+                        variant="warning"
+                        v-on:click="select(fiche)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#rebriqueModal"
+                    >Ajouter rubrique</b-button>
 
-                            <b-button variant="success" v-on:click="getPdf(fiche)">Afficher</b-button>
-                        </b-container>
-                    </b-card-body>
+                    <b-button variant="success" v-on:click="getPdf(fiche)">Afficher</b-button>
+                </b-container>
+            </b-card-body>
         </b-card>
         <nav class="row">
             <ul class="pagination w-auto mx-auto">
                 <li :class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
                     <a
+                        :class="[!pagination.prev_page_url ? 'disabled' : 'link-primary btun']"
                         @click="fetchFiches(pagination.prev_page_url)"
                         class="btn page-link"
                     >Precedent</a>
@@ -56,7 +57,11 @@
                     >{{ pagination.current_page + "/" + pagination.last_page }}</a>
                 </li>
                 <li :class="[{ disabled: !pagination.next_page_url }]" class="page-item">
-                    <a @click="fetchFiches(pagination.next_page_url)" class="btn page-link">Suivant</a>
+                    <a
+                        @click="fetchFiches(pagination.next_page_url)"
+                        :class="[!pagination.next_page_url ? 'disabled' : 'link-primary btun']"
+                        class="btn page-link"
+                    >Suivant</a>
                 </li>
             </ul>
         </nav>
@@ -93,7 +98,8 @@ export default {
         getPdf(fiche) {
             // console.log(fiche.employes.id);
 
-window.open(window.location.protocol+"//"+window.location.host+"/generatePdf/"+ fiche.employes.id + "/fiche/" + fiche.id);        },
+            window.open(window.location.protocol + "//" + window.location.host + "/generatePdf/" + fiche.employes.id + "/fiche/" + fiche.id);
+        },
         attachRebrique(RebriqueId) {
             this.$emit('attachRebrique', RebriqueId);
         },

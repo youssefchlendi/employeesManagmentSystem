@@ -85,7 +85,6 @@ export default {
         fetchFiches(page_url = "/api/fiche/" + this.id) {
             let vm = this;
             page_url = "/api/fiche/" + this.id
-            // page_url = this.search!=''?'/api/employe':page_url;
             let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
             fetch(page_url, {
@@ -97,7 +96,7 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.fiches = res.data;
-                    this.show=false;
+                    this.show = false;
                     vm.makePagination(res);
                 })
                 .catch(err => console.log(err));
@@ -127,8 +126,6 @@ export default {
                 .catch(err => console.log(err))
         },
         getPdf(fiche) {
-            // console.log(fiche.employes.id);
-
             window.open(window.location.protocol + "//" + window.location.host + "/generatePdf/" + fiche.employes.id + "/fiche/" + fiche.id);
         },
 

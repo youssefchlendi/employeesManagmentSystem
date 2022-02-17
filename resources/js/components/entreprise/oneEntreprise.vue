@@ -38,25 +38,6 @@
                     </b-card-body>
                 </b-card>
             </div>
-            <!-- <nav class="row">
-            <ul class="pagination w-auto mx-auto">
-                <li :class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
-                    <a
-                        @click="fetchFiches(pagination.prev_page_url)"
-                        class="btn page-link"
-                    >Precedent</a>
-                </li>
-                <li class="page-item">
-                    <a
-                        class="page-link text-dark"
-                        href="#"
-                    >{{ pagination.current_page + "/" + pagination.last_page }}</a>
-                </li>
-                <li :class="[{ disabled: !pagination.next_page_url }]" class="page-item">
-                    <a @click="fetchFiches(pagination.next_page_url)" class="btn page-link">Suivant</a>
-                </li>
-            </ul>
-            </nav>-->
         </div>
     </div>
 </template>
@@ -86,7 +67,6 @@ export default {
     methods: {
         fetchEntreprises(page_url = "/api/entreprise") {
             let vm = this;
-            // page_url = this.search!=''?'/api/entreprise':page_url;
             page_url = "/api/entreprise/" + this.id;
             let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
@@ -98,7 +78,7 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.employes = res.employes;
-                    this.show=false;
+                    this.show = false;
                     vm.makePagination(res);
                 })
                 .catch(err => console.log(err))
@@ -126,8 +106,6 @@ export default {
                 })
                 .catch(err => console.log(err))
         }, getPdf(fid, eid) {
-            // console.log(fiche.employes.id);
-
             window.open(window.location.protocol + "//" + window.location.host + "/generatePdf/" + eid + "/fiche/" + fid);
         },
 

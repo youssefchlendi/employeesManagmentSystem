@@ -1,9 +1,6 @@
 <template>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- Container wrapper -->
         <div class="container-fluid">
-            <!-- Toggle button -->
             <button
                 class="navbar-toggler"
                 type="button"
@@ -18,11 +15,7 @@
             <a class="navbar-brand mt-2 mt-lg-0" href="#">
                 <img src="images/large.png" width="50" height="50" alt="MDB Logo" loading="lazy" />
             </a>
-            <search v-if="show=='true'" :search="search" @fetch="fetch" />
-            <!-- Collapsible wrapper -->
-            <!-- Collapsible wrapper -->
-
-            <!-- Right elements -->
+            <search v-if="show == 'true'" :search="search" @fetch="fetch" />
             <div class="d-flex align-items-center">
                 <b-dropdown
                     id="dropdown-right"
@@ -34,39 +27,36 @@
                     <template #button-content>
                         <i class="fas fa-user"></i>
                     </template>
-                    <b-dropdown-item >{{name}}</b-dropdown-item>
+                    <b-dropdown-item>{{ name }}</b-dropdown-item>
                     <b-dropdown-item href="logout">Logout</b-dropdown-item>
                 </b-dropdown>
             </div>
-            <!-- Right elements -->
         </div>
-        <!-- Container wrapper -->
     </nav>
-    <!-- Navbar -->
 </template>
 
 <script>
 import search from './search.vue';
 export default {
-    props:{
-        show:{
-            type:String,
-            default:false,
+    props: {
+        show: {
+            type: String,
+            default: false,
         },
-        name:{
-            type:String,
-            default:''
+        name: {
+            type: String,
+            default: ''
         }
     },
     components: {
         search
     },
-    data(){
-        return{
-            search:'',
+    data() {
+        return {
+            search: '',
         }
     },
-    methods:{
+    methods: {
         fetch(search) {
             this.$emit('fetch', search)
         }
