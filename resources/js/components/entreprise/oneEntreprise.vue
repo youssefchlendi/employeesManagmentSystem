@@ -1,9 +1,18 @@
 <template>
     <div class="container">
         <navb :name="name" show="false" />
+        <b-card v-if="employes.length == 0">
+                <b-card-body >
+                    <b-container class="bv-example-row text-center">
+                        <b-row class="mb-2">
+                            <b-row>
+            <h6 >Aucun employe ou fiche a afficher</h6>
+                            </b-row>
+                        </b-row>
+                    </b-container>
+                </b-card-body>
+            </b-card>
         <div v-for="employe in employes" :key="employe.id">
-            <h6 v-if="employes.length == 0">Aucun employe ou fiche a afficher</h6>
-
             <b-card v-for="fiche in employe.fiches" :key="fiche.id">
                 <b-card-body>
                     <b-container class="bv-example-row text-center">

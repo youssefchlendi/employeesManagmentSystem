@@ -58,6 +58,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -223,6 +233,38 @@ var render = function () {
     [
       _c("navb", { attrs: { name: _vm.name, show: "false" } }),
       _vm._v(" "),
+      _vm.fiches.length == 0
+        ? _c(
+            "b-card",
+            [
+              _c(
+                "b-card-body",
+                [
+                  _c(
+                    "b-container",
+                    { staticClass: "bv-example-row text-center" },
+                    [
+                      _c(
+                        "b-row",
+                        { staticClass: "mb-2" },
+                        [
+                          _c("b-row", [
+                            _c("h6", [_vm._v("Aucun fiche a afficher")]),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _vm._l(_vm.fiches, function (fiche) {
         return _c(
           "b-card",
@@ -231,10 +273,6 @@ var render = function () {
             _c(
               "b-card-body",
               [
-                _vm.fiches.length == 0
-                  ? _c("h6", [_vm._v("Aucun fiche")])
-                  : _vm._e(),
-                _vm._v(" "),
                 _c(
                   "b-container",
                   { staticClass: "bv-example-row text-center" },
