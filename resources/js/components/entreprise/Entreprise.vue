@@ -205,4 +205,8 @@ export default {
     margin-left: 225px !important;
     transition: all 0.3s ease-in-out;
 }
+.btun{
+    color:white!important;
+    background-color:#d32f2f!important;
+}
 </style>

@@ -293,4 +293,8 @@ export default {
 </script>
 
 <style>
+.btun{
+    color:white!important;
+    background-color:#d32f2f!important;
+}
 </style>
