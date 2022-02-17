@@ -1,5 +1,10 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@if(!preg_match("/^\/entrepriseDetails\/?(?:[^\/]+\/?)*$/",parse_url(Request::url(),PHP_URL_PATH)) && !preg_match('/^\/employeDetails\/?(?:[^\/]+\/?)*$/',parse_url(Request::url(),PHP_URL_PATH)))
+<html  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@else
+<html style="height: 100%;" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@endif
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,8 +19,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-<div id="app" class=" pt-4 pb-4" style="margin-right:0!important;background-color:#455a64 ;    height: 100%;">
+@if(!preg_match("/^\/entrepriseDetails\/?(?:[^\/]+\/?)*$/",parse_url(Request::url(),PHP_URL_PATH)) && !preg_match('/^\/employeDetails\/?(?:[^\/]+\/?)*$/',parse_url(Request::url(),PHP_URL_PATH)))
+<body >
+@else
+<body style="height: 100%;">
+@endif
+
+<div id="app" class=" pt-4 pb-4" style="margin-right:0!important;background: rgb(38,50,56);
+background: linear-gradient(130deg, rgba(38,50,56,1) 0%, rgba(69,90,100,1) 54%, rgba(69,90,100,1) 100%);  height: 100%;">
     @if(!preg_match("/^\/entrepriseDetails\/?(?:[^\/]+\/?)*$/",parse_url(Request::url(),PHP_URL_PATH)) && !preg_match('/^\/employeDetails\/?(?:[^\/]+\/?)*$/',parse_url(Request::url(),PHP_URL_PATH)))
     <navbar></navbar>
     @endif
