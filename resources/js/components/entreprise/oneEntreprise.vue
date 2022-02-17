@@ -1,39 +1,44 @@
 <template>
     <div class="container">
-        <navb :name="name" show="false" />
-        <b-card v-if="employes.length == 0">
-                <b-card-body >
-                    <b-container class="bv-example-row text-center">
-                        <b-row class="mb-2">
-                            <b-row>
-            <h6 >Aucun employe ou fiche a afficher</h6>
-                            </b-row>
-                        </b-row>
-                    </b-container>
-                </b-card-body>
-            </b-card>
-        <div v-for="employe in employes" :key="employe.id">
-            <b-card v-for="fiche in employe.fiches" :key="fiche.id">
+        <b-overlay v-if="show" :show="show" class="d-inline-block" style="height:500px;width:100%"></b-overlay>
+        <div v-if="!show">
+            <navb :name="name" show="false" />
+            <b-card v-if="employes.length == 0">
                 <b-card-body>
                     <b-container class="bv-example-row text-center">
                         <b-row class="mb-2">
                             <b-row>
-                                <b-col>employe :{{ employe.nom + ' ' + employe.prenom }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col>date : {{ fiche.date }}</b-col>
-                            </b-row>
-                            <b-row>
-                                <b-col>total : {{ fiche.total }}</b-col>
+                                <h6>Aucun employe ou fiche a afficher</h6>
                             </b-row>
                         </b-row>
-
-                        <b-button variant="success" v-on:click="getPdf(fiche.id,employe.id)">Afficher</b-button>
                     </b-container>
                 </b-card-body>
             </b-card>
-        </div>
-        <!-- <nav class="row">
+            <div v-for="employe in employes" :key="employe.id">
+                <b-card v-for="fiche in employe.fiches" :key="fiche.id">
+                    <b-card-body>
+                        <b-container class="bv-example-row text-center">
+                            <b-row class="mb-2">
+                                <b-row>
+                                    <b-col>employe :{{ employe.nom + ' ' + employe.prenom }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col>date : {{ fiche.date }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col>total : {{ fiche.total }}</b-col>
+                                </b-row>
+                            </b-row>
+
+                            <b-button
+                                variant="success"
+                                v-on:click="getPdf(fiche.id, employe.id)"
+                            >Afficher</b-button>
+                        </b-container>
+                    </b-card-body>
+                </b-card>
+            </div>
+            <!-- <nav class="row">
             <ul class="pagination w-auto mx-auto">
                 <li :class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
                     <a
@@ -51,7 +56,8 @@
                     <a @click="fetchFiches(pagination.next_page_url)" class="btn page-link">Suivant</a>
                 </li>
             </ul>
-        </nav>-->
+            </nav>-->
+        </div>
     </div>
 </template>
 
@@ -68,7 +74,7 @@ export default {
             fiches: '',
             employes: '',
             pagination: {},
-
+            show: true,
         }
     },
     created() {
@@ -92,6 +98,7 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.employes = res.employes;
+                    this.show=false;
                     vm.makePagination(res);
                 })
                 .catch(err => console.log(err))
@@ -118,7 +125,7 @@ export default {
                     this.fetchEntreprises();
                 })
                 .catch(err => console.log(err))
-        }, getPdf(fid,eid) {
+        }, getPdf(fid, eid) {
             // console.log(fiche.employes.id);
 
             window.open(window.location.protocol + "//" + window.location.host + "/generatePdf/" + eid + "/fiche/" + fid);

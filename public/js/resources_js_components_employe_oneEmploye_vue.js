@@ -68,6 +68,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -78,7 +83,8 @@ __webpack_require__.r(__webpack_exports__);
       name: '',
       id: '',
       fiches: '',
-      pagination: {}
+      pagination: {},
+      show: true
     };
   },
   created: function created() {
@@ -104,6 +110,7 @@ __webpack_require__.r(__webpack_exports__);
         return res.json();
       }).then(function (res) {
         _this.fiches = res.data;
+        _this.show = false;
         vm.makePagination(res);
       })["catch"](function (err) {
         return console.log(err);
@@ -231,182 +238,209 @@ var render = function () {
     "div",
     { staticClass: "container" },
     [
-      _c("navb", { attrs: { name: _vm.name, show: "false" } }),
+      _vm.show
+        ? _c("b-overlay", {
+            staticClass: "d-inline-block",
+            staticStyle: { height: "500px", width: "100%" },
+            attrs: { show: _vm.show },
+          })
+        : _vm._e(),
       _vm._v(" "),
-      _vm.fiches.length == 0
+      !_vm.show
         ? _c(
-            "b-card",
+            "div",
             [
-              _c(
-                "b-card-body",
-                [
-                  _c(
-                    "b-container",
-                    { staticClass: "bv-example-row text-center" },
+              _c("navb", { attrs: { name: _vm.name, show: "false" } }),
+              _vm._v(" "),
+              _vm.fiches.length == 0
+                ? _c(
+                    "b-card",
                     [
                       _c(
-                        "b-row",
-                        { staticClass: "mb-2" },
+                        "b-card-body",
                         [
-                          _c("b-row", [
-                            _c("h6", [_vm._v("Aucun fiche a afficher")]),
-                          ]),
+                          _c(
+                            "b-container",
+                            { staticClass: "bv-example-row text-center" },
+                            [
+                              _c(
+                                "b-row",
+                                { staticClass: "mb-2" },
+                                [
+                                  _c("b-row", [
+                                    _c("h6", [
+                                      _vm._v("Aucun fiche a afficher"),
+                                    ]),
+                                  ]),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
                         ],
                         1
                       ),
                     ],
                     1
-                  ),
-                ],
-                1
-              ),
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm._l(_vm.fiches, function (fiche) {
-        return _c(
-          "b-card",
-          { key: fiche.id },
-          [
-            _c(
-              "b-card-body",
-              [
-                _c(
-                  "b-container",
-                  { staticClass: "bv-example-row text-center" },
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(_vm.fiches, function (fiche) {
+                return _c(
+                  "b-card",
+                  { key: fiche.id },
                   [
                     _c(
-                      "b-row",
-                      { staticClass: "mb-2" },
+                      "b-card-body",
                       [
                         _c(
-                          "b-row",
+                          "b-container",
+                          { staticClass: "bv-example-row text-center" },
                           [
-                            _c("b-col", [
-                              _vm._v(
-                                "employe :" +
-                                  _vm._s(
-                                    fiche.employes.nom +
-                                      " " +
-                                      fiche.employes.prenom
-                                  )
-                              ),
-                            ]),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-row",
-                          [
-                            _c("b-col", [
-                              _vm._v("date : " + _vm._s(fiche.date)),
-                            ]),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "b-row",
-                          [
-                            _c("b-col", [
-                              _vm._v("total : " + _vm._s(fiche.total)),
-                            ]),
+                            _c(
+                              "b-row",
+                              { staticClass: "mb-2" },
+                              [
+                                _c(
+                                  "b-row",
+                                  [
+                                    _c("b-col", [
+                                      _vm._v(
+                                        "employe :" +
+                                          _vm._s(
+                                            fiche.employes.nom +
+                                              " " +
+                                              fiche.employes.prenom
+                                          )
+                                      ),
+                                    ]),
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "b-row",
+                                  [
+                                    _c("b-col", [
+                                      _vm._v("date : " + _vm._s(fiche.date)),
+                                    ]),
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "b-row",
+                                  [
+                                    _c("b-col", [
+                                      _vm._v("total : " + _vm._s(fiche.total)),
+                                    ]),
+                                  ],
+                                  1
+                                ),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { variant: "success" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.getPdf(fiche)
+                                  },
+                                },
+                              },
+                              [_vm._v("Afficher")]
+                            ),
                           ],
                           1
                         ),
                       ],
                       1
                     ),
-                    _vm._v(" "),
-                    _c(
-                      "b-button",
-                      {
-                        attrs: { variant: "success" },
-                        on: {
-                          click: function ($event) {
-                            return _vm.getPdf(fiche)
-                          },
-                        },
-                      },
-                      [_vm._v("Afficher")]
-                    ),
                   ],
                   1
-                ),
-              ],
-              1
-            ),
-          ],
-          1
-        )
-      }),
-      _vm._v(" "),
-      _c("nav", { staticClass: "row" }, [
-        _c("ul", { staticClass: "pagination w-auto mx-auto" }, [
-          _c(
-            "li",
-            {
-              staticClass: "page-item",
-              class: [{ disabled: !_vm.pagination.prev_page_url }],
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "btn page-link",
-                  on: {
-                    click: function ($event) {
-                      return _vm.fetchFiches(_vm.pagination.prev_page_url)
+                )
+              }),
+              _vm._v(" "),
+              _c("nav", { staticClass: "row" }, [
+                _c("ul", { staticClass: "pagination w-auto mx-auto" }, [
+                  _c(
+                    "li",
+                    {
+                      staticClass: "page-item",
+                      class: [{ disabled: !_vm.pagination.prev_page_url }],
                     },
-                  },
-                },
-                [_vm._v("Precedent")]
-              ),
-            ]
-          ),
-          _vm._v(" "),
-          _c("li", { staticClass: "page-item" }, [
-            _c(
-              "a",
-              { staticClass: "page-link text-dark", attrs: { href: "#" } },
-              [
-                _vm._v(
-                  _vm._s(
-                    _vm.pagination.current_page + "/" + _vm.pagination.last_page
-                  )
-                ),
-              ]
-            ),
-          ]),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "page-item",
-              class: [{ disabled: !_vm.pagination.next_page_url }],
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "btn page-link",
-                  on: {
-                    click: function ($event) {
-                      return _vm.fetchFiches(_vm.pagination.next_page_url)
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn page-link",
+                          on: {
+                            click: function ($event) {
+                              return _vm.fetchFiches(
+                                _vm.pagination.prev_page_url
+                              )
+                            },
+                          },
+                        },
+                        [_vm._v("Precedent")]
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "page-item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "page-link text-dark",
+                        attrs: { href: "#" },
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.pagination.current_page +
+                              "/" +
+                              _vm.pagination.last_page
+                          )
+                        ),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    {
+                      staticClass: "page-item",
+                      class: [{ disabled: !_vm.pagination.next_page_url }],
                     },
-                  },
-                },
-                [_vm._v("Suivant")]
-              ),
-            ]
-          ),
-        ]),
-      ]),
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn page-link",
+                          on: {
+                            click: function ($event) {
+                              return _vm.fetchFiches(
+                                _vm.pagination.next_page_url
+                              )
+                            },
+                          },
+                        },
+                        [_vm._v("Suivant")]
+                      ),
+                    ]
+                  ),
+                ]),
+              ]),
+            ],
+            2
+          )
+        : _vm._e(),
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
