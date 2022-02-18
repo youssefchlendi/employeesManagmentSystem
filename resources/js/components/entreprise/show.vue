@@ -1,5 +1,10 @@
 <template>
     <div>
+        <formEmploye
+                @addEmploye="updateEmploye"
+                :entreprises="entreprises"
+                :oldEmploye="employe"
+            />
         <b-alert
             :show="alert.dismissCountDown"
             dismissible
@@ -190,6 +195,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -258,6 +264,7 @@ export default {
                         this.alert.variant = "danger";
                         this.alert.msg = "Employe supprimé avec succès"
                         this.alert.dismissCountDown = 5;
+                $("#ficheModal").modal('hide');
 
                     })
                     .then(data => {
@@ -273,6 +280,7 @@ export default {
                 $("#exampleModal").modal('show');
             } else if (action == "view") {
                 this.entreprise = payload;
+                console.log(payload.employes);
                 this.id = payload.id;
                 $("#ficheModal").modal('show');
             }
