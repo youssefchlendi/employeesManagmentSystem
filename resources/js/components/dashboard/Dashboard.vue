@@ -59,7 +59,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="card card-chart">
-                                <div class="card-header card-header-success">
+                                <div class="card-header card-header-success" style="background: linear-gradient(130deg, rgba(106,191,105,1) 0%, rgba(56,142,60,1) 100%); ">
                                     <LineChart v-if="loaded" :labels="labels" :data="data" />
                                 </div>
                                 <div class="card-body">
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card card-chart">
-                                <div class="card-header card-header-warning">
+                                <div class="card-header card-header-warning" style="background: linear-gradient(130deg, rgba(255,138,80,1) 0%, rgba(255,87,34,1) 100%);">
                                     <BarChart v-if="loaded" :labels="labelsE" :data="dataE" />
                                 </div>
                                 <div class="card-body">
@@ -91,7 +91,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="card card-chart">
-                                <div class="card-header card-header-danger">
+                                <div class="card-header card-header-danger" style="background-image: linear-gradient(130deg, rgb(128, 214, 255) 0%, rgb(66, 165, 245) 100%);">
                                     <AreaChart v-if="loaded" :labels="labelsA" :data="dataA" />
                                 </div>
                                 <div class="card-body">
