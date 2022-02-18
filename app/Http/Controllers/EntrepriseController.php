@@ -38,7 +38,7 @@ class EntrepriseController extends Controller
     }
 
     public function showAll(){
-        $entreprises = Entreprise::all();
+        $entreprises = Entreprise::with('employes')->get();
         if(!empty($entreprises)){
             return response()->json(['data'=>$entreprises],200);
         }else{

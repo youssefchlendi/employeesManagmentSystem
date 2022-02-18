@@ -1,7 +1,8 @@
 <template>
     <sidebar-menu
         :show-one-child="true"
-        @toggle-collapse="checkWidth"
+        @toggle-collapse="checkWidth(1)"
+        @item-click="checkWidth(0)"
         :width="'200px'"
         :menu="menu"
     />
@@ -57,15 +58,31 @@ export default {
             ]
         }
     },
+    updated() {
+        this.checkWidth();
+        console.log('tes');
+    },
     methods: {
-        checkWidth() {
+        checkWidth(t = 0) {
             let docs = document.querySelectorAll('.vsm_expanded');
-            if (docs.length == 0) {
-                document.querySelector('#contain').classList.add('contain');
-                document.querySelector('#contain').classList.remove('contain-closed');
+            if (t == 1) {
+                console.log("1");
+                if (docs.length == 0) {
+                    document.querySelector('#contain').classList.add('contain');
+                    document.querySelector('#contain').classList.remove('contain-closed');
+                } else {
+                    document.querySelector('#contain').classList.remove('contain');
+                    document.querySelector('#contain').classList.add('contain-closed');
+                }
             } else {
-                document.querySelector('#contain').classList.remove('contain');
-                document.querySelector('#contain').classList.add('contain-closed');
+                console.log("0");
+                if (docs.length == 0) {
+                    document.querySelector('#contain').classList.remove('contain');
+                    document.querySelector('#contain').classList.add('contain-closed');
+                } else {
+                    document.querySelector('#contain').classList.add('contain');
+                    document.querySelector('#contain').classList.remove('contain-closed');
+                }
             }
         }
 
