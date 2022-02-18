@@ -38,7 +38,7 @@ class EntrepriseController extends Controller
     }
 
     public function showAll(){
-        $entreprises = Entreprise::select("id","titre")->get();
+        $entreprises = Entreprise::all();
         if(!empty($entreprises)){
             return response()->json(['data'=>$entreprises],200);
         }else{
