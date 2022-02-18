@@ -2,7 +2,7 @@
     <div style>
         <div class="content">
             <div class="pt-3 container-fluid">
-                <topnav show="true" :search="search" @fetch="searchEntreprise" />
+                <topnav show="false" :search="search" @fetch="searchEntreprise" />
 
                 <b-overlay
                     v-if="show"
@@ -11,8 +11,8 @@
                     style="height:500px;width:100%"
                 ></b-overlay>
                 <div v-if="!show">
-                    <b-container class="bv-example-row">
-                        <b-row class="text-center mb-2">
+                    <b-container class="bv-example-row py-0">
+                        <b-row class="text-center ">
                             <b-col cols="8">
                                 <button
                                     type="button"
@@ -85,22 +85,22 @@ export default {
         this.fetchEntreprises();
     },
     methods: {
-        fetchEntreprises(page_url = "/api/entreprise") {
+        fetchEntreprises(page_url = "/api/entreprise/") {
             let vm = this;
-            let headersi = new Headers();
-            headersi.append('Content-Type', 'application/json');
-            headersi.append('Authorization', 'auth');
+            // let headersi = new Headers();
+            // headersi.append('Content-Type', 'application/json');
+            // headersi.append('Authorization', 'auth');
             fetch(page_url, {
-                method: 'POST',
-                body: JSON.stringify({ 'search': this.search }),
-                headers: headersi
+                method: 'get',
+                // body: JSON.stringify({ 'search': this.search }),
+                // headers: headersi
 
             })
                 .then(res => res.json())
                 .then(res => {
                     this.entreprises = res.data;
                     this.show = false;
-                    vm.makePagination(res);
+                    // vm.makePagination(res);
                 })
                 .catch(err => console.log(err))
         },
