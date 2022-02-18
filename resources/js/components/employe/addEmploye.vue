@@ -24,12 +24,16 @@
                 </b-alert>
             <div class="messages"></div>
                 <div class>
+                    <b-card>
                     <form id="contact-form" @submit.prevent="addEmploye" role="form">
                         <div class="controls">
+                            <!-- <b-card> -->
+                                <div class="container">
+
                             <div class="row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="text-white" for="form_name">Nom *</label>
+                                        <label class=" " for="form_name">Nom *</label>
                                         <input
                                             id="form_name"
                                             type="text"
@@ -44,7 +48,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="text-white" for="form_lastname">Prenom *</label>
+                                        <label class=" " for="form_lastname">Prenom *</label>
                                         <input
                                             id="form_lastname"
                                             type="text"
@@ -59,10 +63,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- </b-card> -->
+                            <!-- <b-card> -->
                             <div class="row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="text-white" for="form_name">CIN *</label>
+                                        <label class=" " for="form_name">CIN *</label>
                                         <input
                                             id="form_name"
                                             type="number"
@@ -80,7 +86,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="text-white" for="form_lastname">Matricule cnss *</label>
+                                        <label class=" " for="form_lastname">Matricule cnss *</label>
                                         <input
                                             id="form_lastname"
                                             type="text"
@@ -95,10 +101,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- </b-card> -->
+                            <!-- <b-card> -->
                             <div class="row my-2">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="text-white" for="form_name">Fonction *</label>
+                                        <label class=" " for="form_name">Fonction *</label>
                                         <input
                                             id="form_name"
                                             type="text"
@@ -114,7 +122,7 @@
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="text-white" for="form_lastname">Entreprise *</label>
+                                        <label class=" " for="form_lastname">Entreprise *</label>
                                         <select
                                             required="required"
                                             class="form-select"
@@ -132,7 +140,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <!-- </b-card> -->
                             <div class="row">
                                 <div class="col"></div>
                                 <div class="col-lg-6">
@@ -158,9 +166,11 @@
                                         </div>
                                     </div>
                                 </div>
+                                </div>
                             </div>
                         </div>
                     </form>
+                    </b-card>
                 </div>
             </div>
         </div>
