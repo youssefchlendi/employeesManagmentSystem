@@ -14,7 +14,8 @@ export default {
                         data: this.data,
                         backgroundColor: "white",
                         borderColor: "white",
-                        pointBackgroundColor: "white"
+                        pointBackgroundColor: "white",
+                        fontColor:"white"
                     }
                 ]
             },
@@ -23,6 +24,7 @@ export default {
                 maintainAspectRatio: false,
                 title: {
                     display: true,
+                                  fontColor: 'white',
                     text: "My Data"
                 }
             }

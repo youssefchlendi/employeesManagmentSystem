@@ -92,7 +92,7 @@
                         <div class="col-md-4">
                             <div class="card card-chart">
                                 <div class="card-header card-header-danger" style="background-image: linear-gradient(130deg, rgb(128, 214, 255) 0%, rgb(66, 165, 245) 100%);">
-                                    <AreaChart v-if="loaded" :labels="labelsA" :data="dataA" />
+                                    <AreaChart style="color:white!important" v-if="loaded" :labels="labelsA" :data="dataA" />
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title">Salaire moyen par entreprise</h4>

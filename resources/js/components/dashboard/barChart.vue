@@ -12,7 +12,12 @@ export default {
                     {
                         label: "Employé/entreprise",
                         data: this.data,
-                        backgroundColor: "#FDE7E7",
+                        backgroundColor:[
+                            '#ffcdd2',
+                            '#f8bbd0',
+                            '#d1c4e9',
+                            '#c5cae9',
+                        ],
                         borderColor: "white",
                         pointBackgroundColor: "white",
 
@@ -25,8 +30,11 @@ export default {
                 title: {
                     display: true,
                     text: "My Data"
-                }
-            }
+                },
+                fontColor:'red'
+            },
+
+
         );
     }
 };

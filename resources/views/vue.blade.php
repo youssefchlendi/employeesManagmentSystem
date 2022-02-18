@@ -31,13 +31,14 @@ background: linear-gradient(130deg, rgba(38,50,56,1) 0%, rgba(69,90,100,1) 54%, 
     <navbar></navbar>
     @endif
     <div class="mr-4">
+        <main>
         @if(!preg_match("/^\/entrepriseDetails\/?(?:[^\/]+\/?)*$/",parse_url(Request::url(),PHP_URL_PATH)) && !preg_match('/^\/employeDetails\/?(?:[^\/]+\/?)*$/',parse_url(Request::url(),PHP_URL_PATH)))
 
         <router-view class="contain " id="contain" style="margin-left:100px;background-color:#b0bec5b3" ></router-view>
         @else
         <router-view ></router-view>
         @endif
-
+        </main>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

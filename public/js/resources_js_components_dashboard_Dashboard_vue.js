@@ -253,7 +253,7 @@ __webpack_require__.r(__webpack_exports__);
       datasets: [{
         label: "Salaire moyenne/entreprise",
         data: this.data,
-        backgroundColor: "#FDE7E7",
+        backgroundColor: "white",
         borderColor: "white",
         pointBackgroundColor: "white",
         width: 20
@@ -293,7 +293,7 @@ __webpack_require__.r(__webpack_exports__);
       datasets: [{
         label: "Employé/entreprise",
         data: this.data,
-        backgroundColor: "#FDE7E7",
+        backgroundColor: ['#ffcdd2', '#f8bbd0', '#d1c4e9', '#c5cae9'],
         borderColor: "white",
         pointBackgroundColor: "white"
       }]
@@ -303,7 +303,8 @@ __webpack_require__.r(__webpack_exports__);
       title: {
         display: true,
         text: "My Data"
-      }
+      },
+      fontColor: 'red'
     });
   }
 });
@@ -334,13 +335,15 @@ __webpack_require__.r(__webpack_exports__);
         data: this.data,
         backgroundColor: "white",
         borderColor: "white",
-        pointBackgroundColor: "white"
+        pointBackgroundColor: "white",
+        fontColor: "white"
       }]
     }, {
       responsive: true,
       maintainAspectRatio: false,
       title: {
         display: true,
+        fontColor: 'white',
         text: "My Data"
       }
     });
@@ -15206,6 +15209,7 @@ var render = function () {
                     [
                       _vm.loaded
                         ? _c("AreaChart", {
+                            staticStyle: { color: "white!important" },
                             attrs: { labels: _vm.labelsA, data: _vm.dataA },
                           })
                         : _vm._e(),

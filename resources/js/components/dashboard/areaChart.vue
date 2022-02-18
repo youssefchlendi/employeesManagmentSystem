@@ -19,7 +19,7 @@ export default {
                     {
                         label: "Salaire moyenne/entreprise",
                         data: this.data,
-                        backgroundColor: "#FDE7E7",
+                        backgroundColor: "white",
                         borderColor: "white",
                         pointBackgroundColor: "white",
                         width: 20
