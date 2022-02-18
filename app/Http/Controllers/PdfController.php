@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Employe;
 use App\Models\Entreprise;
 use App\Models\Fiche;
@@ -56,9 +56,9 @@ class PdfController extends Controller
 
 
         $pdf = PDF::loadView('myPDF', $data);
-        // return view('myPDF')->with('data', $data);
+        // return view('myPDFC')->with('data', $data);
 
-        file_put_contents('fichedepaies/f'.$month.$Year.$employe['nom'].$employe['prenom'].$employe['cin'].'.pdf', $pdf->download('itsolutionstuff.pdf'));
+        // file_put_contents('fichedepaies/f'.$month.$Year.$employe['nom'].$employe['prenom'].$employe['cin'].'.pdf', $pdf->download('itsolutionstuff.pdf'));
         return $pdf->download('itsolutionstuff.pdf');
 
     }
