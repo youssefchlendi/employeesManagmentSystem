@@ -3,7 +3,7 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
+ import Vuelidate from 'vuelidate'
 require('./bootstrap');
 require('../sass/app.scss');
 import Vue from 'vue';
@@ -29,6 +29,7 @@ Vue.use(vuetify);
 Vue.use(VueSidebarMenu)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+Vue.use(Vuelidate)
 
 window.Vue = require('vue');
 window.router=router;

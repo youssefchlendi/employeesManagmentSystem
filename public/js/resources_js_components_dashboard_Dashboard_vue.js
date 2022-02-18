@@ -148,6 +148,56 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -175,7 +225,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       lastAddedEmploye: '',
       lastAddedFiche: '',
       labelsE: '',
-      dataE: ''
+      dataE: '',
+      show: true
     };
   },
   mounted: function mounted() {
@@ -219,6 +270,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.labels = _this2.frequenceFiches.labels;
         _this2.data = _this2.frequenceFiches.data;
         _this2.loaded = true;
+        _this2.show = false;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -14999,241 +15051,381 @@ var render = function () {
           [
             _c("topnav", { attrs: { show: "false" } }),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-lg-4 col-md-6 col-sm-6" }, [
-                _c("div", { staticClass: "card card-stats" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "card-header card-header-warning card-header-icon",
-                    },
-                    [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "card-category" }, [
-                        _vm._v("total entreprises"),
-                      ]),
-                      _vm._v(" "),
-                      _c("h3", { staticClass: "card-title" }, [
-                        _vm._v(_vm._s(_vm.totalEntreprise)),
-                      ]),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer" }, [
-                    _c("div", { staticClass: "stats" }, [
-                      _c(
-                        "a",
-                        {
-                          on: {
-                            click: function ($event) {
-                              return _vm.$router.push({ name: "Entreprise" })
-                            },
-                          },
-                        },
-                        [_vm._v("Voir entreprise")]
-                      ),
-                    ]),
-                  ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-4 col-md-6 col-sm-6" }, [
-                _c("div", { staticClass: "card card-stats" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "card-header card-header-success card-header-icon",
-                    },
-                    [
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "card-category" }, [
-                        _vm._v("total employés"),
-                      ]),
-                      _vm._v(" "),
-                      _c("h3", { staticClass: "card-title" }, [
-                        _vm._v(_vm._s(_vm.totalEmploye)),
-                      ]),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer" }, [
-                    _c("div", { staticClass: "stats" }, [
-                      _c(
-                        "a",
-                        {
-                          on: {
-                            click: function ($event) {
-                              return _vm.$router.push({ name: "Employe" })
-                            },
-                          },
-                        },
-                        [_vm._v("Voir employés")]
-                      ),
-                    ]),
-                  ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-4 col-md-6 col-sm-6" }, [
-                _c("div", { staticClass: "card card-stats" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "card-header card-header-danger card-header-icon",
-                    },
-                    [
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "card-category" }, [
-                        _vm._v("total fiches"),
-                      ]),
-                      _vm._v(" "),
-                      _c("h3", { staticClass: "card-title" }, [
-                        _vm._v(_vm._s(_vm.totalFiche)),
-                      ]),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer" }, [
-                    _c("div", { staticClass: "stats" }, [
-                      _c(
-                        "a",
-                        {
-                          on: {
-                            click: function ($event) {
-                              return _vm.$router.push({ name: "Fiche" })
-                            },
-                          },
-                        },
-                        [_vm._v("Voir fiches")]
-                      ),
-                    ]),
-                  ]),
-                ]),
-              ]),
-            ]),
+            _vm.show
+              ? _c("b-overlay", {
+                  staticClass: "d-inline-block",
+                  staticStyle: { height: "500px", width: "100%" },
+                  attrs: { show: _vm.show },
+                })
+              : _vm._e(),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("div", { staticClass: "card card-chart" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "card-header card-header-success",
-                      staticStyle: {
-                        background:
-                          "linear-gradient(130deg, rgba(106,191,105,1) 0%, rgba(56,142,60,1) 100%)",
-                      },
-                    },
-                    [
-                      _vm.loaded
-                        ? _c("LineChart", {
-                            attrs: { labels: _vm.labels, data: _vm.data },
-                          })
-                        : _vm._e(),
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer" }, [
-                    _c("div", { staticClass: "stats" }, [
-                      _c("i", { staticClass: "material-icons" }, [
-                        _vm._v("access_time"),
-                      ]),
-                      _vm._v(
-                        "\n                                    Derniere modification " +
-                          _vm._s(_vm.lastAddedFiche) +
-                          "\n                                "
-                      ),
-                    ]),
+            !_vm.show
+              ? _c("div", [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-4 col-md-6 col-sm-6" },
+                      [
+                        _c("md-card", { attrs: { "md-with-hover": "" } }, [
+                          _c("div", { staticClass: "card card-stats" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "card-header card-header-warning card-header-icon",
+                              },
+                              [
+                                _c("div", { staticClass: "card-icon" }, [
+                                  _c("i", { staticClass: "material-icons" }, [
+                                    _vm._v("apartment"),
+                                  ]),
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "card-category" }, [
+                                  _vm._v("total entreprises"),
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "card-title" }, [
+                                  _vm._v(_vm._s(_vm.totalEntreprise)),
+                                ]),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "card-footer" }, [
+                              _c("div", { staticClass: "stats" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.$router.push({
+                                          name: "Entreprise",
+                                        })
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("Voir entreprise")]
+                                ),
+                              ]),
+                            ]),
+                          ]),
+                        ]),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-4 col-md-6 col-sm-6" },
+                      [
+                        _c("md-card", { attrs: { "md-with-hover": "" } }, [
+                          _c("div", { staticClass: "card card-stats" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "card-header card-header-success card-header-icon",
+                              },
+                              [
+                                _c("div", { staticClass: "card-icon" }, [
+                                  _c("i", { staticClass: "material-icons" }, [
+                                    _vm._v("person"),
+                                  ]),
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "card-category" }, [
+                                  _vm._v("total employés"),
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "card-title" }, [
+                                  _vm._v(_vm._s(_vm.totalEmploye)),
+                                ]),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "card-footer" }, [
+                              _c("div", { staticClass: "stats" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.$router.push({
+                                          name: "Employe",
+                                        })
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("Voir employés")]
+                                ),
+                              ]),
+                            ]),
+                          ]),
+                        ]),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-lg-4 col-md-6 col-sm-6" },
+                      [
+                        _c("md-card", { attrs: { "md-with-hover": "" } }, [
+                          _c("div", { staticClass: "card card-stats" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "card-header card-header-danger card-header-icon",
+                              },
+                              [
+                                _c("div", { staticClass: "card-icon" }, [
+                                  _c("i", { staticClass: "material-icons" }, [
+                                    _vm._v("article"),
+                                  ]),
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "card-category" }, [
+                                  _vm._v("total fiches"),
+                                ]),
+                                _vm._v(" "),
+                                _c("h3", { staticClass: "card-title" }, [
+                                  _vm._v(_vm._s(_vm.totalFiche)),
+                                ]),
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "card-footer" }, [
+                              _c("div", { staticClass: "stats" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.$router.push({
+                                          name: "Fiche",
+                                        })
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("Voir fiches")]
+                                ),
+                              ]),
+                            ]),
+                          ]),
+                        ]),
+                      ],
+                      1
+                    ),
                   ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("div", { staticClass: "card card-chart" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "card-header card-header-warning",
-                      staticStyle: {
-                        background:
-                          "linear-gradient(130deg, rgba(255,138,80,1) 0%, rgba(255,87,34,1) 100%)",
-                      },
-                    },
-                    [
-                      _vm.loaded
-                        ? _c("BarChart", {
-                            attrs: { labels: _vm.labelsE, data: _vm.dataE },
-                          })
-                        : _vm._e(),
-                    ],
-                    1
-                  ),
                   _vm._v(" "),
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer" }, [
-                    _c("div", { staticClass: "stats" }, [
-                      _c("i", { staticClass: "material-icons" }, [
-                        _vm._v("access_time"),
-                      ]),
-                      _vm._v(
-                        "\n                                    Derniere modification " +
-                          _vm._s(_vm.lastAddedEmploye) +
-                          "\n                                "
-                      ),
-                    ]),
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-md-4" },
+                      [
+                        _c("md-card", { attrs: { "md-with-hover": "" } }, [
+                          _c(
+                            "div",
+                            { staticClass: "card card-chart" },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "card-header card-header-success",
+                                  staticStyle: {
+                                    background:
+                                      "linear-gradient(130deg, rgba(106,191,105,1) 0%, rgba(56,142,60,1) 100%)",
+                                  },
+                                },
+                                [
+                                  _vm.loaded
+                                    ? _c("LineChart", {
+                                        attrs: {
+                                          labels: _vm.labels,
+                                          data: _vm.data,
+                                        },
+                                      })
+                                    : _vm._e(),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "md-ripple",
+                                { on: { click: _vm.fetchStats } },
+                                [
+                                  _c("div", { staticClass: "card-body" }, [
+                                    _c("h4", { staticClass: "card-title" }, [
+                                      _vm._v(
+                                        "Fréquence de génération des fiches"
+                                      ),
+                                    ]),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "card-footer" }, [
+                                    _c("div", { staticClass: "stats" }, [
+                                      _c(
+                                        "i",
+                                        { staticClass: "material-icons" },
+                                        [_vm._v("access_time")]
+                                      ),
+                                      _vm._v(
+                                        "\n                                        Derniere modification " +
+                                          _vm._s(_vm.lastAddedFiche) +
+                                          "\n                                    "
+                                      ),
+                                    ]),
+                                  ]),
+                                ]
+                              ),
+                            ],
+                            1
+                          ),
+                        ]),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-md-4" },
+                      [
+                        _c("md-card", { attrs: { "md-with-hover": "" } }, [
+                          _c(
+                            "div",
+                            { staticClass: "card card-chart" },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "card-header card-header-warning",
+                                  staticStyle: {
+                                    background:
+                                      "linear-gradient(130deg, rgba(255,138,80,1) 0%, rgba(255,87,34,1) 100%)",
+                                  },
+                                },
+                                [
+                                  _vm.loaded
+                                    ? _c("BarChart", {
+                                        attrs: {
+                                          labels: _vm.labelsE,
+                                          data: _vm.dataE,
+                                        },
+                                      })
+                                    : _vm._e(),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "md-ripple",
+                                { on: { click: _vm.fetchStats } },
+                                [
+                                  _c("div", { staticClass: "card-body" }, [
+                                    _c("h4", { staticClass: "card-title" }, [
+                                      _vm._v(
+                                        "Nombre d'employés par entreprise"
+                                      ),
+                                    ]),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "card-footer" }, [
+                                    _c("div", { staticClass: "stats" }, [
+                                      _c(
+                                        "i",
+                                        { staticClass: "material-icons" },
+                                        [_vm._v("access_time")]
+                                      ),
+                                      _vm._v(
+                                        "\n                                        Derniere modification " +
+                                          _vm._s(_vm.lastAddedEmploye) +
+                                          "\n                                    "
+                                      ),
+                                    ]),
+                                  ]),
+                                ]
+                              ),
+                            ],
+                            1
+                          ),
+                        ]),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "col-md-4" },
+                      [
+                        _c("md-card", { attrs: { "md-with-hover": "" } }, [
+                          _c(
+                            "div",
+                            { staticClass: "card card-chart" },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "card-header card-header-danger",
+                                  staticStyle: {
+                                    "background-image":
+                                      "linear-gradient(130deg, rgb(128, 214, 255) 0%, rgb(66, 165, 245) 100%)",
+                                  },
+                                },
+                                [
+                                  _vm.loaded
+                                    ? _c("AreaChart", {
+                                        staticStyle: {
+                                          color: "white!important",
+                                        },
+                                        attrs: {
+                                          labels: _vm.labelsA,
+                                          data: _vm.dataA,
+                                        },
+                                      })
+                                    : _vm._e(),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "md-ripple",
+                                { on: { click: _vm.fetchStats } },
+                                [
+                                  _c("div", { staticClass: "card-body" }, [
+                                    _c("h4", { staticClass: "card-title" }, [
+                                      _vm._v("Salaire moyen par entreprise"),
+                                    ]),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "card-footer" }, [
+                                    _c("div", { staticClass: "stats" }, [
+                                      _c(
+                                        "i",
+                                        { staticClass: "material-icons" },
+                                        [_vm._v("access_time")]
+                                      ),
+                                      _vm._v(
+                                        "\n                                        Derniere modification " +
+                                          _vm._s(_vm.lastAddedFiche) +
+                                          "\n                                    "
+                                      ),
+                                    ]),
+                                  ]),
+                                ]
+                              ),
+                            ],
+                            1
+                          ),
+                        ]),
+                      ],
+                      1
+                    ),
                   ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-4" }, [
-                _c("div", { staticClass: "card card-chart" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "card-header card-header-danger",
-                      staticStyle: {
-                        "background-image":
-                          "linear-gradient(130deg, rgb(128, 214, 255) 0%, rgb(66, 165, 245) 100%)",
-                      },
-                    },
-                    [
-                      _vm.loaded
-                        ? _c("AreaChart", {
-                            staticStyle: { color: "white!important" },
-                            attrs: { labels: _vm.labelsA, data: _vm.dataA },
-                          })
-                        : _vm._e(),
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._m(5),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer" }, [
-                    _c("div", { staticClass: "stats" }, [
-                      _c("i", { staticClass: "material-icons" }, [
-                        _vm._v("access_time"),
-                      ]),
-                      _vm._v(
-                        "\n                                    Derniere modification " +
-                          _vm._s(_vm.lastAddedFiche) +
-                          "\n                                "
-                      ),
-                    ]),
-                  ]),
-                ]),
-              ]),
-            ]),
+                ])
+              : _vm._e(),
           ],
           1
         ),
@@ -15241,62 +15433,7 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-icon" }, [
-      _c("i", { staticClass: "material-icons" }, [_vm._v("apartment")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-icon" }, [
-      _c("i", { staticClass: "material-icons" }, [_vm._v("person")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-icon" }, [
-      _c("i", { staticClass: "material-icons" }, [_vm._v("article")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("h4", { staticClass: "card-title" }, [
-        _vm._v("Fréquence de génération des fiches"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("h4", { staticClass: "card-title" }, [
-        _vm._v("Nombre d'employés par entreprise"),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("h4", { staticClass: "card-title" }, [
-        _vm._v("Salaire moyen par entreprise"),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
