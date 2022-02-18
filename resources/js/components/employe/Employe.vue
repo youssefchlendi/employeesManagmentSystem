@@ -2,7 +2,7 @@
     <div style>
         <div class="content">
             <div class="pt-3 pb-3 container-fluid">
-                <topnav show="false" :search="search" @fetch="searchEmploye" />
+                <topnav show="true" :search="search" @fetch="searchEmploye" />
 
                 <b-overlay
                     v-if="show"
@@ -11,7 +11,8 @@
                     style="height:500px;width:100%"
                 ></b-overlay>
                 <div v-if="!show">
-                    <b-row class="text-center mb-2">
+                    <b-container class="bv-example-row py-0">
+                    <b-row class="text-center ">
                         <b-col cols="8">
                             <button
                                 type="button"
@@ -23,6 +24,7 @@
                         </b-col>
                         <b-col></b-col>
                     </b-row>
+                    </b-container>
                     <b-alert
                         :show="alert.dismissCountDown"
                         dismissible
@@ -37,7 +39,7 @@
                         :entreprises="entreprises"
                         :oldEmploye="employe"
                     />
-                    <b-card>
+                    <!-- <b-card> -->
                         <showEmploye
                             :employes="employes"
                             @deleteEmploye="deleteEmploye"
@@ -46,7 +48,7 @@
                             :pagination="pagination"
                             :entreprises="entreprises"
                         />
-                    </b-card>
+                    <!-- </b-card> -->
                 </div>
             </div>
         </div>
@@ -99,21 +101,39 @@ export default {
         }
     },
     methods: {
-        fetchEmployes(page_url = "/api/employe/a") {
+        fetchEmployes(page_url = "/api/employe") {
+            // let vm = this;
+            // let headersi = new Headers();
+            // headersi.append('Content-Type', 'application/json');
+            // headersi.append('Authorization', 'auth');
+            // fetch(page_url, {
+            //     method: 'GET',
+            //     headers: headersi
+
+            // })
+            //     .then(res => res.json())
+            //     .then(res => {
+            //         this.employes = res.data;
+            //         this.employes.forEach(e => e.entreprise = this.entrepriseById(e.entreprise_id));
+            //         this.show = false;
+            //         vm.makePagination(res);
+            //     })
+            //     .catch(err => console.log(err))
             let vm = this;
+            // page_url = this.search!=''?'/api/employe':page_url;
             let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
-            headersi.append('Authorization', 'auth');
+            headersi.append('Authorization','auth');
             fetch(page_url, {
-                method: 'GET',
+                method: 'POST',
+                body: JSON.stringify({'search' : this.search}),
                 headers: headersi
-
             })
                 .then(res => res.json())
                 .then(res => {
                     this.employes = res.data;
-                    this.employes.forEach(e => e.entreprise = this.entrepriseById(e.entreprise_id));
                     this.show = false;
+
                     vm.makePagination(res);
                 })
                 .catch(err => console.log(err))
