@@ -16,7 +16,7 @@
                             <div class="input-group">
                                 <input
                                     v-model="Rebrique.titre"
-                                    class="bg-light form-control small"
+                                    class="bg-light border-0 form-control small"
                                     type="text"
                                     placeholder="titre"
                                 />

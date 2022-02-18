@@ -69,6 +69,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -116,23 +118,38 @@ __webpack_require__.r(__webpack_exports__);
     fetchEmployes: function fetchEmployes() {
       var _this = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/employe/a";
-      var vm = this;
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/employe";
+      // let vm = this;
+      // let headersi = new Headers();
+      // headersi.append('Content-Type', 'application/json');
+      // headersi.append('Authorization', 'auth');
+      // fetch(page_url, {
+      //     method: 'GET',
+      //     headers: headersi
+      // })
+      //     .then(res => res.json())
+      //     .then(res => {
+      //         this.employes = res.data;
+      //         this.employes.forEach(e => e.entreprise = this.entrepriseById(e.entreprise_id));
+      //         this.show = false;
+      //         vm.makePagination(res);
+      //     })
+      //     .catch(err => console.log(err))
+      var vm = this; // page_url = this.search!=''?'/api/employe':page_url;
+
       var headersi = new Headers();
       headersi.append('Content-Type', 'application/json');
       headersi.append('Authorization', 'auth');
       fetch(page_url, {
-        method: 'GET',
+        method: 'POST',
+        body: JSON.stringify({
+          'search': this.search
+        }),
         headers: headersi
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
         _this.employes = res.data;
-
-        _this.employes.forEach(function (e) {
-          return e.entreprise = _this.entrepriseById(e.entreprise_id);
-        });
-
         _this.show = false;
         vm.makePagination(res);
       })["catch"](function (err) {
@@ -348,6 +365,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     employes: Array,
@@ -421,7 +497,7 @@ __webpack_require__.r(__webpack_exports__);
           paginationSearchText: 'Aller vers page',
           searchText: 'recherche',
           downloadButtonText: 'TELECHARGER',
-          emptyTableText: 'Aucun rubrique trouvée'
+          emptyTableText: 'Aucun employé trouvée'
         },
         actionMode: "single",
         columns: [{
@@ -676,7 +752,7 @@ var render = function () {
         { staticClass: "pt-3 pb-3 container-fluid" },
         [
           _c("topnav", {
-            attrs: { show: "false", search: _vm.search },
+            attrs: { show: "true", search: _vm.search },
             on: { fetch: _vm.searchEmploye },
           }),
           _vm._v(" "),
@@ -693,26 +769,33 @@ var render = function () {
                 "div",
                 [
                   _c(
-                    "b-row",
-                    { staticClass: "text-center mb-2" },
+                    "b-container",
+                    { staticClass: "bv-example-row py-0" },
                     [
-                      _c("b-col", { attrs: { cols: "8" } }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary mx-1 float-start",
-                            attrs: {
-                              type: "button",
-                              "data-bs-toggle": "modal",
-                              "data-bs-target": "#employeModal",
-                            },
-                            on: { click: _vm.resetModal1 },
-                          },
-                          [_vm._v("Nouvel employé")]
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("b-col"),
+                      _c(
+                        "b-row",
+                        { staticClass: "text-center " },
+                        [
+                          _c("b-col", { attrs: { cols: "8" } }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary mx-1 float-start",
+                                attrs: {
+                                  type: "button",
+                                  "data-bs-toggle": "modal",
+                                  "data-bs-target": "#employeModal",
+                                },
+                                on: { click: _vm.resetModal1 },
+                              },
+                              [_vm._v("Nouvel employé")]
+                            ),
+                          ]),
+                          _vm._v(" "),
+                          _c("b-col"),
+                        ],
+                        1
+                      ),
                     ],
                     1
                   ),
@@ -742,24 +825,18 @@ var render = function () {
                     on: { addEmploye: _vm.addEmploye },
                   }),
                   _vm._v(" "),
-                  _c(
-                    "b-card",
-                    [
-                      _c("showEmploye", {
-                        attrs: {
-                          employes: _vm.employes,
-                          pagination: _vm.pagination,
-                          entreprises: _vm.entreprises,
-                        },
-                        on: {
-                          deleteEmploye: _vm.deleteEmploye,
-                          fetchEmployes: _vm.fetchEmployes,
-                          updateEmploye: _vm.updateEmploye,
-                        },
-                      }),
-                    ],
-                    1
-                  ),
+                  _c("showEmploye", {
+                    attrs: {
+                      employes: _vm.employes,
+                      pagination: _vm.pagination,
+                      entreprises: _vm.entreprises,
+                    },
+                    on: {
+                      deleteEmploye: _vm.deleteEmploye,
+                      fetchEmployes: _vm.fetchEmployes,
+                      updateEmploye: _vm.updateEmploye,
+                    },
+                  }),
                 ],
                 1
               )
@@ -792,88 +869,171 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.employes.length == 0
-      ? _c("div", { staticClass: "card card-body my-2" }, [
-          _c("h3", [_vm._v("il y'a aucun employe")]),
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "main",
-      [
-        _c(
-          "data-table",
-          _vm._b(
-            { on: { actionTriggered: _vm.handleAction } },
-            "data-table",
-            _vm.parameters,
-            false
-          )
-        ),
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "ficheModal",
-          tabindex: "-1",
-          "aria-labelledby": "employeModalLabel",
-          "aria-hidden": "true",
+  return _c(
+    "div",
+    [
+      _vm.employes.length == 0
+        ? _c("div", { staticClass: "card card-body my-2 text-center" }, [
+            _c("h3", [_vm._v("il y'a aucun employe")]),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "ficheModal",
+            tabindex: "-1",
+            "aria-labelledby": "employeModalLabel",
+            "aria-hidden": "true",
+          },
         },
-      },
-      [
-        _c("div", { staticClass: "modal-dialog" }, [
-          _c("div", { staticClass: "modal-content" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("div", { staticClass: "modal-body" }, [
-              _c(
-                "div",
-                { staticClass: "form-group mb-2" },
-                [
-                  _c(
-                    "b-row",
-                    { staticClass: "jutify-content-center mb-2" },
-                    [
-                      _vm.fiches.length == 0
-                        ? _c("b-col", { attrs: { cols: "10" } }, [
-                            _vm._v("Aucune fiche de paie"),
-                          ])
-                        : _vm._e(),
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _vm._l(_vm.fiches, function (fiche) {
-                    return _c(
+        [
+          _c("div", { staticClass: "modal-dialog" }, [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group mb-2" },
+                  [
+                    _c(
                       "b-row",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.fiches.length != 0,
-                            expression: "fiches.length != 0",
-                          },
+                      { staticClass: "jutify-content-center mb-2" },
+                      [
+                        _vm.fiches.length == 0
+                          ? _c("b-col", { attrs: { cols: "10" } }, [
+                              _vm._v("Aucune fiche de paie"),
+                            ])
+                          : _vm._e(),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.fiches, function (fiche) {
+                      return _c(
+                        "b-row",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.fiches.length != 0,
+                              expression: "fiches.length != 0",
+                            },
+                          ],
+                          key: fiche.id,
+                          staticClass: "justify-content-center mb-2",
+                        },
+                        [
+                          _c(
+                            "b-col",
+                            { attrs: { cols: "10" } },
+                            [
+                              _c(
+                                "b-row",
+                                [
+                                  _c("b-col", [
+                                    _vm._v("date : " + _vm._s(fiche.date)),
+                                  ]),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-row",
+                                [
+                                  _c("b-col", [
+                                    _c("h6", [_c("b", [_vm._v("Rebriques:")])]),
+                                  ]),
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-row",
+                                [
+                                  _c("b-col", { attrs: { cols: "9" } }, [
+                                    _vm._v("total : " + _vm._s(fiche.total)),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-col",
+                                    { attrs: { cols: "3" } },
+                                    [
+                                      _c(
+                                        "b-button",
+                                        {
+                                          attrs: { variant: "success" },
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.getPdf(
+                                                _vm.id,
+                                                fiche.id
+                                              )
+                                            },
+                                          },
+                                        },
+                                        [_vm._v("Afficher")]
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("hr"),
                         ],
-                        key: fiche.id,
-                        staticClass: "justify-content-center mb-2",
-                      },
+                        1
+                      )
+                    }),
+                  ],
+                  2
+                ),
+              ]),
+              _vm._v(" "),
+              _vm._m(1),
+            ]),
+          ]),
+        ]
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.employes, function (employe) {
+        return _c(
+          "b-card",
+          { key: employe.id },
+          [
+            _c(
+              "md-tabs",
+              [
+                _c(
+                  "md-tab",
+                  { attrs: { id: "tab-home", "md-label": "Employe" } },
+                  [
+                    _c(
+                      "b-container",
+                      { staticClass: "bv-example-row text-center" },
                       [
                         _c(
-                          "b-col",
-                          { attrs: { cols: "10" } },
+                          "b-row",
+                          { staticClass: "mb-2" },
                           [
                             _c(
                               "b-row",
                               [
                                 _c("b-col", [
-                                  _vm._v("date : " + _vm._s(fiche.date)),
+                                  _vm._v(
+                                    "Nom : " +
+                                      _vm._s(employe.nom) +
+                                      " Prenom :  " +
+                                      _vm._s(employe.prenom)
+                                  ),
                                 ]),
                               ],
                               1
@@ -883,7 +1043,13 @@ var render = function () {
                               "b-row",
                               [
                                 _c("b-col", [
-                                  _c("h6", [_c("b", [_vm._v("Rebriques:")])]),
+                                  _vm._v(
+                                    "Cin : " +
+                                      _vm._s(employe.cin) +
+                                      " Matricule CNSS : " +
+                                      _vm._s(employe.mat_cnss) +
+                                      " "
+                                  ),
                                 ]),
                               ],
                               1
@@ -892,29 +1058,11 @@ var render = function () {
                             _c(
                               "b-row",
                               [
-                                _c("b-col", { attrs: { cols: "9" } }, [
-                                  _vm._v("total : " + _vm._s(fiche.total)),
+                                _c("b-col", [
+                                  _vm._v(
+                                    "Fonction : " + _vm._s(employe.fonction)
+                                  ),
                                 ]),
-                                _vm._v(" "),
-                                _c(
-                                  "b-col",
-                                  { attrs: { cols: "3" } },
-                                  [
-                                    _c(
-                                      "b-button",
-                                      {
-                                        attrs: { variant: "success" },
-                                        on: {
-                                          click: function ($event) {
-                                            return _vm.getPdf(_vm.id, fiche.id)
-                                          },
-                                        },
-                                      },
-                                      [_vm._v("Afficher")]
-                                    ),
-                                  ],
-                                  1
-                                ),
                               ],
                               1
                             ),
@@ -922,22 +1070,250 @@ var render = function () {
                           1
                         ),
                         _vm._v(" "),
-                        _c("hr"),
+                        _c(
+                          "b-button",
+                          {
+                            attrs: { variant: "danger" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.Delete(employe.id)
+                              },
+                            },
+                          },
+                          [_vm._v("Delete")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-button",
+                          {
+                            attrs: {
+                              variant: "warning",
+                              "data-bs-toggle": "modal",
+                              "data-bs-target": "#employeModal",
+                            },
+                            on: {
+                              click: function ($event) {
+                                return _vm.Update(employe)
+                              },
+                            },
+                          },
+                          [_vm._v("Update")]
+                        ),
                       ],
                       1
-                    )
-                  }),
-                ],
-                2
+                    ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "md-tab",
+                  { attrs: { id: "tab-empf", "md-label": "Employe fiches" } },
+                  [
+                    _c(
+                      "b-container",
+                      {
+                        staticClass:
+                          "ml-4 bv-example-row text-center pl-4 row justify-content-center",
+                      },
+                      [
+                        employe.fiches.length == 0
+                          ? _c("h3", [_vm._v("il y'a aucun fiche")])
+                          : _vm._e(),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(employe.fiches, function (fiche) {
+                      return _c(
+                        "b-container",
+                        {
+                          key: fiche.id,
+                          staticClass:
+                            "ml-4 bv-example-row text-center pl-4 row justify-content-center",
+                          staticStyle: { "text-align": "left!important" },
+                        },
+                        [
+                          _c(
+                            "b-row",
+                            { staticClass: "justify-content-center mb-2" },
+                            [
+                              _c(
+                                "b-col",
+                                { attrs: { cols: "10" } },
+                                [
+                                  _c(
+                                    "b-row",
+                                    [
+                                      _c("b-col", [
+                                        _vm._v(
+                                          "date : " + _vm._s(fiche.date) + " "
+                                        ),
+                                      ]),
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-row",
+                                    [
+                                      _c("b-col", [
+                                        _c("h6", [
+                                          _c("b", [_vm._v("Rebriques:")]),
+                                        ]),
+                                      ]),
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._l(fiche.rebriques, function (rebrique) {
+                                    return _c(
+                                      "b-row",
+                                      { key: rebrique.id },
+                                      [
+                                        _c("b-col", [
+                                          _c("b", [
+                                            _vm._v(_vm._s(rebrique.titre)),
+                                          ]),
+                                          _vm._v(
+                                            " : " +
+                                              _vm._s(rebrique.pivot.montant)
+                                          ),
+                                        ]),
+                                      ],
+                                      1
+                                    )
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-row",
+                                    [
+                                      _c("b-col", [
+                                        _vm._v(
+                                          "total : " + _vm._s(fiche.total)
+                                        ),
+                                      ]),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                2
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-col",
+                                [
+                                  _c(
+                                    "b-button",
+                                    {
+                                      attrs: { variant: "success" },
+                                      on: {
+                                        click: function ($event) {
+                                          return _vm.getPdf(
+                                            employe.id,
+                                            fiche.id
+                                          )
+                                        },
+                                      },
+                                    },
+                                    [_vm._v("Afficher")]
+                                  ),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("hr"),
+                        ],
+                        1
+                      )
+                    }),
+                  ],
+                  2
+                ),
+              ],
+              1
+            ),
+          ],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _c("nav", { staticClass: "row" }, [
+        _c("ul", { staticClass: "pagination w-auto mx-auto" }, [
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: [{ disabled: !_vm.pagination.prev_page_url }],
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "btn page-link",
+                  class: [
+                    !_vm.pagination.prev_page_url
+                      ? "disabled"
+                      : "link-primary btun",
+                  ],
+                  on: {
+                    click: function ($event) {
+                      return _vm.fetchEntreprises(_vm.pagination.prev_page_url)
+                    },
+                  },
+                },
+                [_vm._v("Precedent")]
               ),
-            ]),
-            _vm._v(" "),
-            _vm._m(1),
+            ]
+          ),
+          _vm._v(" "),
+          _c("li", { staticClass: "page-item" }, [
+            _c(
+              "a",
+              { staticClass: "page-link text-dark", attrs: { href: "#" } },
+              [
+                _vm._v(
+                  _vm._s(
+                    _vm.pagination.current_page + "/" + _vm.pagination.last_page
+                  )
+                ),
+              ]
+            ),
           ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: [{ disabled: !_vm.pagination.next_page_url }],
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "btn page-link",
+                  class: [
+                    !_vm.pagination.next_page_url
+                      ? "disabled"
+                      : "link-primary btun",
+                  ],
+                  on: {
+                    click: function ($event) {
+                      return _vm.fetchEntreprises(_vm.pagination.next_page_url)
+                    },
+                  },
+                },
+                [_vm._v("Suivant")]
+              ),
+            ]
+          ),
         ]),
-      ]
-    ),
-  ])
+      ]),
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function () {

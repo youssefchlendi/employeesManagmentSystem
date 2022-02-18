@@ -15120,7 +15120,13 @@ var render = function () {
                 _c("div", { staticClass: "card card-chart" }, [
                   _c(
                     "div",
-                    { staticClass: "card-header card-header-success" },
+                    {
+                      staticClass: "card-header card-header-success",
+                      staticStyle: {
+                        background:
+                          "linear-gradient(130deg, rgba(106,191,105,1) 0%, rgba(56,142,60,1) 100%)",
+                      },
+                    },
                     [
                       _vm.loaded
                         ? _c("LineChart", {
@@ -15152,7 +15158,13 @@ var render = function () {
                 _c("div", { staticClass: "card card-chart" }, [
                   _c(
                     "div",
-                    { staticClass: "card-header card-header-warning" },
+                    {
+                      staticClass: "card-header card-header-warning",
+                      staticStyle: {
+                        background:
+                          "linear-gradient(130deg, rgba(255,138,80,1) 0%, rgba(255,87,34,1) 100%)",
+                      },
+                    },
                     [
                       _vm.loaded
                         ? _c("BarChart", {
@@ -15184,7 +15196,13 @@ var render = function () {
                 _c("div", { staticClass: "card card-chart" }, [
                   _c(
                     "div",
-                    { staticClass: "card-header card-header-danger" },
+                    {
+                      staticClass: "card-header card-header-danger",
+                      staticStyle: {
+                        "background-image":
+                          "linear-gradient(130deg, rgb(128, 214, 255) 0%, rgb(66, 165, 245) 100%)",
+                      },
+                    },
                     [
                       _vm.loaded
                         ? _c("AreaChart", {

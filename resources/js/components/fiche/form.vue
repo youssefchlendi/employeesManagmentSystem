@@ -23,7 +23,7 @@
                             <label>Date:</label>
                             <input
                                 type="date"
-                                class="form-control"
+                                class="border-0 form-control"
                                 placeholder="date"
                                 v-model="oldFiche.date"
                                 required="required"

@@ -473,6 +473,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   emits: ["fetchFiches", "attachRebrique"],
   props: {
@@ -1211,11 +1212,11 @@ var render = function () {
                 [
                   _c(
                     "b-container",
-                    { staticClass: "bv-example-row" },
+                    { staticClass: "bv-example-row py-0" },
                     [
                       _c(
                         "b-row",
-                        { staticClass: "text-center mb-2" },
+                        { staticClass: "text-center " },
                         [
                           _c("b-col", { attrs: { cols: "8" } }, [
                             _c(
@@ -1356,7 +1357,7 @@ var render = function () {
                         expression: "oldFiche.date",
                       },
                     ],
-                    staticClass: "form-control",
+                    staticClass: "border-0 form-control",
                     attrs: {
                       type: "date",
                       placeholder: "date",
@@ -1513,10 +1514,13 @@ var render = function () {
           _vm._v(" "),
           _c(
             "b-input-group",
-            { attrs: { prepend: "Montant" } },
+            { attrs: { prepend: "$" } },
             [
               _c("b-form-input", {
-                staticStyle: { "background-color": "#eceff1" },
+                staticStyle: {
+                  "background-color": "#eceff1",
+                  border: "0!important",
+                },
                 on: {
                   keyup: function ($event) {
                     if (
@@ -1551,7 +1555,8 @@ var render = function () {
                         },
                       },
                     },
-                    [_vm._v("Modifier")]
+                    [_c("b-icon", { attrs: { icon: "check", scale: "2" } })],
+                    1
                   ),
                   _vm._v(" "),
                   _c(
@@ -1564,7 +1569,12 @@ var render = function () {
                         },
                       },
                     },
-                    [_vm._v("Effacer")]
+                    [
+                      _c("b-icon", {
+                        attrs: { icon: "trash-fill", "aria-hidden": "true" },
+                      }),
+                    ],
+                    1
                   ),
                 ],
                 1

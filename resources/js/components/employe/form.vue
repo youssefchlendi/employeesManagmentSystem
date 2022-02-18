@@ -23,7 +23,7 @@
                             <label>Nom:</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="border-0 form-control"
                                 placeholder="Nom"
                                 v-model="oldEmploye.nom"
                                 required="required"
@@ -31,7 +31,7 @@
                             <label>Prenom:</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="border-0 form-control"
                                 placeholder="Prenom"
                                 v-model="oldEmploye.prenom"
                                 required="required"
@@ -41,7 +41,7 @@
                                 type="number"
                                 min="1000000"
                                 max="99999999"
-                                class="form-control"
+                                class="border-0 form-control"
                                 placeholder="cin"
                                 v-model="oldEmploye.cin"
                                 required="required"
@@ -49,7 +49,7 @@
                             <label>Matricule cnss:</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="border-0 form-control"
                                 placeholder="Matricule cnss"
                                 v-model="oldEmploye.mat_cnss"
                                 required="required"
@@ -57,7 +57,7 @@
                             <label>Fonction:</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="border-0 form-control"
                                 placeholder="Fonction"
                                 v-model="oldEmploye.fonction"
                                 required="required"

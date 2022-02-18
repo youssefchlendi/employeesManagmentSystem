@@ -393,7 +393,7 @@ var render = function () {
                               expression: "Rebrique.titre",
                             },
                           ],
-                          staticClass: "bg-light form-control small",
+                          staticClass: "bg-light border-0 form-control small",
                           attrs: { type: "text", placeholder: "titre" },
                           domProps: { value: _vm.Rebrique.titre },
                           on: {

@@ -23,7 +23,7 @@
                             <label>Titre:</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="border-0 form-control"
                                 placeholder="Titre"
                                 v-model="oldEntreprise.titre"
                                 required="required"
@@ -31,7 +31,7 @@
                             <label>Matricule Fiscale:</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="border-0 form-control"
                                 placeholder="Matricule Fiscale"
                                 v-model="oldEntreprise.matricule_fiscale"
                                 required="required"
@@ -39,7 +39,7 @@
                             <label>Registre du commerce:</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="border-0 form-control"
                                 placeholder="Registre de commers"
                                 v-model="oldEntreprise.registre_commerce"
                                 required="required"
@@ -47,7 +47,7 @@
                             <label>Adresse:</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="border-0 form-control"
                                 placeholder="Adreese"
                                 v-model="oldEntreprise.adresse"
                                 required="required"
@@ -55,7 +55,7 @@
                             <label>Ville:</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="border-0 form-control"
                                 placeholder="Ville"
                                 v-model="oldEntreprise.ville"
                                 required="required"
@@ -63,7 +63,7 @@
                             <label>Activité:</label>
                             <input
                                 type="text"
-                                class="form-control"
+                                class="border-0 form-control"
                                 placeholder="Activité"
                                 v-model="oldEntreprise.activités"
                                 required="required"

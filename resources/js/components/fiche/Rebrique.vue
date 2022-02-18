@@ -5,7 +5,7 @@
                 <div class="input-group mb-2">
                     <input
                         type="text"
-                        class="form-control"
+                        class="border-0 form-control"
                         id="rebname"
                         placeholder="Add new Rebrique"
                         v-model="Rebrique.titre"

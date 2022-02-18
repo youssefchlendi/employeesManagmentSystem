@@ -4,7 +4,7 @@
             <input
                 v-model="search"
                 @keyup="$emit('fetch', search)"
-                class="bg-white form-control small"
+                class="bg-white border-0 form-control small"
                 type="text"
                 placeholder="Search for ..."
             />
