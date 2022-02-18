@@ -11,8 +11,8 @@
                     style="height:500px;width:100%"
                 ></b-overlay>
                 <div v-if="!show">
-                    <b-container class="bv-example-row">
-                        <b-row class="text-center mb-2">
+                    <b-container class="bv-example-row py-0">
+                        <b-row class="text-center ">
                             <b-col cols="8">
                                 <button
                                     type="button"
