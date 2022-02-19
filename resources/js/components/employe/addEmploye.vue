@@ -14,7 +14,7 @@
                         <div class="col-lg-2"></div>
                     </div>
                 </nav>
-                <b-alert
+                <b-alert class="mt-4"
                     :show="alert.dismissCountDown"
                     dismissible
                     :variant="alert.variant"

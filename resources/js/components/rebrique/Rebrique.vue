@@ -31,6 +31,7 @@
                     </div>
 
                     <b-alert
+                        class="mt-4"
                         :show="alert.dismissCountDown"
                         dismissible
                         :variant="alert.variant"
@@ -38,7 +39,10 @@
                     >
                         <p>{{ alert.msg }}</p>
                     </b-alert>
-                    <b-card>
+                    <div class="card card-body my-5 py-5 text-center" v-if="Rebriques.length == 0">
+                        <h3>il y'a aucune rubrique</h3>
+                    </div>
+                    <b-card v-if="Rebriques.length != 0">
                         <main>
                             <data-table v-bind="parameters" @actionTriggered="handleAction" />
                         </main>
@@ -69,6 +73,17 @@ export default {
     },
     created() {
         this.fetchRebriques();
+
+        // $('.btn-outline-success').forEach(e => e.addClass('d-none'));
+    },
+    updated(){
+let docs = document.querySelectorAll('.btn-outline-success');
+// console.log(docs);
+                    for (let i=0; i < docs.length; i++) {
+                        docs[i].classList.add('d-none');
+                        // console.log(docs[i]);
+                        // buttons[i].className += " d-none";
+                    }
     },
     methods: {
         fetchRebriques(page_url = "/api/rebrique") {
@@ -79,7 +94,9 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.Rebriques = res;
+
                     this.show = false;
+
                 })
                 .catch(err => console.log(err))
         },
@@ -184,8 +201,8 @@ export default {
 </script>
 
 <style>
-.btun{
-    color:white!important;
-    background-color:#d32f2f!important;
+.btun {
+    color: white !important;
+    background-color: #d32f2f !important;
 }
 </style>

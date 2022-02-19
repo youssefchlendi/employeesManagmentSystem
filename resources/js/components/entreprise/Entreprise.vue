@@ -20,12 +20,12 @@
                                     @click="resetModal1"
                                     data-bs-toggle="modal"
                                     data-bs-target="#exampleModal"
-                                >Nouveau entreprise</button>
+                                >Nouvelle entreprise</button>
                             </b-col>
                             <b-col></b-col>
                         </b-row>
                     </b-container>
-                    <b-alert
+                    <b-alert class="mt-4"
                         style="white-space: pre-line;"
                         :show="alert.dismissCountDown"
                         dismissible

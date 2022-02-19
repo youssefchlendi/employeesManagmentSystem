@@ -25,7 +25,7 @@
                             <b-col></b-col>
                         </b-row>
                     </b-container>
-                    <b-alert
+                    <b-alert class="mt-4"
                         :show="alert.dismissCountDown"
                         dismissible
                         :variant="alert.variant"
@@ -146,6 +146,8 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.Rebriques = res;
+                    this.show = false;
+
                 })
                 .catch(err => console.log(err))
         },
@@ -174,6 +176,8 @@ export default {
                     })
                     .catch(err => console.log(err));
             }
+                        this.fetchFiches();
+
         },
         resetModal1() {
             this.fiche = {

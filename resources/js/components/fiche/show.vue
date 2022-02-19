@@ -1,8 +1,10 @@
 <template>
     <div>
+        <div class="card card-body my-5 py-5 text-center" v-if="fiches.length == 0">
+            <h3>il y'a aucune fiche</h3>
+        </div>
         <b-card v-for="fiche in fiches" :key="fiche.id">
             <b-card-body>
-                <h6 v-if="fiches.length == 0">Aucun employe</h6>
                 <b-container class="bv-example-row text-center">
                     <b-row class="mb-2">
                         <b-row>

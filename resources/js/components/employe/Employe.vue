@@ -17,15 +17,13 @@
                             <button
                                 type="button"
                                 class="btn btn-primary mx-1 float-start"
-                                @click="resetModal1"
-                                data-bs-toggle="modal"
-                                data-bs-target="#employeModal"
+                                @click="$router.push({ name: 'addEmploye', params: { edit: false } });"
                             >Nouvel employé</button>
                         </b-col>
                         <b-col></b-col>
                     </b-row>
                     </b-container>
-                    <b-alert
+                    <b-alert class="mt-4"
                         :show="alert.dismissCountDown"
                         dismissible
                         :variant="alert.variant"

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card card-body my-2 text-center" v-if="employes.length == 0">
+        <div class="card card-body my-5 py-5 text-center" v-if="employes.length == 0">
             <h3>il y'a aucun employe</h3>
         </div>
         <!-- <main>
@@ -81,7 +81,7 @@
             <b-row><b-col>Fonction : {{ employe.fonction }}</b-col></b-row>
             </b-row>
             <b-button variant="danger" v-on:click="Delete(employe.id)" >Delete</b-button>
-            <b-button variant="warning" v-on:click="Update(employe)" data-bs-toggle="modal" data-bs-target="#employeModal" >Update</b-button>
+            <b-button variant="warning" v-on:click="$router.push({ name: 'addEmploye', params: { employe: employe, edit: true } });"  >Update</b-button>
             </b-container>
         </md-tab>
         <md-tab id="tab-empf" md-label="Employe fiches">
@@ -109,7 +109,7 @@
             <ul class="pagination w-auto mx-auto">
                 <li :class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
                     <a
-                        @click="fetchEntreprises(pagination.prev_page_url)"
+                        @click="fetchEmployes(pagination.prev_page_url)"
                         :class="[!pagination.prev_page_url ? 'disabled' : 'link-primary btun']"
                         class="btn page-link"
                     >Precedent</a>
@@ -122,7 +122,7 @@
                 </li>
                 <li :class="[{ disabled: !pagination.next_page_url }]" class="page-item">
                     <a
-                        @click="fetchEntreprises(pagination.next_page_url)"
+                        @click="fetchEmployes(pagination.next_page_url)"
                         :class="[!pagination.next_page_url ? 'disabled' : 'link-primary btun']"
                         class="btn page-link"
                     >Suivant</a>
@@ -148,6 +148,9 @@ export default {
     },
     emits: ["deleteEmploye", "updateEmploye", "fetchEmployes"],
     methods: {
+        fetchEmployes(emp){
+            this.$emit("fetchEmployes", emp);
+        },
         Delete(id) {
             this.$emit("deleteEmploye", id);
         },

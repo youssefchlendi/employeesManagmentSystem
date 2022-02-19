@@ -5,7 +5,7 @@
                 :entreprises="entreprises"
                 :oldEmploye="employe"
             />
-        <b-alert
+        <b-alert class="mt-4"
             :show="alert.dismissCountDown"
             dismissible
             :variant="alert.variant"
@@ -13,113 +13,16 @@
         >
             <p>{{ alert.msg }}</p>
         </b-alert>
-        <div class="card card-body my-2" v-if="entreprises.length == 0">
-            <h3>il y'a aucun entreprise</h3>
+        <div class="text-center card card-body my-5 py-5" v-if="entreprises.length == 0">
+            <h3>il y'a aucune entreprise</h3>
         </div>
         <div class=" pb-2">
-        <b-card>
+        <b-card v-if="entreprises.length != 0">
             <main>
-                <data-table v-bind="parameters" @actionTriggered="handleAction" />
+                <data-table  v-bind="parameters" @actionTriggered="handleAction" />
             </main>
         </b-card>
         </div>
-        <!-- <b-card v-for="entreprise in entreprises" :key="entreprise.id">
-            <md-tabs>
-                <md-tab id="tab-home" md-label="Entreprise">
-                    <b-card-body class="text-center">
-                        <b-card-title>{{ entreprise.titre }}</b-card-title>
-
-                        <b-card-text>
-                            {{ entreprise.adresse }} {{ entreprise.ville }}
-                            <br />
-                            {{ entreprise.activité }}
-                        </b-card-text>
-
-                        <b-button variant="danger" v-on:click="Delete(entreprise.id)">Supprimer</b-button>
-                        <b-button
-                            variant="warning"
-                            v-on:click="Update(entreprise)"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                        >Modifier</b-button>
-                    </b-card-body>
-                </md-tab>
-                <md-tab id="tab-pages" md-label="Employes">
-                    <b-card-body>
-                        <b-container class="bv-example-row text-center">
-                            <h3 v-if="entreprise.employes.length == 0">il y'a aucun entreprise</h3>
-                            <b-row
-                                style="text-align:left!important"
-                                v-for="employe in entreprise.employes"
-                                :key="employe.id"
-                            >
-                                <b-col cols="8">
-                                    <b-row>
-                                        <b-col>Nom : {{ employe.nom }} Prenom : {{ employe.prenom }}</b-col>
-                                    </b-row>
-                                    <b-row>
-                                        <b-col>Cin : {{ employe.cin }} Matricule CNSS : {{ employe.mat_cnss }}</b-col>
-                                    </b-row>
-                                    <b-row>
-                                        <b-col>Fonction : {{ employe.fonction }}</b-col>
-                                    </b-row>
-                                </b-col>
-                                <b-col>
-                                    <b-row>
-                                        <b-col cols="6">
-                                            <b-button
-                                                variant="danger"
-                                                class="float-end"
-                                                @click="deleteEmploye(employe.id)"
-                                            >Supprimer</b-button>
-                                        </b-col>
-                                        <b-col cols="6">
-                                            <b-button
-                                                variant="warning"
-                                                @click="update(employe)"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#employeModal"
-                                            >Modifier</b-button>
-                                        </b-col>
-                                    </b-row>
-                                </b-col>
-                                <hr />
-                            </b-row>
-                        </b-container>
-                    </b-card-body>
-                </md-tab>
-            </md-tabs>
-
-            <formEmploye
-                @addEmploye="updateEmploye"
-                :entreprises="entreprises"
-                :oldEmploye="employe"
-            />
-        </b-card>-->
-        <!-- <nav class="row">
-            <ul class="pagination w-auto mx-auto">
-                <li :class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
-                    <a
-                        @click="fetchEntreprises(pagination.prev_page_url)"
-                        :class="[!pagination.prev_page_url ? 'disabled' : 'link-primary btun']"
-                        class="btn page-link"
-                    >Precedent</a>
-                </li>
-                <li class="page-item">
-                    <a
-                        class="page-link text-dark"
-                        href="#"
-                    >{{ pagination.current_page + "/" + pagination.last_page }}</a>
-                </li>
-                <li :class="[{ disabled: !pagination.next_page_url }]" class="page-item">
-                    <a
-                        @click="fetchEntreprises(pagination.next_page_url)"
-                        :class="[!pagination.next_page_url ? 'disabled' : 'link-primary btun']"
-                        class="btn page-link"
-                    >Suivant</a>
-                </li>
-            </ul>
-        </nav>-->
         <div
             class="modal fade"
             id="ficheModal"
@@ -140,7 +43,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group mb-2">
-                            <b-row class="jutify-content-center mb-2">
+                            <b-row class="text-center jutify-content-center mb-2">
                                 <b-col
                                     v-if="entreprise.employes.length == 0"
                                     cols="10"
