@@ -1,5 +1,9 @@
+html, body {
+    margin:0px;
+    height:100%;
+  }
 
-.btn-default,
+  .btn-default,
 .btn-primary,
 .btn-success,
 .btn-info,

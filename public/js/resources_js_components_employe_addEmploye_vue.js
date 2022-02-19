@@ -484,6 +484,7 @@ var render = function () {
           _c(
             "b-alert",
             {
+              staticClass: "mt-4",
               attrs: {
                 show: _vm.alert.dismissCountDown,
                 dismissible: "",

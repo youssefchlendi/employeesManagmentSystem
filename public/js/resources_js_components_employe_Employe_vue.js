@@ -69,8 +69,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -290,6 +288,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -437,53 +439,52 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   emits: ["deleteEmploye", "updateEmploye", "fetchEmployes"],
-  methods: {
+  methods: (_methods = {
+    fetchEmployes: function fetchEmployes(emp) {
+      this.$emit("fetchEmployes", emp);
+    },
     Delete: function Delete(id) {
       this.$emit("deleteEmploye", id);
     },
     Update: function Update(employe) {
       this.$emit("updateEmploye", employe);
-    },
-    fetchEmployes: function fetchEmployes(url) {
-      this.$emit("fetchEmployes", url);
-    },
-    getPdf: function getPdf(empId, fID) {
-      window.open(window.location.protocol + "//" + window.location.host + "/generatePdf/" + empId + "/fiche/" + fID);
-    },
-    entrepriseById: function entrepriseById(id) {
-      var ent = '';
-      var found = false;
-
-      for (var i = 0; i < this.entreprises.length && !found; i++) {
-        if (this.entreprises[i].id == id) {
-          ent = this.entreprises[i].titre;
-        }
-      }
-
-      return ent;
-    },
-    handleAction: function handleAction(action, payload) {
-      if (action == 'delete') {
-        this.Delete(payload.id);
-      } else if (action == 'edit') {
-        //  $("#employeModal").modal('show');
-        router.push({
-          name: "addEmploye",
-          params: {
-            employe: payload,
-            edit: true
-          }
-        });
-        this.Update(payload);
-      } else if (action == "view") {
-        this.fiches = payload.fiches;
-        this.id = payload.id;
-        $("#ficheModal").modal('show');
-      }
-
-      console.log(action, payload);
     }
-  },
+  }, _defineProperty(_methods, "fetchEmployes", function fetchEmployes(url) {
+    this.$emit("fetchEmployes", url);
+  }), _defineProperty(_methods, "getPdf", function getPdf(empId, fID) {
+    window.open(window.location.protocol + "//" + window.location.host + "/generatePdf/" + empId + "/fiche/" + fID);
+  }), _defineProperty(_methods, "entrepriseById", function entrepriseById(id) {
+    var ent = '';
+    var found = false;
+
+    for (var i = 0; i < this.entreprises.length && !found; i++) {
+      if (this.entreprises[i].id == id) {
+        ent = this.entreprises[i].titre;
+      }
+    }
+
+    return ent;
+  }), _defineProperty(_methods, "handleAction", function handleAction(action, payload) {
+    if (action == 'delete') {
+      this.Delete(payload.id);
+    } else if (action == 'edit') {
+      //  $("#employeModal").modal('show');
+      router.push({
+        name: "addEmploye",
+        params: {
+          employe: payload,
+          edit: true
+        }
+      });
+      this.Update(payload);
+    } else if (action == "view") {
+      this.fiches = payload.fiches;
+      this.id = payload.id;
+      $("#ficheModal").modal('show');
+    }
+
+    console.log(action, payload);
+  }), _methods),
   computed: {
     parameters: function parameters() {
       return {
@@ -781,12 +782,15 @@ var render = function () {
                               "button",
                               {
                                 staticClass: "btn btn-primary mx-1 float-start",
-                                attrs: {
-                                  type: "button",
-                                  "data-bs-toggle": "modal",
-                                  "data-bs-target": "#employeModal",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.$router.push({
+                                      name: "addEmploye",
+                                      params: { edit: false },
+                                    })
+                                  },
                                 },
-                                on: { click: _vm.resetModal1 },
                               },
                               [_vm._v("Nouvel employé")]
                             ),
@@ -803,6 +807,7 @@ var render = function () {
                   _c(
                     "b-alert",
                     {
+                      staticClass: "mt-4",
                       attrs: {
                         show: _vm.alert.dismissCountDown,
                         dismissible: "",
@@ -873,7 +878,7 @@ var render = function () {
     "div",
     [
       _vm.employes.length == 0
-        ? _c("div", { staticClass: "card card-body my-2 text-center" }, [
+        ? _c("div", { staticClass: "card card-body my-5 py-5 text-center" }, [
             _c("h3", [_vm._v("il y'a aucun employe")]),
           ])
         : _vm._e(),
@@ -1086,14 +1091,13 @@ var render = function () {
                         _c(
                           "b-button",
                           {
-                            attrs: {
-                              variant: "warning",
-                              "data-bs-toggle": "modal",
-                              "data-bs-target": "#employeModal",
-                            },
+                            attrs: { variant: "warning" },
                             on: {
                               click: function ($event) {
-                                return _vm.Update(employe)
+                                return _vm.$router.push({
+                                  name: "addEmploye",
+                                  params: { employe: employe, edit: true },
+                                })
                               },
                             },
                           },
@@ -1260,7 +1264,7 @@ var render = function () {
                   ],
                   on: {
                     click: function ($event) {
-                      return _vm.fetchEntreprises(_vm.pagination.prev_page_url)
+                      return _vm.fetchEmployes(_vm.pagination.prev_page_url)
                     },
                   },
                 },
@@ -1301,7 +1305,7 @@ var render = function () {
                   ],
                   on: {
                     click: function ($event) {
-                      return _vm.fetchEntreprises(_vm.pagination.next_page_url)
+                      return _vm.fetchEmployes(_vm.pagination.next_page_url)
                     },
                   },
                 },

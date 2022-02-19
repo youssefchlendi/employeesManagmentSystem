@@ -172,6 +172,7 @@ __webpack_require__.r(__webpack_exports__);
         return res.json();
       }).then(function (res) {
         _this3.Rebriques = res;
+        _this3.show = false;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -203,6 +204,8 @@ __webpack_require__.r(__webpack_exports__);
           return console.log(err);
         });
       }
+
+      this.fetchFiches();
     },
     resetModal1: function resetModal1() {
       this.fiche = {
@@ -645,6 +648,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _oneRebrique_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oneRebrique.vue */ "./resources/js/components/fiche/oneRebrique.vue");
+//
+//
 //
 //
 //
@@ -1248,6 +1253,7 @@ var render = function () {
                   _c(
                     "b-alert",
                     {
+                      staticClass: "mt-4",
                       attrs: {
                         show: _vm.alert.dismissCountDown,
                         dismissible: "",
@@ -1776,6 +1782,12 @@ var render = function () {
   return _c(
     "div",
     [
+      _vm.fiches.length == 0
+        ? _c("div", { staticClass: "card card-body my-5 py-5 text-center" }, [
+            _c("h3", [_vm._v("il y'a aucune fiche")]),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _vm._l(_vm.fiches, function (fiche) {
         return _c(
           "b-card",
@@ -1784,10 +1796,6 @@ var render = function () {
             _c(
               "b-card-body",
               [
-                _vm.fiches.length == 0
-                  ? _c("h6", [_vm._v("Aucun employe")])
-                  : _vm._e(),
-                _vm._v(" "),
                 _c(
                   "b-container",
                   { staticClass: "bv-example-row text-center" },

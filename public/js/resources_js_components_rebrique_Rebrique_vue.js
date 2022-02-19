@@ -62,6 +62,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -82,7 +86,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.fetchRebriques();
+    this.fetchRebriques(); // $('.btn-outline-success').forEach(e => e.addClass('d-none'));
+  },
+  updated: function updated() {
+    var docs = document.querySelectorAll('.btn-outline-success'); // console.log(docs);
+
+    for (var i = 0; i < docs.length; i++) {
+      docs[i].classList.add('d-none'); // console.log(docs[i]);
+      // buttons[i].className += " d-none";
+    }
   },
   methods: {
     fetchRebriques: function fetchRebriques() {
@@ -225,7 +237,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.btun{\n    color:white!important;\n    background-color:#d32f2f!important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.btun {\n    color: white !important;\n    background-color: #d32f2f !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -428,6 +440,7 @@ var render = function () {
                   _c(
                     "b-alert",
                     {
+                      staticClass: "mt-4",
                       attrs: {
                         show: _vm.alert.dismissCountDown,
                         dismissible: "",
@@ -442,23 +455,33 @@ var render = function () {
                     [_c("p", [_vm._v(_vm._s(_vm.alert.msg))])]
                   ),
                   _vm._v(" "),
-                  _c("b-card", [
-                    _c(
-                      "main",
-                      [
+                  _vm.Rebriques.length == 0
+                    ? _c(
+                        "div",
+                        { staticClass: "card card-body my-5 py-5 text-center" },
+                        [_c("h3", [_vm._v("il y'a aucune rubrique")])]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.Rebriques.length != 0
+                    ? _c("b-card", [
                         _c(
-                          "data-table",
-                          _vm._b(
-                            { on: { actionTriggered: _vm.handleAction } },
-                            "data-table",
-                            _vm.parameters,
-                            false
-                          )
+                          "main",
+                          [
+                            _c(
+                              "data-table",
+                              _vm._b(
+                                { on: { actionTriggered: _vm.handleAction } },
+                                "data-table",
+                                _vm.parameters,
+                                false
+                              )
+                            ),
+                          ],
+                          1
                         ),
-                      ],
-                      1
-                    ),
-                  ]),
+                      ])
+                    : _vm._e(),
                 ],
                 1
               )
