@@ -6,13 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <style>
+        label{
+            color:rgb(72, 71, 71)!important
+        }
+        </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="row" style="margin-top:45px">
+        <div class="row " style="margin-top:45px">
             <div class="col-md-4"></div>
-           <div class="col-md-4 col-md-offset-4">
+           <div class="col-md-4 card col-md-offset-4">
                 <h4>S'identifier</h4><hr>
                 <form action="
                 {{ route('auth.check') }}

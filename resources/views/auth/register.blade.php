@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <style>
+        label{
+            color:rgb(72, 71, 71)!important
+        }
+        </style>
 </head>
 <body>
 
@@ -13,7 +18,11 @@
         <div class="row" style="margin-top:45px">
             <div class="col-md-4"></div>
 
-           <div class="col-md-4 col-md-offset-4">
+           <div class="col-md-4  card col-md-offset-4">
+            <div class="text-center mb-2">
+                <img src="images/large.png" width="20%" class="circle" alt="...">
+                <hr>
+              </div>
                 <h4>S'enregistrer | NON ACTIVÉE</h4><hr>
                 <form action="
                 {{ route('auth.save') }}
