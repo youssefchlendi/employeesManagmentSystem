@@ -18,6 +18,7 @@ import Vuetify from 'vuetify';
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import DataTable from "@andresouzaabreu/vue-data-table";
 import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
+import VueScreen from 'vue-screen';
 // import "../css/index.scss"
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
@@ -30,7 +31,7 @@ Vue.use(VueSidebarMenu)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(Vuelidate)
-
+Vue.use(VueScreen);
 window.Vue = require('vue');
 window.router=router;
 window.Fire = new Vue();
