@@ -72,6 +72,7 @@ export default {
         }
     },
     created() {
+        document.title = 'Rubriques';
         this.fetchRebriques();
 
         // $('.btn-outline-success').forEach(e => e.addClass('d-none'));

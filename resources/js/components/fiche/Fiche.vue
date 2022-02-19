@@ -92,6 +92,8 @@ export default {
         }
     },
     created() {
+        document.title = 'Fiche';
+
         this.fetchFiches();
         this.fetchRebriques();
         this.fetchEmployes();

@@ -82,6 +82,8 @@ export default {
         }
     },
     created() {
+        document.title = 'Entreprise';
+
         this.fetchEntreprises();
     },
     methods: {

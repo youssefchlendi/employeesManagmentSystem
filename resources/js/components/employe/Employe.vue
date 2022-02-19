@@ -81,6 +81,7 @@ export default {
         }
     },
     created() {
+        document.title = 'Employe';
         this.fetchEntreprises();
         this.fetchEmployes();
         if (this.$route.params.add == 1) {

@@ -86,6 +86,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    document.title = 'Rubriques';
     this.fetchRebriques(); // $('.btn-outline-success').forEach(e => e.addClass('d-none'));
   },
   updated: function updated() {

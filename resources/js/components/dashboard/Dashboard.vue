@@ -197,6 +197,7 @@ export default {
         }
     },
     async mounted() {
+        document.title = 'Dashboard';
         this.fetchStats();
     },
 

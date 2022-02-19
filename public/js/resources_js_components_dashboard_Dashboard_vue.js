@@ -237,9 +237,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              document.title = 'Dashboard';
+
               _this.fetchStats();
 
-            case 1:
+            case 2:
             case "end":
               return _context.stop();
           }

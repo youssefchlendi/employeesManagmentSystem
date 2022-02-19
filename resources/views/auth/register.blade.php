@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="icon" href="images/large.png">
     <style>
         label{
             color:rgb(72, 71, 71)!important

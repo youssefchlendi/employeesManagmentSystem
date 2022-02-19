@@ -95,6 +95,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    document.title = 'Employe';
     this.fetchEntreprises();
     this.fetchEmployes();
 
@@ -292,6 +293,7 @@ var _methods;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -1118,7 +1120,8 @@ var render = function () {
                       "b-container",
                       {
                         staticClass:
-                          "ml-4 bv-example-row text-center pl-4 row justify-content-center",
+                          " bv-example-row text-center   justify-content-center",
+                        class: _vm.$screen.width < 768 ? "" : "ml-4 pl-4 row",
                       },
                       [
                         employe.fiches.length == 0
@@ -1133,7 +1136,8 @@ var render = function () {
                         {
                           key: fiche.id,
                           staticClass:
-                            "ml-4 bv-example-row text-center pl-4 row justify-content-center",
+                            " bv-example-row text-center   justify-content-center",
+                          class: _vm.$screen.width < 768 ? "" : "ml-4 pl-4 row",
                           staticStyle: { "text-align": "left!important" },
                         },
                         [
@@ -1143,7 +1147,11 @@ var render = function () {
                             [
                               _c(
                                 "b-col",
-                                { attrs: { cols: "10" } },
+                                {
+                                  attrs: {
+                                    cols: _vm.$screen.width < 768 ? "12" : "10",
+                                  },
+                                },
                                 [
                                   _c(
                                     "b-row",
@@ -1199,31 +1207,57 @@ var render = function () {
                                     ],
                                     1
                                   ),
+                                  _vm._v(" "),
+                                  _vm.$screen.width < 768
+                                    ? _c(
+                                        "b-row",
+                                        [
+                                          _c(
+                                            "b-button",
+                                            {
+                                              attrs: { variant: "success" },
+                                              on: {
+                                                click: function ($event) {
+                                                  return _vm.getPdf(
+                                                    employe.id,
+                                                    fiche.id
+                                                  )
+                                                },
+                                              },
+                                            },
+                                            [_vm._v("Afficher")]
+                                          ),
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e(),
                                 ],
                                 2
                               ),
                               _vm._v(" "),
-                              _c(
-                                "b-col",
-                                [
-                                  _c(
-                                    "b-button",
-                                    {
-                                      attrs: { variant: "success" },
-                                      on: {
-                                        click: function ($event) {
-                                          return _vm.getPdf(
-                                            employe.id,
-                                            fiche.id
-                                          )
+                              _vm.$screen.width > 768
+                                ? _c(
+                                    "b-col",
+                                    [
+                                      _c(
+                                        "b-button",
+                                        {
+                                          attrs: { variant: "success" },
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.getPdf(
+                                                employe.id,
+                                                fiche.id
+                                              )
+                                            },
+                                          },
                                         },
-                                      },
-                                    },
-                                    [_vm._v("Afficher")]
-                                  ),
-                                ],
-                                1
-                              ),
+                                        [_vm._v("Afficher")]
+                                      ),
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
                             ],
                             1
                           ),

@@ -107,6 +107,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    document.title = 'Fiche';
     this.fetchFiches();
     this.fetchRebriques();
     this.fetchEmployes();
@@ -480,6 +481,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   emits: ["fetchFiches", "attachRebrique"],
   props: {
@@ -525,10 +527,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     attachRebrique: function attachRebrique(RebriqueId) {
-      this.$emit('attachRebrique', {
-        rid: RebriqueId,
-        fid: this.rebrique.pivot.fiche_id
-      });
+      if (confirm('Dissocier rubrique ' + RebriqueId)) {
+        this.$emit('attachRebrique', {
+          rid: RebriqueId,
+          fid: this.rebrique.pivot.fiche_id
+        });
+      }
     }
   }
 });
@@ -648,6 +652,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _oneRebrique_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oneRebrique.vue */ "./resources/js/components/fiche/oneRebrique.vue");
+//
+//
+//
 //
 //
 //
@@ -1557,6 +1564,7 @@ var render = function () {
                     "b-button",
                     {
                       staticClass: "small",
+                      class: _vm.$screen.width < 768 ? "p-2" : "",
                       attrs: { variant: "success" },
                       on: {
                         click: function ($event) {
@@ -1571,6 +1579,7 @@ var render = function () {
                   _c(
                     "b-button",
                     {
+                      class: _vm.$screen.width < 768 ? "p-2" : "",
                       attrs: { variant: "danger" },
                       on: {
                         click: function ($event) {
@@ -1854,63 +1863,74 @@ var render = function () {
                     ),
                     _vm._v(" "),
                     _c(
-                      "b-button",
-                      {
-                        attrs: { variant: "danger" },
-                        on: {
-                          click: function ($event) {
-                            return _vm.Delete(fiche.id)
+                      "div",
+                      { class: _vm.$screen.width < 768 ? "row" : "" },
+                      [
+                        _c(
+                          "b-button",
+                          {
+                            staticClass: "my-1",
+                            attrs: { variant: "danger" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.Delete(fiche.id)
+                              },
+                            },
                           },
-                        },
-                      },
-                      [_vm._v("Supprimer")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-button",
-                      {
-                        attrs: {
-                          variant: "warning",
-                          "data-bs-toggle": "modal",
-                          "data-bs-target": "#ficheModal",
-                        },
-                        on: {
-                          click: function ($event) {
-                            return _vm.Update(fiche)
+                          [_vm._v("Supprimer")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-button",
+                          {
+                            staticClass: "my-1",
+                            attrs: {
+                              variant: "warning",
+                              "data-bs-toggle": "modal",
+                              "data-bs-target": "#ficheModal",
+                            },
+                            on: {
+                              click: function ($event) {
+                                return _vm.Update(fiche)
+                              },
+                            },
                           },
-                        },
-                      },
-                      [_vm._v("Modifier")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-button",
-                      {
-                        attrs: {
-                          variant: "warning",
-                          "data-bs-toggle": "modal",
-                          "data-bs-target": "#rebriqueModal",
-                        },
-                        on: {
-                          click: function ($event) {
-                            return _vm.select(fiche)
+                          [_vm._v("Modifier")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-button",
+                          {
+                            staticClass: "my-1",
+                            attrs: {
+                              variant: "warning",
+                              "data-bs-toggle": "modal",
+                              "data-bs-target": "#rebriqueModal",
+                            },
+                            on: {
+                              click: function ($event) {
+                                return _vm.select(fiche)
+                              },
+                            },
                           },
-                        },
-                      },
-                      [_vm._v("Ajouter rubrique")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "b-button",
-                      {
-                        attrs: { variant: "success" },
-                        on: {
-                          click: function ($event) {
-                            return _vm.getPdf(fiche)
+                          [_vm._v("Ajouter rubrique")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "b-button",
+                          {
+                            staticClass: "my-1",
+                            attrs: { variant: "success" },
+                            on: {
+                              click: function ($event) {
+                                return _vm.getPdf(fiche)
+                              },
+                            },
                           },
-                        },
-                      },
-                      [_vm._v("Afficher")]
+                          [_vm._v("Afficher")]
+                        ),
+                      ],
+                      1
                     ),
                   ],
                   1
