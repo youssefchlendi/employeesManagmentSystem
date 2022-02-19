@@ -20,7 +20,7 @@ class EmployeRequest extends FormRequest
         return [
             "nom"=> "required",
             "prenom"=> "required",
-            "cin"=> "required|unique:employes|min:8|max:8",
+            "cin"=> "required|numeric|unique:employes|min:1000000|max:99999999",
             "mat_cnss"=> "required|unique:employes",
             "fonction"=> "required",
             "entreprise_id"=> "required|exists:entreprises,id"
