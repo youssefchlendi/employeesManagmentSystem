@@ -85,20 +85,21 @@
             </b-container>
         </md-tab>
         <md-tab id="tab-empf" md-label="Employe fiches">
-            <b-container class="ml-4 bv-example-row text-center pl-4 row justify-content-center"  >
+            <b-container :class="$screen.width<768?'':'ml-4 pl-4 row'" class=" bv-example-row text-center   justify-content-center"  >
                             <h3 v-if="employe.fiches.length == 0">il y'a aucun fiche</h3>
             </b-container>
-            <b-container class="ml-4 bv-example-row text-center pl-4 row justify-content-center" style="text-align:left!important" v-for="fiche in employe.fiches" :key="fiche.id" >
+            <b-container :class="$screen.width<768?'':'ml-4 pl-4 row'" class=" bv-example-row text-center   justify-content-center" style="text-align:left!important" v-for="fiche in employe.fiches" :key="fiche.id" >
             <b-row  class="justify-content-center mb-2">
-                <b-col cols=10>
+                <b-col :cols="$screen.width<768?'12':'10'">
                     <b-row  ><b-col >date : {{ fiche.date }} </b-col></b-row>
                     <b-row  ><b-col ><h6><b>Rebriques:</b></h6></b-col></b-row>
                     <b-row   v-for="rebrique in fiche.rebriques" :key="rebrique.id">
                         <b-col ><b>{{ rebrique.titre }}</b> : {{ rebrique.pivot.montant }}</b-col>
                     </b-row>
                     <b-row ><b-col >total : {{ fiche.total}}</b-col></b-row>
+                <b-row v-if="$screen.width<768"><b-button variant="success" v-on:click="getPdf(employe.id,fiche.id)"  >Afficher</b-button></b-row>
                 </b-col>
-                <b-col><b-button variant="success" v-on:click="getPdf(employe.id,fiche.id)"  >Afficher</b-button></b-col>
+                <b-col v-if="$screen.width>768"><b-button variant="success" v-on:click="getPdf(employe.id,fiche.id)"  >Afficher</b-button></b-col>
             </b-row>
             <hr/>
             </b-container>

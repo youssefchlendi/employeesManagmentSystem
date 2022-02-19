@@ -25,21 +25,24 @@
                             :key="rebrique.id"
                         />
                     </b-row>
-                    <b-button variant="danger" v-on:click="Delete(fiche.id)">Supprimer</b-button>
-                    <b-button
+
+                    <div  :class="$screen.width<768?'row':''" >
+                    <b-button class="my-1" variant="danger" v-on:click="Delete(fiche.id)">Supprimer</b-button>
+                    <b-button class="my-1"
                         variant="warning"
                         v-on:click="Update(fiche)"
                         data-bs-toggle="modal"
                         data-bs-target="#ficheModal"
                     >Modifier</b-button>
-                    <b-button
+                    <b-button class="my-1"
                         variant="warning"
                         v-on:click="select(fiche)"
                         data-bs-toggle="modal"
                         data-bs-target="#rebriqueModal"
                     >Ajouter rubrique</b-button>
 
-                    <b-button variant="success" v-on:click="getPdf(fiche)">Afficher</b-button>
+                    <b-button class="my-1" variant="success" v-on:click="getPdf(fiche)">Afficher</b-button>
+                    </div>
                 </b-container>
             </b-card-body>
         </b-card>

@@ -5,6 +5,7 @@
         @item-click="checkWidth(0)"
         :width="'200px'"
         :menu="menu"
+        :collapsed="true"
     />
 </template>
 
@@ -66,7 +67,6 @@ export default {
         checkWidth(t = 0) {
             let docs = document.querySelectorAll('.vsm_expanded');
             if (t == 1) {
-                console.log("1");
                 if (docs.length == 0) {
                     document.querySelector('#contain').classList.add('contain');
                     document.querySelector('#contain').classList.remove('contain-closed');
@@ -75,7 +75,6 @@ export default {
                     document.querySelector('#contain').classList.add('contain-closed');
                 }
             } else {
-                console.log("0");
                 if (docs.length == 0) {
                     document.querySelector('#contain').classList.remove('contain');
                     document.querySelector('#contain').classList.add('contain-closed');

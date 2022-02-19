@@ -1,17 +1,6 @@
 <template>
     <nav class="navbar shadow fixed navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <i class="fas fa-bars"></i>
-            </button>
             <a class="navbar-brand mt-2 mt-lg-0" href="#">
                 <img src="images/large.png" width="50" height="50" alt="MDB Logo" loading="lazy" />
             </a>
@@ -27,11 +16,11 @@
                     <template #button-content>
                         <i class="fas fa-user"></i>
                     </template>
-                    <b-dropdown-item>{{ name }}</b-dropdown-item>
+                    <b-dropdown-item v-if="name">{{ name }}</b-dropdown-item>
                     <b-dropdown-item href="logout">Logout</b-dropdown-item>
                 </b-dropdown>
             </div>
-        </div>
+            </div>
     </nav>
 </template>
 
