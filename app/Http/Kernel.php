@@ -56,6 +56,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'AuthCheck' => \App\Http\Middleware\AuthCheck::class,
+        'apiCheck'=>\App\Http\Middleware\apiCheck::class,
         'EmployeCheck' => \App\Http\Middleware\EmployeMiddleware::class,
         'EntrepriseCheck' => \App\Http\Middleware\EntrepriseMiddleware::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
