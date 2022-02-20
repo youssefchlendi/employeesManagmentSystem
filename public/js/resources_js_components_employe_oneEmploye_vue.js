@@ -94,9 +94,9 @@ __webpack_require__.r(__webpack_exports__);
     fetchFiches: function fetchFiches() {
       var _this = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/fiche/" + this.id;
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/fichea/" + this.id;
       var vm = this;
-      page_url = "/api/fiche/" + this.id;
+      page_url = "/api/fichea/" + this.id;
       var headersi = new Headers();
       headersi.append('Content-Type', 'application/json');
       fetch(page_url, {

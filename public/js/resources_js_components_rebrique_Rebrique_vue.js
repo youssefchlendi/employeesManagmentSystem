@@ -102,9 +102,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/rebrique";
+      var headersi = new Headers();
+      headersi.append('Content-Type', 'application/json');
+      headersi.append('auth', 5);
       var vm = this;
       fetch(page_url, {
-        method: 'GET'
+        method: 'GET',
+        headers: headersi
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
@@ -117,9 +121,14 @@ __webpack_require__.r(__webpack_exports__);
     deleteRebrique: function deleteRebrique(id) {
       var _this2 = this;
 
+      var headersi = new Headers();
+      headersi.append('Content-Type', 'application/json');
+      headersi.append('auth', 5);
+
       if (confirm('Delete Rubrique ' + id)) {
         fetch('api/rebrique/' + id, {
-          method: 'delete'
+          method: 'delete',
+          headers: headersi
         }).then(function (res) {
           _this2.fetchRebriques();
 
@@ -137,13 +146,15 @@ __webpack_require__.r(__webpack_exports__);
     addRebrique: function addRebrique() {
       var _this3 = this;
 
+      var headersi = new Headers();
+      headersi.append('Content-Type', 'application/json');
+      headersi.append('auth', 5);
+
       if (!this.edit) {
         fetch('api/rebrique/add', {
           method: 'post',
           body: JSON.stringify(this.Rebrique),
-          headers: {
-            "Content-Type": 'application/json'
-          }
+          headers: headersi
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -160,9 +171,7 @@ __webpack_require__.r(__webpack_exports__);
         fetch('api/rebrique/' + this.Rebrique.id, {
           method: 'put',
           body: JSON.stringify(this.Rebrique),
-          headers: {
-            "Content-Type": 'application/json'
-          }
+          headers: headersi
         }).then(function (res) {
           return res.json();
         }).then(function (data) {

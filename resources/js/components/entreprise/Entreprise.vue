@@ -89,13 +89,13 @@ export default {
     methods: {
         fetchEntreprises(page_url = "/api/entreprise/") {
             let vm = this;
-            // let headersi = new Headers();
-            // headersi.append('Content-Type', 'application/json');
-            // headersi.append('Authorization', 'auth');
+            let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('auth', 5);
             fetch(page_url, {
                 method: 'get',
                 // body: JSON.stringify({ 'search': this.search }),
-                // headers: headersi
+                headers: headersi
 
             })
                 .then(res => res.json())
@@ -117,9 +117,11 @@ export default {
         },
         deleteEntreprise(id) {
             this.show = true;
-
+             let headersi = new Headers();
+            headersi.append('auth', 5);
             if (confirm('Delete Entreprise ' + id)) {
-                fetch('api/entreprise/' + id, { method: 'delete' })
+
+                fetch('api/entreprise/' + id, { method: 'delete' ,headers: headersi})
                     .then(res => {
                         this.fetchEntreprises();
                         this.alert.variant = "danger";
@@ -138,14 +140,14 @@ export default {
         },
         addEntreprise(entreprise) {
             this.show = true;
-
+let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('auth', 5);
             if (!this.edit) {
                 fetch('api/entreprise/add', {
                     method: 'post',
                     body: JSON.stringify(entreprise),
-                    headers: {
-                        "Content-Type": 'application/json'
-                    }
+                    headers: headersi
                 })
                     .then(res => res.json())
                     .then(data => {
@@ -173,9 +175,7 @@ export default {
                 fetch('api/entreprise/' + this.entreprise.id, {
                     method: 'put',
                     body: JSON.stringify(entreprise),
-                    headers: {
-                        "Content-Type": 'application/json'
-                    }
+                    headers: headersi
                 })
                     .then(res => res.json())
                     .then(data => {

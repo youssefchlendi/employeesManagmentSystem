@@ -23,7 +23,7 @@
 @if(!preg_match("/^\/entrepriseDetails\/?(?:[^\/]+\/?)*$/",parse_url(Request::url(),PHP_URL_PATH)) && !preg_match('/^\/employeDetails\/?(?:[^\/]+\/?)*$/',parse_url(Request::url(),PHP_URL_PATH)))
 <body >
 @else
-<body style="min-height: 100%;margin-left:50px!important; ">
+<body style="min-height: 100%;; ">
 @endif
 
 <div id="app" class=" pt-4 pb-4" style="margin-right:0!important;background: rgb(38,50,56);

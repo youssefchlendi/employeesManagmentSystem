@@ -198,6 +198,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -253,8 +261,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     fetchStats: function fetchStats() {
       var _this2 = this;
 
+      var headersi = new Headers();
+      headersi.append('auth', 5);
       fetch('api/stats', {
-        method: 'GET'
+        method: 'GET',
+        headers: headersi
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
@@ -15274,9 +15285,9 @@ var render = function () {
                                         [_vm._v("access_time")]
                                       ),
                                       _vm._v(
-                                        "\n                                        Derniere modification " +
+                                        "\n                                                Derniere modification " +
                                           _vm._s(_vm.lastAddedFiche) +
-                                          "\n                                    "
+                                          "\n                                            "
                                       ),
                                     ]),
                                   ]),
@@ -15342,9 +15353,9 @@ var render = function () {
                                         [_vm._v("access_time")]
                                       ),
                                       _vm._v(
-                                        "\n                                        Derniere modification " +
+                                        "\n                                                Derniere modification " +
                                           _vm._s(_vm.lastAddedEmploye) +
-                                          "\n                                    "
+                                          "\n                                            "
                                       ),
                                     ]),
                                   ]),
@@ -15410,9 +15421,9 @@ var render = function () {
                                         [_vm._v("access_time")]
                                       ),
                                       _vm._v(
-                                        "\n                                        Derniere modification " +
+                                        "\n                                                Derniere modification " +
                                           _vm._s(_vm.lastAddedFiche) +
-                                          "\n                                    "
+                                          "\n                                            "
                                       ),
                                     ]),
                                   ]),

@@ -118,27 +118,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/employe";
-      // let vm = this;
-      // let headersi = new Headers();
-      // headersi.append('Content-Type', 'application/json');
-      // headersi.append('Authorization', 'auth');
-      // fetch(page_url, {
-      //     method: 'GET',
-      //     headers: headersi
-      // })
-      //     .then(res => res.json())
-      //     .then(res => {
-      //         this.employes = res.data;
-      //         this.employes.forEach(e => e.entreprise = this.entrepriseById(e.entreprise_id));
-      //         this.show = false;
-      //         vm.makePagination(res);
-      //     })
-      //     .catch(err => console.log(err))
-      var vm = this; // page_url = this.search!=''?'/api/employe':page_url;
-
+      var vm = this;
       var headersi = new Headers();
-      headersi.append('Content-Type', 'application/json');
-      headersi.append('Authorization', 'auth');
+      headersi.append('auth', 5);
       fetch(page_url, {
         method: 'POST',
         body: JSON.stringify({
@@ -158,8 +140,11 @@ __webpack_require__.r(__webpack_exports__);
     fetchEntreprises: function fetchEntreprises() {
       var _this2 = this;
 
+      var headersi = new Headers();
+      headersi.append('auth', 5);
       fetch("/api/entreprise/", {
-        method: 'GET'
+        method: 'GET',
+        headers: headersi
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
@@ -180,10 +165,14 @@ __webpack_require__.r(__webpack_exports__);
     deleteEmploye: function deleteEmploye(id) {
       var _this3 = this;
 
+      var headersi = new Headers();
+      headersi.append('auth', 5);
+
       if (confirm('Delete employe ' + id)) {
         this.show = true;
         fetch('api/employe/' + id, {
-          method: 'delete'
+          method: 'delete',
+          headers: headersi
         }).then(function (res) {
           _this3.fetchEmployes();
 
@@ -201,15 +190,16 @@ __webpack_require__.r(__webpack_exports__);
     addEmploye: function addEmploye(employe) {
       var _this4 = this;
 
+      var headersi = new Headers();
+      headersi.append('auth', 5);
+      headersi.append('Content-Type', 'application/json');
       this.show = true;
 
       if (!this.edit) {
         fetch('api/employe/add', {
           method: 'post',
           body: JSON.stringify(employe),
-          headers: {
-            "Content-Type": 'application/json'
-          }
+          headers: headersi
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -237,9 +227,7 @@ __webpack_require__.r(__webpack_exports__);
         fetch('api/employe/' + this.employe.id, {
           method: 'put',
           body: JSON.stringify(employe),
-          headers: {
-            "Content-Type": 'application/json'
-          }
+          headers: headersi
         }).then(function (res) {
           return res.json();
         }).then(function (data) {

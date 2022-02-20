@@ -89,9 +89,13 @@ export default {
     },
     methods: {
         fetchRebriques(page_url = "/api/rebrique") {
+            let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('auth', 5);
             let vm = this;
             fetch(page_url, {
                 method: 'GET',
+                headers:headersi
             })
                 .then(res => res.json())
                 .then(res => {
@@ -106,8 +110,11 @@ export default {
                 .catch(err => console.log(err))
         },
         deleteRebrique(id) {
+            let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('auth', 5);
             if (confirm('Delete Rebrique ' + id)) {
-                fetch('api/rebrique/' + id, { method: 'delete' })
+                fetch('api/rebrique/' + id, { method: 'delete',headers:headersi })
                     .then(res => {
                         this.fetchRebriques();
                     })
@@ -120,13 +127,14 @@ export default {
             this.rebrique = {};
         },
         addRebrique() {
+            let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('auth', 5);
             if (!this.edit) {
                 fetch('api/rebrique/', {
                     method: 'post',
                     body: JSON.stringify(this.Rebrique),
-                    headers: {
-                        "Content-Type": 'application/json'
-                    }
+                    headers: headersi
                 })
                     .then(res => res.json())
                     .then(data => {
@@ -140,9 +148,7 @@ export default {
                 fetch('api/rebrique/' + this.Rebrique.id, {
                     method: 'put',
                     body: JSON.stringify(Rebrique),
-                    headers: {
-                        "Content-Type": 'application/json'
-                    }
+                    headers: headersi
                 })
                     .then(res => res.json())
                     .then(data => {

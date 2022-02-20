@@ -82,9 +82,9 @@ export default {
 
     },
     methods: {
-        fetchFiches(page_url = "/api/fiche/" + this.id) {
+        fetchFiches(page_url = "/api/fichea/" + this.id) {
             let vm = this;
-            page_url = "/api/fiche/" + this.id
+            page_url = "/api/fichea/" + this.id
             let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
             fetch(page_url, {

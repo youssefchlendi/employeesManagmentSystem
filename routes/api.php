@@ -17,10 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::namespace('App\Http\Controllers')->group(function(){
+Route::
+// namespace('App\Http\Controllers')->
+group(['namespace'=>'App\Http\Controllers','middleware' => ['apiCheck']],function(){
     Route::get('/stats','DashBoardController@all');
+
 });
-Route::prefix('/entreprise')->namespace('App\Http\Controllers')->group(function(){
+Route::
+group(['namespace'=>'App\Http\Controllers'],function(){
+    Route::post('/entreprisea/{id}','EntrepriseController@show');
+    Route::post('/fichea/{id}','FicheController@show');
+});
+Route::group(['prefix'=>'/entreprise','namespace'=>'App\Http\Controllers','middleware' => ['apiCheck']],function(){
     Route::post('/add','EntrepriseController@store');
     Route::get('/','EntrepriseController@showAll');
     Route::post('/{entreprise_id?}','EntrepriseController@show');
@@ -31,7 +39,7 @@ Route::prefix('/entreprise')->namespace('App\Http\Controllers')->group(function(
 
 });
 
-Route::prefix('/employe')->namespace('App\Http\Controllers')->group(function(){
+Route::group(['prefix'=>'/employe','namespace'=>'App\Http\Controllers','middleware' => ['apiCheck']],function(){
     Route::post('/add','EmployeController@store');
 
     Route::get('/','EmployeController@getAll');
@@ -44,7 +52,7 @@ Route::prefix('/employe')->namespace('App\Http\Controllers')->group(function(){
     Route::delete('/{employe_id}','EmployeController@Destroy');
 
 });
-Route::prefix('/fiche')->namespace('App\Http\Controllers')->group(function(){
+Route::group(['prefix'=>'/fiche','namespace'=>'App\Http\Controllers','middleware' => ['apiCheck']],function(){
     Route::post('/add','FicheController@store');
     Route::get('/','FicheController@showAll');
     Route::get('/calcTotal/{fiche_id?}','FicheController@calcTotal');
@@ -58,7 +66,7 @@ Route::prefix('/fiche')->namespace('App\Http\Controllers')->group(function(){
 
 });
 
-Route::prefix('/rebrique')->namespace('App\Http\Controllers')->group(function(){
+Route::group(['prefix'=>'/rebrique','namespace'=>'App\Http\Controllers','middleware' => ['apiCheck']],function(){
     Route::post('/add','RebriqueController@store');
 
 

@@ -201,9 +201,15 @@ export default {
         }
     },
     methods: {
+
         fetchEntreprises() {
+                        let headersi = new Headers();
+            headersi.append('auth', 5);
+
             fetch("/api/entreprise/", {
                 method: 'GET',
+                headers: headersi
+
             })
                 .then(res => res.json())
                 .then(res => {
@@ -212,13 +218,16 @@ export default {
                 .catch(err => console.log(err))
         },
         addEmploye() {
+            let headersi = new Headers();
+            headersi.append('auth', 5);
+            headersi.append('Content-Type', 'application/json');
+
+
             if (!this.edit) {
                 fetch('../api/employe/add', {
                     method: 'post',
                     body: JSON.stringify(this.employe),
-                    headers: {
-                        "Content-Type": 'application/json'
-                    }
+                    headers: headersi
                 })
                     .then(res => res.json())
                     .then(data => {
@@ -245,9 +254,8 @@ export default {
                 fetch('../api/employe/' + this.employe.id, {
                     method: 'put',
                     body: JSON.stringify(this.employe),
-                    headers: {
-                        "Content-Type": 'application/json'
-                    }
+                    headers: headersi
+
                 })
                     .then(res => res.json())
                     .then(data => {

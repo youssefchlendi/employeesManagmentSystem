@@ -87,10 +87,15 @@ let docs = document.querySelectorAll('.btn-outline-success');
                     }
     },
     methods: {
+
         fetchRebriques(page_url = "/api/rebrique") {
+            let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('auth', 5);
             let vm = this;
             fetch(page_url, {
                 method: 'GET',
+                headers:headersi
             })
                 .then(res => res.json())
                 .then(res => {
@@ -102,8 +107,11 @@ let docs = document.querySelectorAll('.btn-outline-success');
                 .catch(err => console.log(err))
         },
         deleteRebrique(id) {
+            let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('auth', 5);
             if (confirm('Delete Rubrique ' + id)) {
-                fetch('api/rebrique/' + id, { method: 'delete' })
+                fetch('api/rebrique/' + id, { method: 'delete',headers:headersi })
                     .then(res => {
                         this.fetchRebriques();
                         this.alert.variant = "danger";
@@ -120,13 +128,14 @@ let docs = document.querySelectorAll('.btn-outline-success');
             this.rebrique = {};
         },
         addRebrique() {
+            let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('auth', 5);
             if (!this.edit) {
                 fetch('api/rebrique/add', {
                     method: 'post',
                     body: JSON.stringify(this.Rebrique),
-                    headers: {
-                        "Content-Type": 'application/json'
-                    }
+                    headers: headersi
                 })
                     .then(res => res.json())
                     .then(data => {
@@ -142,9 +151,7 @@ let docs = document.querySelectorAll('.btn-outline-success');
                 fetch('api/rebrique/' + this.Rebrique.id, {
                     method: 'put',
                     body: JSON.stringify(this.Rebrique),
-                    headers: {
-                        "Content-Type": 'application/json'
-                    }
+                    headers: headersi
                 })
                     .then(res => res.json())
                     .then(data => {

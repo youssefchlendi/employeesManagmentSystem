@@ -46,6 +46,10 @@ export default {
             this.$emit("fetchFiches");
         },
         updateMontant() {
+            let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('auth', 5);
+
             if (typeof this.rebrique !== "undefined") {
                 fetch(
                     "api/fiche/" +
@@ -55,9 +59,7 @@ export default {
                     {
                         method: "PUT",
                         body: JSON.stringify({ montant: this.rebrique.pivot.montant }),
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
+                        headers: headersi
                     }
                 )
                     .then((res) => res.json())
@@ -72,6 +74,7 @@ export default {
 
                 fetch("api/fiche/calcTotal/" + this.rebrique.pivot.fiche_id, {
                     method: "get",
+                    headers:headersi
                 });
             }
         },

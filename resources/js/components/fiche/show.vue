@@ -4,8 +4,8 @@
             <h3>il y'a aucune fiche</h3>
         </div>
         <b-card v-for="fiche in fiches" :key="fiche.id">
-            <b-card-body>
-                <b-container class="bv-example-row text-center">
+            <b-card-body :class="$screen.width<768?'px-0':''">
+                <b-container  :class="$screen.width<768?'px-0':''" class="bv-example-row text-center">
                     <b-row class="mb-2">
                         <b-row>
                             <b-col>employe : {{ employeById(fiche.employe_id) }}</b-col>
@@ -16,6 +16,7 @@
                         <b-row>
                             <b-col>total : {{ fiche.total }}</b-col>
                         </b-row>
+
                         <oneRebrique
                             @fetchFiches="fetchFiches('/api/fiche')"
                             @attachRebrique="attachRebrique"

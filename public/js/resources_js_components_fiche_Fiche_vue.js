@@ -117,11 +117,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/fiche";
-      var vm = this; // page_url = this.search!=''?'/api/employe':page_url;
-
+      var vm = this;
       var headersi = new Headers();
       headersi.append('Content-Type', 'application/json');
-      headersi.append('Authorization', 'auth');
+      headersi.append('auth', 5);
       fetch('api/fiche/calcTotal/', {
         method: 'get'
       });
@@ -145,14 +144,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/employe";
-      var vm = this; // page_url = this.search!=''?'/api/employe':page_url;
-      // let headersi = new Headers();
-      // headersi.append('Content-Type', 'application/json');
-      // headersi.append('Authorization', 'auth');
-
+      var vm = this;
+      page_url = this.search != '' ? '/api/employe' : page_url;
+      var headersi = new Headers();
+      headersi.append('Content-Type', 'application/json');
+      headersi.append('auth', 5);
       fetch(page_url, {
-        method: 'GET' // headers: headersi
-
+        method: 'GET',
+        headers: headersi
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
@@ -166,9 +165,13 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/rebrique";
+      var headersi = new Headers();
+      headersi.append('Content-Type', 'application/json');
+      headersi.append('auth', 5);
       var vm = this;
       fetch(page_url, {
-        method: 'GET'
+        method: 'GET',
+        headers: headersi
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
@@ -191,10 +194,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       this.show = true;
+      var headersi = new Headers();
+      headersi.append('Content-Type', 'application/json');
+      headersi.append('auth', 5);
 
       if (confirm('Delete fiche ' + id)) {
         fetch('api/fiche/' + id, {
-          method: 'delete'
+          method: 'delete',
+          headers: headersi
         }).then(function (res) {
           _this4.fetchFiches();
 
@@ -220,14 +227,15 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       this.show = true;
+      var headersi = new Headers();
+      headersi.append('Content-Type', 'application/json');
+      headersi.append('auth', 5);
 
       if (!this.edit) {
         fetch('api/fiche/add', {
           method: 'post',
           body: JSON.stringify(fiche),
-          headers: {
-            "Content-Type": 'application/json'
-          }
+          headers: headersi
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -245,9 +253,7 @@ __webpack_require__.r(__webpack_exports__);
         fetch('api/fiche/' + this.fiche.id, {
           method: 'put',
           body: JSON.stringify(fiche),
-          headers: {
-            "Content-Type": 'application/json'
-          }
+          headers: headersi
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -273,9 +279,14 @@ __webpack_require__.r(__webpack_exports__);
     attachRebrique: function attachRebrique(RebriqueId) {
       var _this6 = this;
 
+      var headersi = new Headers();
+      headersi.append('Content-Type', 'application/json');
+      headersi.append('auth', 5);
+
       if (typeof RebriqueId.fid !== "undefined") {
         fetch('api/fiche/' + RebriqueId.fid + '/rebrique/' + RebriqueId.rid, {
-          method: 'post'
+          method: 'post',
+          headers: headersi
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -295,7 +306,8 @@ __webpack_require__.r(__webpack_exports__);
         });
       } else {
         fetch('api/fiche/' + this.fiche.id + '/rebrique/' + RebriqueId, {
-          method: 'post'
+          method: 'post',
+          headers: headersi
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -316,8 +328,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     deleteFicher: function deleteFicher(id) {
+      var headersi = new Headers();
+      headersi.append('Content-Type', 'application/json');
+      headersi.append('auth', 5);
       fetch('api/fiche/rel/' + id, {
-        method: 'delete'
+        method: 'delete',
+        headers: headersi
       }).then(function (res) {}).then(function (data) {})["catch"](function (err) {
         return console.log(err);
       });
@@ -501,15 +517,17 @@ __webpack_require__.r(__webpack_exports__);
     updateMontant: function updateMontant() {
       var _this = this;
 
+      var headersi = new Headers();
+      headersi.append('Content-Type', 'application/json');
+      headersi.append('auth', 5);
+
       if (typeof this.rebrique !== "undefined") {
         fetch("api/fiche/" + this.rebrique.pivot.fiche_id + "/rebrique/" + this.rebrique.id, {
           method: "PUT",
           body: JSON.stringify({
             montant: this.rebrique.pivot.montant
           }),
-          headers: {
-            "Content-Type": "application/json"
-          }
+          headers: headersi
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -522,7 +540,8 @@ __webpack_require__.r(__webpack_exports__);
           return console.log(err);
         });
         fetch("api/fiche/calcTotal/" + this.rebrique.pivot.fiche_id, {
-          method: "get"
+          method: "get",
+          headers: headersi
         });
       }
     },
@@ -652,6 +671,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _oneRebrique_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./oneRebrique.vue */ "./resources/js/components/fiche/oneRebrique.vue");
+//
 //
 //
 //
@@ -1804,10 +1824,14 @@ var render = function () {
           [
             _c(
               "b-card-body",
+              { class: _vm.$screen.width < 768 ? "px-0" : "" },
               [
                 _c(
                   "b-container",
-                  { staticClass: "bv-example-row text-center" },
+                  {
+                    staticClass: "bv-example-row text-center",
+                    class: _vm.$screen.width < 768 ? "px-0" : "",
+                  },
                   [
                     _c(
                       "b-row",

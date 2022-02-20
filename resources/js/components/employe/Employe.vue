@@ -101,28 +101,9 @@ export default {
     },
     methods: {
         fetchEmployes(page_url = "/api/employe") {
-            // let vm = this;
-            // let headersi = new Headers();
-            // headersi.append('Content-Type', 'application/json');
-            // headersi.append('Authorization', 'auth');
-            // fetch(page_url, {
-            //     method: 'GET',
-            //     headers: headersi
-
-            // })
-            //     .then(res => res.json())
-            //     .then(res => {
-            //         this.employes = res.data;
-            //         this.employes.forEach(e => e.entreprise = this.entrepriseById(e.entreprise_id));
-            //         this.show = false;
-            //         vm.makePagination(res);
-            //     })
-            //     .catch(err => console.log(err))
             let vm = this;
-            // page_url = this.search!=''?'/api/employe':page_url;
             let headersi = new Headers();
-            headersi.append('Content-Type', 'application/json');
-            headersi.append('Authorization','auth');
+            headersi.append('auth',5);
             fetch(page_url, {
                 method: 'POST',
                 body: JSON.stringify({'search' : this.search}),
@@ -138,8 +119,12 @@ export default {
                 .catch(err => console.log(err))
         },
         fetchEntreprises() {
+             let headersi = new Headers();
+            headersi.append('auth', 5);
             fetch("/api/entreprise/", {
                 method: 'GET',
+                    headers: headersi
+
             })
                 .then(res => res.json())
                 .then(res => {
@@ -157,9 +142,11 @@ export default {
             };
         },
         deleteEmploye(id) {
+            let headersi = new Headers();
+            headersi.append('auth', 5);
             if (confirm('Delete employe ' + id)) {
                 this.show = true;
-                fetch('api/employe/' + id, { method: 'delete' })
+                fetch('api/employe/' + id, { method: 'delete' ,headers: headersi})
                     .then(res => {
                         this.fetchEmployes();
                         this.alert.variant = "danger";
@@ -176,14 +163,16 @@ export default {
             this.employe = {};
         },
         addEmploye(employe) {
+            let headersi = new Headers();
+            headersi.append('auth', 5);
+            headersi.append('Content-Type', 'application/json');
+
             this.show = true;
             if (!this.edit) {
                 fetch('api/employe/add', {
                     method: 'post',
                     body: JSON.stringify(employe),
-                    headers: {
-                        "Content-Type": 'application/json'
-                    }
+                    headers: headersi
                 })
                     .then(res => res.json())
                     .then(data => {
@@ -212,9 +201,7 @@ export default {
                 fetch('api/employe/' + this.employe.id, {
                     method: 'put',
                     body: JSON.stringify(employe),
-                    headers: {
-                        "Content-Type": 'application/json'
-                    }
+                    headers: headersi
                 })
                     .then(res => res.json())
                     .then(data => {

@@ -217,8 +217,11 @@ __webpack_require__.r(__webpack_exports__);
     fetchEntreprises: function fetchEntreprises() {
       var _this = this;
 
+      var headersi = new Headers();
+      headersi.append('auth', 5);
       fetch("/api/entreprise/", {
-        method: 'GET'
+        method: 'GET',
+        headers: headersi
       }).then(function (res) {
         return res.json();
       }).then(function (res) {
@@ -230,13 +233,15 @@ __webpack_require__.r(__webpack_exports__);
     addEmploye: function addEmploye() {
       var _this2 = this;
 
+      var headersi = new Headers();
+      headersi.append('auth', 5);
+      headersi.append('Content-Type', 'application/json');
+
       if (!this.edit) {
         fetch('../api/employe/add', {
           method: 'post',
           body: JSON.stringify(this.employe),
-          headers: {
-            "Content-Type": 'application/json'
-          }
+          headers: headersi
         }).then(function (res) {
           return res.json();
         }).then(function (data) {
@@ -273,9 +278,7 @@ __webpack_require__.r(__webpack_exports__);
         fetch('../api/employe/' + this.employe.id, {
           method: 'put',
           body: JSON.stringify(this.employe),
-          headers: {
-            "Content-Type": 'application/json'
-          }
+          headers: headersi
         }).then(function (res) {
           return res.json();
         }).then(function (data) {

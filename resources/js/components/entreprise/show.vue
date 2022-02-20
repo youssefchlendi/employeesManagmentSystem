@@ -141,12 +141,13 @@ export default {
             this.employe = employe;
         },
         updateEmploye(employe) {
+            let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('auth', 5);
             fetch('api/employe/' + this.employe.id, {
                 method: 'put',
                 body: JSON.stringify(employe),
-                headers: {
-                    "Content-Type": 'application/json'
-                }
+                headers: headersi
             })
                 .then(res => res.json())
                 .then(data => {
@@ -160,8 +161,11 @@ export default {
                 .catch(err => console.log(err))
         },
         deleteEmploye(id) {
+            let headersi = new Headers();
+            headersi.append('Content-Type', 'application/json');
+            headersi.append('auth', 5);
             if (confirm('Delete employe ' + id)) {
-                fetch('api/employe/' + id, { method: 'delete' })
+                fetch('api/employe/' + id, { method: 'delete',headers: headersi})
                     .then(res => {
                         this.fetchEntreprises();
                         this.alert.variant = "danger";

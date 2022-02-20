@@ -64,9 +64,9 @@ export default {
 
     },
     methods: {
-        fetchEntreprises(page_url = "/api/entreprise") {
+        fetchEntreprises(page_url = "/api/entreprisea") {
             let vm = this;
-            page_url = "/api/entreprise/" + this.id;
+            page_url = "/api/entreprisea/" + this.id;
             let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
             fetch(page_url, {
