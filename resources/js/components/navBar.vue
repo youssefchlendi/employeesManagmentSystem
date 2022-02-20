@@ -1,11 +1,11 @@
 <template>
     <sidebar-menu
         :show-one-child="true"
-        @toggle-collapse="checkWidth(1)"
-        @item-click="checkWidth(0)"
+        @toggle-collapse="collapse=!collapse"
         :width="'200px'"
         :menu="menu"
         :collapsed="true"
+        style="transition: 0.5s max-width ease!important;"
     />
 </template>
 
@@ -13,6 +13,7 @@
 export default {
     data() {
         return {
+            collapse : true,
             menu: [
                 {
                     header: 'Main Navigation',
@@ -85,9 +86,14 @@ export default {
             }
         }
 
+    },
+    created(){
+            window.document.body.style.marginLeft = !this.collapse  ? '200px' : '50px'
+    },
+    watch: {
+        collapse() {
+            window.document.body.style.marginLeft = !this.collapse  ? '200px' : '50px'
+        }
     }
 }
 </script>
-
-<style>
-</style>

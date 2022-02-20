@@ -35,6 +35,7 @@ Vue.use(VueScreen);
 window.Vue = require('vue');
 window.router=router;
 window.Fire = new Vue();
+import 'boxicons'
 
 /**
  * The following block of code may be used to automatically register your
@@ -50,6 +51,10 @@ Vue.component("data-table", DataTable);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar', require('./components/navBar.vue').default);
 Vue.component('topnav', require('./components/topnav.vue').default);
+import VueSidebarMenuAkahon from "vue-sidebar-menu-akahon";
+
+Vue.component('vue-sidebar-menu-akahon', VueSidebarMenuAkahon);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

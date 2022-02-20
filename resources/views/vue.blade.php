@@ -23,7 +23,7 @@
 @if(!preg_match("/^\/entrepriseDetails\/?(?:[^\/]+\/?)*$/",parse_url(Request::url(),PHP_URL_PATH)) && !preg_match('/^\/employeDetails\/?(?:[^\/]+\/?)*$/',parse_url(Request::url(),PHP_URL_PATH)))
 <body >
 @else
-<body style="min-height: 100%;">
+<body style="min-height: 100%;margin-left:50px!important; ">
 @endif
 
 <div id="app" class=" pt-4 pb-4" style="margin-right:0!important;background: rgb(38,50,56);
@@ -35,7 +35,7 @@ background: linear-gradient(130deg, rgba(38,50,56,1) 0%, rgba(69,90,100,1) 54%, 
         <main>
         @if(!preg_match("/^\/entrepriseDetails\/?(?:[^\/]+\/?)*$/",parse_url(Request::url(),PHP_URL_PATH)) && !preg_match('/^\/employeDetails\/?(?:[^\/]+\/?)*$/',parse_url(Request::url(),PHP_URL_PATH)))
 
-        <router-view class="contain-closed " id="contain" style="margin-left:75px;background-color:#b0bec5b3" ></router-view>
+        <router-view class=" " id="sdsd" style="margin-left:25px;background-color:#b0bec5b3" ></router-view>
         @else
         <router-view ></router-view>
         @endif
