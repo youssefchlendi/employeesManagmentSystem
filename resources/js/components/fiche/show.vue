@@ -4,8 +4,11 @@
             <h3>il y'a aucune fiche</h3>
         </div>
         <b-card v-for="fiche in fiches" :key="fiche.id">
-            <b-card-body :class="$screen.width<768?'px-0':''">
-                <b-container  :class="$screen.width<768?'px-0':''" class="bv-example-row text-center">
+            <b-card-body :class="$screen.width < 768 ? 'px-0' : ''">
+                <b-container
+                    :class="$screen.width < 768 ? 'px-0' : ''"
+                    class="bv-example-row text-center"
+                >
                     <b-row class="mb-2">
                         <b-row>
                             <b-col>employe : {{ employeById(fiche.employe_id) }}</b-col>
@@ -27,22 +30,28 @@
                         />
                     </b-row>
 
-                    <div  :class="$screen.width<768?'row':''" >
-                    <b-button class="my-1" variant="danger" v-on:click="Delete(fiche.id)">Supprimer</b-button>
-                    <b-button class="my-1"
-                        variant="warning"
-                        v-on:click="Update(fiche)"
-                        data-bs-toggle="modal"
-                        data-bs-target="#ficheModal"
-                    >Modifier</b-button>
-                    <b-button class="my-1"
-                        variant="warning"
-                        v-on:click="select(fiche)"
-                        data-bs-toggle="modal"
-                        data-bs-target="#rebriqueModal"
-                    >Ajouter rubrique</b-button>
+                    <div :class="$screen.width < 768 ? 'row' : ''">
+                        <b-button
+                            class="my-1"
+                            variant="danger"
+                            v-on:click="Delete(fiche.id)"
+                        >Supprimer</b-button>
+                        <b-button
+                            class="my-1"
+                            variant="warning"
+                            v-on:click="Update(fiche)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#ficheModal"
+                        >Modifier</b-button>
+                        <b-button
+                            class="my-1"
+                            variant="warning"
+                            v-on:click="select(fiche)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#rebriqueModal"
+                        >Ajouter rubrique</b-button>
 
-                    <b-button class="my-1" variant="success" v-on:click="getPdf(fiche)">Afficher</b-button>
+                        <b-button class="my-1" variant="success" v-on:click="getPdf(fiche)">Afficher</b-button>
                     </div>
                 </b-container>
             </b-card-body>

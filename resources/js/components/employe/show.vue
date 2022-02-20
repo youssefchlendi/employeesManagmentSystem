@@ -5,7 +5,7 @@
         </div>
         <!-- <main>
             <data-table v-bind="parameters" @actionTriggered="handleAction" />
-        </main> -->
+        </main>-->
         <div
             class="modal fade"
             id="ficheModal"
@@ -70,43 +70,83 @@
                 </div>
             </div>
         </div>
-         <b-card v-for="employe in employes" :key="employe.id">
-      <md-tabs >
-        <md-tab id="tab-home" md-label="Employe">
-
-            <b-container class="bv-example-row text-center">
-            <b-row  class="mb-2">
-            <b-row><b-col>Nom : {{ employe.nom }} Prenom :  {{employe.prenom }}</b-col></b-row>
-            <b-row><b-col>Cin : {{ employe.cin}} Matricule CNSS : {{ employe.mat_cnss }} </b-col></b-row>
-            <b-row><b-col>Fonction : {{ employe.fonction }}</b-col></b-row>
-            </b-row>
-            <b-button variant="danger" v-on:click="Delete(employe.id)" >Delete</b-button>
-            <b-button variant="warning" v-on:click="$router.push({ name: 'addEmploye', params: { employe: employe, edit: true } });"  >Update</b-button>
-            </b-container>
-        </md-tab>
-        <md-tab id="tab-empf" md-label="Employe fiches">
-            <b-container :class="$screen.width<768?'':'ml-4 pl-4 row'" class=" bv-example-row text-center   justify-content-center"  >
-                            <h3 v-if="employe.fiches.length == 0">il y'a aucun fiche</h3>
-            </b-container>
-            <b-container :class="$screen.width<768?'':'ml-4 pl-4 row'" class=" bv-example-row text-center   justify-content-center" style="text-align:left!important" v-for="fiche in employe.fiches" :key="fiche.id" >
-            <b-row  class="justify-content-center mb-2">
-                <b-col :cols="$screen.width<768?'12':'10'">
-                    <b-row  ><b-col >date : {{ fiche.date }} </b-col></b-row>
-                    <b-row  ><b-col ><h6><b>Rebriques:</b></h6></b-col></b-row>
-                    <b-row   v-for="rebrique in fiche.rebriques" :key="rebrique.id">
-                        <b-col ><b>{{ rebrique.titre }}</b> : {{ rebrique.pivot.montant }}</b-col>
-                    </b-row>
-                    <b-row ><b-col >total : {{ fiche.total}}</b-col></b-row>
-                <b-row v-if="$screen.width<768"><b-button variant="success" v-on:click="getPdf(employe.id,fiche.id)"  >Afficher</b-button></b-row>
-                </b-col>
-                <b-col v-if="$screen.width>768"><b-button variant="success" v-on:click="getPdf(employe.id,fiche.id)"  >Afficher</b-button></b-col>
-            </b-row>
-            <hr/>
-            </b-container>
-        </md-tab>
-      </md-tabs>
- </b-card>
- <nav class="row">
+        <b-card v-for="employe in employes" :key="employe.id">
+            <md-tabs>
+                <md-tab id="tab-home" md-label="Employe">
+                    <b-container class="bv-example-row text-center">
+                        <b-row class="mb-2">
+                            <b-row>
+                                <b-col>Nom : {{ employe.nom }} Prenom : {{ employe.prenom }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col>Cin : {{ employe.cin }} Matricule CNSS : {{ employe.mat_cnss }}</b-col>
+                            </b-row>
+                            <b-row>
+                                <b-col>Fonction : {{ employe.fonction }}</b-col>
+                            </b-row>
+                        </b-row>
+                        <b-button variant="danger" v-on:click="Delete(employe.id)">Delete</b-button>
+                        <b-button
+                            variant="warning"
+                            v-on:click="$router.push({ name: 'addEmploye', params: { employe: employe, edit: true } });"
+                        >Update</b-button>
+                    </b-container>
+                </md-tab>
+                <md-tab id="tab-empf" md-label="Employe fiches">
+                    <b-container
+                        :class="$screen.width < 768 ? '' : 'ml-4 pl-4 row'"
+                        class="bv-example-row text-center justify-content-center"
+                    >
+                        <h3 v-if="employe.fiches.length == 0">il y'a aucun fiche</h3>
+                    </b-container>
+                    <b-container
+                        :class="$screen.width < 768 ? '' : 'ml-4 pl-4 row'"
+                        class="bv-example-row text-center justify-content-center"
+                        style="text-align:left!important"
+                        v-for="fiche in employe.fiches"
+                        :key="fiche.id"
+                    >
+                        <b-row class="justify-content-center mb-2">
+                            <b-col :cols="$screen.width < 768 ? '12' : '10'">
+                                <b-row>
+                                    <b-col>date : {{ fiche.date }}</b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col>
+                                        <h6>
+                                            <b>Rebriques:</b>
+                                        </h6>
+                                    </b-col>
+                                </b-row>
+                                <b-row v-for="rebrique in fiche.rebriques" :key="rebrique.id">
+                                    <b-col>
+                                        <b>{{ rebrique.titre }}</b>
+                                        : {{ rebrique.pivot.montant }}
+                                    </b-col>
+                                </b-row>
+                                <b-row>
+                                    <b-col>total : {{ fiche.total }}</b-col>
+                                </b-row>
+                                <b-row v-if="$screen.width < 768">
+                                    <b-button
+                                        variant="success"
+                                        v-on:click="getPdf(employe.id, fiche.id)"
+                                    >Afficher</b-button>
+                                </b-row>
+                            </b-col>
+                            <b-col v-if="$screen.width > 768">
+                                <b-button
+                                    variant="success"
+                                    v-on:click="getPdf(employe.id, fiche.id)"
+                                >Afficher</b-button>
+                            </b-col>
+                        </b-row>
+                        <hr />
+                    </b-container>
+                </md-tab>
+            </md-tabs>
+        </b-card>
+        <nav class="row">
             <ul class="pagination w-auto mx-auto">
                 <li :class="[{ disabled: !pagination.prev_page_url }]" class="page-item">
                     <a
@@ -149,7 +189,7 @@ export default {
     },
     emits: ["deleteEmploye", "updateEmploye", "fetchEmployes"],
     methods: {
-        fetchEmployes(emp){
+        fetchEmployes(emp) {
             this.$emit("fetchEmployes", emp);
         },
         Delete(id) {

@@ -12,7 +12,7 @@
                 ></b-overlay>
                 <div v-if="!show">
                     <b-container class="bv-example-row py-0">
-                        <b-row class="text-center ">
+                        <b-row class="text-center">
                             <b-col cols="8">
                                 <button
                                     type="button"
@@ -25,7 +25,8 @@
                             <b-col></b-col>
                         </b-row>
                     </b-container>
-                    <b-alert class="mt-4"
+                    <b-alert
+                        class="mt-4"
                         :show="alert.dismissCountDown"
                         dismissible
                         :variant="alert.variant"
@@ -122,7 +123,7 @@ export default {
         },
         fetchEmployes(page_url = "/api/employe") {
             let vm = this;
-            page_url = this.search!=''?'/api/employe':page_url;
+            page_url = this.search != '' ? '/api/employe' : page_url;
             let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
             headersi.append('auth', 5);
@@ -146,7 +147,7 @@ export default {
             let vm = this;
             fetch(page_url, {
                 method: 'GET',
-                headers:headersi
+                headers: headersi
             })
                 .then(res => res.json())
                 .then(res => {
@@ -167,11 +168,11 @@ export default {
         },
         deleteFiche(id) {
             this.show = true;
-             let headersi = new Headers();
+            let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
             headersi.append('auth', 5);
             if (confirm('Delete fiche ' + id)) {
-                fetch('api/fiche/' + id, { method: 'delete',headers:headersi })
+                fetch('api/fiche/' + id, { method: 'delete', headers: headersi })
                     .then(res => {
                         this.fetchFiches();
                         this.alert.variant = "danger";
@@ -183,7 +184,7 @@ export default {
                     })
                     .catch(err => console.log(err));
             }
-                        this.fetchFiches();
+            this.fetchFiches();
 
         },
         resetModal1() {
@@ -196,7 +197,7 @@ export default {
         },
         addFiche(fiche) {
             this.show = true;
-let headersi = new Headers();
+            let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
             headersi.append('auth', 5);
             if (!this.edit) {
@@ -251,7 +252,7 @@ let headersi = new Headers();
             if (typeof RebriqueId.fid !== "undefined") {
                 fetch('api/fiche/' + RebriqueId.fid + '/rebrique/' + RebriqueId.rid, {
                     method: 'post',
-                    headers:headersi
+                    headers: headersi
                 }).then(res => res.json())
                     .then(data => {
                         if (data.attached == true) {
@@ -270,7 +271,7 @@ let headersi = new Headers();
             } else {
                 fetch('api/fiche/' + this.fiche.id + '/rebrique/' + RebriqueId, {
                     method: 'post',
-                    headers:headersi
+                    headers: headersi
                 }).then(res => res.json())
                     .then(data => {
                         if (data.attached == true) {
@@ -295,7 +296,7 @@ let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
             headersi.append('auth', 5);
 
-            fetch('api/fiche/rel/' + id, { method: 'delete',headers:headersi })
+            fetch('api/fiche/rel/' + id, { method: 'delete', headers: headersi })
                 .then(res => {
                 })
                 .then(data => {
@@ -312,8 +313,8 @@ let headersi = new Headers();
 </script>
 
 <style>
-.btun{
-    color:white!important;
-    background-color:#d32f2f!important;
+.btun {
+    color: white !important;
+    background-color: #d32f2f !important;
 }
 </style>

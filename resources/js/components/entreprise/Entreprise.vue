@@ -12,7 +12,7 @@
                 ></b-overlay>
                 <div v-if="!show">
                     <b-container class="bv-example-row py-0">
-                        <b-row class="text-center ">
+                        <b-row class="text-center">
                             <b-col cols="8">
                                 <button
                                     type="button"
@@ -25,7 +25,8 @@
                             <b-col></b-col>
                         </b-row>
                     </b-container>
-                    <b-alert class="mt-4"
+                    <b-alert
+                        class="mt-4"
                         style="white-space: pre-line;"
                         :show="alert.dismissCountDown"
                         dismissible
@@ -117,11 +118,11 @@ export default {
         },
         deleteEntreprise(id) {
             this.show = true;
-             let headersi = new Headers();
+            let headersi = new Headers();
             headersi.append('auth', 5);
             if (confirm('Delete Entreprise ' + id)) {
 
-                fetch('api/entreprise/' + id, { method: 'delete' ,headers: headersi})
+                fetch('api/entreprise/' + id, { method: 'delete', headers: headersi })
                     .then(res => {
                         this.fetchEntreprises();
                         this.alert.variant = "danger";
@@ -140,7 +141,7 @@ export default {
         },
         addEntreprise(entreprise) {
             this.show = true;
-let headersi = new Headers();
+            let headersi = new Headers();
             headersi.append('Content-Type', 'application/json');
             headersi.append('auth', 5);
             if (!this.edit) {
@@ -207,8 +208,8 @@ let headersi = new Headers();
     margin-left: 225px !important;
     transition: all 0.3s ease-in-out;
 }
-.btun{
-    color:white!important;
-    background-color:#d32f2f!important;
+.btun {
+    color: white !important;
+    background-color: #d32f2f !important;
 }
 </style>

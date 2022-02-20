@@ -12,18 +12,19 @@
                 ></b-overlay>
                 <div v-if="!show">
                     <b-container class="bv-example-row py-0">
-                    <b-row class="text-center ">
-                        <b-col cols="8">
-                            <button
-                                type="button"
-                                class="btn btn-primary mx-1 float-start"
-                                @click="$router.push({ name: 'addEmploye', params: { edit: false } });"
-                            >Nouvel employé</button>
-                        </b-col>
-                        <b-col></b-col>
-                    </b-row>
+                        <b-row class="text-center">
+                            <b-col cols="8">
+                                <button
+                                    type="button"
+                                    class="btn btn-primary mx-1 float-start"
+                                    @click="$router.push({ name: 'addEmploye', params: { edit: false } });"
+                                >Nouvel employé</button>
+                            </b-col>
+                            <b-col></b-col>
+                        </b-row>
                     </b-container>
-                    <b-alert class="mt-4"
+                    <b-alert
+                        class="mt-4"
                         :show="alert.dismissCountDown"
                         dismissible
                         :variant="alert.variant"
@@ -38,14 +39,14 @@
                         :oldEmploye="employe"
                     />
                     <!-- <b-card> -->
-                        <showEmploye
-                            :employes="employes"
-                            @deleteEmploye="deleteEmploye"
-                            @fetchEmployes="fetchEmployes"
-                            @updateEmploye="updateEmploye"
-                            :pagination="pagination"
-                            :entreprises="entreprises"
-                        />
+                    <showEmploye
+                        :employes="employes"
+                        @deleteEmploye="deleteEmploye"
+                        @fetchEmployes="fetchEmployes"
+                        @updateEmploye="updateEmploye"
+                        :pagination="pagination"
+                        :entreprises="entreprises"
+                    />
                     <!-- </b-card> -->
                 </div>
             </div>
@@ -103,10 +104,10 @@ export default {
         fetchEmployes(page_url = "/api/employe") {
             let vm = this;
             let headersi = new Headers();
-            headersi.append('auth',5);
+            headersi.append('auth', 5);
             fetch(page_url, {
                 method: 'POST',
-                body: JSON.stringify({'search' : this.search}),
+                body: JSON.stringify({ 'search': this.search }),
                 headers: headersi
             })
                 .then(res => res.json())
@@ -119,11 +120,11 @@ export default {
                 .catch(err => console.log(err))
         },
         fetchEntreprises() {
-             let headersi = new Headers();
+            let headersi = new Headers();
             headersi.append('auth', 5);
             fetch("/api/entreprise/", {
                 method: 'GET',
-                    headers: headersi
+                headers: headersi
 
             })
                 .then(res => res.json())
@@ -146,7 +147,7 @@ export default {
             headersi.append('auth', 5);
             if (confirm('Delete employe ' + id)) {
                 this.show = true;
-                fetch('api/employe/' + id, { method: 'delete' ,headers: headersi})
+                fetch('api/employe/' + id, { method: 'delete', headers: headersi })
                     .then(res => {
                         this.fetchEmployes();
                         this.alert.variant = "danger";
@@ -240,8 +241,8 @@ export default {
 </script>
 
 <style>
-.btun{
-    color:white!important;
-    background-color:#d32f2f!important;
+.btun {
+    color: white !important;
+    background-color: #d32f2f !important;
 }
 </style>

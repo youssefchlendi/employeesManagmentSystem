@@ -1,7 +1,7 @@
 <template>
     <sidebar-menu
         :show-one-child="true"
-        @toggle-collapse="collapse=!collapse"
+        @toggle-collapse="collapse = !collapse"
         :width="'200px'"
         :menu="menu"
         :collapsed="true"
@@ -13,7 +13,7 @@
 export default {
     data() {
         return {
-            collapse : true,
+            collapse: true,
             menu: [
                 {
                     header: 'Main Navigation',
@@ -87,12 +87,12 @@ export default {
         }
 
     },
-    created(){
-            window.document.body.style.marginLeft = !this.collapse  ? '200px' : '50px'
+    created() {
+        window.document.body.style.marginLeft = !this.collapse ? '200px' : '50px'
     },
     watch: {
         collapse() {
-            window.document.body.style.marginLeft = !this.collapse  ? '200px' : '50px'
+            window.document.body.style.marginLeft = !this.collapse ? '200px' : '50px'
         }
     }
 }

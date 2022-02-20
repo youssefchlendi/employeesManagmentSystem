@@ -1,11 +1,8 @@
 <template>
     <div>
-        <formEmploye
-                @addEmploye="updateEmploye"
-                :entreprises="entreprises"
-                :oldEmploye="employe"
-            />
-        <b-alert class="mt-4"
+        <formEmploye @addEmploye="updateEmploye" :entreprises="entreprises" :oldEmploye="employe" />
+        <b-alert
+            class="mt-4"
             :show="alert.dismissCountDown"
             dismissible
             :variant="alert.variant"
@@ -16,12 +13,12 @@
         <div class="text-center card card-body my-5 py-5" v-if="entreprises.length == 0">
             <h3>il y'a aucune entreprise</h3>
         </div>
-        <div class=" pb-2">
-        <b-card v-if="entreprises.length != 0">
-            <main>
-                <data-table  v-bind="parameters" @actionTriggered="handleAction" />
-            </main>
-        </b-card>
+        <div class="pb-2">
+            <b-card v-if="entreprises.length != 0">
+                <main>
+                    <data-table v-bind="parameters" @actionTriggered="handleAction" />
+                </main>
+            </b-card>
         </div>
         <div
             class="modal fade"
@@ -98,7 +95,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -165,13 +161,13 @@ export default {
             headersi.append('Content-Type', 'application/json');
             headersi.append('auth', 5);
             if (confirm('Delete employe ' + id)) {
-                fetch('api/employe/' + id, { method: 'delete',headers: headersi})
+                fetch('api/employe/' + id, { method: 'delete', headers: headersi })
                     .then(res => {
                         this.fetchEntreprises();
                         this.alert.variant = "danger";
                         this.alert.msg = "Employe supprimé avec succès"
                         this.alert.dismissCountDown = 5;
-                $("#ficheModal").modal('hide');
+                        $("#ficheModal").modal('hide');
 
                     })
                     .then(data => {

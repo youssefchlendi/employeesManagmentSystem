@@ -95,7 +95,7 @@ export default {
             let vm = this;
             fetch(page_url, {
                 method: 'GET',
-                headers:headersi
+                headers: headersi
             })
                 .then(res => res.json())
                 .then(res => {
@@ -114,7 +114,7 @@ export default {
             headersi.append('Content-Type', 'application/json');
             headersi.append('auth', 5);
             if (confirm('Delete Rebrique ' + id)) {
-                fetch('api/rebrique/' + id, { method: 'delete',headers:headersi })
+                fetch('api/rebrique/' + id, { method: 'delete', headers: headersi })
                     .then(res => {
                         this.fetchRebriques();
                     })

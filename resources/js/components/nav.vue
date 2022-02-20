@@ -26,7 +26,7 @@
                             @input="$emit('search-input-emit', $event.target.value)"
                         />
                         <span class="tooltip">{{ searchTooltip }}</span>
-                    </li> -->
+                    </li>-->
 
                     <span v-for="(menuItem, index) in menuItems" :key="index">
                         <li>
@@ -510,5 +510,4 @@ body {
   #my-scroll::-webkit-scrollbar-button:vertical:end:increment{
     display:none;
   } */
-
 </style>

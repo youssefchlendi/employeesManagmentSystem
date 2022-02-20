@@ -20,7 +20,7 @@
                     <b-dropdown-item href="logout">Logout</b-dropdown-item>
                 </b-dropdown>
             </div>
-            </div>
+        </div>
     </nav>
 </template>
 

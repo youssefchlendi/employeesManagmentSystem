@@ -77,14 +77,14 @@ export default {
 
         // $('.btn-outline-success').forEach(e => e.addClass('d-none'));
     },
-    updated(){
-let docs = document.querySelectorAll('.btn-outline-success');
-// console.log(docs);
-                    for (let i=0; i < docs.length; i++) {
-                        docs[i].classList.add('d-none');
-                        // console.log(docs[i]);
-                        // buttons[i].className += " d-none";
-                    }
+    updated() {
+        let docs = document.querySelectorAll('.btn-outline-success');
+        // console.log(docs);
+        for (let i = 0; i < docs.length; i++) {
+            docs[i].classList.add('d-none');
+            // console.log(docs[i]);
+            // buttons[i].className += " d-none";
+        }
     },
     methods: {
 
@@ -95,7 +95,7 @@ let docs = document.querySelectorAll('.btn-outline-success');
             let vm = this;
             fetch(page_url, {
                 method: 'GET',
-                headers:headersi
+                headers: headersi
             })
                 .then(res => res.json())
                 .then(res => {
@@ -111,7 +111,7 @@ let docs = document.querySelectorAll('.btn-outline-success');
             headersi.append('Content-Type', 'application/json');
             headersi.append('auth', 5);
             if (confirm('Delete Rubrique ' + id)) {
-                fetch('api/rebrique/' + id, { method: 'delete',headers:headersi })
+                fetch('api/rebrique/' + id, { method: 'delete', headers: headersi })
                     .then(res => {
                         this.fetchRebriques();
                         this.alert.variant = "danger";

@@ -14,7 +14,8 @@
                         <div class="col-lg-2"></div>
                     </div>
                 </nav>
-                <b-alert class="mt-4"
+                <b-alert
+                    class="mt-4"
                     :show="alert.dismissCountDown"
                     dismissible
                     :variant="alert.variant"
@@ -22,154 +23,153 @@
                 >
                     <p>{{ alert.msg }}</p>
                 </b-alert>
-            <div class="messages"></div>
+                <div class="messages"></div>
                 <div class>
                     <b-card>
-                    <form id="contact-form" @submit.prevent="addEmploye" role="form">
-                        <div class="controls">
-                            <!-- <b-card> -->
+                        <form id="contact-form" @submit.prevent="addEmploye" role="form">
+                            <div class="controls">
+                                <!-- <b-card> -->
                                 <div class="container">
-
-                            <div class="row my-2">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class=" " for="form_name">Nom *</label>
-                                        <input
-                                            id="form_name"
-                                            type="text"
-                                            v-model="employe.nom"
-                                            name="name"
-                                            class="border-0 form-control"
-                                            placeholder="Merci d'entrer le nom de l'employé *"
-                                            required="required"
-                                            data-error="Nom est obligatoire."
-                                        />
+                                    <div class="row my-2">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class for="form_name">Nom *</label>
+                                                <input
+                                                    id="form_name"
+                                                    type="text"
+                                                    v-model="employe.nom"
+                                                    name="name"
+                                                    class="border-0 form-control"
+                                                    placeholder="Merci d'entrer le nom de l'employé *"
+                                                    required="required"
+                                                    data-error="Nom est obligatoire."
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class for="form_lastname">Prenom *</label>
+                                                <input
+                                                    id="form_lastname"
+                                                    type="text"
+                                                    v-model="employe.prenom"
+                                                    name="surname"
+                                                    class="border-0 form-control"
+                                                    placeholder="Merci d'entrer le prenom de l'employé *"
+                                                    required="required"
+                                                    data-error="Prenom est obligatoire."
+                                                />
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class=" " for="form_lastname">Prenom *</label>
-                                        <input
-                                            id="form_lastname"
-                                            type="text"
-                                            v-model="employe.prenom"
-                                            name="surname"
-                                            class="border-0 form-control"
-                                            placeholder="Merci d'entrer le prenom de l'employé *"
-                                            required="required"
-                                            data-error="Prenom est obligatoire."
-                                        />
-                                        <div class="help-block with-errors"></div>
+                                    <!-- </b-card> -->
+                                    <!-- <b-card> -->
+                                    <div class="row my-2">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class for="form_name">CIN *</label>
+                                                <input
+                                                    id="form_name"
+                                                    type="number"
+                                                    v-model="employe.cin"
+                                                    min="1000000"
+                                                    max="99999999"
+                                                    name="name"
+                                                    class="border-0 form-control"
+                                                    placeholder="Merci d'entrer cin de l'employé *"
+                                                    required="required"
+                                                    data-error="CIN est obligatoire."
+                                                />
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class for="form_lastname">Matricule cnss *</label>
+                                                <input
+                                                    id="form_lastname"
+                                                    type="text"
+                                                    name="surname"
+                                                    v-model="employe.mat_cnss"
+                                                    class="border-0 form-control"
+                                                    placeholder="Merci d'entrer le Matricule cnss de l'employé *"
+                                                    required="required"
+                                                    data-error="Matricule cnss est obligatoire."
+                                                />
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- </b-card> -->
-                            <!-- <b-card> -->
-                            <div class="row my-2">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class=" " for="form_name">CIN *</label>
-                                        <input
-                                            id="form_name"
-                                            type="number"
-                                            v-model="employe.cin"
-                                            min="1000000"
-                                            max="99999999"
-                                            name="name"
-                                            class="border-0 form-control"
-                                            placeholder="Merci d'entrer cin de l'employé *"
-                                            required="required"
-                                            data-error="CIN est obligatoire."
-                                        />
-                                        <div class="help-block with-errors"></div>
+                                    <!-- </b-card> -->
+                                    <!-- <b-card> -->
+                                    <div class="row my-2">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class for="form_name">Fonction *</label>
+                                                <input
+                                                    id="form_name"
+                                                    type="text"
+                                                    v-model="employe.fonction"
+                                                    name="name"
+                                                    class="border-0 form-control"
+                                                    placeholder="Merci d'entrer la Fonction de l'employé *"
+                                                    required="required"
+                                                    data-error="Fonction est obligatoire."
+                                                />
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label class for="form_lastname">Entreprise *</label>
+                                                <select
+                                                    required="required"
+                                                    class="form-select"
+                                                    v-model="employe.entreprise_id"
+                                                    aria-label="Default select example"
+                                                >
+                                                    <option
+                                                        v-for="entreprise in entreprises"
+                                                        :selected="entreprise.entreprise_id == entreprise.id"
+                                                        :key="entreprise.id"
+                                                        :value="entreprise.id"
+                                                    >{{ entreprise.titre }}</option>
+                                                </select>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class=" " for="form_lastname">Matricule cnss *</label>
-                                        <input
-                                            id="form_lastname"
-                                            type="text"
-                                            name="surname"
-                                            v-model="employe.mat_cnss"
-                                            class="border-0 form-control"
-                                            placeholder="Merci d'entrer le Matricule cnss de l'employé *"
-                                            required="required"
-                                            data-error="Matricule cnss est obligatoire."
-                                        />
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- </b-card> -->
-                            <!-- <b-card> -->
-                            <div class="row my-2">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class=" " for="form_name">Fonction *</label>
-                                        <input
-                                            id="form_name"
-                                            type="text"
-                                            v-model="employe.fonction"
-                                            name="name"
-                                            class="border-0 form-control"
-                                            placeholder="Merci d'entrer la Fonction de l'employé *"
-                                            required="required"
-                                            data-error="Fonction est obligatoire."
-                                        />
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label class=" " for="form_lastname">Entreprise *</label>
-                                        <select
-                                            required="required"
-                                            class="form-select"
-                                            v-model="employe.entreprise_id"
-                                            aria-label="Default select example"
-                                        >
-                                            <option
-                                                v-for="entreprise in entreprises"
-                                                :selected="entreprise.entreprise_id == entreprise.id"
-                                                :key="entreprise.id"
-                                                :value="entreprise.id"
-                                            >{{ entreprise.titre }}</option>
-                                        </select>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- </b-card> -->
-                            <div class="row">
-                                <div class="col"></div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex mb-4 justify-content-end">
-                                        <div class>
-                                            <button
-                                                class="btn btn-primary ladda-button"
-                                                @click="$router.push({ name: 'Employe' })"
-                                                type="button"
-                                            >
-                                                <span class="ladda-label">
-                                                    <span>Annuler</span>
-                                                </span>
-                                            </button>
-                                            <button
-                                                type="submit"
-                                                class="btn btn-success ladda-button"
-                                            >
-                                                <span class="ladda-label">
-                                                    <span>Sauvegarder</span>
-                                                </span>
-                                            </button>
+                                    <!-- </b-card> -->
+                                    <div class="row">
+                                        <div class="col"></div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex mb-4 justify-content-end">
+                                                <div class>
+                                                    <button
+                                                        class="btn btn-primary ladda-button"
+                                                        @click="$router.push({ name: 'Employe' })"
+                                                        type="button"
+                                                    >
+                                                        <span class="ladda-label">
+                                                            <span>Annuler</span>
+                                                        </span>
+                                                    </button>
+                                                    <button
+                                                        type="submit"
+                                                        class="btn btn-success ladda-button"
+                                                    >
+                                                        <span class="ladda-label">
+                                                            <span>Sauvegarder</span>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
                     </b-card>
                 </div>
             </div>
@@ -203,7 +203,7 @@ export default {
     methods: {
 
         fetchEntreprises() {
-                        let headersi = new Headers();
+            let headersi = new Headers();
             headersi.append('auth', 5);
 
             fetch("/api/entreprise/", {

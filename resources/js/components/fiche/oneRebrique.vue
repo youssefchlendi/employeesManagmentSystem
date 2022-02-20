@@ -13,12 +13,16 @@
                         <b-button
                             variant="success"
                             class="small"
-                            :class="$screen.width<768?'p-2':''"
+                            :class="$screen.width < 768 ? 'p-2' : ''"
                             @click="updateMontant(rebrique.pivot.montant)"
                         >
                             <b-icon icon="check" scale="2"></b-icon>
                         </b-button>
-                        <b-button :class="$screen.width<768?'p-2':''" variant="danger" @click="attachRebrique(rebrique.id)">
+                        <b-button
+                            :class="$screen.width < 768 ? 'p-2' : ''"
+                            variant="danger"
+                            @click="attachRebrique(rebrique.id)"
+                        >
                             <b-icon icon="trash-fill" aria-hidden="true"></b-icon>
                         </b-button>
                     </b-input-group-append>
@@ -74,13 +78,13 @@ export default {
 
                 fetch("api/fiche/calcTotal/" + this.rebrique.pivot.fiche_id, {
                     method: "get",
-                    headers:headersi
+                    headers: headersi
                 });
             }
         },
         attachRebrique(RebriqueId) {
             if (confirm('Dissocier rubrique ' + RebriqueId)) {
-            this.$emit('attachRebrique', { rid: RebriqueId, fid: this.rebrique.pivot.fiche_id });
+                this.$emit('attachRebrique', { rid: RebriqueId, fid: this.rebrique.pivot.fiche_id });
             }
         },
     },

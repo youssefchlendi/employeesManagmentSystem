@@ -15,7 +15,12 @@
                 </b-card-body>
             </b-card>
             <div class="row">
-                <div v-for="employe in employes" v-show="employe.fiches.length > 0" class="col" :key="employe.id">
+                <div
+                    v-for="employe in employes"
+                    v-show="employe.fiches.length > 0"
+                    class="col"
+                    :key="employe.id"
+                >
                     <b-card class="col" v-for="fiche in employe.fiches" :key="fiche.id">
                         <b-container class="bv-example-row text-center">
                             <b-row class="mb-2">

@@ -15,7 +15,7 @@ export default {
                         backgroundColor: "white",
                         borderColor: "white",
                         pointBackgroundColor: "white",
-                        fontColor:"white"
+                        fontColor: "white"
                     }
                 ]
             },
@@ -24,7 +24,7 @@ export default {
                 maintainAspectRatio: false,
                 title: {
                     display: true,
-                                  fontColor: 'white',
+                    fontColor: 'white',
                     text: "My Data"
                 }
             }

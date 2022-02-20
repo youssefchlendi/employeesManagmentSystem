@@ -12,7 +12,7 @@ export default {
                     {
                         label: "Employé/entreprise",
                         data: this.data,
-                        backgroundColor:[
+                        backgroundColor: [
                             '#ffcdd2',
                             '#f8bbd0',
                             '#d1c4e9',
@@ -31,7 +31,7 @@ export default {
                     display: true,
                     text: "My Data"
                 },
-                fontColor:'red'
+                fontColor: 'red'
             },
 
 
