@@ -46,7 +46,7 @@
         "es6-promise": "^4.2.8",
         "jquery": "^3.6.0",
         "mdb-vue-ui-kit": "^1.9.0",
-        "node-sass": "^6.0.1",
+        "node-sass": "^7.0.0",
         "survey-vue": "^1.9.8",
         "vue-chartjs": "^3.5.1",
         "vue-clickaway": "^2.2.2",
