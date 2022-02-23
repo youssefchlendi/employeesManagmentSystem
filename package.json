@@ -58,7 +58,6 @@
         "vue-sidebar-menu": "^4.8.1",
         "vue-sidebar-menu-akahon": "^0.1.4",
         "vuelidate": "^0.7.7",
-        "vuetable-2": "^2.0.0-beta.4",
         "vuetify": "^2.6.3",
         "vuetify-loader": "^1.7.3"
     }
