@@ -72,9 +72,9 @@ export default {
         attachRebrique() {
             $('#rebriqueModal').hide();
             $('body').removeClass('modal-open');
-            $('body').removeAttr('style');
             $('.modal-backdrop').remove();
             this.$emit('attachRebrique', this.rebrique);
+            this.rebrique='';
         },
         containsObject(obj) {
             if (typeof this.oldFiche.rebriques !== 'undefined') {
