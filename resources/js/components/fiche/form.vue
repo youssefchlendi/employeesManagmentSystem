@@ -83,7 +83,7 @@ export default {
             this.resetModal1();
         },
         resetModal1() {
-            document.querySelectorAll('input').forEach(e => e.value = "");
+            // document.querySelectorAll('input').forEach(e => e.value = "");
         },
         formatDate(date) {
             var d = new Date(date),
