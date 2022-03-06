@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar shadow fixed navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand mt-2 mt-lg-0" href="#">
+            <router-link class="navbar-brand mt-2 mt-lg-0" to="/">
                 <img src="images/large.png" width="50" height="50" alt="MDB Logo" loading="lazy" />
-            </a>
+            </router-link>
             <search v-if="show == 'true'" :search="search" @fetch="fetch" />
             <div class="d-flex align-items-center">
                 <b-dropdown

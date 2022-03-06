@@ -437,10 +437,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('addFiche', this.oldFiche);
       this.resetModal1();
     },
-    resetModal1: function resetModal1() {
-      document.querySelectorAll('input').forEach(function (e) {
-        return e.value = "";
-      });
+    resetModal1: function resetModal1() {// document.querySelectorAll('input').forEach(e => e.value = "");
     },
     formatDate: function formatDate(date) {
       var d = new Date(date),
@@ -642,9 +639,9 @@ __webpack_require__.r(__webpack_exports__);
     attachRebrique: function attachRebrique() {
       $('#rebriqueModal').hide();
       $('body').removeClass('modal-open');
-      $('body').removeAttr('style');
       $('.modal-backdrop').remove();
       this.$emit('attachRebrique', this.rebrique);
+      this.rebrique = '';
     },
     containsObject: function containsObject(obj) {
       if (typeof this.oldFiche.rebriques !== 'undefined') {
