@@ -74,6 +74,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -498,6 +499,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   emits: ["fetchFiches", "attachRebrique"],
   props: {
@@ -747,6 +752,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -812,7 +826,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.btun{\n    color:white!important;\n    background-color:#d32f2f!important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.btun {\n    color: white !important;\n    background-color: #d32f2f !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1251,7 +1265,7 @@ var render = function () {
                     [
                       _c(
                         "b-row",
-                        { staticClass: "text-center " },
+                        { staticClass: "text-center" },
                         [
                           _c("b-col", { attrs: { cols: "8" } }, [
                             _c(

@@ -69,6 +69,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -416,6 +417,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     employes: Array,
@@ -533,7 +574,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.btun{\n    color:white!important;\n    background-color:#d32f2f!important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.btun {\n    color: white !important;\n    background-color: #d32f2f !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -765,7 +806,7 @@ var render = function () {
                     [
                       _c(
                         "b-row",
-                        { staticClass: "text-center " },
+                        { staticClass: "text-center" },
                         [
                           _c("b-col", { attrs: { cols: "8" } }, [
                             _c(
@@ -1026,7 +1067,7 @@ var render = function () {
                                   _vm._v(
                                     "Nom : " +
                                       _vm._s(employe.nom) +
-                                      " Prenom :  " +
+                                      " Prenom : " +
                                       _vm._s(employe.prenom)
                                   ),
                                 ]),
@@ -1042,8 +1083,7 @@ var render = function () {
                                     "Cin : " +
                                       _vm._s(employe.cin) +
                                       " Matricule CNSS : " +
-                                      _vm._s(employe.mat_cnss) +
-                                      " "
+                                      _vm._s(employe.mat_cnss)
                                   ),
                                 ]),
                               ],
@@ -1108,7 +1148,7 @@ var render = function () {
                       "b-container",
                       {
                         staticClass:
-                          " bv-example-row text-center   justify-content-center",
+                          "bv-example-row text-center justify-content-center",
                         class: _vm.$screen.width < 768 ? "" : "ml-4 pl-4 row",
                       },
                       [
@@ -1124,7 +1164,7 @@ var render = function () {
                         {
                           key: fiche.id,
                           staticClass:
-                            " bv-example-row text-center   justify-content-center",
+                            "bv-example-row text-center justify-content-center",
                           class: _vm.$screen.width < 768 ? "" : "ml-4 pl-4 row",
                           staticStyle: { "text-align": "left!important" },
                         },
@@ -1145,9 +1185,7 @@ var render = function () {
                                     "b-row",
                                     [
                                       _c("b-col", [
-                                        _vm._v(
-                                          "date : " + _vm._s(fiche.date) + " "
-                                        ),
+                                        _vm._v("date : " + _vm._s(fiche.date)),
                                       ]),
                                     ],
                                     1
@@ -1175,8 +1213,9 @@ var render = function () {
                                             _vm._v(_vm._s(rebrique.titre)),
                                           ]),
                                           _vm._v(
-                                            " : " +
-                                              _vm._s(rebrique.pivot.montant)
+                                            "\n                                    : " +
+                                              _vm._s(rebrique.pivot.montant) +
+                                              "\n                                "
                                           ),
                                         ]),
                                       ],

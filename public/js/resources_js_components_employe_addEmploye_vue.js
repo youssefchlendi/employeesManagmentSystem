@@ -526,14 +526,9 @@ var render = function () {
                         _c("div", { staticClass: "row my-2" }, [
                           _c("div", { staticClass: "col" }, [
                             _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: " ",
-                                  attrs: { for: "form_name" },
-                                },
-                                [_vm._v("Nom *")]
-                              ),
+                              _c("label", { attrs: { for: "form_name" } }, [
+                                _vm._v("Nom *"),
+                              ]),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
@@ -573,14 +568,9 @@ var render = function () {
                           _vm._v(" "),
                           _c("div", { staticClass: "col" }, [
                             _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: " ",
-                                  attrs: { for: "form_lastname" },
-                                },
-                                [_vm._v("Prenom *")]
-                              ),
+                              _c("label", { attrs: { for: "form_lastname" } }, [
+                                _vm._v("Prenom *"),
+                              ]),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
@@ -626,14 +616,9 @@ var render = function () {
                         _c("div", { staticClass: "row my-2" }, [
                           _c("div", { staticClass: "col" }, [
                             _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: " ",
-                                  attrs: { for: "form_name" },
-                                },
-                                [_vm._v("CIN *")]
-                              ),
+                              _c("label", { attrs: { for: "form_name" } }, [
+                                _vm._v("CIN *"),
+                              ]),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
@@ -679,14 +664,9 @@ var render = function () {
                           _vm._v(" "),
                           _c("div", { staticClass: "col" }, [
                             _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: " ",
-                                  attrs: { for: "form_lastname" },
-                                },
-                                [_vm._v("Matricule cnss *")]
-                              ),
+                              _c("label", { attrs: { for: "form_lastname" } }, [
+                                _vm._v("Matricule cnss *"),
+                              ]),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
@@ -733,14 +713,9 @@ var render = function () {
                         _c("div", { staticClass: "row my-2" }, [
                           _c("div", { staticClass: "col" }, [
                             _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: " ",
-                                  attrs: { for: "form_name" },
-                                },
-                                [_vm._v("Fonction *")]
-                              ),
+                              _c("label", { attrs: { for: "form_name" } }, [
+                                _vm._v("Fonction *"),
+                              ]),
                               _vm._v(" "),
                               _c("input", {
                                 directives: [
@@ -784,14 +759,9 @@ var render = function () {
                           _vm._v(" "),
                           _c("div", { staticClass: "col" }, [
                             _c("div", { staticClass: "form-group" }, [
-                              _c(
-                                "label",
-                                {
-                                  staticClass: " ",
-                                  attrs: { for: "form_lastname" },
-                                },
-                                [_vm._v("Entreprise *")]
-                              ),
+                              _c("label", { attrs: { for: "form_lastname" } }, [
+                                _vm._v("Entreprise *"),
+                              ]),
                               _vm._v(" "),
                               _c(
                                 "select",
