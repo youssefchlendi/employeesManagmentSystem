@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FicheController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -52,10 +52,10 @@ Route::group(['prefix'=>'/employe','namespace'=>'App\Http\Controllers','middlewa
     Route::delete('/{employe_id}','EmployeController@Destroy');
 
 });
+Route::get('fiche/calcTotal/{fiche_id?}',[FicheController::class,'calcTotal']);
 Route::group(['prefix'=>'/fiche','namespace'=>'App\Http\Controllers','middleware' => ['apiCheck']],function(){
     Route::post('/add','FicheController@store');
     Route::get('/','FicheController@showAll');
-    Route::get('/calcTotal/{fiche_id?}','FicheController@calcTotal');
     Route::post('/{Fiche_id?}','FicheController@show');
     Route::put('/{fiche_id}/rebrique/{rebrique_id}','FicheController@setMontant');
     Route::post('/{fiche_id}/rebrique/{rebrique_id}','FicheController@linkRebrique');
