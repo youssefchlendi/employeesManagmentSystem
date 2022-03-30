@@ -8,7 +8,7 @@ use App\Models\Employe;
 class EmployeController extends Controller
 {
     public function show(Request $request,$id=null){
-        if(!isset($id)){
+        if($id!=null){
             $search = $request->input('search');
             if ($search==''){
                 $employes = Employe::with('fiches')->with('fiches.rebriques')

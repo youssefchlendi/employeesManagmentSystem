@@ -43,6 +43,7 @@ Route::group(['prefix'=>'/employe','namespace'=>'App\Http\Controllers','middlewa
     Route::post('/add','EmployeController@store');
 
     Route::get('/','EmployeController@getAll');
+    Route::get('/e','EmployeController@show');
     Route::get('/a','EmployeController@get');
 
     Route::post ('/{employe_id?}','EmployeController@show');

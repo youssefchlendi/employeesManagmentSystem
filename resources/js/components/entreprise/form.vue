@@ -100,7 +100,7 @@ export default {
         addEntreprise() {
             $('#exampleModal').hide();
             $('body').removeClass('modal-open');
-            $('body').removeAttr('style');
+            //$('body').removeAttr('style');
             $('.modal-backdrop').remove();
             this.$emit('addEntreprise', this.oldEntreprise);
             this.resetModal1();

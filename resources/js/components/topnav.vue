@@ -35,6 +35,10 @@ export default {
         name: {
             type: String,
             default: ''
+        },
+        search : {
+            type: String,
+            default: ''
         }
     },
     components: {
@@ -42,12 +46,11 @@ export default {
     },
     data() {
         return {
-            search: '',
-        }
+        };
     },
     methods: {
         fetch(search) {
-            this.$emit('fetch', search)
+            this.$emit('fetch', search);
         }
     }
 }

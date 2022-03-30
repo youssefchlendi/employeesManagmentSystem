@@ -118,10 +118,11 @@ __webpack_require__.r(__webpack_exports__);
     fetchEmployes: function fetchEmployes() {
       var _this = this;
 
-      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/employe";
+      var page_url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "/api/employe/e";
       var vm = this;
       var headersi = new Headers();
       headersi.append('auth', 5);
+      headersi.append('Content-Type', 'application/json');
       fetch(page_url, {
         method: 'POST',
         body: JSON.stringify({
@@ -248,6 +249,7 @@ __webpack_require__.r(__webpack_exports__);
       this.employe = employe;
     },
     searchEmploye: function searchEmploye(search) {
+      console.log(search);
       this.search = search;
       this.fetchEmployes();
     },

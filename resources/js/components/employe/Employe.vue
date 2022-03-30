@@ -101,10 +101,11 @@ export default {
         }
     },
     methods: {
-        fetchEmployes(page_url = "/api/employe") {
+        fetchEmployes(page_url = "/api/employe/e") {
             let vm = this;
             let headersi = new Headers();
             headersi.append('auth', 5);
+            headersi.append('Content-Type', 'application/json');
             fetch(page_url, {
                 method: 'POST',
                 body: JSON.stringify({ 'search': this.search }),
@@ -222,6 +223,7 @@ export default {
             this.employe = employe;
         },
         searchEmploye(search) {
+            console.log(search);
             this.search = search;
             this.fetchEmployes();
         },

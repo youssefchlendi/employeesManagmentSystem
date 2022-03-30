@@ -61,8 +61,7 @@ export default {
         }
     },
     updated() {
-        this.checkWidth();
-        console.log('tes');
+        // this.checkWidth();
     },
     methods: {
         checkWidth(t = 0) {

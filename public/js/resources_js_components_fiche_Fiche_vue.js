@@ -431,8 +431,8 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addFiche: function addFiche() {
       $('#ficheModal').hide();
-      $('body').removeClass('modal-open');
-      $('body').removeAttr('style');
+      $('body').removeClass('modal-open'); //$('body').removeAttr('style');
+
       $('.modal-backdrop').remove();
       this.$emit('addFiche', this.oldFiche);
       this.resetModal1();

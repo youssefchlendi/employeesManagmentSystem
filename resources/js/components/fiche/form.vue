@@ -77,7 +77,7 @@ export default {
         addFiche() {
             $('#ficheModal').hide();
             $('body').removeClass('modal-open');
-            $('body').removeAttr('style');
+            //$('body').removeAttr('style');
             $('.modal-backdrop').remove();
             this.$emit('addFiche', this.oldFiche);
             this.resetModal1();

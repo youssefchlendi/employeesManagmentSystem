@@ -19,8 +19,8 @@
 export default {
     data() {
         return {
-            search: '',
-        }
+            search: ''
+        };
     }
 }
 </script>

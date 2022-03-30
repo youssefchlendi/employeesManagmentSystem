@@ -110,7 +110,7 @@ export default {
 
             $('#employeModal').hide();
             $('body').removeClass('modal-open');
-            $('body').removeAttr('style');
+            //$('body').removeAttr('style');
             $('.modal-backdrop').remove();
             this.$emit('addEmploye', this.oldEmploye);
             this.resetModal1();
